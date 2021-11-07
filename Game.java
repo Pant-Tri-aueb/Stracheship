@@ -4,7 +4,16 @@ public class Game{
         System.out.println("Kalispera kai kali vradia");
         System.out.println("ooooooof");
         System.out.println("Gamw ton Apollwna");
+<<<<<<< Updated upstream
         System.out.println("Gamw ton Apollwna kai pali");
         System.out.println("Pame triantafylle Arxhge!");
+=======
+        System.out.println("Gamw ton Apollwna");
+        System.out.println("Gamw ton Apollwna");
+        System.out.println("Gamw ton Apollwna");
+        System.out.println("Gamw ton Apollwna");
+        System.out.println("Gamw ton Apollwna");
+        System.out.println("Gamw tin AEK");
+>>>>>>> Stashed changes
     }
 }
