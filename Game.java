@@ -4,5 +4,7 @@ public class Game{
         System.out.println("Kalispera kai kali vradia");
         System.out.println("ooooooof");
         System.out.println("Gamw ton Apollwna");
+        System.out.println("Gamw ton Apollwna kai pali");
+
     }
 }
