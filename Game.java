@@ -5,6 +5,6 @@ public class Game{
         System.out.println("ooooooof");
         System.out.println("Gamw ton Apollwna");
         System.out.println("Gamw ton Apollwna kai pali");
-        System.out.println("Pame Giwrgo Arxhge!");
+        System.out.println("Pame triantafylle Arxhge!");
     }
 }
