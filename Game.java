@@ -7,7 +7,7 @@ public class Game{
         System.out.println("Gamw ton Apollwna kai pali");
         System.out.println("Pame triantafylle Arxhge!");
         System.out.println("ela mori omadara");
-        System.out.println("m");
+        System.out.println("Sorry re");
         
     }
 }
