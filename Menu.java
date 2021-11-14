@@ -15,8 +15,11 @@ public class Menu { //h klash gia to menou
 		choice = sc.nextInt();
 		if (choice==1) {
 			//odhgies
+			Game c = new Game();
+			c.printInstructions();
 		} else if (choice==2) {
-			//startGame
+			Game a = new Game();
+	    	a.startGame();			
 		} else if (choice==3) {
 			System.out.println("Exit....");
 			System.exit(0);
