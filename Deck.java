@@ -50,7 +50,7 @@ public class Deck {  //Mia malakia pou ekana ston eleuthero moy xrono //
     }
 
     public void PrintArray(){  // Aplh voithitikh methodo gia Print tou Deck//
-    	System.out.println("Αυτό είναι το ταμπλό του παιχνιδιού:");
+    	System.out.println("Αυτό είναι το ταμπλό του παιχνιδιού Strachesip:");
     	for(int i=0 ; i<10 ; i++) {
             for(int j=0 ; j<10 ; j++) {
                 System.out.print(this.deck_arr[i][j]);
