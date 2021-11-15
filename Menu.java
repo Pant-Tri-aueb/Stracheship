@@ -2,7 +2,7 @@ import java.util.*;
 public class Menu { //h klash gia to menou
 	
 	public void startMenu() {
-		System.out.println("Καλώς ήρθατε στο Stracheship!!");
+		System.out.println("Καλώς ήρθατε στο Stracheship!!!");
 		System.out.println("Παρακαλούμε επιλέξτε μία από τις διαθέσιμες επιλογές:");
 		System.out.println("1. Παρουσίαση - Οδηγίες του Stracheship");
 		System.out.println("2. Έναρξη του παιχνιδιού");
