@@ -24,7 +24,7 @@ public class Menu { //h klash gia to menou
 			System.out.println("Exit....");
 			System.exit(0);
 		} else {
-			System.out.println("Παρακαλώ εισάγετε μια έγκυρη επιλογή");
+			System.out.println("Παρακαλώ εισάγετε μια έγκυρη επιλογή!");
 		}
 		
 		} while (choice<1 || choice>3);
