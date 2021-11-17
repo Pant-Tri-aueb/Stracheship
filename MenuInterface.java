@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-// INCLUDES Stracheship_Game.java
+// INCLUDES code from Stracheship_Game.java
 
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
    
