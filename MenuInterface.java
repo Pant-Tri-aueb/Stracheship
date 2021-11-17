@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+// INCLUDES Stracheship_Game.java
+
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
    
 	private JFrame f;
@@ -197,6 +199,29 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	 }
 		
 	}
+    public static void run() {
+        JFrame frame = new JFrame();
+        frame.setBounds(10, 10, 729, 729);
+        frame.setUndecorated(true);
+        JPanel pn = new JPanel(){
+            @Override
+            public void paint(Graphics g) {
+                for(int y = 0 ; y < 9;y++ ){
+                    for(int x = 0 ; x < 9;x++){
+                        g.setColor(Color.BLACK);
+                        g.fillRect(x*81, y*81, 81, 81);
+                        g.setColor(Color.BLUE);
+                        g.fillRect(x*81+1, y*81+1, 81+1, 81+1);
+                    }
+                }
+                
+            }
+        };
+        frame.add(pn);
+        frame.setDefaultCloseOperation(3);
+        frame.setVisible(true);
+
+    }
     public static void main(String[] args) {
     	new MenuInterface();
     }
