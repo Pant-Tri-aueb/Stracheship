@@ -1,4 +1,6 @@
 public class Ship {
+	
+
 	public void RIGHT(C[][],x1,y1,x2,y2) {
 	boolean bam=false;
 		if (x1<x2) {
@@ -65,7 +67,7 @@ public class Ship {
 		}
 		}
 	}
-
+}
 
 
 
