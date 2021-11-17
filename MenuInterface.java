@@ -56,7 +56,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         if (e.getSource() == b1 ) {
         	
         	f.setVisible(false);
-        	Stracheship_Game.run();
+        	run();
         
         } else if (e.getSource() == b2) {
     		
