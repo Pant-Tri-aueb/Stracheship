@@ -56,7 +56,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         if (e.getSource() == b1 ) {
         	
         	f.setVisible(false);
-        	run();
+        	startGame();
         
         } else if (e.getSource() == b2) {
     		
@@ -199,7 +199,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	 }
 		
 	}
-    public static void run() {
+    public static void startGame() {
         JFrame frame = new JFrame();
         frame.setBounds(10, 10, 729, 729);
         frame.setUndecorated(true);
