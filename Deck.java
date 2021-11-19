@@ -60,12 +60,10 @@ public class Deck {  //Mia malakia pou ekana ston eleuthero moy xrono //
         if ((x > 10) || (y > 10)) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΟι συντεταγμένες του πλοίου δεν υπάρχουν στο ταμπλό!");
             checkship = false;
-            return checkship;
         }
         if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΤο πλοίο βγαίνει εκτός ταμπλό παιχνιδιού!");
             checkship = false;
-            return checkship;
         }
         return checkship;
     }
