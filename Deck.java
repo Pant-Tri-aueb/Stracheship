@@ -1,4 +1,4 @@
-public class Deck {  //Mia malakia pou ekana ston eleuthero moy xrono //
+public class Deck {
 
     private String[][] deck_arr = new String[10][10];
 
@@ -9,7 +9,6 @@ public class Deck {  //Mia malakia pou ekana ston eleuthero moy xrono //
     public void shipPlacement(int x,int y,int size,String direction) {
         // Topothetisi ploiou opoy x kai y oi syntetagmenes enos simeioy,
         // size to megethos toy ploioy kai direction to ean mpainei to ploio katheta h orizontia
-        // Ayth h methodo thelei kai ena check gia tin periptosh topothethshs ploiou pou den xoraei sto Deck//
         boolean flag1;
         boolean flag2;
         int i;
@@ -55,13 +54,14 @@ public class Deck {  //Mia malakia pou ekana ston eleuthero moy xrono //
     }
 
     // Methodo elegxou topothetishs ploiou ston pinaka //
+    /* Η μεθοδος αυτη βγαζει outofbounds exception οταν τρεχει το σημειο που εχω βαλει αστερακια.  Δειτε το οποιος μπορει γιατι δεν ξερω τι παιζει*/
     public boolean ShipOutOfDeckCheck(int x, int y, int size, String direction) {
         boolean checkship = true;
         if ((x > 10) || (y > 10)) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΟι συντεταγμένες του πλοίου δεν υπάρχουν στο ταμπλό!");
             checkship = false;
         }
-        if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) {
+        if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) { /******************************/
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΤο πλοίο βγαίνει εκτός ταμπλό παιχνιδιού!");
             checkship = false;
         }
