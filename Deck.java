@@ -26,7 +26,7 @@ public class Deck {  //Mia malakia pou ekana ston eleuthero moy xrono //
         } else if (direction.equals(DOWN)) {
             flag1 = ShipOutOfDeckCheck(x, y, size, DOWN);
             flag2 = ShipOnShipCheck(x, y, size, DOWN);
-            if ((flag1 != false) && (flag2 != false)) {
+            if ((flag1 == true) && (flag2 == true)) {
             	for (i = x ; i < size + x ; i++){
             		this.deck_arr[i-1][y-1] = "S";
             	}
