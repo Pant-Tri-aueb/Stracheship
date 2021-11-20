@@ -6,14 +6,31 @@ import java.awt.event.ActionEvent;
 
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
    
+	private int ShipPlacementCounter = 0;
+	
+	private String[][] deck_arr = new String[10][10];
+	
+	private void deckInit() { 
+	    for(int i=0 ; i<10 ; i++) {
+            for(int j=0 ; j<10 ; j++) {
+                deck_arr[i][j] = "O";
+            }
+        }
+	}
 	private JFrame f;
 	private JFrame newFrame;
-   
-	private JButton b1;
+    private JFrame startframe;
+	
+    private JButton b1;
     private JButton b2;
     private JButton b3;
 	private JButton back;
-    
+	private JButton submit;
+	
+	private JTextField t1, t2, t3, t4;
+	
+	private JTable jt;
+	
 	public MenuInterface() {
     	gui();
     }
@@ -68,7 +85,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	   
     		newPane.setBackground(Color.CYAN);
     		
-    		newFrame.setSize(1200, 1200);
+    		newFrame.setSize(1200, 800);
         	newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         	newFrame.getContentPane().setBackground(Color.CYAN);
         	newFrame.setVisible(true);
@@ -196,32 +213,155 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		 
     		 newFrame.setVisible(false);
     		 f.setVisible(true);
+    	 
+    	 } else if (e.getSource() == submit) {
+    		 
+    	     ShipPlacementCounter++;
+    	     String answer1 = t1.getText();
+    	     String answer2 = t2.getText();
+    	     String answer3 = t3.getText();
+    	     String answer4 = t4.getText();
+    	     
+    	     int x = Integer.parseInt(answer1);
+    	     int y = Integer.parseInt(answer2);
+    	     int size = Integer.parseInt(answer3);
+    	     String direction = answer4;
+    	     shipPlacement(x, y, size, direction);
+    	     startframe.setVisible(false);
+    	     startGame();
+    	     
     	 }
 		
 	}
-    public static void startGame() {
-        JFrame frame = new JFrame();
-        frame.setBounds(10, 10, 729, 729);
-        frame.setUndecorated(true);
-        JPanel pn = new JPanel(){
-            @Override
-            public void paint(Graphics g) {
-                for(int y = 0 ; y < 9;y++ ){
-                    for(int x = 0 ; x < 9;x++){
-                        g.setColor(Color.BLACK);
-                        g.fillRect(x*81, y*81, 81, 81);
-                        g.setColor(Color.BLUE);
-                        g.fillRect(x*81+1, y*81+1, 81+1, 81+1);
-                    }
+   
+    public void startGame() {
+        startframe = new JFrame("Stracheship 1.0");
+       
+        JPanel pn = new JPanel();
+        pn.setBackground(Color.CYAN);
+        pn.setLayout(null);
+        
+        JLabel lb = new JLabel("Δώστε x, y, μέγεθος, και κατεύθυνση για το πλοίο");
+        lb.setBounds(50, 50, 300, 30);
+       
+        String message;
+        if(ShipPlacementCounter == 3) {
+        	 message = "Μένει 1 πλοίο";
+        } else {
+        	 message = String.format("Μένουν %s πλοία", 
+            		String.valueOf(4 - ShipPlacementCounter));
+        }
+        JLabel ShipCount = new JLabel(message); 
+        		
+        ShipCount.setBounds(100, 400, 300, 30);
+        
+        submit = new JButton("Καταχώρηση");
+        submit.addActionListener(this);  
+        submit.setBounds(80, 300, 130, 30);
+        
+        t1=new JTextField("Συντεταγμένη Χ");  
+        t1.setBounds(50,100, 200,30);  
+        t1.addActionListener(this);
+        
+        t2=new JTextField("Συντεταγμένη Υ");  
+        t2.setBounds(50,150, 200,30);
+        t2.addActionListener(this);
+        
+        t3=new JTextField("Μέγεθος πλοίου");  
+        t3.setBounds(50,200, 200,30);  
+        t3.addActionListener(this);
+        
+        t4=new JTextField("Κατεύθυνση πλοίου");  
+        t4.setBounds(50,250, 200,30);  
+        t4.addActionListener(this);
+        
+        String[][] deck_array = new String[10][10];
+        String[] column = new String[10];
+        
+        for (int i = 0; i < 10; i++) {
+        	 column[i] = "";
+        }
+        if (ShipPlacementCounter == 0) { 
+            
+        	deckInit();
+            deck_array = deck_arr;
+        
+        } else if (ShipPlacementCounter == 4) {
+        	
+        	StracheshipBoard();
+            
+        } else {
+        	
+        	deck_array = deck_arr;
+        }
+        jt = new JTable(deck_array, column);
+        jt.setCellSelectionEnabled(false);  
+        jt.setBounds(500, 100, 400, 160);
+        
+        pn.add(ShipCount);
+        pn.add(lb);
+        pn.add(t1);
+        pn.add(t2);
+        pn.add(t3);
+        pn.add(t4);
+        pn.add(jt); 
+        pn.add(submit);
+        
+        startframe.add(pn);
+        startframe.setSize(1200, 800);
+        startframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        if (ShipPlacementCounter == 4) {
+            startframe.setVisible(false);
+        } else {
+        	startframe.setVisible(true);
+        }
+        
+        startframe.setLayout(null);
+        
+          
+   }
+   public void shipPlacement(int x, int y, int size, String direction) {
+        // Topothetisi ploiou opoy x kai y oi syntetagmenes enos simeioy,
+        // size to megethos toy ploioy kai direction to ean mpainei to ploio katheta h orizontia
+        
+	   //boolean check = ShipCheckOveral(x, y, size, direction);
+        int i;
+        //if (check == true) {
+            if(direction.equals("DOWN")) {
+                for (i = x ; i < size + x ; i++){
+                    deck_arr[i-1][y-1] = "S";
                 }
-                
+            } else if (direction.equals("RIGHT")) {
+                for (i = y ; i < size + y ; i++){
+                    deck_arr[x-1][i-1] = "S";
+                }  
             }
-        };
-        frame.add(pn);
-        frame.setDefaultCloseOperation(3);
-        frame.setVisible(true);
-
+        //}
     }
+    
+   public void StracheshipBoard() {
+	   JFrame frame = new JFrame();
+       frame.setBounds(10, 10, 729, 729);
+       frame.setUndecorated(true);
+       JPanel pn = new JPanel(){
+           @Override
+           public void paint(Graphics g) {
+               for(int y = 0 ; y < 9;y++ ){
+                   for(int x = 0 ; x < 9;x++){
+                       g.setColor(Color.BLACK);
+                       g.fillRect(x*81, y*81, 81, 81);
+                       g.setColor(Color.BLUE);
+                       g.fillRect(x*81+1, y*81+1, 81+1, 81+1);
+                   }
+               }
+               
+           }
+       };
+       frame.add(pn);
+       frame.setDefaultCloseOperation(3);
+       frame.setVisible(true);
+   }
     public static void main(String[] args) {
     	new MenuInterface();
     }
