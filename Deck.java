@@ -78,6 +78,32 @@ public class Deck {
             }
         }
         return checkship;
+    
+    /*try {
+            if (direction.equals("RIGHT")) {
+                for (i = y ; i < size + y ; i++){
+                    if (this.deck_arr[x-1][i-1] == "S") {
+                	     checkship = false;
+                	     System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
+                    }
+                }
+             } else if (direction.equals("DOWN")) {
+                 for (i = x ; i < size + x ; i++){
+                     if (this.deck_arr[i-1][y-1] == "S") {
+                         checkship = false;
+                         System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
+                     }
+                 }
+             } 
+         return checkship;
+        } catch (Exception e) {
+        	checkship = false;
+        	return checkship;
+        }
+    
+    */
+    
+    
     }
     // METHODO POU SINDIAZEI TOYS ELEGXOUS SHIPONSHIP KAI SHIPOUTOFDECK KAI VGAZEI 1 APOTELESMA
     public boolean ShipCheckOveral(int x, int y, int size, String direction) {
