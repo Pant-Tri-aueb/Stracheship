@@ -57,13 +57,7 @@ public class Deck {
         if ((x > 10) || (y > 10)) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΟι συντεταγμένες του πλοίου δεν υπάρχουν στο ταμπλό!");
             checkship = false;
-<<<<<<< HEAD
         } else if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) {
-=======
-        }
-        if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || 
-        		((direction.equals("DOWN")) && (x + size - 1 > 10))) {
->>>>>>> 6304be88c9fbff2036cbe2f8c60683cabea80e8c
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΤο πλοίο βγαίνει εκτός ταμπλό παιχνιδιού!");
             checkship = false;
         }
