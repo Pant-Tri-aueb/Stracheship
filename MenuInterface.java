@@ -2,22 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-// INCLUDES code from Stracheship_Game.java
 
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
    
 	private int ShipPlacementCounter = 0;
+	private int counter = 1;
+	private int size_counter = 2;
 	
-	private String[][] deck_arr = new String[10][10];
+	private String[][] deck_table = new String[10][10];
 	
-	private void deckInit() { 
-	    for(int i=0 ; i<10 ; i++) {
-            for(int j=0 ; j<10 ; j++) {
-                deck_arr[i][j] = "O";
-            }
-        }
-	}
-	private JFrame f;
+	Deck myDeck = new Deck();
+	
+	
+    private JFrame f;
 	private JFrame newFrame;
     private JFrame startframe;
 	
@@ -93,6 +90,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		
     		JScrollPane scrollBar=new JScrollPane(newPane, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
     				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    		
     		
     		
     		JTextArea textArea = new JTextArea(2, 20);
@@ -215,26 +213,22 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		 f.setVisible(true);
     	 
     	 } else if (e.getSource() == submit) {
-    		 
-    	     ShipPlacementCounter++;
-    	     String answer1 = t1.getText();
-    	     String answer2 = t2.getText();
-    	     String answer3 = t3.getText();
-    	     String answer4 = t4.getText();
+    		     String answer1 = t1.getText();
+    	         String answer2 = t2.getText();
+    	         String answer4 = t4.getText();
     	     
-    	     int x = Integer.parseInt(answer1);
-    	     int y = Integer.parseInt(answer2);
-    	     int size = Integer.parseInt(answer3);
-    	     String direction = answer4;
-    	     shipPlacement(x, y, size, direction);
-    	     startframe.setVisible(false);
-    	     startGame();
-    	     
-    	 }
+    	         int x = Integer.parseInt(answer1);
+    	         int y = Integer.parseInt(answer2);
+    	         String direction = answer4;
+    	         
+    	         PlayerPlacesShip(myDeck, x, y, direction);
+    	         startframe.setVisible(false);
+    	         startGame();
+    		 }
+   }
 		
-	}
-   
-    public void startGame() {
+	
+   public void startGame() {
         startframe = new JFrame("Stracheship 1.0");
        
         JPanel pn = new JPanel();
@@ -245,34 +239,35 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         lb.setBounds(50, 50, 300, 30);
        
         String message;
-        if(ShipPlacementCounter == 3) {
-        	 message = "Μένει 1 πλοίο";
-        } else {
-        	 message = String.format("Μένουν %s πλοία", 
-            		String.valueOf(4 - ShipPlacementCounter));
-        }
+        message = String.format("Τοποθετήστε πλοίο %d θέσεων", 
+            		size_counter);
+        
         JLabel ShipCount = new JLabel(message); 
-        		
-        ShipCount.setBounds(100, 400, 300, 30);
+        ShipCount.setBounds(600, 400, 300, 30);
         
         submit = new JButton("Καταχώρηση");
         submit.addActionListener(this);  
-        submit.setBounds(80, 300, 130, 30);
+        submit.setBounds(80, 400, 130, 30);
         
-        t1=new JTextField("Συντεταγμένη Χ");  
-        t1.setBounds(50,100, 200,30);  
+        JLabel lbt1 = new JLabel("Συντεταγμένη Χ");
+        lbt1.setBounds(50, 100, 300, 30);
+        
+        t1=new JTextField();  
+        t1.setBounds(50,140, 200,30);  
         t1.addActionListener(this);
         
-        t2=new JTextField("Συντεταγμένη Υ");  
-        t2.setBounds(50,150, 200,30);
+        JLabel lbt2 = new JLabel("Συντεταγμένη Υ");
+        lbt2.setBounds(50, 180, 300, 30);
+        
+        t2=new JTextField();  
+        t2.setBounds(50, 220, 200, 30);
         t2.addActionListener(this);
         
-        t3=new JTextField("Μέγεθος πλοίου");  
-        t3.setBounds(50,200, 200,30);  
-        t3.addActionListener(this);
+        JLabel lbt4 = new JLabel("Κατεύθυνση Πλοίου");
+        lbt4.setBounds(50, 260, 300, 30);
         
-        t4=new JTextField("Κατεύθυνση πλοίου");  
-        t4.setBounds(50,250, 200,30);  
+        t4=new JTextField();  
+        t4.setBounds(50, 300, 200,30);  
         t4.addActionListener(this);
         
         String[][] deck_array = new String[10][10];
@@ -283,16 +278,16 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         }
         if (ShipPlacementCounter == 0) { 
             
-        	deckInit();
-            deck_array = deck_arr;
+        	deck_table = myDeck.deck_arr;
+            deck_array = deck_table;
         
-        } else if (ShipPlacementCounter == 4) {
+        } else if (ShipPlacementCounter == 5) {
         	
         	StracheshipBoard();
             
         } else {
         	
-        	deck_array = deck_arr;
+        	deck_array = deck_table;
         }
         jt = new JTable(deck_array, column);
         jt.setCellSelectionEnabled(false);  
@@ -300,9 +295,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
         pn.add(ShipCount);
         pn.add(lb);
+        pn.add(lbt1);
         pn.add(t1);
+        pn.add(lbt2);
         pn.add(t2);
-        pn.add(t3);
+        pn.add(lbt4);
         pn.add(t4);
         pn.add(jt); 
         pn.add(submit);
@@ -311,7 +308,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         startframe.setSize(1200, 800);
         startframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        if (ShipPlacementCounter == 4) {
+        if (ShipPlacementCounter == 5) {
             startframe.setVisible(false);
         } else {
         	startframe.setVisible(true);
@@ -321,25 +318,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
           
    }
-   public void shipPlacement(int x, int y, int size, String direction) {
-        // Topothetisi ploiou opoy x kai y oi syntetagmenes enos simeioy,
-        // size to megethos toy ploioy kai direction to ean mpainei to ploio katheta h orizontia
-        
-	   //boolean check = ShipCheckOveral(x, y, size, direction);
-        int i;
-        //if (check == true) {
-            if(direction.equals("DOWN")) {
-                for (i = x ; i < size + x ; i++){
-                    deck_arr[i-1][y-1] = "S";
-                }
-            } else if (direction.equals("RIGHT")) {
-                for (i = y ; i < size + y ; i++){
-                    deck_arr[x-1][i-1] = "S";
-                }  
-            }
-        //}
-    }
-    
+   
    public void StracheshipBoard() {
 	   JFrame frame = new JFrame();
        frame.setBounds(10, 10, 729, 729);
@@ -347,12 +326,20 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
        JPanel pn = new JPanel(){
            @Override
            public void paint(Graphics g) {
-               for(int y = 0 ; y < 9;y++ ){
-                   for(int x = 0 ; x < 9;x++){
+               for(int y = 0; y < 10; y++ ){
+                   for(int x = 0; x < 10; x++){
                        g.setColor(Color.BLACK);
-                       g.fillRect(x*81, y*81, 81, 81);
-                       g.setColor(Color.BLUE);
-                       g.fillRect(x*81+1, y*81+1, 81+1, 81+1);
+                       g.fillRect(x*70, y*70, 80, 70);
+                       if (deck_table[y][x] == "S") {
+                    	  
+                    	   g.setColor(Color.GRAY);
+                       
+                       } else {
+                    	  
+                    	   g.setColor(Color.BLUE);
+                       }
+                      
+                       g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
                    }
                }
                
@@ -362,7 +349,25 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
        frame.setDefaultCloseOperation(3);
        frame.setVisible(true);
    }
-    public static void main(String[] args) {
+  
+   public void PlayerPlacesShip (Deck deck, int x, int y, String direction) {
+		
+	   int size = size_counter;
+	    if (deck.ShipCheckOveral(x, y, size, direction) == true) {
+			deck.shipPlacement(x, y, size, direction);
+			if (counter == 1) {
+				size_counter = 3;
+			} else if (counter == 3) {
+				size_counter = 4;
+			}
+			counter++;
+			ShipPlacementCounter ++; 
+		}
+			
+	
+	}
+   
+   public static void main(String[] args) {
     	new MenuInterface();
-    }
+   }
 }
