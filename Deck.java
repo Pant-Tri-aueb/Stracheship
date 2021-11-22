@@ -1,6 +1,6 @@
 public class Deck {
 
-    private String[][] deck_arr = new String[10][10];
+    public String[][] deck_arr = new String[10][10];
 
     public Deck() {  // arxikopoiei pinaka 2x2 pou deixnei to deck tou paixth me "O" tis theseis tou Deck//
         DeckInitialization();
@@ -57,12 +57,19 @@ public class Deck {
         if ((x > 10) || (y > 10)) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΟι συντεταγμένες του πλοίου δεν υπάρχουν στο ταμπλό!");
             checkship = false;
+<<<<<<< HEAD
         } else if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) {
+=======
+        }
+        if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || 
+        		((direction.equals("DOWN")) && (x + size - 1 > 10))) {
+>>>>>>> 6304be88c9fbff2036cbe2f8c60683cabea80e8c
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΤο πλοίο βγαίνει εκτός ταμπλό παιχνιδιού!");
             checkship = false;
         }
         return checkship;
     }
+    
     //Mεθοδο που ελεγχει εαν το πλοιο που παει να τοποθετηθει, παει να τοποθετηθει πανω σε αλλο
     public boolean ShipOnShipCheck(int x, int y, int size, String direction) {
         int i;
@@ -88,7 +95,10 @@ public class Deck {
         	checkship = false;
         	return checkship;
         }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 6304be88c9fbff2036cbe2f8c60683cabea80e8c
     }
     // METHODO POU SINDIAZEI TOYS ELEGXOUS SHIPONSHIP KAI SHIPOUTOFDECK KAI VGAZEI 1 APOTELESMA
     public boolean ShipCheckOveral(int x, int y, int size, String direction) {
