@@ -329,7 +329,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
                for(int y = 0; y < 10; y++ ){
                    for(int x = 0; x < 10; x++){
                        g.setColor(Color.BLACK);
-                       g.fillRect(x*81, y*81, 81, 81);
+                       g.fillRect(x*70, y*70, 80, 70);
                        if (deck_table[y][x] == "S") {
                     	  
                     	   g.setColor(Color.GRAY);
@@ -339,7 +339,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
                     	   g.setColor(Color.BLUE);
                        }
                       
-                       g.fillRect(x*81+1, y*81+1, 81+1, 81+1);
+                       g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
                    }
                }
                
