@@ -89,10 +89,7 @@ public class Deck {
         	checkship = false;
         	return checkship;
         }
-<<<<<<< HEAD
     
-=======
->>>>>>> 6304be88c9fbff2036cbe2f8c60683cabea80e8c
     }
     // METHODO POU SINDIAZEI TOYS ELEGXOUS SHIPONSHIP KAI SHIPOUTOFDECK KAI VGAZEI 1 APOTELESMA
     public boolean ShipCheckOveral(int x, int y, int size, String direction) {
