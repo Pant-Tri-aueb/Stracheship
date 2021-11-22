@@ -34,25 +34,30 @@ public class Deck {
     }
 
     public void PrintArray(){  // Aplh voithitikh methodo gia Print tou Deck//
-    	System.out.println("Αυτό είναι το ταμπλό του παιχνιδιού Strachesip:");
-    	for(int i=0 ; i<10 ; i++) {
-            for(int j=0 ; j<10 ; j++) {
-                System.out.print(this.deck_arr[i][j]);
-                if (j == 9){System.out.print("\n");}
+    	System.out.println("Αυτό είναι το ταμπλό του παιχνιδιού Strachesip: ");
+    	for(int i = 0 ; i < this.deck_arr[0].length ; i ++) {
+            if (i == 0) {System.out.println("+ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10|\n___________________________________________");}
+            for(int j = 0 ; j < this.deck_arr.length ; j ++) {
+                if (j == 0 && i != 9) {
+                    System.out.print(i + 1 + " | " + this.deck_arr[i][j] + " | ");
+                } else if (j == 0 && i == 9) {
+                    System.out.print(i + 1 + "| " + this.deck_arr[i][j] + " | ");
+                } else { 
+                    System.out.print(this.deck_arr[i][j] + " | ");
+                }
+                if (j == 9) {System.out.print("\n");}
             }
         }
         
     }
 
     // Methodo elegxou topothetishs ploiou ston pinaka //
-    /* Η μεθοδος αυτη βγαζει outofbounds exception οταν τρεχει το σημειο που εχω βαλει αστερακια.  Δειτε το οποιος μπορει γιατι δεν ξερω τι παιζει*/
     public boolean ShipOutOfDeckCheck(int x, int y, int size, String direction) {
         boolean checkship = true;
         if ((x > 10) || (y > 10)) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΟι συντεταγμένες του πλοίου δεν υπάρχουν στο ταμπλό!");
             checkship = false;
-        }
-        if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) { /******************************/
+        } else if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΤο πλοίο βγαίνει εκτός ταμπλό παιχνιδιού!");
             checkship = false;
         }
@@ -67,14 +72,14 @@ public class Deck {
                 for (i = y ; i < size + y ; i++){
                     if (this.deck_arr[x-1][i-1] == "S") {
                 	     checkship = false;
-                	     System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
+                	     System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο!");
                     }
                 }
              } else if (direction.equals("DOWN")) {
                  for (i = x ; i < size + x ; i++){
                      if (this.deck_arr[i-1][y-1] == "S") {
                          checkship = false;
-                         System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
+                         System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο!");
                      }
                  }
              } 
