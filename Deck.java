@@ -9,26 +9,17 @@ public class Deck {
     public void shipPlacement(int x,int y,int size,String direction) {
         // Topothetisi ploiou opoy x kai y oi syntetagmenes enos simeioy,
         // size to megethos toy ploioy kai direction to ean mpainei to ploio katheta h orizontia
-        boolean flag1;
-        boolean flag2;
+        boolean check = ShipCheckOveral(x, y, size, direction);
         int i;
-        final String RIGHT = "RIGHT";
-        final String DOWN = "DOWN";
-        if (direction.equals(RIGHT)) {
-            flag1 = ShipOutOfDeckCheck(x, y, size, RIGHT);
-            flag2 = ShipOnShipCheck(x, y, size, RIGHT);
-            if ((flag1 != false) && (flag2 != false)) {
-            	for (i = y ; i < size + y ; i++){
-            		 this.deck_arr[x-1][i-1] = "S";
-            	}
-            }
-        } else if (direction.equals(DOWN)) {
-            flag1 = ShipOutOfDeckCheck(x, y, size, DOWN);
-            flag2 = ShipOnShipCheck(x, y, size, DOWN);
-            if ((flag1 == true) && (flag2 == true)) {
-            	for (i = x ; i < size + x ; i++){
-            		this.deck_arr[i-1][y-1] = "S";
-            	}
+        if (check == true) {
+            if(direction.equals("DOWN")) {
+                for (i = x ; i < size + x ; i++){
+                    this.deck_arr[i-1][y-1] = "S";
+                }
+            } else if (direction.equals("RIGHT")) {
+                for (i = y ; i < size + y ; i++){
+                    this.deck_arr[x-1][i-1] = "S";
+                }  
             }
         }
     }
@@ -67,7 +58,7 @@ public class Deck {
         }
         return checkship;
     }
-
+    //Mεθοδο που ελεγχει εαν το πλοιο που παει να τοποθετηθει, παει να τοποθετηθει πανω σε αλλο
     public boolean ShipOnShipCheck(int x, int y, int size, String direction) {
         int i;
         boolean checkship = true;
@@ -87,5 +78,53 @@ public class Deck {
             }
         }
         return checkship;
+    
+    /*try {
+            if (direction.equals("RIGHT")) {
+                for (i = y ; i < size + y ; i++){
+                    if (this.deck_arr[x-1][i-1] == "S") {
+                	     checkship = false;
+                	     System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
+                    }
+                }
+             } else if (direction.equals("DOWN")) {
+                 for (i = x ; i < size + x ; i++){
+                     if (this.deck_arr[i-1][y-1] == "S") {
+                         checkship = false;
+                         System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
+                     }
+                 }
+             } 
+         return checkship;
+        } catch (Exception e) {
+        	checkship = false;
+        	return checkship;
+        }
+    
+    */
+    
+    
     }
-}
+    // METHODO POU SINDIAZEI TOYS ELEGXOUS SHIPONSHIP KAI SHIPOUTOFDECK KAI VGAZEI 1 APOTELESMA
+    public boolean ShipCheckOveral(int x, int y, int size, String direction) {
+        boolean finalcheck = false;
+        boolean flag1;
+        boolean flag2;
+        final String RIGHT = "RIGHT";
+        final String DOWN = "DOWN";
+        if (direction.equals(RIGHT)) {
+            flag1 = ShipOutOfDeckCheck(x, y, size, RIGHT);
+            flag2 = ShipOnShipCheck(x, y, size, RIGHT);
+            if ((flag1 == true) && (flag2 == true)) {
+            	finalcheck = true;
+            }
+        } else if (direction.equals(DOWN)) {
+            flag1 = ShipOutOfDeckCheck(x, y, size, DOWN);
+            flag2 = ShipOnShipCheck(x, y, size, DOWN);
+            if ((flag1 == true) && (flag2 == true)) {
+            	finalcheck = true;
+            }
+        }
+        return finalcheck;
+    }
+}   
