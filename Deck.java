@@ -1,6 +1,6 @@
 public class Deck {
 
-    private String[][] deck_arr = new String[10][10];
+    public String[][] deck_arr = new String[10][10];
 
     public Deck() {  // arxikopoiei pinaka 2x2 pou deixnei to deck tou paixth me "O" tis theseis tou Deck//
         DeckInitialization();
@@ -52,34 +52,19 @@ public class Deck {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΟι συντεταγμένες του πλοίου δεν υπάρχουν στο ταμπλό!");
             checkship = false;
         }
-        if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || ((direction.equals("DOWN")) && (x + size - 1 > 10))) { /******************************/
+        if (((direction.equals("RIGHT")) && (y + size - 1 > 10)) || 
+        		((direction.equals("DOWN")) && (x + size - 1 > 10))) {
             System.out.println("Άκυρη τοποθέτηση πλοίου.\nΤο πλοίο βγαίνει εκτός ταμπλό παιχνιδιού!");
             checkship = false;
         }
         return checkship;
     }
+    
     //Mεθοδο που ελεγχει εαν το πλοιο που παει να τοποθετηθει, παει να τοποθετηθει πανω σε αλλο
     public boolean ShipOnShipCheck(int x, int y, int size, String direction) {
         int i;
         boolean checkship = true;
-        if (direction.equals("RIGHT")) {
-            for (i = y ; i < size + y ; i++){
-                if (this.deck_arr[x-1][i-1] == "S") {
-                	 checkship = false;
-                	 System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
-                }
-            }
-        } else if (direction.equals("DOWN")) {
-            for (i = x ; i < size + x ; i++){
-                if (this.deck_arr[i-1][y-1] == "S") {
-                    checkship = false;
-                    System.out.println("Στην γραμμή " + x + " και σειρά " + i + " υπάρχει άλλο πλοίο");
-                }
-            }
-        }
-        return checkship;
-    
-    /*try {
+        try {
             if (direction.equals("RIGHT")) {
                 for (i = y ; i < size + y ; i++){
                     if (this.deck_arr[x-1][i-1] == "S") {
@@ -100,10 +85,6 @@ public class Deck {
         	checkship = false;
         	return checkship;
         }
-    
-    */
-    
-    
     }
     // METHODO POU SINDIAZEI TOYS ELEGXOUS SHIPONSHIP KAI SHIPOUTOFDECK KAI VGAZEI 1 APOTELESMA
     public boolean ShipCheckOveral(int x, int y, int size, String direction) {
