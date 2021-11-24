@@ -1,6 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
@@ -28,40 +32,46 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	private JTable jt;
 	
+	
 	public MenuInterface() {
     	gui();
     }
     
     public void gui() {
         f = new JFrame("Stracheship 1.0");
-    	
-    	f.setSize(1200, 800);
+        
+        JLabel background=new JLabel(new ImageIcon(
+        		"BattleShip1.jpg"));
+        add(background);
+        
+    	f.setSize(1280, 720);
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-    	JPanel p = new JPanel();
-    	p.setBackground(Color.BLUE);
-    	p.setBorder(BorderFactory.createEmptyBorder(150, 400, 150, 400));
-    	p.setLayout(new GridLayout(4, 1, 0, 70));
-    	
+        
     	b1 = new JButton("1. Έναρξη του παιχνιδιού");
+    	b1.setBounds(440, 270, 400, 80);
     	b1.addActionListener(this);
+    	
         
     	b2 = new JButton("2. Παρουσίαση - Οδηγίες του Stracheship");
-        b2.addActionListener(this);
+    	b2.setBounds(440, 410, 400, 80);
+    	b2.addActionListener(this);
         
         b3 = new JButton("3. Τερματισμός");
-    	b3.addActionListener(this);
+        b3.setBounds(440, 550, 400, 80);
+        b3.addActionListener(this);
     	
     	JLabel title = new JLabel("STRACHESHIP");
-    	title.setFont(new Font("Anton", Font.BOLD, 52));
+    	title.setBounds(450, 110, 600, 50);
+    	title.setFont(new Font("Anton", Font.BOLD, 54));
     	title.setForeground(Color.BLACK);
     	
-    	p.add(title);
-    	p.add(b1);
-    	p.add(b2);
-    	p.add(b3);
-	    
-    	f.add(p,BorderLayout.CENTER);
+    	
+    	background.setLayout(null);
+        background.add(title);
+    	background.add(b1);
+    	background.add(b2);
+    	background.add(b3);
+    	f.add(background);
     	f.setVisible(true);
     }
     
@@ -228,7 +238,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
    }
 		
 	
-   public void startGame() {
+   
+    public void startGame() {
         startframe = new JFrame("Stracheship 1.0");
        
         JPanel pn = new JPanel();
@@ -252,21 +263,21 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         JLabel lbt1 = new JLabel("Συντεταγμένη Χ");
         lbt1.setBounds(50, 100, 300, 30);
         
-        t1=new JTextField();  
+        t1 = new JTextField();  
         t1.setBounds(50,140, 200,30);  
         t1.addActionListener(this);
         
         JLabel lbt2 = new JLabel("Συντεταγμένη Υ");
         lbt2.setBounds(50, 180, 300, 30);
         
-        t2=new JTextField();  
+        t2 = new JTextField();  
         t2.setBounds(50, 220, 200, 30);
         t2.addActionListener(this);
         
         JLabel lbt4 = new JLabel("Κατεύθυνση Πλοίου");
         lbt4.setBounds(50, 260, 300, 30);
         
-        t4=new JTextField();  
+        t4 = new JTextField();  
         t4.setBounds(50, 300, 200,30);  
         t4.addActionListener(this);
         
@@ -322,7 +333,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
    public void StracheshipBoard() {
 	   JFrame frame = new JFrame();
        frame.setBounds(10, 10, 729, 729);
-       frame.setUndecorated(true);
+       frame.setUndecorated(false);
        JPanel pn = new JPanel(){
            @Override
            public void paint(Graphics g) {
