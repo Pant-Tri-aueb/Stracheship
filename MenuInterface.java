@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
@@ -21,20 +24,22 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	private String[][] deck_table = new String[10][10];
 	
-	Deck myDeck = new Deck();
-	
+	Deck Deck1 = new Deck();
+	Deck Deck2 = new Deck();
 	
     private JFrame f;
 	private JFrame newFrame;
     private JFrame startframe;
-	
+	private JFrame SecondFrame;
+    
     private JButton b1;
     private JButton b2;
     private JButton b3;
 	private JButton back;
 	private JButton submit;
+	private JButton next;
 	
-	private JTextField t1, t2, t3, t4;
+	private JTextField t1, t2, t3, t4, t5, t6, t7;
 	
 	private JTable jt;
 	
@@ -46,7 +51,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     public void gui() {
         f = new JFrame("Stracheship 1.0");
         
-        JLabel background=new JLabel(new ImageIcon(
+        JLabel background = new JLabel(new ImageIcon(
         		"Ships2.jpg"));
         add(background);
         
@@ -81,13 +86,79 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	f.setVisible(true);
     }
     
+    public void Player() {
+    	SecondFrame = new JFrame("Stracheship 1.0");
+    	SecondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	SecondFrame.setSize(1280, 720);
+    	
+    	f.setVisible(false);
+    	SecondFrame.setVisible(true);
+    	
+    	JLabel background = new JLabel(new ImageIcon(
+         		"assasinscreedodyssey.jpg"));
+    	
+    	background.setLayout(null);
+    	SecondFrame.add(background);
+    	
+    	String message = "";
+    	
+    	if (Player.playerNo == 0) {
+    		
+    		message = "Στοιχεία πρώτου παίκτη: ";
+    	
+    	} else if (Player.playerNo == 1) {
+    		
+    		message = "Στοιχεία δεύτερου παίκτη: ";
+    	}
+    	
+    	JLabel title = new JLabel(message);
+        title.setBounds(50, 50, 250, 30);
+        title.setFont(new Font("SansSerif", Font.BOLD, 17));
+    	
+    	next = new JButton("Ετοίμασε τον στόλο σου");
+    	next.addActionListener(this);
+    	next.setBounds(50, 450, 200, 50);
+    	
+        JLabel name = new JLabel("Όνομα");
+        name.setBounds(50, 100, 100, 30);
+        //name.setOpaque(true);
+        
+        t5 = new JTextField();  
+        t5.setBounds(50,140, 200,30);  
+        t5.addActionListener(this);
+        
+        JLabel sex = new JLabel("Φύλο");
+        sex.setBounds(50, 180, 100, 30);
+        //sex.setOpaque(true);
+        
+        t6 = new JTextField();  
+        t6.setBounds(50, 220, 200, 30);
+        t6.addActionListener(this);
+        
+        JLabel age = new JLabel("Ηλικία");
+        age.setBounds(50, 260, 120, 30);
+        //age.setOpaque(true);
+        
+        t7 = new JTextField();  
+        t7.setBounds(50, 300, 200,30);  
+        t7.addActionListener(this);
+    	
+    	background.add(title);
+        background.add(next);
+    	background.add(name);
+    	background.add(t5);
+    	background.add(sex);
+    	background.add(t6);
+    	background.add(age);
+    	background.add(t7);
+    }
+    
     @Override
 	public void actionPerformed(ActionEvent e) {
         if (e.getSource() == b1 ) {
         	
-        	f.setVisible(false);
-        	startGame();
-        
+        	Player();
+        	
         } else if (e.getSource() == b2) {
     		
     	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
@@ -232,6 +303,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		 newFrame.setVisible(false);
     		 f.setVisible(true);
     	 
+    	 
     	 } else if (e.getSource() == submit) {
     		     String answer1 = t1.getText();
     	         String answer2 = t2.getText();
@@ -241,10 +313,38 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	         int y = Integer.parseInt(answer2);
     	         String direction = answer4;
     	         
-    	         PlayerPlacesShip(myDeck, x, y, direction);
+    	         if (Player.playerNo == 1) {
+    	        	  
+    	        	 PlayerPlacesShip(Deck1, x, y, direction);
+    	         
+    	         } else {
+    	        	 
+    	        	 PlayerPlacesShip(Deck2, x, y, direction);
+    	         }
+    	         
     	         startframe.setVisible(false);
     	         startGame();
-    		 }
+    	        
+    	         if (ShipPlacementCounter == 10 && Player.playerNo == 2) {
+         	
+         	         StracheshipBoard();
+    	         }
+        
+    	 
+    	 } else if (e.getSource() == next) {
+    		 String answer5 = t5.getText();
+	         String answer6 = t6.getText();
+	         String answer7 = t7.getText();
+	         
+	         String name = answer5;
+	         String sex = answer6;
+	         int age = Integer.parseInt(answer7);
+	         
+	         Player player1 = new Player(name, sex, age);
+    		 SecondFrame.setVisible(false);
+	         
+    		 startGame();
+        }
    }
 		
 	
@@ -261,7 +361,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         lb.setBounds(50, 50, 280, 30);
         lb.setOpaque(true);
        
-        
+        if (Player.playerNo == 2 && ShipPlacementCounter == 5) {
+ 		   counter = 1;
+ 		   size_counter = 2;
+ 	   }
+ 	   
         String message;
         message = String.format("Τοποθετήστε πλοίο %d θέσεων", 
             		size_counter);
@@ -304,15 +408,20 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         for (int i = 0; i < 10; i++) {
         	 column[i] = "";
         }
-        if (ShipPlacementCounter == 0) { 
+        if (ShipPlacementCounter == 0 && Player.playerNo == 1) { 
             
-        	deck_table = myDeck.deck_arr;
+        	deck_table = Deck1.deck_arr;
             deck_array = deck_table;
         
-        } else if (ShipPlacementCounter == 5) {
+        } else if (ShipPlacementCounter == 5 && Player.playerNo == 2) {
         	
-        	StracheshipBoard();
-            
+        	deck_table = Deck2.deck_arr;
+            deck_array = deck_table;
+        
+        } else if (ShipPlacementCounter == 5 && Player.playerNo == 1) {
+        	
+        	Player();
+        
         } else {
         	
         	deck_array = deck_table;
@@ -339,9 +448,16 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         startframe.setSize(1200, 800);
         startframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        if (ShipPlacementCounter == 5) {
-            startframe.setVisible(false);
+        if (ShipPlacementCounter == 5 && Player.playerNo == 1) {
+           
+        	startframe.setVisible(false);
+        
+        } else if (ShipPlacementCounter == 5 && Player.playerNo == 2) {
+        	
+        	startframe.setVisible(true);
+        	
         } else {
+        	
         	startframe.setVisible(true);
         }
         
@@ -361,11 +477,15 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
                    for(int x = 0; x < 10; x++){
                        g.setColor(Color.BLACK);
                        g.fillRect(x*70, y*70, 80, 70);
-                       if (deck_table[y][x] == "S") {
+                       if (Deck1.deck_arr[y][x] == "S") {
                     	  
                     	   g.setColor(Color.GRAY);
                        
-                       } else {
+                       } else if (Deck2.deck_arr[y][x] == "S"){
+                       
+                    	   g.setColor(Color.LIGHT_GRAY);
+                       
+                       } else { 
                     	  
                     	   g.setColor(Color.BLUE);
                        }
@@ -384,7 +504,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
    public void PlayerPlacesShip (Deck deck, int x, int y, String direction) {
 		
 	   int size = size_counter;
-	    if (deck.ShipCheckOveral(x, y, size, direction) == true) {
+	   
+	   if (deck.ShipCheckOveral(x, y, size, direction) == true) {
 			deck.shipPlacement(x, y, size, direction);
 			if (counter == 1) {
 				size_counter = 3;
