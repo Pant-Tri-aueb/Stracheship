@@ -10,13 +10,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Backgroundmusic  {
 	   public void sound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		   AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("tar.wav"));
-	        Clip clip = AudioSystem.getClip();
-	        clip.open(inputStream);
-	        while(true){
-	            clip.start();
-	            clip.loop(clip.LOOP_CONTINUOUSLY);
-	            }
-	        }
+		   Clip c = AudioSystem.getClip();
+		   c.open(inputStream);
+		   while(true){
+			   c.start();
+			   c.loop(c.LOOP_CONTINUOUSLY);
+		   }
+	   }
 }
 
 
