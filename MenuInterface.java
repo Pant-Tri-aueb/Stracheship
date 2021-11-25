@@ -50,7 +50,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         f = new JFrame("Stracheship 1.0");
         
         JLabel background=new JLabel(new ImageIcon(
-        		"BattleShip1.jpg"));
+        		"Ships2.jpg"));
         add(background);
         
     	f.setSize(1280, 720);
@@ -70,8 +70,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         b3.addActionListener(this);
     	
     	JLabel title = new JLabel("STRACHESHIP");
-    	title.setBounds(450, 110, 600, 50);
-    	title.setFont(new Font("Anton", Font.BOLD, 54));
+    	title.setBounds(400, 110, 600, 55);
+    	title.setFont(new Font("SansSerif", Font.BOLD, 68));
     	title.setForeground(Color.BLACK);
     	
     	
@@ -94,16 +94,18 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         } else if (e.getSource() == b2) {
     		
     	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
-    		JPanel newPane = new JPanel();
     		
-    	    back = new JButton("Αρχικό Μενού");
+    	    JLabel newPane = new JLabel(new ImageIcon(
+            		"sea.jpg"));
+    		newPane.setLayout(null);
+    	    
+    		back = new JButton("Αρχικό Μενού");
     	    back.addActionListener(this);
-    	   
-    		newPane.setBackground(Color.CYAN);
+    	    back.setBounds(550, 1750, 150, 30);
     		
-    		newFrame.setSize(1200, 800);
+    		
+    		newFrame.setSize(1300, 800);
         	newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	newFrame.getContentPane().setBackground(Color.CYAN);
         	newFrame.setVisible(true);
     		f.setVisible(false);
     		
@@ -214,7 +216,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	    textArea.setOpaque(false);
     	    textArea.setEditable(false);
     	    textArea.setFocusable(true);
-    	    textArea.setBackground(Color.BLUE);
+    	    textArea.setBounds(0, 0, 2000, 1600);
+    	    textArea.setFont(new Font("SansSerif", Font.BOLD, 15));
+    	    
     	    
     	    newPane.add(textArea);
     	    newPane.add(back);
@@ -251,40 +255,47 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     public void startGame() {
         startframe = new JFrame("Stracheship 1.0");
        
-        JPanel pn = new JPanel();
-        pn.setBackground(Color.CYAN);
+        JLabel pn = new JLabel(new ImageIcon(
+        		"storm5.jpg"));
+        
         pn.setLayout(null);
         
         JLabel lb = new JLabel("Δώστε x, y, μέγεθος, και κατεύθυνση για το πλοίο");
-        lb.setBounds(50, 50, 300, 30);
+        lb.setBounds(50, 50, 280, 30);
+        lb.setOpaque(true);
        
+        
         String message;
         message = String.format("Τοποθετήστε πλοίο %d θέσεων", 
             		size_counter);
         
         JLabel ShipCount = new JLabel(message); 
-        ShipCount.setBounds(600, 400, 300, 30);
+        ShipCount.setBounds(300, 600, 170, 30);
+        ShipCount.setOpaque(true);
         
         submit = new JButton("Καταχώρηση");
         submit.addActionListener(this);  
         submit.setBounds(80, 400, 130, 30);
         
         JLabel lbt1 = new JLabel("Συντεταγμένη Χ");
-        lbt1.setBounds(50, 100, 300, 30);
+        lbt1.setBounds(50, 100, 100, 30);
+        lbt1.setOpaque(true);
         
         t1 = new JTextField();  
         t1.setBounds(50,140, 200,30);  
         t1.addActionListener(this);
         
         JLabel lbt2 = new JLabel("Συντεταγμένη Υ");
-        lbt2.setBounds(50, 180, 300, 30);
+        lbt2.setBounds(50, 180, 100, 30);
+        lbt2.setOpaque(true);
         
         t2 = new JTextField();  
         t2.setBounds(50, 220, 200, 30);
         t2.addActionListener(this);
         
         JLabel lbt4 = new JLabel("Κατεύθυνση Πλοίου");
-        lbt4.setBounds(50, 260, 300, 30);
+        lbt4.setBounds(50, 260, 120, 30);
+        lbt4.setOpaque(true);
         
         t4 = new JTextField();  
         t4.setBounds(50, 300, 200,30);  
@@ -311,7 +322,10 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         }
         jt = new JTable(deck_array, column);
         jt.setCellSelectionEnabled(false);  
-        jt.setBounds(500, 100, 400, 160);
+        jt.setBounds(785, 460, 400, 300);
+        jt.setRowHeight(30);
+        jt.setBackground(Color.LIGHT_GRAY);
+        jt.setForeground(Color.BLACK);
         
         pn.add(ShipCount);
         pn.add(lb);
