@@ -31,18 +31,25 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JFrame newFrame;
     private JFrame startframe;
 	private JFrame SecondFrame;
-    
+    private JFrame GodFrame; 
+	
     private JButton b1;
     private JButton b2;
     private JButton b3;
 	private JButton back;
 	private JButton submit;
 	private JButton next;
+	private JButton zeus;
+	private JButton poseidon;
+	private JButton ares;
+	private JButton artemis;
 	
 	private JTextField t1, t2, t3, t4, t5, t6, t7;
 	
 	private JTable jt;
 	
+	private Player player1;
+	private Player player2;
 	
 	public MenuInterface() {
     	gui();
@@ -92,6 +99,10 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	SecondFrame.setSize(1280, 720);
     	
     	f.setVisible(false);
+    	if (Player.playerNo == 1) {
+    	
+    		GodFrame.setVisible(false);
+    	}
     	SecondFrame.setVisible(true);
     	
     	JLabel background = new JLabel(new ImageIcon(
@@ -121,7 +132,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	
         JLabel name = new JLabel("Όνομα");
         name.setBounds(50, 100, 100, 30);
-        //name.setOpaque(true);
+        
         
         t5 = new JTextField();  
         t5.setBounds(50,140, 200,30);  
@@ -129,7 +140,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
         JLabel sex = new JLabel("Φύλο");
         sex.setBounds(50, 180, 100, 30);
-        //sex.setOpaque(true);
+        
         
         t6 = new JTextField();  
         t6.setBounds(50, 220, 200, 30);
@@ -137,7 +148,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
         JLabel age = new JLabel("Ηλικία");
         age.setBounds(50, 260, 120, 30);
-        //age.setOpaque(true);
+        
         
         t7 = new JTextField();  
         t7.setBounds(50, 300, 200,30);  
@@ -152,6 +163,43 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	background.add(age);
     	background.add(t7);
     }
+    
+    public void Gods() {
+    	GodFrame = new JFrame("Stracheship 1.0");
+    	GodFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	GodFrame.setSize(1280, 720);
+    	
+    	startframe.setVisible(false);
+    	GodFrame.setVisible(true);
+    	
+    	JLabel background = new JLabel(new ImageIcon(
+         		"Gods.jpg"));
+    	
+    	background.setLayout(null);
+    	GodFrame.add(background);
+    	
+    	zeus = new JButton("ΔΙΑΣ");
+    	zeus.setBounds(50, 600, 200, 40);
+    	zeus.addActionListener(this);
+    	
+        poseidon = new JButton("ΠΟΣΕΙΔΩΝΑΣ");
+    	poseidon.setBounds(1010, 600, 200, 40);
+    	poseidon.addActionListener(this);
+        
+        ares = new JButton("ΑΡΗΣ");
+        ares.setBounds(690, 600, 200, 40);
+        ares.addActionListener(this);
+         
+        artemis = new JButton("ΑΡΤΕΜΙΣ");
+        artemis.setBounds(365, 600, 200, 40);
+        artemis.addActionListener(this);
+    
+        background.add(zeus);
+        background.add(poseidon);
+        background.add(ares);
+        background.add(artemis);
+    }
+    
     
     @Override
 	public void actionPerformed(ActionEvent e) {
@@ -230,7 +278,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     				"Οι διαθέσιμοι χαρακτήρες είναι οι ακόλουθοι:\r\n" + 
     				"->Δίας\r\n" + 
     				"->Άρης\r\n" + 
-    				"->Αθηνά\r\n" + 
+    				"->Ποσειδώνας\r\n" + 
     				"->Άρτεμης\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
@@ -327,7 +375,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	        
     	         if (ShipPlacementCounter == 10 && Player.playerNo == 2) {
          	
-         	         StracheshipBoard();
+         	         Gods();
     	         }
         
     	 
@@ -340,10 +388,73 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	         String sex = answer6;
 	         int age = Integer.parseInt(answer7);
 	         
-	         Player player1 = new Player(name, sex, age);
+	         if (Player.playerNo == 0) {
+	        	 
+	        	 player1 = new Player(name, sex, age);
+	         
+	         } else {
+	        	 
+	        	 player2 = new Player(name, sex, age);
+	         }
+	         
     		 SecondFrame.setVisible(false);
 	         
     		 startGame();
+        
+    	 } else if (e.getSource() == zeus || e.getSource() == poseidon ||
+        		e.getSource() == ares || e.getSource() == artemis) {
+        	
+    		if (Player.playerNo == 1) {
+    			if (e.getSource() == zeus) {
+    				
+    				player1.setGod("ZEUS"); 
+    			
+    			} else if (e.getSource() == poseidon) {
+    				
+    				player1.setGod("POSEIDON");
+    			
+    			} else if (e.getSource() == ares) {
+    				
+    				player1.setGod("ARES");
+    			
+    			} else if (e.getSource() == artemis) {
+    				
+    				player1.setGod("ARTEMIS");
+    			}
+    			 
+    			
+    		} else {
+    			
+                if (e.getSource() == zeus) {
+    				
+    				player2.setGod("ZEUS"); 
+    			
+    			} else if (e.getSource() == poseidon) {
+    				
+    				player2.setGod("POSEIDON");
+    			
+    			} else if (e.getSource() == ares) {
+    				
+    				player2.setGod("ARES");
+    			
+    			} else if (e.getSource() == artemis) {
+    				
+    				player2.setGod("ARTEMIS");
+    			}
+    		}
+    		 
+    		 
+    		 if (Player.playerNo == 1) {
+    			 
+    			 GodFrame.setVisible(false);
+        		 Player();
+        	
+        	 } else {
+        		 
+        		 GodFrame.setVisible(false);
+        		 StracheshipBoard();
+        	 }
+        	
         }
    }
 		
@@ -420,8 +531,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
         } else if (ShipPlacementCounter == 5 && Player.playerNo == 1) {
         	
-        	Player();
-        
+        	Gods();
+        	
         } else {
         	
         	deck_array = deck_table;
