@@ -15,7 +15,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
    
 	private int ShipPlacementCounter = 0;
@@ -24,8 +23,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	private String[][] deck_table = new String[10][10];
 	
-	Deck Deck1 = new Deck();
-	Deck Deck2 = new Deck();
+	static Deck Deck1 = new Deck();
+	static Deck Deck2 = new Deck();
 	
     private JFrame f;
 	private JFrame newFrame;
@@ -48,8 +47,10 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	private JTable jt;
 	
-	private Player player1;
-	private Player player2;
+	static Player player1;
+	static Player player2;
+	
+    static Game runGame = new Game();
 	
 	public MenuInterface() {
     	gui();
@@ -407,19 +408,19 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		if (Player.playerNo == 1) {
     			if (e.getSource() == zeus) {
     				
-    				player1.setGod("ZEUS"); 
+    				player1.setGod("ΔΙΑΣ"); 
     			
     			} else if (e.getSource() == poseidon) {
     				
-    				player1.setGod("POSEIDON");
+    				player1.setGod("ΠΟΣΕΙΔΩΝΑΣ");
     			
     			} else if (e.getSource() == ares) {
     				
-    				player1.setGod("ARES");
+    				player1.setGod("ΑΡΗΣ");
     			
     			} else if (e.getSource() == artemis) {
     				
-    				player1.setGod("ARTEMIS");
+    				player1.setGod("ΑΡΤΕΜΙΣ");
     			}
     			 
     			
@@ -427,19 +428,19 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     			
                 if (e.getSource() == zeus) {
     				
-    				player2.setGod("ZEUS"); 
+    				player2.setGod("ΔΙΑΣ"); 
     			
     			} else if (e.getSource() == poseidon) {
     				
-    				player2.setGod("POSEIDON");
+    				player2.setGod("ΠΟΣΕΙΔΩΝΑΣ");
     			
     			} else if (e.getSource() == ares) {
     				
-    				player2.setGod("ARES");
+    				player2.setGod("ΑΡΗΣ");
     			
     			} else if (e.getSource() == artemis) {
     				
-    				player2.setGod("ARTEMIS");
+    				player2.setGod("ΑΡΤΕΜΙΣ");
     			}
     		}
     		 
@@ -452,7 +453,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	 } else {
         		 
         		 GodFrame.setVisible(false);
-        		 StracheshipBoard();
+        		 runGame.StracheshipBoard();
         	 }
         	
         }
@@ -577,42 +578,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
           
    }
    
-   public void StracheshipBoard() {
-	   JFrame frame = new JFrame();
-       frame.setBounds(10, 10, 729, 729);
-       frame.setUndecorated(false);
-       JPanel pn = new JPanel(){
-           @Override
-           public void paint(Graphics g) {
-               for(int y = 0; y < 10; y++ ){
-                   for(int x = 0; x < 10; x++){
-                       g.setColor(Color.BLACK);
-                       g.fillRect(x*70, y*70, 80, 70);
-                       if (Deck1.deck_arr[y][x] == "S") {
-                    	  
-                    	   g.setColor(Color.GRAY);
-                       
-                       } else if (Deck2.deck_arr[y][x] == "S"){
-                       
-                    	   g.setColor(Color.LIGHT_GRAY);
-                       
-                       } else { 
-                    	  
-                    	   g.setColor(Color.BLUE);
-                       }
-                      
-                       g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
-                   }
-               }
-               
-           }
-       };
-       frame.add(pn);
-       frame.setDefaultCloseOperation(3);
-       frame.setVisible(true);
-   }
-  
-   public void PlayerPlacesShip (Deck deck, int x, int y, String direction) {
+  public void PlayerPlacesShip (Deck deck, int x, int y, String direction) {
 		
 	   int size = size_counter;
 	   
@@ -632,8 +598,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
    
    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
     	new MenuInterface();
-    	Backgroundmusic b = new Backgroundmusic();
-    	b.sound();
-    	
+    	//Backgroundmusic b = new Backgroundmusic();
+    	//b.sound();
    }
 }
