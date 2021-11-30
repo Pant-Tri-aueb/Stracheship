@@ -2,8 +2,10 @@ public class Player {
 
     private String name;
     private String sex;
+    private String god;
     private int age;
-    private static int playerNo=0;
+    
+    public static int playerNo = 0;
 
     public Player(String name, String sex, int age) {
         this.name = name;
@@ -36,4 +38,11 @@ public class Player {
         this.age = age;
     }
 
+    public void setGod(String god) {
+    	this.god = god;
+    }
+    
+    public String getGod() {
+    	return this.god;
+    }
 }

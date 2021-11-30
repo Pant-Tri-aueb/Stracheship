@@ -1,35 +1,56 @@
+import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
-// INCLUDES code from Stracheship_Game.java
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
    
 	private int ShipPlacementCounter = 0;
+	private int counter = 1;
+	private int size_counter = 2;
 	
-	private String[][] deck_arr = new String[10][10];
+	private String[][] deck_table = new String[10][10];
 	
-	private void deckInit() { 
-	    for(int i=0 ; i<10 ; i++) {
-            for(int j=0 ; j<10 ; j++) {
-                deck_arr[i][j] = "O";
-            }
-        }
-	}
-	private JFrame f;
+	static Deck Deck1 = new Deck();
+	static Deck Deck2 = new Deck();
+	
+    private JFrame f;
 	private JFrame newFrame;
     private JFrame startframe;
+	private JFrame SecondFrame;
+    private JFrame GodFrame; 
 	
     private JButton b1;
     private JButton b2;
     private JButton b3;
 	private JButton back;
 	private JButton submit;
+	private JButton next;
+	private JButton zeus;
+	private JButton poseidon;
+	private JButton ares;
+	private JButton artemis;
 	
-	private JTextField t1, t2, t3, t4;
+	private JTextField t1, t2, t3, t4, t5, t6, t7;
 	
 	private JTable jt;
+	
+	static Player player1;
+	static Player player2;
+	
+    static Game runGame = new Game();
 	
 	public MenuInterface() {
     	gui();
@@ -37,62 +58,177 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     
     public void gui() {
         f = new JFrame("Stracheship 1.0");
-    	
-    	f.setSize(1200, 800);
+        
+        JLabel background = new JLabel(new ImageIcon(
+        		"Ships2.jpg"));
+        add(background);
+        
+    	f.setSize(1280, 720);
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-    	JPanel p = new JPanel();
-    	p.setBackground(Color.BLUE);
-    	p.setBorder(BorderFactory.createEmptyBorder(150, 400, 150, 400));
-    	p.setLayout(new GridLayout(4, 1, 0, 70));
-    	
+        
     	b1 = new JButton("1. Έναρξη του παιχνιδιού");
+    	b1.setBounds(440, 270, 400, 80);
     	b1.addActionListener(this);
+    	
         
     	b2 = new JButton("2. Παρουσίαση - Οδηγίες του Stracheship");
-        b2.addActionListener(this);
+    	b2.setBounds(440, 410, 400, 80);
+    	b2.addActionListener(this);
         
         b3 = new JButton("3. Τερματισμός");
-    	b3.addActionListener(this);
+        b3.setBounds(440, 550, 400, 80);
+        b3.addActionListener(this);
     	
     	JLabel title = new JLabel("STRACHESHIP");
-    	title.setFont(new Font("Anton", Font.BOLD, 52));
+    	title.setBounds(400, 110, 600, 55);
+    	title.setFont(new Font("SansSerif", Font.BOLD, 68));
     	title.setForeground(Color.BLACK);
     	
-    	p.add(title);
-    	p.add(b1);
-    	p.add(b2);
-    	p.add(b3);
-	    
-    	f.add(p,BorderLayout.CENTER);
+    	
+    	background.setLayout(null);
+        background.add(title);
+    	background.add(b1);
+    	background.add(b2);
+    	background.add(b3);
+    	f.add(background);
     	f.setVisible(true);
     }
+    
+    public void Player() {
+    	SecondFrame = new JFrame("Stracheship 1.0");
+    	SecondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	SecondFrame.setSize(1280, 720);
+    	
+    	f.setVisible(false);
+    	if (Player.playerNo == 1) {
+    	
+    		GodFrame.setVisible(false);
+    	}
+    	SecondFrame.setVisible(true);
+    	
+    	JLabel background = new JLabel(new ImageIcon(
+         		"assasinscreedodyssey.jpg"));
+    	
+    	background.setLayout(null);
+    	SecondFrame.add(background);
+    	
+    	String message = "";
+    	
+    	if (Player.playerNo == 0) {
+    		
+    		message = "Στοιχεία πρώτου παίκτη: ";
+    	
+    	} else if (Player.playerNo == 1) {
+    		
+    		message = "Στοιχεία δεύτερου παίκτη: ";
+    	}
+    	
+    	JLabel title = new JLabel(message);
+        title.setBounds(50, 50, 250, 30);
+        title.setFont(new Font("SansSerif", Font.BOLD, 17));
+    	
+    	next = new JButton("Ετοίμασε τον στόλο σου");
+    	next.addActionListener(this);
+    	next.setBounds(50, 450, 200, 50);
+    	
+        JLabel name = new JLabel("Όνομα");
+        name.setBounds(50, 100, 100, 30);
+        
+        
+        t5 = new JTextField();  
+        t5.setBounds(50,140, 200,30);  
+        t5.addActionListener(this);
+        
+        JLabel sex = new JLabel("Φύλο");
+        sex.setBounds(50, 180, 100, 30);
+        
+        
+        t6 = new JTextField();  
+        t6.setBounds(50, 220, 200, 30);
+        t6.addActionListener(this);
+        
+        JLabel age = new JLabel("Ηλικία");
+        age.setBounds(50, 260, 120, 30);
+        
+        
+        t7 = new JTextField();  
+        t7.setBounds(50, 300, 200,30);  
+        t7.addActionListener(this);
+    	
+    	background.add(title);
+        background.add(next);
+    	background.add(name);
+    	background.add(t5);
+    	background.add(sex);
+    	background.add(t6);
+    	background.add(age);
+    	background.add(t7);
+    }
+    
+    public void Gods() {
+    	GodFrame = new JFrame("Stracheship 1.0");
+    	GodFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	GodFrame.setSize(1280, 720);
+    	
+    	startframe.setVisible(false);
+    	GodFrame.setVisible(true);
+    	
+    	JLabel background = new JLabel(new ImageIcon(
+         		"Gods.jpg"));
+    	
+    	background.setLayout(null);
+    	GodFrame.add(background);
+    	
+    	zeus = new JButton("ΔΙΑΣ");
+    	zeus.setBounds(50, 600, 200, 40);
+    	zeus.addActionListener(this);
+    	
+        poseidon = new JButton("ΠΟΣΕΙΔΩΝΑΣ");
+    	poseidon.setBounds(1010, 600, 200, 40);
+    	poseidon.addActionListener(this);
+        
+        ares = new JButton("ΑΡΗΣ");
+        ares.setBounds(690, 600, 200, 40);
+        ares.addActionListener(this);
+         
+        artemis = new JButton("ΑΡΤΕΜΙΣ");
+        artemis.setBounds(365, 600, 200, 40);
+        artemis.addActionListener(this);
+    
+        background.add(zeus);
+        background.add(poseidon);
+        background.add(ares);
+        background.add(artemis);
+    }
+    
     
     @Override
 	public void actionPerformed(ActionEvent e) {
         if (e.getSource() == b1 ) {
         	
-        	f.setVisible(false);
-        	startGame();
-        
+        	Player();
+        	
         } else if (e.getSource() == b2) {
     		
     	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
-    		JPanel newPane = new JPanel();
     		
-    	    back = new JButton("Αρχικό Μενού");
+    	    JLabel newPane = new JLabel(new ImageIcon(
+            		"sea.jpg"));
+    		newPane.setLayout(null);
+    	    
+    		back = new JButton("Αρχικό Μενού");
     	    back.addActionListener(this);
-    	   
-    		newPane.setBackground(Color.CYAN);
+    	    back.setBounds(550, 1750, 150, 30);
     		
-    		newFrame.setSize(1200, 800);
+    		
+    		newFrame.setSize(1300, 800);
         	newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	newFrame.getContentPane().setBackground(Color.CYAN);
         	newFrame.setVisible(true);
     		f.setVisible(false);
     		
     		JScrollPane scrollBar=new JScrollPane(newPane, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
     				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    		
     		
     		
     		JTextArea textArea = new JTextArea(2, 20);
@@ -143,7 +279,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     				"Οι διαθέσιμοι χαρακτήρες είναι οι ακόλουθοι:\r\n" + 
     				"->Δίας\r\n" + 
     				"->Άρης\r\n" + 
-    				"->Αθηνά\r\n" + 
+    				"->Ποσειδώνας\r\n" + 
     				"->Άρτεμης\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
@@ -197,7 +333,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	    textArea.setOpaque(false);
     	    textArea.setEditable(false);
     	    textArea.setFocusable(true);
-    	    textArea.setBackground(Color.BLUE);
+    	    textArea.setBounds(0, 0, 2000, 1600);
+    	    textArea.setFont(new Font("SansSerif", Font.BOLD, 15));
+    	    
     	    
     	    newPane.add(textArea);
     	    newPane.add(back);
@@ -214,65 +352,166 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		 newFrame.setVisible(false);
     		 f.setVisible(true);
     	 
+    	 
     	 } else if (e.getSource() == submit) {
+    		     String answer1 = t1.getText();
+    	         String answer2 = t2.getText();
+    	         String answer4 = t4.getText();
+    	     
+    	         int x = Integer.parseInt(answer1);
+    	         int y = Integer.parseInt(answer2);
+    	         String direction = answer4;
+    	         
+    	         if (Player.playerNo == 1) {
+    	        	  
+    	        	 PlayerPlacesShip(Deck1, x, y, direction);
+    	         
+    	         } else {
+    	        	 
+    	        	 PlayerPlacesShip(Deck2, x, y, direction);
+    	         }
+    	         
+    	         startframe.setVisible(false);
+    	         startGame();
+    	        
+    	         if (ShipPlacementCounter == 10 && Player.playerNo == 2) {
+         	
+         	         Gods();
+    	         }
+        
+    	 
+    	 } else if (e.getSource() == next) {
+    		 String answer5 = t5.getText();
+	         String answer6 = t6.getText();
+	         String answer7 = t7.getText();
+	         
+	         String name = answer5;
+	         String sex = answer6;
+	         int age = Integer.parseInt(answer7);
+	         
+	         if (Player.playerNo == 0) {
+	        	 
+	        	 player1 = new Player(name, sex, age);
+	         
+	         } else {
+	        	 
+	        	 player2 = new Player(name, sex, age);
+	         }
+	         
+    		 SecondFrame.setVisible(false);
+	         
+    		 startGame();
+        
+    	 } else if (e.getSource() == zeus || e.getSource() == poseidon ||
+        		e.getSource() == ares || e.getSource() == artemis) {
+        	
+    		if (Player.playerNo == 1) {
+    			if (e.getSource() == zeus) {
+    				
+    				player1.setGod("ΔΙΑΣ"); 
+    			
+    			} else if (e.getSource() == poseidon) {
+    				
+    				player1.setGod("ΠΟΣΕΙΔΩΝΑΣ");
+    			
+    			} else if (e.getSource() == ares) {
+    				
+    				player1.setGod("ΑΡΗΣ");
+    			
+    			} else if (e.getSource() == artemis) {
+    				
+    				player1.setGod("ΑΡΤΕΜΙΣ");
+    			}
+    			 
+    			
+    		} else {
+    			
+                if (e.getSource() == zeus) {
+    				
+    				player2.setGod("ΔΙΑΣ"); 
+    			
+    			} else if (e.getSource() == poseidon) {
+    				
+    				player2.setGod("ΠΟΣΕΙΔΩΝΑΣ");
+    			
+    			} else if (e.getSource() == ares) {
+    				
+    				player2.setGod("ΑΡΗΣ");
+    			
+    			} else if (e.getSource() == artemis) {
+    				
+    				player2.setGod("ΑΡΤΕΜΙΣ");
+    			}
+    		}
     		 
-    	     ShipPlacementCounter++;
-    	     String answer1 = t1.getText();
-    	     String answer2 = t2.getText();
-    	     String answer3 = t3.getText();
-    	     String answer4 = t4.getText();
-    	     
-    	     int x = Integer.parseInt(answer1);
-    	     int y = Integer.parseInt(answer2);
-    	     int size = Integer.parseInt(answer3);
-    	     String direction = answer4;
-    	     shipPlacement(x, y, size, direction);
-    	     startframe.setVisible(false);
-    	     startGame();
-    	     
-    	 }
+    		 
+    		 if (Player.playerNo == 1) {
+    			 
+    			 GodFrame.setVisible(false);
+        		 Player();
+        	
+        	 } else {
+        		 
+        		 GodFrame.setVisible(false);
+        		 runGame.StracheshipBoard();
+        	 }
+        	
+        }
+   }
 		
-	}
+	
    
     public void startGame() {
         startframe = new JFrame("Stracheship 1.0");
        
-        JPanel pn = new JPanel();
-        pn.setBackground(Color.CYAN);
+        JLabel pn = new JLabel(new ImageIcon(
+        		"storm5.jpg"));
+        
         pn.setLayout(null);
         
         JLabel lb = new JLabel("Δώστε x, y, μέγεθος, και κατεύθυνση για το πλοίο");
-        lb.setBounds(50, 50, 300, 30);
+        lb.setBounds(50, 50, 280, 30);
+        lb.setOpaque(true);
        
+        if (Player.playerNo == 2 && ShipPlacementCounter == 5) {
+ 		   counter = 1;
+ 		   size_counter = 2;
+ 	   }
+ 	   
         String message;
-        if(ShipPlacementCounter == 3) {
-        	 message = "Μένει 1 πλοίο";
-        } else {
-        	 message = String.format("Μένουν %s πλοία", 
-            		String.valueOf(4 - ShipPlacementCounter));
-        }
+        message = String.format("Τοποθετήστε πλοίο %d θέσεων", 
+            		size_counter);
+        
         JLabel ShipCount = new JLabel(message); 
-        		
-        ShipCount.setBounds(100, 400, 300, 30);
+        ShipCount.setBounds(300, 600, 170, 30);
+        ShipCount.setOpaque(true);
         
         submit = new JButton("Καταχώρηση");
         submit.addActionListener(this);  
-        submit.setBounds(80, 300, 130, 30);
+        submit.setBounds(80, 400, 130, 30);
         
-        t1=new JTextField("Συντεταγμένη Χ");  
-        t1.setBounds(50,100, 200,30);  
+        JLabel lbt1 = new JLabel("Συντεταγμένη Χ");
+        lbt1.setBounds(50, 100, 100, 30);
+        lbt1.setOpaque(true);
+        
+        t1 = new JTextField();  
+        t1.setBounds(50,140, 200,30);  
         t1.addActionListener(this);
         
-        t2=new JTextField("Συντεταγμένη Υ");  
-        t2.setBounds(50,150, 200,30);
+        JLabel lbt2 = new JLabel("Συντεταγμένη Υ");
+        lbt2.setBounds(50, 180, 100, 30);
+        lbt2.setOpaque(true);
+        
+        t2 = new JTextField();  
+        t2.setBounds(50, 220, 200, 30);
         t2.addActionListener(this);
         
-        t3=new JTextField("Μέγεθος πλοίου");  
-        t3.setBounds(50,200, 200,30);  
-        t3.addActionListener(this);
+        JLabel lbt4 = new JLabel("Κατεύθυνση Πλοίου");
+        lbt4.setBounds(50, 260, 120, 30);
+        lbt4.setOpaque(true);
         
-        t4=new JTextField("Κατεύθυνση πλοίου");  
-        t4.setBounds(50,250, 200,30);  
+        t4 = new JTextField();  
+        t4.setBounds(50, 300, 200,30);  
         t4.addActionListener(this);
         
         String[][] deck_array = new String[10][10];
@@ -281,28 +520,38 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         for (int i = 0; i < 10; i++) {
         	 column[i] = "";
         }
-        if (ShipPlacementCounter == 0) { 
+        if (ShipPlacementCounter == 0 && Player.playerNo == 1) { 
             
-        	deckInit();
-            deck_array = deck_arr;
+        	deck_table = Deck1.deck_arr;
+            deck_array = deck_table;
         
-        } else if (ShipPlacementCounter == 4) {
+        } else if (ShipPlacementCounter == 5 && Player.playerNo == 2) {
         	
-        	StracheshipBoard();
-            
+        	deck_table = Deck2.deck_arr;
+            deck_array = deck_table;
+        
+        } else if (ShipPlacementCounter == 5 && Player.playerNo == 1) {
+        	
+        	Gods();
+        	
         } else {
         	
-        	deck_array = deck_arr;
+        	deck_array = deck_table;
         }
         jt = new JTable(deck_array, column);
         jt.setCellSelectionEnabled(false);  
-        jt.setBounds(500, 100, 400, 160);
+        jt.setBounds(785, 460, 400, 300);
+        jt.setRowHeight(30);
+        jt.setBackground(Color.LIGHT_GRAY);
+        jt.setForeground(Color.BLACK);
         
         pn.add(ShipCount);
         pn.add(lb);
+        pn.add(lbt1);
         pn.add(t1);
+        pn.add(lbt2);
         pn.add(t2);
-        pn.add(t3);
+        pn.add(lbt4);
         pn.add(t4);
         pn.add(jt); 
         pn.add(submit);
@@ -311,9 +560,16 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         startframe.setSize(1200, 800);
         startframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        if (ShipPlacementCounter == 4) {
-            startframe.setVisible(false);
+        if (ShipPlacementCounter == 5 && Player.playerNo == 1) {
+           
+        	startframe.setVisible(false);
+        
+        } else if (ShipPlacementCounter == 5 && Player.playerNo == 2) {
+        	
+        	startframe.setVisible(true);
+        	
         } else {
+        	
         	startframe.setVisible(true);
         }
         
@@ -321,48 +577,28 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
           
    }
-   public void shipPlacement(int x, int y, int size, String direction) {
-        // Topothetisi ploiou opoy x kai y oi syntetagmenes enos simeioy,
-        // size to megethos toy ploioy kai direction to ean mpainei to ploio katheta h orizontia
-        
-	   //boolean check = ShipCheckOveral(x, y, size, direction);
-        int i;
-        //if (check == true) {
-            if(direction.equals("DOWN")) {
-                for (i = x ; i < size + x ; i++){
-                    deck_arr[i-1][y-1] = "S";
-                }
-            } else if (direction.equals("RIGHT")) {
-                for (i = y ; i < size + y ; i++){
-                    deck_arr[x-1][i-1] = "S";
-                }  
-            }
-        //}
-    }
-    
-   public void StracheshipBoard() {
-	   JFrame frame = new JFrame();
-       frame.setBounds(10, 10, 729, 729);
-       frame.setUndecorated(true);
-       JPanel pn = new JPanel(){
-           @Override
-           public void paint(Graphics g) {
-               for(int y = 0 ; y < 9;y++ ){
-                   for(int x = 0 ; x < 9;x++){
-                       g.setColor(Color.BLACK);
-                       g.fillRect(x*81, y*81, 81, 81);
-                       g.setColor(Color.BLUE);
-                       g.fillRect(x*81+1, y*81+1, 81+1, 81+1);
-                   }
-               }
-               
-           }
-       };
-       frame.add(pn);
-       frame.setDefaultCloseOperation(3);
-       frame.setVisible(true);
-   }
-    public static void main(String[] args) {
+   
+  public void PlayerPlacesShip (Deck deck, int x, int y, String direction) {
+		
+	   int size = size_counter;
+	   
+	   if (deck.ShipCheckOveral(x, y, size, direction) == true) {
+			deck.shipPlacement(x, y, size, direction);
+			if (counter == 1) {
+				size_counter = 3;
+			} else if (counter == 3) {
+				size_counter = 4;
+			}
+			counter++;
+			ShipPlacementCounter ++; 
+		}
+			
+	
+	}
+   
+   public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
     	new MenuInterface();
-    }
+    	//Backgroundmusic b = new Backgroundmusic();
+    	//b.sound();
+   }
 }
