@@ -11,17 +11,18 @@ public class Move {
 	int size;
 	String direction;
 	
-	public void moveRight(int x, int y, int size, String direction) {
-		//x = boat.ploia.get(i).getX();
-		//y = boat.ploia.get(i).getSize();
-		//size = boat.ploia.get(i).getSize();
-		//direction = boat.ploia.get(i).getDirection();
+	public void moveRight(int i) {
+		i=i-1;
+		x = boat.pl11.getX();
+		y = boat.pl11.getY();
+		size = boat.pl11.getSize();
+		direction = boat.pl11.getDirection();
 		
 		if (direction.equals("RIGHT") ) {
 			if (y + size - 1 <= 9) {
 				MenuInterface.Deck1.deck_arr[x][y] = "O";
 				MenuInterface.Deck1.deck_arr[x][y+size] = "S";
-				//boat.ploia.get(i).setY(y+1);
+				boat.pl11.setY(y+1);
 			} else {
 				System.out.println("Δεν επιτρέπεται!");
 			}

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Deck {
 
     public String[][] deck_arr = new String[10][10];
@@ -5,13 +8,37 @@ public class Deck {
     public Deck() {  // arxikopoiei pinaka 2x2 pou deixnei to deck tou paixth me "O" tis theseis tou Deck//
         DeckInitialization();
     }
-
+    
+    Ship2 pl11 = new Ship2();
+    Ship2 pl12 = new Ship2();
+    Ship2 pl13 = new Ship2();
+    Ship2 pl14 = new Ship2();
+    Ship2 pl15 = new Ship2();
+       
     public void shipPlacement(int x,int y,int size,String direction) {
         // Topothetisi ploiou opoy x kai y oi syntetagmenes enos simeioy,
         // size to megethos toy ploioy kai direction to ean mpainei to ploio katheta h orizontia
         boolean check = ShipCheckOveral(x, y, size, direction);
         int i;
+        int counter = 1;
         if (check == true) {
+        	switch (counter) {
+        	  case 1:
+        		  Ship2 pl11 = new Ship2(x,y,size,direction);
+        	    break;
+        	  case 2:
+        		  Ship2 pl12 = new Ship2(x,y,size,direction);
+        	  case 3:
+        		  Ship2 pl13 = new Ship2(x,y,size,direction);
+        	    break;
+        	  case 4:
+        		  Ship2 pl14 = new Ship2(x,y,size,direction);
+        	    break;
+        	  case 5:
+        		  Ship2 pl15 = new Ship2(x,y,size,direction);
+        	    break;
+        	}
+        	counter++;
             if(direction.equals("DOWN")) {
                 for (i = x ; i < size + x ; i++){
                     this.deck_arr[i-1][y-1] = "S";
