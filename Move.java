@@ -12,7 +12,7 @@ public class Move {
 	String direction;
 	
 	public void moveRight(int i) {
-		i=i-1;
+		i=i-1 ;
 		x = boat.pl11.getX();
 		y = boat.pl11.getY();
 		size = boat.pl11.getSize();

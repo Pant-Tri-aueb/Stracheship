@@ -19,7 +19,6 @@ public class Ship2 {
     }
     
     public Ship2() {
-
     }
 
     public int getCapacity() {
