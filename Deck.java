@@ -14,8 +14,7 @@ public class Deck {
     Ship2 pl13 = new Ship2();
     Ship2 pl14 = new Ship2();
     Ship2 pl15 = new Ship2();
-    
-   
+       
     public void shipPlacement(int x,int y,int size,String direction) {
         // Topothetisi ploiou opoy x kai y oi syntetagmenes enos simeioy,
         // size to megethos toy ploioy kai direction to ean mpainei to ploio katheta h orizontia
