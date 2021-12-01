@@ -112,6 +112,8 @@ public class Game implements java.awt.event.ActionListener{
 			StracheshipBoard();
 		
 		} else if (e.getSource() == move) {
+			Move metakinhsh = new Move();
+			metakinhsh.moveRight(1);
 			gameState = 1;
 			frame.setVisible(false);
 			StracheshipBoard();

@@ -17,6 +17,10 @@ public class Ship2 {
         this.size = size;
         this.direction = direction;
     }
+    
+    public Ship2() {
+
+    }
 
     public int getCapacity() {
         return capacity;
