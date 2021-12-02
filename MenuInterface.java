@@ -50,7 +50,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	static Player player1;
 	static Player player2;
 	
-    static Game runGame = new Game();
+    
 	
 	public MenuInterface() {
     	gui();
@@ -451,6 +451,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         		 Player();
         	
         	 } else {
+        		 Game runGame = new Game();
         		 
         		 GodFrame.setVisible(false);
         		 runGame.StracheshipBoard();
@@ -589,6 +590,10 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 			} else if (counter == 3) {
 				size_counter = 4;
 			}
+			
+			Ship2 ship = new Ship2(x, y, size, direction);
+			Ship2.shipsList.add(ship);
+			
 			counter++;
 			ShipPlacementCounter ++; 
 		}
