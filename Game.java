@@ -1,19 +1,34 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Game implements java.awt.event.ActionListener{
 	
 	private int gameState = 1;
+	private int shipNo;
 	
 	private JButton attack;
 	private JButton move;
+	private JButton Up;
+	private JButton Down;
+	private JButton Left;
+	private JButton Right;
+	private JButton next;
+	
+	private JLabel ship;
+	private JLabel playerinfo;
+	
+	private JTextField selectShip;
 	
 	private JFrame frame; 
 	
@@ -22,35 +37,8 @@ public class Game implements java.awt.event.ActionListener{
 	       frame.setBounds(10, 10, 729, 820);
 	       frame.setUndecorated(false);
 	       frame.setLayout(null);
-	       JPanel pn = new JPanel(){
-	        
-	           public void paint(Graphics g) {
-	               for(int y = 0; y < 10; y++ ){
-	                   for(int x = 0; x < 10; x++){
-	                       g.setColor(Color.BLACK);
-	                       g.fillRect(x*70, y*70, 80, 70);
-	                       if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
-	                    	  
-	                    	   g.setColor(Color.GRAY);
-	                       
-	                       } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
-	                       
-	                    	   g.setColor(Color.GRAY);
-	                       
-	                       } else { 
-	                    	  
-	                    	   g.setColor(Color.BLUE);
-	                       }
-	                      
-	                       g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
-	                   }
-	               }
-	               
-	           }
-	       };
-	       pn.setBounds(0, 0, 729, 729);
-	       
-	       JLabel playerinfo = new JLabel(new ImageIcon(
+	      
+	       playerinfo = new JLabel(new ImageIcon(
 	         		"wood.jpg"));
 	       playerinfo.setBounds(0, 700, 729, 91);
 	       
@@ -81,8 +69,8 @@ public class Game implements java.awt.event.ActionListener{
 	       attack = new JButton("ΕΠΙΘΕΣΗ");
 	       move = new JButton("ΜΕΤΑΚΙΝΗΣΗ");
 	       
-	       attack.setBounds(390, 730, 140, 30);
-	       move.setBounds(550, 730, 140, 30);
+	       attack.setBounds(370, 30, 130, 25);
+	       move.setBounds(550, 30, 130, 25);
 	       
 	       attack.addActionListener(this);
 	       move.addActionListener(this);
@@ -96,28 +84,143 @@ public class Game implements java.awt.event.ActionListener{
 	    	   frame.add(god2);
 	       }
 	       
-	       frame.add(attack);
-	       frame.add(move);
+	       ship = new JLabel("Διάλεξε πλοίο");
+		   ship.setBounds(380, 30, 120, 30);
+		   ship.setFont(new Font("SansSerif", Font.BOLD, 14));
+		   ship.setForeground(Color.BLACK);
+		    
+		    selectShip = new JTextField();
+			selectShip.setBounds(510, 30, 70, 30);    
+			selectShip.addActionListener(this);
+			
+			
+		    next = new JButton("Συνέχεια");
+			next.setBounds(600, 30, 100, 30);
+			next.addActionListener(this);
+			
+			
+			Up = new JButton("UP");
+			Down = new JButton("DOWN");
+			Left = new JButton("LEFT");
+			Right = new JButton("RIGHT");
+			
+			Left.setBounds(400, 30, 100, 25);
+		    Right.setBounds(560, 30, 100, 25);
+		    Up.setBounds(400, 30, 100, 25);
+		    Down.setBounds(560, 30, 100, 25);
+		       
+			Left.addActionListener(this);
+			Up.addActionListener(this);
+			Down.addActionListener(this);
+			Right.addActionListener(this);
+			
+			Left.setVisible(false);
+			Down.setVisible(false);
+			Up.setVisible(false);
+			Right.setVisible(false);
+			selectShip.setVisible(false);
+			ship.setVisible(false);
+	        next.setVisible(false);
+			
+	       playerinfo.add(next);
+		   playerinfo.add(ship);
+		   playerinfo.add(selectShip);
+           playerinfo.add(Left);
+		   playerinfo.add(Up);
+		   playerinfo.add(Down);
+		   playerinfo.add(Right);
+		   playerinfo.add(attack);
+	       playerinfo.add(move);
+	       
 	       frame.add(playerinfo);
-	       frame.add(pn);
-	       frame.setDefaultCloseOperation(3);
+	       
+	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       frame.setVisible(true);
+	       
+	       sea();
 	   }
 
+	public void sea() {
+	
+		JPanel pn = new JPanel(){
+		        
+	           public void paint(Graphics g) {
+	               for(int y = 0; y < 10; y++ ){
+	                   for(int x = 0; x < 10; x++){
+	                       g.setColor(Color.BLACK);
+	                       g.fillRect(x*70, y*70, 80, 70);
+	                       if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
+	                    	  
+	                    	   g.setColor(Color.GRAY);
+	                       
+	                       } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
+	                       
+	                    	   g.setColor(Color.GRAY);
+	                       
+	                       } else { 
+	                    	  
+	                    	   g.setColor(Color.BLUE);
+	                       }
+	                      
+	                       g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
+	                   }
+	               }
+	               
+	           }
+	       };
+	       pn.setBounds(0, 0, 729, 729);
+	       pn.setLayout(null);
+	       
+	       frame.setLayout(null);
+	       frame.add(pn);
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == attack) {
-			gameState = 2;
-			frame.setVisible(false);
-			StracheshipBoard();
+		if (e.getSource() == move) {
+			
+			attack.setVisible(false);
+			move.setVisible(false);
+			
+			ship.setVisible(true);
+			selectShip.setVisible(true);
+			next.setVisible(true);
+			
 		
-		} else if (e.getSource() == move) {
-			//edw petaei error!!
-			Move metakinhsh = new Move();
-			metakinhsh.moveRight(1);
+		} else if (e.getSource() == attack) {
 			gameState = 1;
 			frame.setVisible(false);
 			StracheshipBoard();
+		
+		
+		} else if (e.getSource() == next) {
+			
+			ship.setVisible(false);
+			selectShip.setVisible(false);
+			next.setVisible(false);
+			
+			shipNo = Integer.parseInt(selectShip.getText());
+			
+		    //  Class  ArrayList    object      getter
+			if (Ship2.shipsList.get(shipNo - 1).getDirection().equals("DOWN")) {
+				
+				Up.setVisible(true);
+				Down.setVisible(true);
+			//                              shipNo -1 + 5 for player 2	
+			} else if (Ship2.shipsList.get(shipNo - 1).getDirection().equals("RIGHT")) {
+				
+				Left.setVisible(true);
+				Right.setVisible(true);
+			}
+		
+		} else if (e.getSource() == Down) {
+			Move m = new Move();
+			shipNo = Integer.parseInt(selectShip.getText());
+			m.moveDown(shipNo);
+			
+			StracheshipBoard();
+			sea();
+			
 		}
 		
 	}
