@@ -3,7 +3,11 @@ import java.util.List;
 
 public class Ship2 {
 
-    private char name;
+    static ArrayList<Ship2> shipsList = new ArrayList<Ship2>(10);
+	
+	public static int Shipcounter = 0;
+	
+	private int ShipNumber;
     private int capacity;
     private int tolerance;
     private int x;
@@ -11,11 +15,14 @@ public class Ship2 {
     private int size;
     private String direction;
 
+   
     public Ship2(int x, int y, int size, String direction) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.direction = direction;
+        this.ShipNumber = Shipcounter + 1;
+    
     }
     
     public Ship2() {
@@ -62,11 +69,13 @@ public class Ship2 {
         this.tolerance = tolerance;
     }
 
-    public char getName() {
-        return name;
-    }
+	public int getShipNumber() {
+		return ShipNumber;
+	}
 
-    public void setName(char name) {
-        this.name = name;
-    }
+	public void setShipNumber(int shipNumber) {
+		ShipNumber = shipNumber;
+	}
+
+    
 }
