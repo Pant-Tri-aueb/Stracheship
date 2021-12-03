@@ -24,6 +24,8 @@ public class Game implements java.awt.event.ActionListener{
 	private JButton Left;
 	private JButton Right;
 	private JButton next;
+	private JButton god;
+	private JButton changeTurn;
 	
 	private JLabel ship;
 	private JLabel playerinfo;
@@ -34,19 +36,20 @@ public class Game implements java.awt.event.ActionListener{
 	
 	public void StracheshipBoard() {
 		   frame = new JFrame();
-	       frame.setBounds(10, 10, 729, 820);
+	       frame.setBounds(10, 10, 860, 860);
 	       frame.setUndecorated(false);
 	       frame.setLayout(null);
 	      
 	       playerinfo = new JLabel(new ImageIcon(
-	         		"wood.jpg"));
-	       playerinfo.setBounds(0, 700, 729, 91);
+	         		"wood2.jpg"));
+	       playerinfo.setBounds(0, 0, 860, 860);
+	       playerinfo.setLayout(null);
 	       
 	       JLabel name1 = new JLabel(MenuInterface.player1.getName());
 	       JLabel name2 = new JLabel(MenuInterface.player2.getName());
 	      
-	       name1.setBounds(20, 730, 150, 20);
-	       name2.setBounds(20, 730, 150, 20);
+	       name1.setBounds(20, 780, 150, 20);
+	       name2.setBounds(20, 780, 150, 20);
 	       
 	       name1.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       name2.setFont(new Font("SansSerif", Font.BOLD, 23));
@@ -57,8 +60,8 @@ public class Game implements java.awt.event.ActionListener{
 	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
 	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
 	       
-	       god1.setBounds(140, 730, 250, 20);
-	       god2.setBounds(140, 730, 250, 20);
+	       god1.setBounds(140, 780, 250, 20);
+	       god2.setBounds(140, 780, 250, 20);
 	       
 	       god1.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       god2.setFont(new Font("SansSerif", Font.BOLD, 23));
@@ -66,14 +69,26 @@ public class Game implements java.awt.event.ActionListener{
 	       god1.setForeground(Color.BLACK);
 	       god2.setForeground(Color.BLACK);
 	      
+	       changeTurn = new JButton("ΤΕΛΟΣ");	       
+	       changeTurn.setBounds(765, 90, 75, 300);
+	       
+	       god = new JButton("ΘΕΟΣ");
+	       god.setBounds(765, 400, 75, 300);
+	       
+	       god.addActionListener(this);
+	       changeTurn.addActionListener(this);
+	       
+	       
 	       attack = new JButton("ΕΠΙΘΕΣΗ");
 	       move = new JButton("ΜΕΤΑΚΙΝΗΣΗ");
 	       
-	       attack.setBounds(370, 30, 130, 25);
-	       move.setBounds(550, 30, 130, 25);
+	       attack.setBounds(410, 775, 130, 25);
+	       move.setBounds(590, 775, 130, 25);
 	       
 	       attack.addActionListener(this);
 	       move.addActionListener(this);
+	       
+	       
 	       
 	       if (gameState == 1) {
 	    	   frame.add(name1);
@@ -85,17 +100,17 @@ public class Game implements java.awt.event.ActionListener{
 	       }
 	       
 	       ship = new JLabel("Διάλεξε πλοίο");
-		   ship.setBounds(380, 30, 120, 30);
+		   ship.setBounds(420, 775, 120, 30);
 		   ship.setFont(new Font("SansSerif", Font.BOLD, 14));
 		   ship.setForeground(Color.BLACK);
 		    
 		    selectShip = new JTextField();
-			selectShip.setBounds(510, 30, 70, 30);    
+			selectShip.setBounds(550, 775, 70, 30);    
 			selectShip.addActionListener(this);
 			
 			
 		    next = new JButton("Συνέχεια");
-			next.setBounds(600, 30, 100, 30);
+			next.setBounds(640, 775, 100, 30);
 			next.addActionListener(this);
 			
 			
@@ -104,10 +119,10 @@ public class Game implements java.awt.event.ActionListener{
 			Left = new JButton("LEFT");
 			Right = new JButton("RIGHT");
 			
-			Left.setBounds(400, 30, 100, 25);
-		    Right.setBounds(560, 30, 100, 25);
-		    Up.setBounds(400, 30, 100, 25);
-		    Down.setBounds(560, 30, 100, 25);
+			Left.setBounds(440, 775, 100, 25);
+		    Right.setBounds(600, 775, 100, 25);
+		    Up.setBounds(440, 775, 100, 25);
+		    Down.setBounds(600, 775, 100, 25);
 		       
 			Left.addActionListener(this);
 			Up.addActionListener(this);
@@ -131,9 +146,10 @@ public class Game implements java.awt.event.ActionListener{
 		   playerinfo.add(Right);
 		   playerinfo.add(attack);
 	       playerinfo.add(move);
+	       playerinfo.add(god);
+	       playerinfo.add(changeTurn);
 	       
 	       frame.add(playerinfo);
-	       
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       frame.setVisible(true);
 	       
@@ -168,11 +184,11 @@ public class Game implements java.awt.event.ActionListener{
 	               
 	           }
 	       };
-	       pn.setBounds(0, 0, 729, 729);
+	       pn.setBounds(41, 41, 729, 729);
 	       pn.setLayout(null);
 	       
 	       frame.setLayout(null);
-	       frame.add(pn);
+	       playerinfo.add(pn);
 	}
 	
 	@Override
@@ -221,7 +237,19 @@ public class Game implements java.awt.event.ActionListener{
 			StracheshipBoard();
 			sea();
 			
-		}
+		
+	    } else if (e.getSource() == changeTurn) {
+	    	
+	    	frame.setVisible(false);
+	    	if (gameState == 1) {
+	    		
+	    		gameState = 2;
+	    	} else {
+	    		gameState = 1;
+	    	}
+	    	StracheshipBoard();
+	    	sea();
+	    }
 		
 	}
 }
