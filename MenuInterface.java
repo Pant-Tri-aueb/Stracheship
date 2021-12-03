@@ -60,34 +60,27 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         f = new JFrame("Stracheship 1.0");
         
         JLabel background = new JLabel(new ImageIcon(
-        		"Ships2.jpg"));
+        		"stracheship.jpg"));
         add(background);
         
-    	f.setSize(1280, 720);
+    	f.setSize(1280, 733);
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
     	b1 = new JButton("1. Έναρξη του παιχνιδιού");
-    	b1.setBounds(440, 270, 400, 80);
+    	b1.setBounds(420, 270, 400, 80);
     	b1.addActionListener(this);
     	
         
     	b2 = new JButton("2. Παρουσίαση - Οδηγίες του Stracheship");
-    	b2.setBounds(440, 410, 400, 80);
+    	b2.setBounds(420, 410, 400, 80);
     	b2.addActionListener(this);
         
         b3 = new JButton("3. Τερματισμός");
-        b3.setBounds(440, 550, 400, 80);
+        b3.setBounds(420, 550, 400, 80);
         b3.addActionListener(this);
     	
-    	JLabel title = new JLabel("STRACHESHIP");
-    	title.setBounds(400, 110, 600, 55);
-    	title.setFont(new Font("SansSerif", Font.BOLD, 68));
-    	title.setForeground(Color.BLACK);
-    	
-    	
     	background.setLayout(null);
-        background.add(title);
-    	background.add(b1);
+        background.add(b1);
     	background.add(b2);
     	background.add(b3);
     	f.add(background);
