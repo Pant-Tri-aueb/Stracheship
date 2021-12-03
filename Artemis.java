@@ -2,11 +2,16 @@ import java.util.Scanner;
 
 public class Artemis {
 
-    private static int RIVAL_MOVES = 2;
-    private static boolean used = false;
+    private static int[] RIVAL_MOVES = {2,2};
+    private boolean used = false;
+    private int playerNo;
+
+    public Artemis(int playerNo) {
+        this.playerNo = playerNo;
+    }
 
     // another class interacts to use or not defence
-    public static void askPlayer() {
+    public void askPlayer() {
         boolean valid = true;
         String validAnswer[] = {"Yes", "No"};
         Scanner keyboard = new Scanner(System.in);
@@ -14,11 +19,15 @@ public class Artemis {
             System.out.println("Would you like to use your power?");
             System.out.println("Answer with a YES or a NO.");
             String answer = keyboard.nextLine();
-            if (answer.equals(validAnswer[0])) {
-                System.out.println("Ok. Power used. Available power for defence :" + --RIVAL_MOVES);
+            outer : if (answer.equals(validAnswer[0])) {
+                if (RIVAL_MOVES[playerNo - 1] <= 0) {
+                    System.out.println("No more power available");
+                    break outer;
+                }
+                System.out.println("Ok. Power used. Available power for defence :" + --RIVAL_MOVES[playerNo - 1]);
                 used = true;
             } else if (answer.equals(validAnswer[1])) {
-                System.out.println("Ok. No power used. Available power for defence :" + RIVAL_MOVES);
+                System.out.println("Ok. No power used. Available power for defence :" + RIVAL_MOVES[playerNo - 1]);
             } else {
                 valid = false;
                 System.out.println("Provide a valid answer");
@@ -26,7 +35,7 @@ public class Artemis {
         } while (valid = false);
     }
 
-    public static void useDefence(Ship3 obj) { // the ship that uses the power
+    public void useDefence(Ship3 obj) { // the ship that uses the power
         askPlayer();
         if (used == true) {
             int changeTolerance = obj.getTolerance();
@@ -34,7 +43,7 @@ public class Artemis {
         }
     }
 
-    public static void throwArrow(Ship3 obj, int x, int y, Deck deck) {
+    public void throwArrow(Ship3 obj, int x, int y, Deck deck) {
         if (obj.getY() != y) {
             System.out.println(" The ship can throw the arrow only horizontally. Try again.");
             return;
