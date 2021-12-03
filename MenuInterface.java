@@ -167,7 +167,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	GodFrame.setVisible(true);
     	
     	JLabel background = new JLabel(new ImageIcon(
-         		"Gods.jpg"));
+         		"gods.jpg"));
     	
     	background.setLayout(null);
     	GodFrame.add(background);
