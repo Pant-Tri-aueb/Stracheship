@@ -88,6 +88,7 @@ public class GUIWINNER {
         frame.add(label);
         frame.setIconImage(img2.getImage());
         frame.pack();
+        
     }
 
 }
