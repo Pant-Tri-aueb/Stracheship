@@ -1,5 +1,3 @@
-package labels;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +12,7 @@ public class GUIWINNER {
     public static void main(String[] args) {
 
 
-        //JLabel : a GUI display area for a string of text, an image or both
+        
         ImageIcon img = new ImageIcon("war.png");
         ImageIcon img2 = new ImageIcon("logo.png");
 
