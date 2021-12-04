@@ -34,9 +34,10 @@ public class GUIWINNER {
         frame.setSize(565,458);
         frame.setVisible(true);
         frame.setResizable(false);
+        frame.pack();
         frame.add(label);
         frame.setIconImage(img2.getImage());
-        //frame.pack();
+        
     }
 
 }
