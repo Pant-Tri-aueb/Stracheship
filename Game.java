@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class Game implements java.awt.event.ActionListener{
 	
 	private int gameState = 1;
-	private int shipNo;
+	private int shipNo = 1;
 	
 	private JButton attack;
 	private JButton move;
@@ -23,18 +23,21 @@ public class Game implements java.awt.event.ActionListener{
 	private JButton Down;
 	private JButton Left;
 	private JButton Right;
-	private JButton next;
 	private JButton god;
 	private JButton changeTurn;
+	private JButton next;
 	
-	private JLabel ship;
 	private JLabel playerinfo;
+	private JLabel attackMessage;
+	private JLabel shipCount1;
+	private JLabel shipCount2;
 	
-	private JTextField selectShip;
+	private JTextField Xattack, Yattack;
 	
 	private JFrame frame; 
 	
 	public void StracheshipBoard() {
+		   
 		   frame = new JFrame();
 	       frame.setBounds(10, 10, 860, 860);
 	       frame.setUndecorated(false);
@@ -48,8 +51,8 @@ public class Game implements java.awt.event.ActionListener{
 	       JLabel name1 = new JLabel(MenuInterface.player1.getName());
 	       JLabel name2 = new JLabel(MenuInterface.player2.getName());
 	      
-	       name1.setBounds(20, 780, 150, 20);
-	       name2.setBounds(20, 780, 150, 20);
+	       name1.setBounds(20, 780, 170, 20);
+	       name2.setBounds(20, 780, 170, 20);
 	       
 	       name1.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       name2.setFont(new Font("SansSerif", Font.BOLD, 23));
@@ -60,8 +63,8 @@ public class Game implements java.awt.event.ActionListener{
 	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
 	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
 	       
-	       god1.setBounds(140, 780, 250, 20);
-	       god2.setBounds(140, 780, 250, 20);
+	       god1.setBounds(220, 780, 250, 20);
+	       god2.setBounds(220, 780, 250, 20);
 	       
 	       god1.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       god2.setFont(new Font("SansSerif", Font.BOLD, 23));
@@ -69,6 +72,22 @@ public class Game implements java.awt.event.ActionListener{
 	       god1.setForeground(Color.BLACK);
 	       god2.setForeground(Color.BLACK);
 	      
+	       shipCount1 = new JLabel("ΠΛΟΙΟ");
+	       shipCount2 = new JLabel(String.format("%do", shipNo));	       
+	       
+	       shipCount1.setBounds(765, 90, 75, 30);
+	       shipCount2.setBounds(785, 125, 75, 30);
+	       
+	       shipCount1.setForeground(Color.BLACK);
+	       shipCount2.setForeground(Color.BLACK);
+	       
+	       shipCount1.setFont(new Font("SansSerif", Font.BOLD, 19));
+	       shipCount2.setFont(new Font("SansSerif", Font.BOLD, 19));
+	       
+	       next = new JButton("ΠΥΡ!");
+	       next.setBounds(765, 600, 75, 30);
+	       next.addActionListener(this);
+	       
 	       changeTurn = new JButton("ΤΕΛΟΣ");	       
 	       changeTurn.setBounds(765, 90, 75, 300);
 	       
@@ -78,12 +97,23 @@ public class Game implements java.awt.event.ActionListener{
 	       god.addActionListener(this);
 	       changeTurn.addActionListener(this);
 	       
+	       attackMessage = new JLabel("ΕΠΙΘΕΣΗ ΣΤΟ");
+	       Xattack = new JTextField();
+	       Yattack = new JTextField();
+	       
+	       
+	       Xattack.setBounds(660, 775, 30, 30);
+	       Yattack.setBounds(710, 775, 30, 30);
+	       attackMessage.setBounds(480, 775, 140, 30);
+	       
+	       attackMessage.setFont(new Font("SansSerif", Font.BOLD, 18));
+	       attackMessage.setForeground(Color.BLACK);
 	       
 	       attack = new JButton("ΕΠΙΘΕΣΗ");
 	       move = new JButton("ΜΕΤΑΚΙΝΗΣΗ");
 	       
-	       attack.setBounds(410, 775, 130, 25);
-	       move.setBounds(590, 775, 130, 25);
+	       attack.setBounds(480, 775, 130, 25);
+	       move.setBounds(660, 775, 130, 25);
 	       
 	       attack.addActionListener(this);
 	       move.addActionListener(this);
@@ -99,22 +129,8 @@ public class Game implements java.awt.event.ActionListener{
 	    	   frame.add(god2);
 	       }
 	       
-	       ship = new JLabel("Διάλεξε πλοίο");
-		   ship.setBounds(420, 775, 120, 30);
-		   ship.setFont(new Font("SansSerif", Font.BOLD, 14));
-		   ship.setForeground(Color.BLACK);
-		    
-		    selectShip = new JTextField();
-			selectShip.setBounds(550, 775, 70, 30);    
-			selectShip.addActionListener(this);
-			
-			
-		    next = new JButton("Συνέχεια");
-			next.setBounds(640, 775, 100, 30);
-			next.addActionListener(this);
-			
-			
-			Up = new JButton("UP");
+	        
+	        Up = new JButton("UP");
 			Down = new JButton("DOWN");
 			Left = new JButton("LEFT");
 			Right = new JButton("RIGHT");
@@ -133,13 +149,11 @@ public class Game implements java.awt.event.ActionListener{
 			Down.setVisible(false);
 			Up.setVisible(false);
 			Right.setVisible(false);
-			selectShip.setVisible(false);
-			ship.setVisible(false);
+			Xattack.setVisible(false);
+			Yattack.setVisible(false);
+			attackMessage.setVisible(false);
 	        next.setVisible(false);
 			
-	       playerinfo.add(next);
-		   playerinfo.add(ship);
-		   playerinfo.add(selectShip);
            playerinfo.add(Left);
 		   playerinfo.add(Up);
 		   playerinfo.add(Down);
@@ -148,6 +162,26 @@ public class Game implements java.awt.event.ActionListener{
 	       playerinfo.add(move);
 	       playerinfo.add(god);
 	       playerinfo.add(changeTurn);
+	       playerinfo.add(shipCount1);
+	       playerinfo.add(shipCount2);
+	       playerinfo.add(Xattack);
+	       playerinfo.add(Yattack);
+	       playerinfo.add(attackMessage);
+	       playerinfo.add(next);
+	       
+	       if (shipNo <= 5) {
+	         
+	    	 god.setVisible(false);
+	         changeTurn.setVisible(false);
+	       
+	       } else {
+	    	   
+	    	   god.setVisible(true);
+	    	   changeTurn.setVisible(true);
+	    		
+	    	   shipCount1.setVisible(false);
+	    	   shipCount2.setVisible(false);
+	       }
 	       
 	       frame.add(playerinfo);
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -173,7 +207,15 @@ public class Game implements java.awt.event.ActionListener{
 	                       
 	                    	   g.setColor(Color.GRAY);
 	                       
-	                       } else { 
+	                       } else if (MenuInterface.Deck1.deck_arr[y][x] == "X" && gameState == 1) {
+	                    	   
+	                    	   g.setColor(Color.RED);
+	                       
+                           } else if (MenuInterface.Deck2.deck_arr[y][x] == "X" && gameState == 2) {
+	                    	   
+	                    	   g.setColor(Color.RED);	                    	   
+	                       
+                           } else { 
 	                    	  
 	                    	   g.setColor(Color.BLUE);
 	                       }
@@ -197,28 +239,9 @@ public class Game implements java.awt.event.ActionListener{
 			
 			attack.setVisible(false);
 			move.setVisible(false);
-			
-			ship.setVisible(true);
-			selectShip.setVisible(true);
-			next.setVisible(true);
-			
-		
-		} else if (e.getSource() == attack) {
-			gameState = 1;
-			frame.setVisible(false);
-			StracheshipBoard();
-		
-		
-		} else if (e.getSource() == next) {
-			
-			ship.setVisible(false);
-			selectShip.setVisible(false);
-			next.setVisible(false);
-			
-			shipNo = Integer.parseInt(selectShip.getText());
-			
-		    //  Class  ArrayList    object      getter
-			if (Ship2.shipsList.get(shipNo - 1).getDirection().equals("DOWN")) {
+		    
+			//  Class  ArrayList    object      getter
+            if (Ship2.shipsList.get(shipNo - 1).getDirection().equals("DOWN")) {
 				
 				Up.setVisible(true);
 				Down.setVisible(true);
@@ -229,11 +252,22 @@ public class Game implements java.awt.event.ActionListener{
 				Right.setVisible(true);
 			}
 		
+		} else if (e.getSource() == attack) {
+			
+			attack.setVisible(false);
+			move.setVisible(false);
+			
+			Xattack.setVisible(true);
+			Yattack.setVisible(true);
+			attackMessage.setVisible(true);
+			next.setVisible(true);
+			
+			
 		} else if (e.getSource() == Down) {
 			Move m = new Move();
-			shipNo = Integer.parseInt(selectShip.getText());
 			m.moveDown(shipNo);
 			
+			shipNo++;
 			StracheshipBoard();
 			sea();
 			
@@ -244,10 +278,41 @@ public class Game implements java.awt.event.ActionListener{
 	    	if (gameState == 1) {
 	    		
 	    		gameState = 2;
+	    	
 	    	} else {
+	    		
 	    		gameState = 1;
 	    	}
+	    	
+	    	shipNo = 1;
 	    	StracheshipBoard();
+	    	sea();
+	    
+	    
+	    } else if (e.getSource() == next) {
+	    	
+	    	int x = Integer.parseInt(Xattack.getText());
+	    	int y = Integer.parseInt(Yattack.getText());
+	    	
+	    	if (gameState == 1) {
+	    		
+	    		if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
+	    			
+	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
+	    		}
+	    	
+	    	} else {
+	    		
+                if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
+	    			
+	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
+	    		}
+	    	}
+	    	
+	    	
+	    	shipNo++;
+	        frame.setVisible(false);
+	        StracheshipBoard();
 	    	sea();
 	    }
 		
