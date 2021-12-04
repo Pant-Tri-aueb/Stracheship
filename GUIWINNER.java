@@ -36,6 +36,7 @@ public class GUIWINNER {
         frame.setResizable(false);
         frame.add(label);
         frame.setIconImage(img2.getImage());
+        frame.pack();
     }
 
 }
