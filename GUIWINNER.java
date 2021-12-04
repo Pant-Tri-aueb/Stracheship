@@ -68,7 +68,7 @@ public class GUIWINNER {
 
 
 
-        JLabel label = new JLabel(String.format("The winner is player %d%s", playerNo , "Name")); // create
+        JLabel label = new JLabel(String.format("The winner is player %d%s", Deck1.checkWinner() == true ?  Deck1.getWinnerName() :  Deck2.getWinnerName() )); // create
         //label.setText("Winner is player: "); // set text for label
         label.setIcon(img);
         label.setHorizontalTextPosition(JLabel.CENTER); // set text left , center of imageicon
