@@ -4,6 +4,7 @@ import java.util.List;
 public class Deck {
 
     public String[][] deck_arr = new String[10][10];
+    String player_name;
 
     public Deck() {  // arxikopoiei pinaka 2x2 pou deixnei to deck tou paixth me "O" tis theseis tou Deck//
         DeckInitialization();
@@ -139,5 +140,31 @@ public class Deck {
             }
         }
         return finalcheck;
+    }
+
+    public void setPlayerName(String player_name) {
+        this.player_name = player_name;
+    }
+
+    public boolean checkWinner() {
+        int Xcounter = 0;
+        for (int i = 0; i < this.deck_arr.length ;i ++) {
+            for (int j = 0; j < this.deck_arr[0].length; j++) {
+                if (this.deck_arr[i][j] == "X") {
+                    Xcounter ++;
+                }
+            }
+        }
+        if (Xcounter == 16) {
+            return true;
+        }
+        return false; 
+    }
+
+    public String getWinnerName() {
+        if (checkWinner() == true) {
+            return this.player_name;
+        }
+        return "no winner :(";
     }
 }   

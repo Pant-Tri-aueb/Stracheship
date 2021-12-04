@@ -128,7 +128,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         name.setBounds(50, 100, 100, 30);
         
         
-        t5 = new JTextField();  
+        t5 = new JTextField();
         t5.setBounds(50,140, 200,30);  
         t5.addActionListener(this);
         
@@ -385,10 +385,12 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	         if (Player.playerNo == 0) {
 	        	 
 	        	 player1 = new Player(name, sex, age);
+				 Deck1.setPlayerName(name);
 	         
 	         } else {
 	        	 
 	        	 player2 = new Player(name, sex, age);
+				 Deck2.setPlayerName(name);
 	         }
 	         
     		 SecondFrame.setVisible(false);
