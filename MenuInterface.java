@@ -596,9 +596,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	}
    
-   public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-    	new MenuInterface();
+  // public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    	//new MenuInterface();
     	//Backgroundmusic b = new Backgroundmusic();
     	//b.sound();
-   }
+  // }
 }
