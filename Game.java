@@ -1,10 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,7 +11,7 @@ import javax.swing.JTextField;
 
 public class Game implements java.awt.event.ActionListener{
 	
-	private int gameState = 1;
+	private static int gameState = 1;
 	private int shipNo = 1;
 	
 	private JButton attack;
@@ -187,7 +184,50 @@ public class Game implements java.awt.event.ActionListener{
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       frame.setVisible(true);
 	       
+	       for (int i = 0; i < 10; i++) {
+	    	   
+	    	   Ship2 ship = Ship2.shipsList.get(i);
+	    	   
+	    	   if (i < 5) {
+	    		   if (ship.isDestroyed1() == true) {
+	    			  
+	    			   for (int j = 0; j < ship.getSize(); j++) {
+	    				   
+	    				   MenuInterface.Deck1.deck_arr[ship.xy[j][0]][ship.xy[j][1]] = "O";
+	    			   
+	    			   }
+	    			  
+	    			  
+	    		   }
+	    	   
+	    		   
+	    	   } else {
+	    		   
+	    		   if (ship.isDestroyed2() == true) {
+		    			  
+	    			   for (int j = 0; j < ship.getSize(); j++) {
+	    				   
+	    				   MenuInterface.Deck2.deck_arr[ship.xy[j][0]][ship.xy[j][1]] = "O";
+	    			   
+	    			   }
+	    			  
+	    			  
+	    		   }
+	    	   }
+	       }
+	       
+	       
+	       
 	       sea();
+	       
+	    
+	       if (MenuInterface.Deck1.checkWinner() == true || MenuInterface.Deck2.checkWinner() == true) {
+	    	   
+	    	   GUIWINNER.winner();
+	       }
+	      
+	    	   
+	       
 	   }
 
 	public void sea() {
