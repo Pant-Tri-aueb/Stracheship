@@ -170,12 +170,17 @@ public class Game implements java.awt.event.ActionListener{
 	         
 	    	 god.setVisible(false);
 	         changeTurn.setVisible(false);
+	         attack.setVisible(true);
+	         move.setVisible(true);
 	       
 	       } else {
 	    	   
 	    	   god.setVisible(true);
 	    	   changeTurn.setVisible(true);
 	    		
+	    	   
+	    	   attack.setVisible(false);
+	    	   move.setVisible(false);
 	    	   shipCount1.setVisible(false);
 	    	   shipCount2.setVisible(false);
 	       }
