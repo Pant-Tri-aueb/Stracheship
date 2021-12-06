@@ -147,24 +147,32 @@ public class Deck {
     }
 
     public boolean checkWinner() {
-        int Xcounter = 0;
-        for (int i = 0; i < this.deck_arr.length ;i ++) {
-            for (int j = 0; j < this.deck_arr[0].length; j++) {
-                if (this.deck_arr[i][j] == "X") {
-                    Xcounter ++;
-                }
-            }
-        }
-        if (Xcounter == 16) {
-            return true;
-        }
-        return false; 
+        boolean result = true;
+    	
+    	for (int i = 0; i < 10; i++) {
+	    	   for (int j = 0; j < 10; j++) {
+	    	       
+	    		   if ((deck_arr[i][j] == "S") || (deck_arr[i][j] == "X")) {
+	    			   
+	    			      result = false;
+	    		   }
+	    	   }
+	      }
+        
+        return result; 
     }
 
-    public String getWinnerName() {
-        if (checkWinner() == true) {
-            return this.player_name;
+    public static String getWinnerName() {
+           
+    	if (MenuInterface.Deck1.checkWinner() == true) {
+    	     
+    		return MenuInterface.player2.getName();
+       
+        } else {
+        	
+        	return MenuInterface.player1.getName();
         }
-        return "no winner :(";
+        
     }
-}   
+}
+   
