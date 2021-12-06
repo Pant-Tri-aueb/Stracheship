@@ -14,11 +14,11 @@ public class GUIWINNER {
         this.Deck2 = Deck2;*/
     }
 
-    public static void main(String[] args) {
+    
 
-
+    public static void winner() {
         
-        ImageIcon img = new ImageIcon("war.png");
+        ImageIcon img = new ImageIcon("war.jpg"); //PNG
         ImageIcon img2 = new ImageIcon("logo.png");
 
         /*if (Deck1.checkWinner() == true ) {
@@ -42,7 +42,6 @@ public class GUIWINNER {
             frame.add(label);
             frame.setIconImage(img2.getImage());
             frame.pack();
-
         } else if (Deck2.checkWinner() == true) {
             JLabel label = new JLabel(String.format("The winner is player %d%s", Deck2.getWinnerName() , "Name")); // create
             //label.setText("Winner is player: "); // set text for label
@@ -66,10 +65,15 @@ public class GUIWINNER {
             frame.pack();
         } */
 
+        
 
-
-        JLabel label = new JLabel(String.format("The winner is player %d%s", Deck1.checkWinner() == true ?  Deck1.getWinnerName() :  Deck2.getWinnerName() )); // create
+        JLabel label = new JLabel(String.format("The winner is %s", 
+        		(MenuInterface.Deck1.checkWinner() == true) || (MenuInterface.Deck2.checkWinner() == true)  ?  
+        				Deck.getWinnerName() : "There is no winner yet :(" )); // create
         //label.setText("Winner is player: "); // set text for label
+        
+        
+        
         label.setIcon(img);
         label.setHorizontalTextPosition(JLabel.CENTER); // set text left , center of imageicon
         label.setVerticalTextPosition(JLabel.TOP); // SET TEXT TOP CENTER
