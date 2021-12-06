@@ -18,7 +18,7 @@ public class GUIWINNER {
 
     public static void winner() {
         
-        ImageIcon img = new ImageIcon("war.jpg"); //PNG
+        ImageIcon img = new ImageIcon("war.png"); 
         ImageIcon img2 = new ImageIcon("logo.png");
 
         /*if (Deck1.checkWinner() == true ) {
