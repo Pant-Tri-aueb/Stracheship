@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.io.File;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,6 +37,8 @@ public class Game implements java.awt.event.ActionListener{
 	private JTextField Xattack, Yattack;
 	
 	private JFrame frame; 
+	
+	static File click = new File("click.wav");
 	
 	public void StracheshipBoard() {
 		   
@@ -385,6 +389,7 @@ public class Game implements java.awt.event.ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == move) {
+			Bsound.Sound(click);
 			
 			attack.setVisible(false);
 			move.setVisible(false);
@@ -402,6 +407,7 @@ public class Game implements java.awt.event.ActionListener{
 			}
 		
 		} else if (e.getSource() == attack) {
+			Bsound.Sound(click);
 			
 			attack.setVisible(false);
 			move.setVisible(false);
@@ -412,6 +418,7 @@ public class Game implements java.awt.event.ActionListener{
 			next.setVisible(true);
 			
 		} else if (e.getSource() == Right) {
+			Bsound.Sound(click);
 			
 			Move m = new Move();
 			m.moveRight(shipNo);
@@ -421,6 +428,8 @@ public class Game implements java.awt.event.ActionListener{
 			sea();
 			
 		} else if (e.getSource() == Down) {
+			Bsound.Sound(click);
+			
 			Move m = new Move();
 			m.moveDown(shipNo);
 			
@@ -430,6 +439,7 @@ public class Game implements java.awt.event.ActionListener{
 			
 		
 	    } else if (e.getSource() == changeTurn) {
+	    	Bsound.Sound(click);
 	    	
 	    	frame.setVisible(false);
 	    	if (gameState == 1) {
@@ -447,6 +457,8 @@ public class Game implements java.awt.event.ActionListener{
 	    
 	    
 	    } else if (e.getSource() == next) {
+	    	
+	    	Bsound.Sound(click);
 	    	
 	    	int x = Integer.parseInt(Xattack.getText());
 	    	int y = Integer.parseInt(Yattack.getText());
@@ -473,6 +485,8 @@ public class Game implements java.awt.event.ActionListener{
 	    	sea();
 	    
 	    } else if (e.getSource() == sinkedNext) {
+	    	
+	    	Bsound.Sound(click);
 	    	
 	    	shipNo++;
 	        frame.setVisible(false);
