@@ -65,8 +65,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
     	f.setSize(1280, 733);
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-    	b1 = new JButton("1. Έναρξη του παιχνιδιού");
+        f.setResizable(false);
+    	
+        b1 = new JButton("1. Έναρξη του παιχνιδιού");
     	b1.setBounds(420, 270, 400, 80);
     	b1.addActionListener(this);
     	
@@ -128,7 +129,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         name.setBounds(50, 100, 100, 30);
         
         
-        t5 = new JTextField();
+        t5 = new JTextField();  
         t5.setBounds(50,140, 200,30);  
         t5.addActionListener(this);
         
@@ -161,7 +162,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     public void Gods() {
     	GodFrame = new JFrame("Stracheship 1.0");
     	GodFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	GodFrame.setSize(1280, 723);
+    	GodFrame.setSize(1280, 725);
     	
     	startframe.setVisible(false);
     	GodFrame.setVisible(true);
@@ -385,12 +386,10 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	         if (Player.playerNo == 0) {
 	        	 
 	        	 player1 = new Player(name, sex, age);
-				 Deck1.setPlayerName(name);
 	         
 	         } else {
 	        	 
 	        	 player2 = new Player(name, sex, age);
-				 Deck2.setPlayerName(name);
 	         }
 	         
     		 SecondFrame.setVisible(false);
@@ -596,9 +595,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	}
    
-  // public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-    	//new MenuInterface();
+  /* public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    	new MenuInterface();
     	//Backgroundmusic b = new Backgroundmusic();
-    	//b.sound();
-  // }
+    	//b.sound(); 
+   } */
 }
