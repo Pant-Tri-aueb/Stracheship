@@ -44,7 +44,7 @@ public class Game implements java.awt.event.ActionListener{
 	       frame.setLayout(null);
 	      
 	       playerinfo = new JLabel(new ImageIcon(
-	         		"wood2.jpg"));
+	         		"wood3.jpg"));
 	       playerinfo.setBounds(0, 0, 860, 860);
 	       playerinfo.setLayout(null);
 	       
@@ -411,6 +411,14 @@ public class Game implements java.awt.event.ActionListener{
 			attackMessage.setVisible(true);
 			next.setVisible(true);
 			
+		} else if (e.getSource() == Right) {
+			
+			Move m = new Move();
+			m.moveRight(shipNo);
+			
+			shipNo++;
+			StracheshipBoard();
+			sea();
 			
 		} else if (e.getSource() == Down) {
 			Move m = new Move();
