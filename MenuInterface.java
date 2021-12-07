@@ -161,7 +161,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     public void Gods() {
     	GodFrame = new JFrame("Stracheship 1.0");
     	GodFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	GodFrame.setSize(1280, 720);
+    	GodFrame.setSize(1280, 723);
     	
     	startframe.setVisible(false);
     	GodFrame.setVisible(true);
