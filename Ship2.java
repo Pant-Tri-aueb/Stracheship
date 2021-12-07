@@ -11,7 +11,6 @@ public class Ship2 {
 	
 	
 	private int ShipNumber;
-    private int capacity;
     private int tolerance;
     private int x;
     private int y;
@@ -25,6 +24,7 @@ public class Ship2 {
         this.y = y;
         this.size = size;
         this.direction = direction;
+        this.tolerance = size;
         this.ShipNumber = Shipcounter + 1;
         
         this.xy[0][0] = x - 1;
@@ -51,6 +51,19 @@ public class Ship2 {
     	
     }
 
+    public void updateTolerance(Deck deck) {
+    	this.tolerance = 0;
+    	
+    	for (int i = 0; i < this.size; i++) {
+    			
+    			if (deck.deck_arr[this.xy[i][0]][this.xy[i][1]] == "S" ) {
+    				tolerance++;
+    				
+    			}
+    		
+        }
+    }
+    
     public boolean isDestroyed1() {
     	boolean result = true;
     	
@@ -80,10 +93,6 @@ public class Ship2 {
 	    return result;
     }
     
-    public int getCapacity() {
-        return capacity;
-    }
-    
     public int getX() {
         return x;
     }
@@ -108,10 +117,6 @@ public class Ship2 {
         return direction;
     }
     
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
     public int getTolerance() {
         return tolerance;
     }
