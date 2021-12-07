@@ -23,11 +23,14 @@ public class Game implements java.awt.event.ActionListener{
 	private JButton god;
 	private JButton changeTurn;
 	private JButton next;
+	private JButton sinkedNext;
 	
 	private JLabel playerinfo;
 	private JLabel attackMessage;
 	private JLabel shipCount1;
 	private JLabel shipCount2;
+	private JLabel tolerance1;
+	private JLabel tolerance2;
 	
 	private JTextField Xattack, Yattack;
 	
@@ -69,6 +72,60 @@ public class Game implements java.awt.event.ActionListener{
 	       god1.setForeground(Color.BLACK);
 	       god2.setForeground(Color.BLACK);
 	      
+	       String life = "";
+	     
+	       
+	       if (gameState == 1 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 ) {
+	    	  
+	    	   life = String.format("%d", Ship2.shipsList.get(shipNo - 1).getTolerance());
+	    	  
+	    	   
+	       } else if (gameState == 2 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0) {
+	    	   
+	    	   life = String.format("%d", Ship2.shipsList.get(shipNo + 4).getTolerance());
+	    	   
+	    	   
+	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ){
+	    	    
+	    	   life = "ΒΥΘΙΣΤΗΚΕ";
+	    	   
+	       }
+	       
+	       tolerance1 = new JLabel("ANTOXH");
+	       tolerance2 = new JLabel(life);
+	       
+	       tolerance1.setBounds(762, 200, 100, 30);
+	       
+	       if (gameState == 1 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 ) {
+
+	    	   tolerance2.setBounds(790, 240, 75, 30);
+	       
+	       } else if (gameState == 2 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0) {
+	    	   
+	    	   tolerance2.setBounds(790, 240, 75, 30);
+	       
+	       } else if (gameState == 1 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 ) {
+	    	   
+	    	   tolerance2.setBounds(756, 240, 100, 30);
+	       
+	       } else if (gameState == 2 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ) {
+	    	   
+	    	   tolerance2.setBounds(756, 240, 100, 30);
+	       }
+
+	       
+	       tolerance1.setForeground(Color.BLACK);
+	       tolerance2.setForeground(Color.BLACK);
+	       
+	       tolerance1.setFont(new Font("SansSerif", Font.BOLD, 17));
+	       tolerance2.setFont(new Font("SansSerif", Font.BOLD, 15));
+	       
 	       shipCount1 = new JLabel("ΠΛΟΙΟ");
 	       shipCount2 = new JLabel(String.format("%do", shipNo));	       
 	       
@@ -115,6 +172,9 @@ public class Game implements java.awt.event.ActionListener{
 	       attack.addActionListener(this);
 	       move.addActionListener(this);
 	       
+	       sinkedNext = new JButton("ΣΥΝΕΧΕΙΑ");
+	       sinkedNext.setBounds(580, 775, 130, 25);
+	       sinkedNext.addActionListener(this);
 	       
 	       
 	       if (gameState == 1) {
@@ -165,15 +225,28 @@ public class Game implements java.awt.event.ActionListener{
 	       playerinfo.add(Yattack);
 	       playerinfo.add(attackMessage);
 	       playerinfo.add(next);
+	       playerinfo.add(tolerance1);
+	       playerinfo.add(tolerance2);
+	       playerinfo.add(sinkedNext);
 	       
-	       if (shipNo <= 5) {
+	       if (shipNo <= 5 && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 && gameState == 1) {
 	         
 	    	 god.setVisible(false);
 	         changeTurn.setVisible(false);
 	         attack.setVisible(true);
 	         move.setVisible(true);
-	       
-	       } else {
+	         sinkedNext.setVisible(false);
+	        
+	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0 
+	        		&& gameState == 2) {
+		         
+		    	 god.setVisible(false);
+		         changeTurn.setVisible(false);
+		         attack.setVisible(true);
+		         move.setVisible(true);
+		         sinkedNext.setVisible(false);
+		         
+	       } else if (shipNo > 5) {
 	    	   
 	    	   god.setVisible(true);
 	    	   changeTurn.setVisible(true);
@@ -183,6 +256,28 @@ public class Game implements java.awt.event.ActionListener{
 	    	   move.setVisible(false);
 	    	   shipCount1.setVisible(false);
 	    	   shipCount2.setVisible(false);
+	    	   tolerance1.setVisible(false);
+	    	   tolerance1.setVisible(false);
+	    	   sinkedNext.setVisible(false);
+           
+	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 
+	    		   && gameState == 1) {
+	    	   
+	    	   god.setVisible(false);
+		       changeTurn.setVisible(false);
+	    	   attack.setVisible(false);
+	    	   move.setVisible(false);
+	    	   sinkedNext.setVisible(false);
+	    	   
+	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 
+	    		   && gameState == 2) {
+	    	   
+	    	   god.setVisible(false);
+		       changeTurn.setVisible(false);
+	    	   attack.setVisible(false);
+	    	   move.setVisible(false);
+	    	   sinkedNext.setVisible(true);
+	       
 	       }
 	       
 	       frame.add(playerinfo);
@@ -221,7 +316,16 @@ public class Game implements java.awt.event.ActionListener{
 	    	   }
 	       }
 	       
+	       for (int i = 0; i < 5; i++) {
+	    	   
+	    	   Ship2.shipsList.get(i).updateTolerance(MenuInterface.Deck1);
 	       
+	       }
+           for (int i = 5; i < 10; i++) {
+	    	   
+	    	   Ship2.shipsList.get(i).updateTolerance(MenuInterface.Deck2);
+	       
+	       }
 	       
 	       sea();
 	       
@@ -359,6 +463,14 @@ public class Game implements java.awt.event.ActionListener{
 	        frame.setVisible(false);
 	        StracheshipBoard();
 	    	sea();
+	    
+	    } else if (e.getSource() == sinkedNext) {
+	    	
+	    	shipNo++;
+	        frame.setVisible(false);
+	        StracheshipBoard();
+	    	sea();
+	    	
 	    }
 		
 	}
