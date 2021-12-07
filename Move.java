@@ -20,8 +20,8 @@ public class Move {
 		
 		if (direction.equals("RIGHT") ) {
 			if (y + size - 1 <= 9) {
-				MenuInterface.Deck1.deck_arr[x][y] = "O";
-				MenuInterface.Deck1.deck_arr[x][y+size] = "S";
+				MenuInterface.Deck1.deck_arr[x-1][y-1] = "O";
+				MenuInterface.Deck1.deck_arr[x-1][y+size-1] = "S";
 				Ship2.shipsList.get(i).setY(y+1);
 			} else {
 				System.out.println("Δεν επιτρέπεται!");
@@ -39,8 +39,8 @@ public class Move {
 		
 		if (direction.equals("RIGHT") ) {
 			if (y > 1) {
-				MenuInterface.Deck1.deck_arr[x][y+size-1] = "O";
-				MenuInterface.Deck1.deck_arr[x][y-1] = "S";
+				MenuInterface.Deck1.deck_arr[x-1][y+size-1-1] = "O";
+				MenuInterface.Deck1.deck_arr[x-1][y-1-1] = "S";
 				Ship2.shipsList.get(i).setY(y-1);
 			} else {
 				System.out.println("Δεν επιτρέπεται!");
@@ -58,8 +58,8 @@ public class Move {
 		
 		if (direction.equals("DOWN") ) {
 			if (x > 1) {
-				MenuInterface.Deck1.deck_arr[x+size-1][y] = "O";
-				MenuInterface.Deck1.deck_arr[x-1][y] = "S";
+				MenuInterface.Deck1.deck_arr[x+size-1-1][y-1] = "O";
+				MenuInterface.Deck1.deck_arr[x-1-1][y-1] = "S";
 				Ship2.shipsList.get(i).setX(x-1);
 			} else {
 				System.out.println("Δεν επιτρέπεται!");
@@ -77,8 +77,8 @@ public class Move {
 		
 		if (direction.equals("DOWN") ) {
 			if (x + size - 1 <= 9) {
-				MenuInterface.Deck1.deck_arr[x][y] = "O";
-				MenuInterface.Deck1.deck_arr[x+size][y] = "S";
+				MenuInterface.Deck1.deck_arr[x-1][y-1] = "O";
+				MenuInterface.Deck1.deck_arr[x+size-1][y-1] = "S";
 				Ship2.shipsList.get(i).setX(x+1);
 			} else {
 				System.out.println("Δεν επιτρέπεται!");
