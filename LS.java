@@ -24,7 +24,7 @@ public class LS extends JFrame {
 		LS frame = new LS();
 		frame.setVisible(true);
 		try {
-			for(int x=0;x<102;x++) {
+			for(int x=2;x<102;x++) {
 				LS.progressBar.setValue(x);
 				Thread.sleep(180);
 				LS.label_1.setText(Integer.toString(x)+" %");
