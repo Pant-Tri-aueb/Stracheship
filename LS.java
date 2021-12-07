@@ -17,6 +17,7 @@ public class LS extends JFrame {
 	private JPanel contentPane;
 	private static JProgressBar progressBar;
 	private JTable table;
+	private static JLabel label;
 	private static JLabel label_1;
 	
 	public  void play() {
