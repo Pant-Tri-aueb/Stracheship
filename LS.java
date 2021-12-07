@@ -25,8 +25,24 @@ public class LS extends JFrame {
 		try {
 			for(int x=0;x<102;x++) {
 				LS.progressBar.setValue(x);
-				Thread.sleep(150);
+				Thread.sleep(180);
 				LS.label_1.setText(Integer.toString(x)+" %");
+				if (x==0) {
+					LS.label.setText("Loading game..");
+				} else if (x==13) {
+					LS.label.setText("Gamieste.....");
+				}else if (x == 27) {
+					LS.label.setText("Loading game...");
+				}else if (x == 40) {
+					LS.label.setText("Gamieste..");
+				}else if (x == 54) {
+					LS.label.setText("Loading game......");
+				}else if (x == 69) {
+					LS.label.setText("Gamieste...");
+				}else if (x == 86) {
+					LS.label.setText("Loading game..");
+				}
+				
 				if(x==101) {
 					frame.dispose();
 				}
