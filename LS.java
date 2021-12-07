@@ -61,6 +61,12 @@ public class LS extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		label = new JLabel("");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Forte", Font.PLAIN, 27));
+		label.setBounds(12, 683, 209, 37);
+		contentPane.add(label);
+
 		label_1 = new JLabel("");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Arial Black", Font.BOLD, 18));
