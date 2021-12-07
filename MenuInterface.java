@@ -5,6 +5,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -43,9 +46,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JButton ares;
 	private JButton artemis;
 	
-	private JTextField t1, t2, t3, t4, t5, t6, t7;
+	private JTextField t1, t2, t4, t5, t6, t7;
 	
 	private JTable jt;
+	
+    static File click = new File("click.wav");
 	
 	static Player player1;
 	static Player player2;
@@ -63,11 +68,13 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         		"stracheship.jpg"));
         add(background);
         
+        Border roundedBorder = new LineBorder(Color.BLACK, 12, true);
+        
     	f.setSize(1280, 733);
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
     	
-        b1 = new JButton("1. Έναρξη του παιχνιδιού");
+        b1 = new JButton("1. Έναρξη του Παιχνιδιού");
     	b1.setBounds(420, 270, 400, 80);
     	b1.addActionListener(this);
     	
@@ -80,7 +87,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         b3.setBounds(420, 550, 400, 80);
         b3.addActionListener(this);
     	
-    	background.setLayout(null);
+        b1.setBorder(roundedBorder);
+        b2.setBorder(roundedBorder);
+        b3.setBorder(roundedBorder);
+        
+        background.setLayout(null);
         background.add(b1);
     	background.add(b2);
     	background.add(b3);
@@ -199,11 +210,14 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     @Override
 	public void actionPerformed(ActionEvent e) {
         if (e.getSource() == b1 ) {
+        	Bsound.Sound(click);
         	
         	Player();
         	
         } else if (e.getSource() == b2) {
-    		
+        	Bsound.Sound(click);
+        	
+        	
     	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
     		
     	    JLabel newPane = new JLabel(new ImageIcon(
@@ -338,16 +352,20 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	   
     	    
     	 } else if (e.getSource() == b3) {
-    		
+    		 Bsound.Sound(click);
+    		 
     		 System.exit(0);
     	 
     	 } else if (e.getSource() == back) {
+    		 Bsound.Sound(click);
     		 
     		 newFrame.setVisible(false);
     		 f.setVisible(true);
     	 
     	 
     	 } else if (e.getSource() == submit) {
+    		     Bsound.Sound(click);
+    		 
     		     String answer1 = t1.getText();
     	         String answer2 = t2.getText();
     	         String answer4 = t4.getText();
@@ -375,6 +393,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
     	 
     	 } else if (e.getSource() == next) {
+    		 Bsound.Sound(click);
+    		 
     		 String answer5 = t5.getText();
 	         String answer6 = t6.getText();
 	         String answer7 = t7.getText();
@@ -399,7 +419,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	 } else if (e.getSource() == zeus || e.getSource() == poseidon ||
         		e.getSource() == ares || e.getSource() == artemis) {
         	
-    		if (Player.playerNo == 1) {
+    		 Bsound.Sound(click);
+    		 
+    		 if (Player.playerNo == 1) {
     			if (e.getSource() == zeus) {
     				
     				player1.setGod("ΔΙΑΣ"); 
