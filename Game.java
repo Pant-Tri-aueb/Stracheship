@@ -36,7 +36,10 @@ public class Game implements java.awt.event.ActionListener{
 	
 	private JTextField Xattack, Yattack;
 	
+	
 	private JFrame frame; 
+	
+	Move m = new Move();
 	
 	static File click = new File("click.wav");
 	
@@ -61,8 +64,8 @@ public class Game implements java.awt.event.ActionListener{
 	       name1.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       name2.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       
-	       name1.setForeground(Color.BLACK);
-	       name2.setForeground(Color.BLACK);
+	       name1.setForeground(Color.WHITE);
+	       name2.setForeground(Color.WHITE);
 	       
 	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
 	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
@@ -73,8 +76,8 @@ public class Game implements java.awt.event.ActionListener{
 	       god1.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       god2.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       
-	       god1.setForeground(Color.BLACK);
-	       god2.setForeground(Color.BLACK);
+	       god1.setForeground(Color.WHITE);
+	       god2.setForeground(Color.WHITE);
 	      
 	       String life = "";
 	     
@@ -124,8 +127,8 @@ public class Game implements java.awt.event.ActionListener{
 	       }
 
 	       
-	       tolerance1.setForeground(Color.BLACK);
-	       tolerance2.setForeground(Color.BLACK);
+	       tolerance1.setForeground(Color.WHITE);
+	       tolerance2.setForeground(Color.WHITE);
 	       
 	       tolerance1.setFont(new Font("SansSerif", Font.BOLD, 17));
 	       tolerance2.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -136,8 +139,8 @@ public class Game implements java.awt.event.ActionListener{
 	       shipCount1.setBounds(765, 90, 75, 30);
 	       shipCount2.setBounds(785, 125, 75, 30);
 	       
-	       shipCount1.setForeground(Color.BLACK);
-	       shipCount2.setForeground(Color.BLACK);
+	       shipCount1.setForeground(Color.WHITE);
+	       shipCount2.setForeground(Color.WHITE);
 	       
 	       shipCount1.setFont(new Font("SansSerif", Font.BOLD, 19));
 	       shipCount2.setFont(new Font("SansSerif", Font.BOLD, 19));
@@ -165,7 +168,7 @@ public class Game implements java.awt.event.ActionListener{
 	       attackMessage.setBounds(480, 775, 140, 30);
 	       
 	       attackMessage.setFont(new Font("SansSerif", Font.BOLD, 18));
-	       attackMessage.setForeground(Color.BLACK);
+	       attackMessage.setForeground(Color.WHITE);
 	       
 	       attack = new JButton("ΕΠΙΘΕΣΗ");
 	       move = new JButton("ΜΕΤΑΚΙΝΗΣΗ");
@@ -420,18 +423,36 @@ public class Game implements java.awt.event.ActionListener{
 		} else if (e.getSource() == Right) {
 			Bsound.Sound(click);
 			
-			Move m = new Move();
 			m.moveRight(shipNo);
 			
 			shipNo++;
 			StracheshipBoard();
 			sea();
 			
+		} else if (e.getSource() == Up) {
+				Bsound.Sound(click);
+				
+	            m.moveUp(shipNo);
+				
+				shipNo++;
+				StracheshipBoard();
+				sea();	
+		
+		} else if (e.getSource() == Left) {
+					Bsound.Sound(click);
+					
+					
+					m.moveLeft(shipNo);
+					
+					shipNo++;
+					StracheshipBoard();
+					sea();
+		
+		
 		} else if (e.getSource() == Down) {
 			Bsound.Sound(click);
 			
-			Move m = new Move();
-			m.moveDown(shipNo);
+            m.moveDown(shipNo);
 			
 			shipNo++;
 			StracheshipBoard();
