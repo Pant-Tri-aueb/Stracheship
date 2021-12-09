@@ -18,8 +18,8 @@ public class GUIWINNER {
 
     public static void winner() {
         
-        ImageIcon img = new ImageIcon("war.png"); 
-        ImageIcon img2 = new ImageIcon("logo.png");
+        ImageIcon img = new ImageIcon("navmaxia.png"); 
+        ImageIcon img2 = new ImageIcon("logo.jpg");
 
         /*if (Deck1.checkWinner() == true ) {
             JLabel label = new JLabel(String.format("The winner is player %d%s", Deck1.getWinnerName() , "Name")); // create
