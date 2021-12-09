@@ -43,16 +43,14 @@ public class Artemis {
         }
     }
 
-    public void throwArrow(Ship3 obj, int x, int y, Deck deck) {
-        if (obj.getY() != y) {
-            System.out.println(" The ship can throw the arrow only horizontally. Try again.");
-            return;
-        }
-        if (deck.deck_arr[x - 1][y - 1] == "S") {
+    public void throwArrow(Ship3 obj, Deck deck) {
+        ArtemisArrow a = new ArtemisArrow();
+        /*if (deck.deck_arr[a.textField.getText() - 1][y - 1] == "S") {
             obj.setTolerance(0);
         } else if (deck.deck_arr[x - 1][y - 1] == "O") {
             System.out.println("Didn't hit a ship");
 
         }
+    *//
     }
 }
