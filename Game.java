@@ -1,19 +1,25 @@
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
-public class Game implements java.awt.event.ActionListener{
+public class Game extends JFrame implements java.awt.event.ActionListener{
 	
-	private static int gameState = 1;
+	public static int gameState = 1;
 	private int shipNo = 1;
 	
 	private JButton attack;
@@ -26,6 +32,10 @@ public class Game implements java.awt.event.ActionListener{
 	private JButton changeTurn;
 	private JButton next;
 	private JButton sinkedNext;
+	private JButton godAttack;
+	private JButton godDefense;
+	private JButton errorA;
+	private JButton errorD;
 	
 	private JLabel playerinfo;
 	private JLabel attackMessage;
@@ -38,6 +48,9 @@ public class Game implements java.awt.event.ActionListener{
 	
 	
 	private JFrame frame; 
+	private JFrame Aframe; 
+	private JFrame Dframe; 
+	
 	
 	Move m = new Move();
 	
@@ -55,6 +68,8 @@ public class Game implements java.awt.event.ActionListener{
 	       playerinfo.setBounds(0, 0, 860, 860);
 	       playerinfo.setLayout(null);
 	       
+	       
+	       
 	       JLabel name1 = new JLabel(MenuInterface.player1.getName());
 	       JLabel name2 = new JLabel(MenuInterface.player2.getName());
 	      
@@ -67,8 +82,10 @@ public class Game implements java.awt.event.ActionListener{
 	       name1.setForeground(Color.WHITE);
 	       name2.setForeground(Color.WHITE);
 	       
-	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
-	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
+	      
+	      
+	       JLabel god1 = new JLabel("ΘΕΟΣ: " + MenuInterface.player1.getGod());
+	       JLabel god2 = new JLabel("ΘΕΟΣ: " + MenuInterface.player2.getGod());
 	       
 	       god1.setBounds(220, 780, 250, 20);
 	       god2.setBounds(220, 780, 250, 20);
@@ -158,6 +175,15 @@ public class Game implements java.awt.event.ActionListener{
 	       god.addActionListener(this);
 	       changeTurn.addActionListener(this);
 	       
+	       godAttack = new JButton(new ImageIcon("swords.jpg"));
+	       godDefense = new JButton(new ImageIcon("shield.jpg"));
+	       
+	       godAttack.setBounds(765, 90, 75, 250);
+	       godDefense.setBounds(765, 350, 75, 250);
+	       
+	       godAttack.addActionListener(this);
+	       godDefense.addActionListener(this);
+	       
 	       attackMessage = new JLabel("ΕΠΙΘΕΣΗ ΣΤΟ");
 	       Xattack = new JTextField();
 	       Yattack = new JTextField();
@@ -217,6 +243,8 @@ public class Game implements java.awt.event.ActionListener{
 			Yattack.setVisible(false);
 			attackMessage.setVisible(false);
 	        next.setVisible(false);
+	        godAttack.setVisible(false);
+	        godDefense.setVisible(false);
 			
            playerinfo.add(Left);
 		   playerinfo.add(Up);
@@ -235,6 +263,8 @@ public class Game implements java.awt.event.ActionListener{
 	       playerinfo.add(tolerance1);
 	       playerinfo.add(tolerance2);
 	       playerinfo.add(sinkedNext);
+	       playerinfo.add(godAttack);
+	       playerinfo.add(godDefense);
 	       
 	       if (shipNo <= 5 && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 && gameState == 1) {
 	         
@@ -389,6 +419,38 @@ public class Game implements java.awt.event.ActionListener{
 	       playerinfo.add(pn);
 	}
 	
+	public void errorMessageA() {
+		
+		Aframe = new JFrame("Error");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+        JLabel message = new JLabel("Τελείωσαν οι διαθέσιμες επιθέσεις");
+        
+        errorA = new JButton("OK");
+        errorA.addActionListener(this);
+       
+
+        frame.add(errorA);
+        frame.setVisible(true);
+        frame.pack();
+	}
+	
+    public void errorMessageD() {
+		
+		Dframe = new JFrame("Error");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+        JLabel message = new JLabel("Τελείωσαν οι διαθέσιμες επιθέσεις");
+        
+        errorD = new JButton("OK");
+        errorD.addActionListener(this);
+       
+
+        frame.add(errorD);
+        frame.setVisible(true);
+        frame.pack();
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == move) {
@@ -514,7 +576,58 @@ public class Game implements java.awt.event.ActionListener{
 	        StracheshipBoard();
 	    	sea();
 	    	
+	    
+	    } else if (e.getSource() == god) {
+	    	changeTurn.setVisible(false);
+	    	god.setVisible(false);
+	    	godAttack.setVisible(true);
+	    	godDefense.setVisible(true);
+	    	
+	    
+	    } else if (e.getSource() == godAttack) {
+	    	
+	    	godAttack.setVisible(false);
+	    	godDefense.setVisible(false);
+	    	
+	    	if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
+	    			&& Artemis.capacity(0) == true) {
+	    	
+	             
+	                 Artemis A = new Artemis();
+	                 A.insertData(); 
+	                 Artemis.RIVAL_MOVES[0]--;
+	                 
+	                 changeTurn.setVisible(true);
+	                 
+	                 
+	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
+	    			&& Artemis.capacity(0) == true) {
+	        	
+	        	     Artemis A = new Artemis();
+	        	     A.insertData();
+	        		 Artemis.RIVAL_MOVES[0]--;
+	        		 
+	        		 changeTurn.setVisible(true);
+	        	
+	        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
+	        		&& Artemis.capacity(0) == false) {
+	    	     
+	    	    errorMessageA();
+	    	    
+	        }
+	     
+	    
+	   } else if (e.getSource() == errorA) {
+	    	
+	    	Aframe.setVisible(false);
+	    	god.setVisible(true);
+	        changeTurn.setVisible(true);
+	    	
+	    }  else if (e.getSource() == errorD) {
+	    	
+	    	Dframe.setVisible(false);
+	    	god.setVisible(true);
+	    	changeTurn.setVisible(true);
 	    }
-		
-	}
+    }
 }
