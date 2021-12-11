@@ -431,33 +431,41 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	public void errorMessageA() {
 		
 		Aframe = new JFrame("Error");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        Aframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Aframe.setLayout(new FlowLayout());
+        JPanel pn = new JPanel();
+        
         JLabel message = new JLabel("Τελείωσαν οι διαθέσιμες επιθέσεις");
         
         errorA = new JButton("OK");
         errorA.addActionListener(this);
        
-
-        frame.add(errorA);
-        frame.setVisible(true);
-        frame.pack();
+        pn.add(errorA);
+        pn.add(message);
+        
+        Aframe.add(pn);
+        Aframe.setVisible(true);
+        Aframe.pack();
 	}
 	
     public void errorMessageD() {
 		
 		Dframe = new JFrame("Error");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        JLabel message = new JLabel("Τελείωσαν οι διαθέσιμες επιθέσεις");
+        Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dframe.setLayout(new FlowLayout());
+        JPanel pn = new JPanel();
+        
+        JLabel message = new JLabel("Τελείωσαν οι διαθέσιμες άμυνες");
         
         errorD = new JButton("OK");
         errorD.addActionListener(this);
        
-
-        frame.add(errorD);
-        frame.setVisible(true);
-        frame.pack();
+        pn.add(errorD);
+        pn.add(message);
+        
+        Dframe.add(pn);
+        Dframe.setVisible(true);
+        Dframe.pack();
 	}
 	
 	@Override
@@ -623,6 +631,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	
 	    
 	    } else if (e.getSource() == god) {
+	    	Bsound.Sound(click);
+	    	
 	    	changeTurn.setVisible(false);
 	    	god.setVisible(false);
 	    	godAttack.setVisible(true);
@@ -630,6 +640,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	
 	    
 	    } else if (e.getSource() == godAttack) {
+	    	Bsound.Sound(click);
 	    	
 	    	godAttack.setVisible(false);
 	    	godDefense.setVisible(false);
@@ -670,6 +681,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        }
 	     
 	   } else if (e.getSource() == godDefense) {
+		   Bsound.Sound(click);
 		   
 		   godAttack.setVisible(false);
 	       godDefense.setVisible(false);
@@ -705,12 +717,14 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         }
 		   
 	   } else if (e.getSource() == errorA) {
-	    	
+		   Bsound.Sound(click);
+		   
 	    	Aframe.setVisible(false);
 	    	god.setVisible(true);
 	        changeTurn.setVisible(true);
 	    	
 	    }  else if (e.getSource() == errorD) {
+	    	Bsound.Sound(click);
 	    	
 	    	Dframe.setVisible(false);
 	    	god.setVisible(true);
