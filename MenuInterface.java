@@ -240,6 +240,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		
     		
     		JTextArea textArea = new JTextArea(2, 20);
+		textArea.setForeground(Color.WHITE);
     	    textArea.setText("Παιχνίδι ναυμαχία-Σκάκι \r\n" + 
     				"\r\n" + 
     				"Περίληψη\r\n" + 
