@@ -96,6 +96,17 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       god1.setForeground(Color.WHITE);
 	       god2.setForeground(Color.WHITE);
 	      
+           for (int i = 0; i < 5; i++) {
+	    	   
+	    	   Ship2.shipsList.get(i).updateTolerance(MenuInterface.Deck1);
+	       
+	       }
+           for (int i = 5; i < 10; i++) {
+	    	   
+	    	   Ship2.shipsList.get(i).updateTolerance(MenuInterface.Deck2);
+	       
+	       }
+	       
 	       String life = "";
 	     
 	       
@@ -104,6 +115,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	  
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo - 1).getTolerance());
 	    	  
+	       } else if (gameState == 1 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0) {
+	    			   
+	    	   life = "ΒΥΘΙΣΤΗΚΕ";	
 	    	   
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0) {
@@ -111,7 +126,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo + 4).getTolerance());
 	    	   
 	    	   
-	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ){
+	       } else if (gameState == 2 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ){
 	    	    
 	    	   life = "ΒΥΘΙΣΤΗΚΕ";
 	    	   
@@ -178,8 +194,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       godAttack = new JButton(new ImageIcon("swords.jpg"));
 	       godDefense = new JButton(new ImageIcon("shield.jpg"));
 	       
-	       godAttack.setBounds(765, 90, 75, 250);
-	       godDefense.setBounds(765, 350, 75, 250);
+	       godAttack.setBounds(767, 90, 72, 250);
+	       godDefense.setBounds(767, 350, 72, 250);
 	       
 	       godAttack.addActionListener(this);
 	       godDefense.addActionListener(this);
@@ -294,7 +310,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   shipCount1.setVisible(false);
 	    	   shipCount2.setVisible(false);
 	    	   tolerance1.setVisible(false);
-	    	   tolerance1.setVisible(false);
+	    	   tolerance2.setVisible(false);
 	    	   sinkedNext.setVisible(false);
            
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 
@@ -304,7 +320,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		       changeTurn.setVisible(false);
 	    	   attack.setVisible(false);
 	    	   move.setVisible(false);
-	    	   sinkedNext.setVisible(false);
+	    	   sinkedNext.setVisible(true);
+	    	   tolerance1.setVisible(true);
+	    	   tolerance2.setVisible(true);
 	    	   
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 
 	    		   && gameState == 2) {
@@ -314,7 +332,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   attack.setVisible(false);
 	    	   move.setVisible(false);
 	    	   sinkedNext.setVisible(true);
-	       
+	    	   tolerance1.setVisible(true);
+	    	   tolerance2.setVisible(true);
 	       }
 	       
 	       frame.add(playerinfo);
@@ -353,17 +372,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   }
 	       }
 	       
-	       for (int i = 0; i < 5; i++) {
-	    	   
-	    	   Ship2.shipsList.get(i).updateTolerance(MenuInterface.Deck1);
-	       
-	       }
-           for (int i = 5; i < 10; i++) {
-	    	   
-	    	   Ship2.shipsList.get(i).updateTolerance(MenuInterface.Deck2);
-	       
-	       }
-	       
+	      
 	       sea();
 	       
 	    
@@ -485,8 +494,17 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		} else if (e.getSource() == Right) {
 			Bsound.Sound(click);
 			
-			m.moveRight(shipNo);
+
+	        if (gameState == 1) {
+	        	   
+	        	m.moveRight(shipNo, MenuInterface.Deck1);
+	           
+	        } else if (gameState == 2) {
+	        	   
+	            m.moveRight(shipNo + 5, MenuInterface.Deck2);
+	        }
 			
+	        frame.setVisible(false);
 			shipNo++;
 			StracheshipBoard();
 			sea();
@@ -494,8 +512,16 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		} else if (e.getSource() == Up) {
 				Bsound.Sound(click);
 				
-	            m.moveUp(shipNo);
-				
+
+		        if (gameState == 1) {
+		        	   
+		        	 m.moveUp(shipNo, MenuInterface.Deck1);
+		           
+		        } else if (gameState == 2) {
+		        	   
+		        	m.moveUp(shipNo + 5, MenuInterface.Deck2);
+		        }
+	            frame.setVisible(false);
 				shipNo++;
 				StracheshipBoard();
 				sea();	
@@ -504,8 +530,18 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 					Bsound.Sound(click);
 					
 					
-					m.moveLeft(shipNo);
-					
+
+			        if (gameState == 1) {
+			        	   
+			        	m.moveLeft(shipNo, MenuInterface.Deck1);
+			           
+			        } else if (gameState == 2) {
+			        	   
+			            m.moveLeft(shipNo + 5, MenuInterface.Deck2);
+			        
+			        }
+			         
+					frame.setVisible(false);
 					shipNo++;
 					StracheshipBoard();
 					sea();
@@ -514,8 +550,17 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		} else if (e.getSource() == Down) {
 			Bsound.Sound(click);
 			
-            m.moveDown(shipNo);
+           if (gameState == 1) {
+        	   
+        	   m.moveDown(shipNo, MenuInterface.Deck1);
+           
+           } else if (gameState == 2) {
+        	   
+        	  m.moveDown(shipNo + 5, MenuInterface.Deck2);
+           }
 			
+            
+            frame.setVisible(false);
 			shipNo++;
 			StracheshipBoard();
 			sea();
@@ -594,7 +639,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	
 	             
 	                 Artemis A = new Artemis();
-	                 A.insertData(); 
+	                 A.insertDataA(); 
 	                 Artemis.RIVAL_MOVES[0]--;
 	                 
 	                 changeTurn.setVisible(true);
@@ -604,19 +649,61 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    			&& Artemis.capacity(0) == true) {
 	        	
 	        	     Artemis A = new Artemis();
-	        	     A.insertData();
+	        	     A.insertDataA();
 	        		 Artemis.RIVAL_MOVES[0]--;
 	        		 
 	        		 changeTurn.setVisible(true);
 	        	
+	        
 	        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
 	        		&& Artemis.capacity(0) == false) {
 	    	     
 	    	    errorMessageA();
+	    	    changeTurn.setVisible(true);
 	    	    
+	        
+	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
+	        		&& Artemis.capacity(0) == false) {
+	        	
+	        	errorMessageA();
+	        	changeTurn.setVisible(true);
 	        }
 	     
-	    
+	   } else if (e.getSource() == godDefense) {
+		   
+		   godAttack.setVisible(false);
+	       godDefense.setVisible(false);
+		   
+	       if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
+	    			&& Artemis.capacity(1) == true) {
+	    	   
+	    	   Artemis A = new Artemis();
+               A.insertDataD(); 
+               Artemis.RIVAL_MOVES[1]--;
+               
+               changeTurn.setVisible(true);
+	    	   
+	       } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
+	    			&& Artemis.capacity(1) == true) {
+	        	
+      	     Artemis A = new Artemis();
+      	     A.insertDataD();
+      		 Artemis.RIVAL_MOVES[1]--;
+      		 
+      		 changeTurn.setVisible(true);
+      	
+      } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
+      		&& Artemis.capacity(1) == false) {
+  	     
+  	    errorMessageD();
+  	    
+      } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
+        		&& Artemis.capacity(1) == false) {
+   	     
+    	    errorMessageD();
+    	    
+        }
+		   
 	   } else if (e.getSource() == errorA) {
 	    	
 	    	Aframe.setVisible(false);
