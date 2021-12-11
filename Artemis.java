@@ -1,32 +1,51 @@
- import java.awt.*;
+  import java.awt.*;
     import java.awt.event.ActionEvent;
     import java.awt.event.ActionListener;
     import javax.swing.*;
     public class Artemis extends JFrame implements ActionListener {
 
     	 public static int[] RIVAL_MOVES = {2,2};
+    	 //public static int[] RIVAL_MOVES_2 = {2,2};
     	 static int x;
     	
     	    
-        JButton button;
+        JButton buttonA;
+        JButton buttonD;
         JTextField textField;
         JFrame frame;
         
         Artemis(){
         }
 
-        public void insertData() {
+        public void insertDataA() {
         	frame = new JFrame("Συντεταγμένες");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setLayout(new FlowLayout());
-            button = new JButton("ΕΠΙΘΕΣΗ!");
-            button.addActionListener(this);
+            buttonA = new JButton("ΕΠΙΘΕΣΗ!");
+            buttonA.addActionListener(this);
             textField = new JTextField();
             textField.setPreferredSize(new Dimension(250,40));
             textField.setFont(new Font("Consolas",Font.BOLD, 25));
 
 
-            frame.add(button);
+            frame.add(buttonA);
+            frame.add(textField);
+            frame.setVisible(true);
+            frame.pack();
+
+        }
+        public void insertDataD() {
+        	frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(new FlowLayout());
+            buttonD = new JButton("ΠΡΟΣΤΑΣΙΑ");
+            buttonD.addActionListener(this);
+            textField = new JTextField();
+            textField.setPreferredSize(new Dimension(250,40));
+            textField.setFont(new Font("Consolas",Font.BOLD, 25));
+
+
+            frame.add(buttonD);
             frame.add(textField);
             frame.setVisible(true);
             frame.pack();
@@ -34,7 +53,7 @@
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() == button) {
+            if(e.getSource() == buttonA) {
                String answer = textField.getText();
                x = Integer.parseInt(answer);
                frame.setVisible(false);
@@ -47,7 +66,21 @@
             	   throwArrow(MenuInterface.Deck1);
                }
                
-             }
+             } else if (e.getSource() == buttonD) {
+          
+                String answer = textField.getText();
+                x = Integer.parseInt(answer);
+                frame.setVisible(false);
+                if (Game.gameState == 1) {
+             	   
+             	   useDefence(Ship2.shipsList.get(x - 1) , MenuInterface.Deck1);
+             	   
+                } else if (Game.gameState == 2) {
+             	   
+                   useDefence(Ship2.shipsList.get(x + 4) , MenuInterface.Deck2);
+                }
+                
+              }
         }
         
 	    public static boolean capacity(int index) {
@@ -55,8 +88,7 @@
 	    	
 	        if (RIVAL_MOVES[index] > 0) {
 	        	available = true;
-	        	RIVAL_MOVES[index]--;
-	        
+	        	
 	        } else {
 	        	
 	        	available = false;
