@@ -55,6 +55,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	Move m = new Move();
 	
 	static File click = new File("click.wav");
+	static File cannon = new File("Bm.wav");
 	
 	public void StracheshipBoard() {
 		   
@@ -477,16 +478,27 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			move.setVisible(false);
 		    
 			//  Class  ArrayList    object      getter
-            if (Ship2.shipsList.get(shipNo - 1).getDirection().equals("DOWN")) {
+            if (gameState == 1 && Ship2.shipsList.get(shipNo - 1).getDirection().equals("DOWN")) {
 				
 				Up.setVisible(true);
 				Down.setVisible(true);
 			//                              shipNo -1 + 5 for player 2	
-			} else if (Ship2.shipsList.get(shipNo - 1).getDirection().equals("RIGHT")) {
+			} else if (gameState == 1 && Ship2.shipsList.get(shipNo - 1).getDirection().equals("RIGHT")) {
+				
+				Left.setVisible(true);
+				Right.setVisible(true);
+			
+			} else if (gameState == 2 && Ship2.shipsList.get(shipNo + 4).getDirection().equals("DOWN")) {
+				
+				Up.setVisible(true);
+				Down.setVisible(true);
+				
+			} else if (gameState == 2 && Ship2.shipsList.get(shipNo + 4).getDirection().equals("RIGHT")) {
 				
 				Left.setVisible(true);
 				Right.setVisible(true);
 			}
+            
 		
 		} else if (e.getSource() == attack) {
 			Bsound.Sound(click);
@@ -498,6 +510,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			Yattack.setVisible(true);
 			attackMessage.setVisible(true);
 			next.setVisible(true);
+			
 			
 		} else if (e.getSource() == Right) {
 			Bsound.Sound(click);
@@ -595,7 +608,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    } else if (e.getSource() == next) {
 	    	
 	    	Bsound.Sound(click);
-	    	
+	    	Bsound.Sound(cannon);
 	    	int x = Integer.parseInt(Xattack.getText());
 	    	int y = Integer.parseInt(Yattack.getText());
 	    	
