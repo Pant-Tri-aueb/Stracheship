@@ -55,7 +55,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	Move m = new Move();
 	
 	static File click = new File("click.wav");
-	static File cannon = new File("Bm.wav");
+	static File cannon = new File("Bοοm.wav");
 	
 	public void StracheshipBoard() {
 		   
