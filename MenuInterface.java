@@ -68,9 +68,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         		"stracheship.jpg"));
         add(background);
         
-        Border roundedBorder = new LineBorder(Color.BLACK, 12, true);
-        
-    	f.setSize(1280, 733);
+       
+        f.setSize(1280, 733);
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
     	
@@ -87,9 +86,6 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         b3.setBounds(420, 550, 400, 80);
         b3.addActionListener(this);
     	
-        b1.setBorder(roundedBorder);
-        b2.setBorder(roundedBorder);
-        b3.setBorder(roundedBorder);
         
         background.setLayout(null);
         background.add(b1);
@@ -221,7 +217,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
     		
     	    JLabel newPane = new JLabel(new ImageIcon(
-            		"sea.jpg"));
+            		"seastorm2.jpg"));
     		newPane.setLayout(null);
     	    
     		back = new JButton("Αρχικό Μενού");
@@ -240,8 +236,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		
     		
     		JTextArea textArea = new JTextArea(2, 20);
-		textArea.setForeground(Color.WHITE);
-    	    textArea.setText("Παιχνίδι ναυμαχία-Σκάκι \r\n" + 
+    		textArea.setForeground(Color.WHITE);
+    		textArea.setText("Παιχνίδι ναυμαχία-Σκάκι \r\n" + 
     				"\r\n" + 
     				"Περίληψη\r\n" + 
     				"Στο παιχνίδι αυτό οι παίκτες ανταγωνίζονται μεταξύ τους στην θάλασσα για την αντιμετώπιση και καταστροφή των αντίπαλων στρατευμάτων για την νίκη της ναυμαχίας.\r\n" + 
