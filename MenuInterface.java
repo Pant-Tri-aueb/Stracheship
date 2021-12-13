@@ -24,6 +24,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private int counter = 1;
 	private int size_counter = 2;
 	
+	private String direction;
 	private String[][] deck_table = new String[10][10];
 	
 	static Deck Deck1 = new Deck();
@@ -45,6 +46,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JButton poseidon;
 	private JButton ares;
 	private JButton artemis;
+	private JButton dirDown;
+	private JButton dirRight;
 	
 	private JTextField t1, t2, t4, t5, t6, t7;
 	
@@ -365,11 +368,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		 
     		     String answer1 = t1.getText();
     	         String answer2 = t2.getText();
-    	         String answer4 = t4.getText();
+    	         
     	     
     	         int x = Integer.parseInt(answer1);
     	         int y = Integer.parseInt(answer2);
-    	         String direction = answer4;
+    	         
     	         
     	         if (Player.playerNo == 1) {
     	        	  
@@ -388,7 +391,15 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
          	         Gods();
     	         }
         
-    	 
+    	 } else if (e.getSource() == dirDown) {
+    		 
+    		 direction = "DOWN";
+      
+    	 } else if (e.getSource() == dirRight) {
+    		 
+    		 direction = "RIGHT";
+    		 
+    		 
     	 } else if (e.getSource() == next) {
     		 Bsound.Sound(click);
     		 
@@ -486,7 +497,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         JLabel lb = new JLabel("Δώστε x, y, μέγεθος, και κατεύθυνση για το πλοίο");
         lb.setBounds(50, 50, 280, 30);
         lb.setOpaque(true);
-       
+        lb.setBackground(Color.GRAY);
+        lb.setForeground(Color.BLACK);
+        
         if (Player.playerNo == 2 && ShipPlacementCounter == 5) {
  		   counter = 1;
  		   size_counter = 2;
@@ -499,6 +512,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         JLabel ShipCount = new JLabel(message); 
         ShipCount.setBounds(300, 600, 170, 30);
         ShipCount.setOpaque(true);
+        ShipCount.setBackground(Color.GRAY);
+        ShipCount.setForeground(Color.BLACK);
         
         submit = new JButton("Καταχώρηση");
         submit.addActionListener(this);  
@@ -507,6 +522,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         JLabel lbt1 = new JLabel("Συντεταγμένη Χ");
         lbt1.setBounds(50, 100, 100, 30);
         lbt1.setOpaque(true);
+        lbt1.setBackground(Color.GRAY);
+        lbt1.setForeground(Color.BLACK);
         
         t1 = new JTextField();  
         t1.setBounds(50,140, 200,30);  
@@ -515,6 +532,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         JLabel lbt2 = new JLabel("Συντεταγμένη Υ");
         lbt2.setBounds(50, 180, 100, 30);
         lbt2.setOpaque(true);
+        lbt2.setBackground(Color.GRAY);
+        lbt2.setForeground(Color.BLACK);
         
         t2 = new JTextField();  
         t2.setBounds(50, 220, 200, 30);
@@ -523,10 +542,17 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         JLabel lbt4 = new JLabel("Κατεύθυνση Πλοίου");
         lbt4.setBounds(50, 260, 120, 30);
         lbt4.setOpaque(true);
+        lbt4.setBackground(Color.GRAY);
+        lbt4.setForeground(Color.BLACK);
         
-        t4 = new JTextField();  
-        t4.setBounds(50, 300, 200,30);  
-        t4.addActionListener(this);
+        dirDown = new JButton("ΚΑΘΕΤΑ");
+        dirRight = new JButton("ΟΡΙΖΟΝΤΙΑ");
+        
+        dirDown.setBounds(50, 325, 100, 30);
+        dirRight.setBounds(155, 325, 100, 30);
+        
+        dirDown.addActionListener(this);
+        dirRight.addActionListener(this);
         
         String[][] deck_array = new String[10][10];
         String[] column = new String[10];
@@ -558,6 +584,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         jt.setRowHeight(30);
         jt.setBackground(Color.LIGHT_GRAY);
         jt.setForeground(Color.BLACK);
+        jt.setGridColor(Color.WHITE);
         
         pn.add(ShipCount);
         pn.add(lb);
@@ -566,7 +593,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         pn.add(lbt2);
         pn.add(t2);
         pn.add(lbt4);
-        pn.add(t4);
+        pn.add(dirRight);
+        pn.add(dirDown);
         pn.add(jt); 
         pn.add(submit);
         
