@@ -29,7 +29,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JButton Left;
 	private JButton Right;
 	private JButton god;
-	private JButton changeTurn;
+	public JButton changeTurn;
 	private JButton next;
 	private JButton sinkedNext;
 	private JButton godAttack;
@@ -55,7 +55,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	Move m = new Move();
 	
 	static File click = new File("click.wav");
-	static File cannon = new File("Bοοm.wav");
+	static File cannon = new File("Boom.wav");
 	
 	public void StracheshipBoard() {
 		   
@@ -691,8 +691,39 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        	
 	        	errorMessageA();
 	        	changeTurn.setVisible(true);
-	        }
-	     
+	        
+	        } else if(gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
+	    			&& Dias.capacity(0) == true) {
+	        	
+	        	 Dias D = new Dias();
+                 D.insertDataA(); 
+                 Dias.RIVAL_MOVES[0]--;
+                 
+                 changeTurn.setVisible(true);
+                 
+	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
+	    			&& Dias.capacity(0) == true) {
+	        	
+	        	Dias D = new Dias();
+                D.insertDataA(); 
+                Dias.RIVAL_MOVES[0]--;
+                
+                changeTurn.setVisible(true);
+                
+	         } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
+	        		&& Artemis.capacity(0) == false) {
+	    	     
+	    	    errorMessageA();
+	    	    changeTurn.setVisible(true);
+	    	    
+	        
+	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
+	        		&& Artemis.capacity(0) == false) {
+	        	
+	        	errorMessageA();
+	        	changeTurn.setVisible(true);
+	        }	    		    	
+	    	
 	   } else if (e.getSource() == godDefense) {
 		   Bsound.Sound(click);
 		   
@@ -717,12 +748,41 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
       		 
       		 changeTurn.setVisible(true);
       	
-      } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
+	       } else if(gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
+	    			&& Dias.capacity(1) == true) {
+	        	
+	    	   Dias D = new Dias();
+               D.insertDataD(); 
+               Dias.RIVAL_MOVES[1]--;
+               
+               changeTurn.setVisible(true);
+               
+	       } else if(gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
+	    			&& Dias.capacity(1) == true) {
+	        	
+	    	   Dias D = new Dias();
+              D.insertDataD(); 
+              Dias.RIVAL_MOVES[1]--;
+              
+              changeTurn.setVisible(true);    
+	        	
+	       } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
+	         		&& Artemis.capacity(1) == false) {
+	     	     
+	     	    errorMessageD();
+	     	    
+	       } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
+	           		&& Artemis.capacity(1) == false) {
+	      	     
+	       	    errorMessageD();
+	       	      
+	        
+        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
       		&& Artemis.capacity(1) == false) {
   	     
-  	    errorMessageD();
+  	        errorMessageD();
   	    
-      } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
+         } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
         		&& Artemis.capacity(1) == false) {
    	     
     	    errorMessageD();
