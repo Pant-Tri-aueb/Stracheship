@@ -19,9 +19,10 @@ public class Posidonas extends JFrame implements ActionListener{
 	JButton errorD;
 	JButton buttonA;
     JButton buttonD;
+    JButton back;
     
-	Deck deck3;
-	Deck deck4;
+	Deck deck3 = new Deck();
+	Deck deck4 = new Deck();
 
     JTextField textField;
     
@@ -49,7 +50,7 @@ public class Posidonas extends JFrame implements ActionListener{
      	 frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         buttonA = new JButton("ΕΠΙΘΕΣΗ!");
+         buttonA = new JButton("ΕΝΟΡΑΣΗ!");
          buttonA.addActionListener(this);
          textField = new JTextField();
          textField.setPreferredSize(new Dimension(250,40));
@@ -67,7 +68,7 @@ public class Posidonas extends JFrame implements ActionListener{
      	 frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         buttonD = new JButton("ΕΠΑΝΑΦΟΡΑ");
+         buttonD = new JButton("...");
          buttonD.addActionListener((ActionListener) this);
          textField = new JTextField();
          textField.setPreferredSize(new Dimension(250,40));
@@ -94,11 +95,31 @@ public class Posidonas extends JFrame implements ActionListener{
 		}
 
 		if (Game.gameState == 1) {
-			deck3 = new Deck();
-			deck3.shipPlacement(ship.xy[0][0],ship.xy[0][1],ship.getSize(),ship.getDirection());
+			
+			//deck3.shipPlacement(ship.xy[0][0],ship.xy[0][1],ship.getSize(),ship.getDirection());
+			 if(ship.getDirection().equals("DOWN")) {
+	                for (int i = 0; i < ship.getSize(); i++){
+	                    deck3.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+	                }
+	            } else if (ship.getDirection().equals("RIGHT")) {
+	                for (int i = 0 ; i < ship.getSize(); i++){
+	                    deck4.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+	                }  
+	            }
+			sea();
 		} else {
-			deck4 = new Deck();
-			deck4.shipPlacement(ship.xy[0][0],ship.xy[0][1],ship.getSize(),ship.getDirection());
+			
+			//deck4.shipPlacement(ship.xy[0][0],ship.xy[0][1],ship.getSize(),ship.getDirection());
+			if(ship.getDirection().equals("DOWN")) {
+                for (int i = 0; i < ship.getSize(); i++){
+                    deck3.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+                }
+            } else if (ship.getDirection().equals("RIGHT")) {
+                for (int i = 0 ; i < ship.getSize(); i++){
+                    deck4.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+                }  
+            }
+			sea();
 		}
 	}
 
@@ -110,10 +131,17 @@ public class Posidonas extends JFrame implements ActionListener{
 			frame.setVisible(false);
 
 			if(Game.gameState == 1) {
+				
 				useVision(x + 5);
+			
 			} else {
+				
 				useVision(x);
 			}
+		
+		} else if (e.getSource() == back) {
+			
+			playerinfo.setVisible(false);
 		}
 		
 		
@@ -123,7 +151,13 @@ public class Posidonas extends JFrame implements ActionListener{
 	public void sea() {
 		
 		playerinfo = new JFrame();
-		playerinfo.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		playerinfo.setVisible(true);
+		playerinfo.setBounds(0, 0, 729, 800);
+		
+		back = new JButton("ΠΙΣΩ");
+		back.setBounds(392, 732, 80, 25);
+		back.addActionListener(this);
+		
 		JPanel pn = new JPanel(){
 				
 			   public void paint(Graphics g) {
@@ -166,11 +200,13 @@ public class Posidonas extends JFrame implements ActionListener{
 				   
 			   }
 		   };
-		   pn.setBounds(41, 41, 729, 729);
+		   pn.setBounds(0, 0, 729, 729);
+		   
 		   pn.setLayout(null);
 		   
+		   playerinfo.setBackground(Color.GRAY);
+		   playerinfo.add(back);		   
 		   playerinfo.setLayout(null);
 		   playerinfo.add(pn);
 	}
 }
-
