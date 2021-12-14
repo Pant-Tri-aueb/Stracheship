@@ -371,7 +371,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    			  
 	    		   }
 	    	   }
-	       }
+	       } 
 	       
 	      
 	       sea();
@@ -397,11 +397,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                       g.fillRect(x*70, y*70, 80, 70);
 	                       if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
 	                    	  
-	                    	   g.setColor(Color.GRAY);
+	                    	   g.setColor(Color.LIGHT_GRAY);
 	                       
 	                       } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
 	                       
-	                    	   g.setColor(Color.GRAY);
+	                    	   g.setColor(Color.LIGHT_GRAY);
 	                       
 	                       } else if (MenuInterface.Deck1.deck_arr[y][x] == "X" && gameState == 1) {
 	                    	   
@@ -411,6 +411,14 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                    	   
 	                    	   g.setColor(Color.RED);	                    	   
 	                       
+                           } else if (MenuInterface.Deck1.deck_arr[y][x] == "A" && gameState == 1) {
+                        	    
+                        	   g.setColor(Color.GRAY);
+                           
+                           } else if (MenuInterface.Deck2.deck_arr[y][x] == "A" && gameState == 2) {
+	                    	   
+	                    	   g.setColor(Color.GRAY);	       
+                           
                            } else { 
 	                    	  
 	                    	   g.setColor(Color.BLUE);
@@ -617,6 +625,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    		if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
 	    			
 	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
+	    		
+	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("A")) {
+	    			
+	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "S";
 	    		}
 	    	
 	    	} else {
@@ -624,6 +636,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
                 if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
 	    			
 	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
+	    		
+                } else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("A")) /* SHIP HIT */ {
+	    			
+	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "S";
 	    		}
 	    	}
 	    	
@@ -787,7 +803,35 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
    	     
     	    errorMessageD();
     	    
-        }
+        } else if(gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
+    			&& Dias.capacity(1) == true) {
+        	
+	    	Aris A = new Aris();
+            A.insertDataD(); 
+            Aris.RIVAL_MOVES[1]--;
+            
+            changeTurn.setVisible(true);
+            
+	    } else if(gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
+	    			&& Dias.capacity(1) == true) {
+	        	
+
+		   Aris A = new Aris();
+	       A.insertDataD(); 
+	       Aris.RIVAL_MOVES[1]--;
+	            
+	        changeTurn.setVisible(true);
+	    } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
+      		&& Artemis.capacity(1) == false) {
+  	     
+  	        errorMessageD();
+  	    
+         } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
+        		&& Artemis.capacity(1) == false) {
+   	     
+    	    errorMessageD();
+         
+         }
 		   
 	   } else if (e.getSource() == errorA) {
 		   Bsound.Sound(click);
