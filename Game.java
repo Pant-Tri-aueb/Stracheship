@@ -738,7 +738,42 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        	
 	        	errorMessageA();
 	        	changeTurn.setVisible(true);
-	        }	    		    	
+	        
+	        
+	        } else if(gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
+	    			&& Posidonas.capacity(0) == true) {
+	        	
+	        	Posidonas P = new Posidonas();
+                P.insertDataA(); 
+                Posidonas.RIVAL_MOVES[0]--;
+                
+                changeTurn.setVisible(true);
+	        
+	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ"
+	    			&& Dias.capacity(0) == true) {
+	        	
+	        	Posidonas P = new Posidonas();
+                P.insertDataA(); 
+                Posidonas.RIVAL_MOVES[0]--;
+                
+                changeTurn.setVisible(true);
+	        
+	        
+	        }  else if (gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ"
+	        		&& Posidonas.capacity(0) == false) {
+	    	     
+	    	    errorMessageA();
+	    	    changeTurn.setVisible(true);
+	    	    
+	        
+	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ"
+	        		&& Posidonas.capacity(0) == false) {
+	        	
+	        	errorMessageA();
+	        	changeTurn.setVisible(true);
+	        
+	        } 
+	    	
 	    	
 	   } else if (e.getSource() == godDefense) {
 		   Bsound.Sound(click);
