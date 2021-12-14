@@ -2,7 +2,7 @@ public class Player {
 
     private String name;
     private String sex;
-    private String god;
+    private String god ="";
     private int age;
     
     public static int playerNo = 0;
