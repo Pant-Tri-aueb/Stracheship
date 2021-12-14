@@ -1,11 +1,11 @@
-  import java.awt.*;
+   import java.awt.*;
     import java.awt.event.ActionEvent;
     import java.awt.event.ActionListener;
     import javax.swing.*;
     public class Artemis extends JFrame implements ActionListener {
 
     	 public static int[] RIVAL_MOVES = {2,2};
-    	 //public static int[] RIVAL_MOVES_2 = {2,2};
+    	 
     	 static int x;
     	
     	    
@@ -18,7 +18,7 @@
         }
 
         public void insertDataA() {
-        	frame = new JFrame("Συντεταγμένες");
+        	frame = new JFrame("ΔΙΑΛΕΞΕ ΓΡΑΜΜΗ");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setLayout(new FlowLayout());
             buttonA = new JButton("ΕΠΙΘΕΣΗ!");
@@ -110,7 +110,7 @@
 	       
 	    	   
 	       
-        }
+              }
 	        
 	        
 	    }
@@ -122,6 +122,10 @@
 	    	            
 	        		  deck.deck_arr[x - 1][y] = "X";
 	    	        	
+	        	 } else if (deck.deck_arr[x - 1][y] == "A") {
+	    	            
+	        		  deck.deck_arr[x - 1][y] = "S";
+	    	        	
 	        	 }
 	        }
 	      
@@ -129,3 +133,4 @@
 	    }
 
     }
+
