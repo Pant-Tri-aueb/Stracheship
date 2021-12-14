@@ -59,6 +59,9 @@ public class Ship2 {
     			if (deck.deck_arr[this.xy[i][0]][this.xy[i][1]] == "S" ) {
     				tolerance++;
     				
+    			} else if (deck.deck_arr[this.xy[i][0]][this.xy[i][1]] == "A") {
+    				
+    				tolerance += 2;
     			}
     		
         }
@@ -69,7 +72,8 @@ public class Ship2 {
     	
     	for (int i = 0; i < this.size; i++) {
     		
-    		if (MenuInterface.Deck1.deck_arr[xy[i][0]][xy[i][1]] == "S") {
+    		if (MenuInterface.Deck1.deck_arr[xy[i][0]][xy[i][1]].equals("S") || 
+    				MenuInterface.Deck1.deck_arr[xy[i][0]][xy[i][1]].equals("A")) {
     			
     			result = false;
     		}
@@ -84,7 +88,8 @@ public class Ship2 {
         
 	    for (int i = 0; i < this.size; i++) {
 	       
-	    	if (MenuInterface.Deck2.deck_arr[xy[i][0]][xy[i][1]] == "S") {
+	    	if (MenuInterface.Deck2.deck_arr[xy[i][0]][xy[i][1]].equals("S") || 
+	    			MenuInterface.Deck2.deck_arr[xy[i][0]][xy[i][1]].equals("A")) {
               
 	        	result = false;
             }
