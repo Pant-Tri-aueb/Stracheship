@@ -218,11 +218,11 @@ public class Dias extends JFrame implements ActionListener {
             frame.setVisible(false);
             if (Game.gameState == 1) {
          	   
-         	   strike(x);
+         	   strike(x + 5);
          	   
             } else {
          	   
-         	   strike(x + 5);
+         	   strike(x);
             
             }
             
