@@ -119,7 +119,7 @@ public class Dias extends JFrame implements ActionListener {
 		Ship2 ship;
 		if (Game.gameState == 1) {
 			 
-	        ship = Ship2.shipsList.get(shipNo + 4);
+	        ship = Ship2.shipsList.get(shipNo - 1);
 		
 		} else {
 			
