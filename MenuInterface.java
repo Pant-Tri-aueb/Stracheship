@@ -177,8 +177,34 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	startframe.setVisible(false);
     	GodFrame.setVisible(true);
     	
-    	JLabel background = new JLabel(new ImageIcon(
-         		"gods2.jpg"));
+    	JLabel background;
+    	
+    	if (player1.getGod().equals("ΔΙΑΣ")) {
+    		
+    		 background = new JLabel(new ImageIcon(
+             		"Διαφάνεια3.jpg"));
+    		
+    	} else if (player1.getGod().equals("ΑΡΤΕΜΙΣ")) {
+        		
+        	 background = new JLabel(new ImageIcon(
+                 		"Διαφάνεια4.jpg"));
+        		
+        } else if (player1.getGod().equals("ΑΡΗΣ")) {
+    		
+    		 background = new JLabel(new ImageIcon(
+             		"Διαφάνεια5.jpg"));
+    		
+    	} else if (player1.getGod().equals("ΠΟΣΕΙΔΩΝΑΣ")) {
+    		
+    		 background = new JLabel(new ImageIcon(
+             		"Διαφάνεια6.jpg"));
+    		
+    	} else {
+    		
+    		 background = new JLabel(new ImageIcon(
+             		"gods2.jpg"));
+    	}
+    	
     	
     	background.setLayout(null);
     	GodFrame.add(background);
@@ -198,7 +224,33 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         artemis = new JButton("ΑΡΤΕΜΙΣ");
         artemis.setBounds(365, 600, 200, 40);
         artemis.addActionListener(this);
-    
+        
+
+    	if (player1.getGod().equals("ΔΙΑΣ")) {
+    		
+    		zeus.setVisible(false);
+    		
+    	} else if (player1.getGod().equals("ΑΡΤΕΜΙΣ")) {
+        		
+        	 artemis.setVisible(false);
+        
+    	} else if (player1.getGod().equals("ΑΡΗΣ")) {
+    		
+    		ares.setVisible(false);
+    		
+    	} else if (player1.getGod().equals("ΠΟΣΕΙΔΩΝΑΣ")) {
+    		
+    		poseidon.setVisible(false);
+    		 
+    	} else {
+    		
+    		 zeus.setVisible(true);
+    		 artemis.setVisible(true);
+    		 ares.setVisible(true);
+    		 poseidon.setVisible(true);
+    	}
+        
+        
         background.add(zeus);
         background.add(poseidon);
         background.add(ares);
@@ -642,9 +694,5 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	}
    
-  /* public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-    	new MenuInterface();
-    	//Backgroundmusic b = new Backgroundmusic();
-    	//b.sound(); 
-   } */
+ 
 }
