@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 public class Aris extends JFrame implements ActionListener {
      
-	 public static int[] RIVAL_MOVES = {2,2}; 
+	 public static int[] RIVAL_MOVES = {1,2}; 
 	
 	 static int x;
 	
@@ -19,23 +19,7 @@ public class Aris extends JFrame implements ActionListener {
      JTextField textField;
      JFrame frame;
      
-     public void insertDataA() {
-     	frame = new JFrame("ΔΙΑΛΕΞΕ ...");
-         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         frame.setLayout(new FlowLayout());
-         buttonA = new JButton("ΕΠΙΘΕΣΗ!");
-         buttonA.addActionListener(this);
-         textField = new JTextField();
-         textField.setPreferredSize(new Dimension(250,40));
-         textField.setFont(new Font("Consolas",Font.BOLD, 25));
-
-
-         frame.add(buttonA);
-         frame.add(textField);
-         frame.setVisible(true);
-         frame.pack();
-
-     }
+  
      public void insertDataD() {
      	frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,6 +38,66 @@ public class Aris extends JFrame implements ActionListener {
 
      }
      
+     public static boolean capacity(int index) {
+         boolean available = true;
+     	
+         if (RIVAL_MOVES[index] > 0) {
+         	available = true;
+         	
+         } else {
+         	
+         	available = false;
+         }
+         
+         return available;        
+             
+        
+      }
+     public void useAttack(Deck deck) {
+    	 if (Game.gameState == 1) {
+    		 
+    		 for (int i = 5; i < 10; i++) {
+    			 
+    			Ship2 ship = Ship2.shipsList.get(i);
+    			
+    			for (int j = 0; j < ship.getSize(); j++) {
+    				
+    				if (deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] == "S") {
+    					
+    					deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] = "X";
+    				    break;
+    				
+    				} else if (deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] == "A") {
+    					
+    					deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] = "S";
+    				    break;
+    				}
+    			}
+    		 }
+    	 
+    	 } else if (Game.gameState == 2) {
+    		 for (int i = 0; i < 5; i++) {
+    			 
+     			Ship2 ship = Ship2.shipsList.get(i);
+     			
+     			for (int j = 0; j < ship.getSize(); j++) {
+     				
+     				if (deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] == "S") {
+     					
+     					deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] = "X";
+     				    break;
+     				
+     				} else if (deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] == "A") {
+     					
+     					deck.deck_arr[ship.xy[j][0]][ship.xy[j][1]] = "S";
+     				    break;
+     				}
+     			}
+     		 }
+    		 
+    	 }
+     }
+     
      public void useDefence(Ship2 obj, Deck deck) {
     	  
     	 for (int i = 0; i < obj.getSize(); i++) {
@@ -69,9 +113,7 @@ public class Aris extends JFrame implements ActionListener {
      
      @Override
      public void actionPerformed(ActionEvent e) {
-         if(e.getSource() == buttonA) {
-            
-          } else if (e.getSource() == buttonD) {
+         if (e.getSource() == buttonD) {
        
              String answer = textField.getText();
              x = Integer.parseInt(answer);
@@ -89,3 +131,4 @@ public class Aris extends JFrame implements ActionListener {
      }
 	
 }
+
