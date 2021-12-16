@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -65,6 +66,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     }
     
     public void gui() {
+    	
+    	
         f = new JFrame("Stracheship 1.0");
         
         JLabel background = new JLabel(new ImageIcon(
@@ -76,20 +79,32 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
     	
-        b1 = new JButton("1. Έναρξη του Παιχνιδιού");
+        Border roundedBorder = new LineBorder(new Color(64, 64, 64), 12, true);
+       
+        b1 = new JButton("START");
     	b1.setBounds(420, 270, 400, 80);
     	b1.addActionListener(this);
+    	b1.setFont(new Font("Wide Latin", Font.ITALIC, 25));
+    	b1.setBackground(new Color(102, 51, 0));
+    	b1.setForeground(Color.WHITE);
+    	b1.setBorder(roundedBorder);
     	
-        
-    	b2 = new JButton("2. Παρουσίαση - Οδηγίες του Stracheship");
+        b2 = new JButton("HELP");
     	b2.setBounds(420, 410, 400, 80);
     	b2.addActionListener(this);
-        
-        b3 = new JButton("3. Τερματισμός");
+    	b2.setFont(new Font("Wide Latin", Font.ITALIC, 25));
+    	b2.setBackground(new Color(102, 51, 0));
+    	b2.setForeground(Color.WHITE);
+    	b2.setBorder(roundedBorder);
+    	
+        b3 = new JButton("EXIT");
         b3.setBounds(420, 550, 400, 80);
         b3.addActionListener(this);
+        b3.setFont(new Font("Wide Latin", Font.ITALIC, 25));
+    	b3.setBackground(new Color(102, 51, 0));
+    	b3.setForeground(Color.WHITE);
+    	b3.setBorder(roundedBorder);
     	
-        
         background.setLayout(null);
         background.add(b1);
     	background.add(b2);
@@ -115,6 +130,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	
     	background.setLayout(null);
     	SecondFrame.add(background);
+    	
+    	JLabel scroll = new JLabel();
+    	scroll.setBounds(30, 30, 400, 600);
+    	scroll.setIcon(new ImageIcon("scroll.jpg"));
+    	
     	
     	String message = "";
     	
@@ -159,14 +179,17 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         t7.setBounds(50, 300, 200,30);  
         t7.addActionListener(this);
     	
-    	background.add(title);
-        background.add(next);
-    	background.add(name);
-    	background.add(t5);
-    	background.add(sex);
-    	background.add(t6);
-    	background.add(age);
-    	background.add(t7);
+    	
+        scroll.add(title);
+        scroll.add(next);
+        scroll.add(name);
+        scroll.add(t5);
+        scroll.add(sex);
+        scroll.add(t6);
+        scroll.add(age);
+        scroll.add(t7);
+        
+        background.add(scroll);
     }
     
     public void Gods() {
@@ -546,11 +569,16 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
         pn.setLayout(null);
         
-        JLabel lb = new JLabel("Δώστε x, y, μέγεθος, και κατεύθυνση για το πλοίο");
-        lb.setBounds(50, 50, 280, 30);
-        lb.setOpaque(true);
-        lb.setBackground(Color.GRAY);
-        lb.setForeground(Color.BLACK);
+        JLabel wood = new JLabel();
+        wood.setBounds(30, 30, 400, 600);
+        wood.setIcon(new ImageIcon("frame2.jpg"));
+        
+        JLabel lb = new JLabel("Insert X, Y and Direction");
+        		             
+        lb.setBounds(50, 50, 320, 30);
+        lb.setOpaque(false);
+        lb.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 19));
+        lb.setForeground(Color.WHITE);
         
         if (Player.playerNo == 2 && ShipPlacementCounter == 5) {
  		   counter = 1;
@@ -558,50 +586,61 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
  	   }
  	   
         String message;
-        message = String.format("Τοποθετήστε πλοίο %d θέσεων", 
-            		size_counter);
         
+        if (size_counter == 2) {
+        	
+        	message = "Place a small ship";
+        
+        } else if (size_counter == 3) {
+        	
+        	message = "Place a normal ship";
+        
+        } else {
+        	 
+        	message = "Place a large ship";
+        }
+       
         JLabel ShipCount = new JLabel(message); 
-        ShipCount.setBounds(300, 600, 170, 30);
-        ShipCount.setOpaque(true);
-        ShipCount.setBackground(Color.GRAY);
-        ShipCount.setForeground(Color.BLACK);
+        ShipCount.setBounds(105, 520, 190, 30);
+        ShipCount.setOpaque(false);
+        ShipCount.setFont(new Font("Copperplate Gothic Bold", Font.ITALIC, 17));
+        ShipCount.setForeground(Color.WHITE);
         
-        submit = new JButton("Καταχώρηση");
+        submit = new JButton("SUBMIT");
         submit.addActionListener(this);  
-        submit.setBounds(80, 400, 130, 30);
+        submit.setBounds(130, 450, 130, 30);
         
-        JLabel lbt1 = new JLabel("Συντεταγμένη Χ");
-        lbt1.setBounds(50, 100, 100, 30);
-        lbt1.setOpaque(true);
-        lbt1.setBackground(Color.GRAY);
-        lbt1.setForeground(Color.BLACK);
+        JLabel lbt1 = new JLabel("                      Coordinate X");
+        lbt1.setBounds(45, 120, 280, 30);
+        lbt1.setOpaque(false);
+        lbt1.setFont(new Font("Copperplate Gothic Bold", Font.ITALIC, 17));
+        lbt1.setForeground(Color.WHITE);
         
         t1 = new JTextField();  
-        t1.setBounds(50,140, 200,30);  
+        t1.setBounds(50, 160, 280,40);  
         t1.addActionListener(this);
         
-        JLabel lbt2 = new JLabel("Συντεταγμένη Υ");
-        lbt2.setBounds(50, 180, 100, 30);
-        lbt2.setOpaque(true);
-        lbt2.setBackground(Color.GRAY);
-        lbt2.setForeground(Color.BLACK);
+        JLabel lbt2 = new JLabel("                      Coordinate Y");
+        lbt2.setBounds(45, 240, 280, 30);
+        lbt2.setOpaque(false);
+        lbt2.setFont(new Font("Copperplate Gothic Bold", Font.ITALIC, 17));
+        lbt2.setForeground(Color.WHITE);
         
         t2 = new JTextField();  
-        t2.setBounds(50, 220, 200, 30);
+        t2.setBounds(50, 280, 280, 40);
         t2.addActionListener(this);
         
-        JLabel lbt4 = new JLabel("Κατεύθυνση Πλοίου");
-        lbt4.setBounds(50, 260, 120, 30);
-        lbt4.setOpaque(true);
-        lbt4.setBackground(Color.GRAY);
-        lbt4.setForeground(Color.BLACK);
+        JLabel lbt4 = new JLabel("                    Ship Direction");
+        lbt4.setBounds(50, 350, 280, 30);
+        lbt4.setOpaque(false);
+        lbt4.setFont(new Font("Copperplate Gothic Bold", Font.ITALIC, 17));
+        lbt4.setForeground(Color.WHITE);
         
-        dirDown = new JButton("ΚΑΘΕΤΑ");
-        dirRight = new JButton("ΟΡΙΖΟΝΤΙΑ");
+        dirDown = new JButton("VERTICAL");
+        dirRight = new JButton("HORIZONTAL");
         
-        dirDown.setBounds(50, 325, 100, 30);
-        dirRight.setBounds(155, 325, 100, 30);
+        dirDown.setBounds(50, 385, 135, 30);
+        dirRight.setBounds(195, 385, 135, 30);
         
         dirDown.addActionListener(this);
         dirRight.addActionListener(this);
@@ -630,6 +669,15 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	
         	deck_array = deck_table;
         }
+        
+        JLabel iron1 = new JLabel();
+        iron1.setBounds(755, 430, 30, 350);
+        iron1.setIcon(new ImageIcon("ironframe1.jpg"));
+        
+        JLabel iron2 = new JLabel();
+        iron2.setBounds(755, 430, 450, 30);
+        iron2.setIcon(new ImageIcon("ironframe2.jpg"));
+        
         jt = new JTable(deck_array, column);
         jt.setCellSelectionEnabled(false);  
         jt.setBounds(785, 460, 400, 300);
@@ -638,17 +686,24 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         jt.setForeground(Color.BLACK);
         jt.setGridColor(Color.WHITE);
         
-        pn.add(ShipCount);
-        pn.add(lb);
-        pn.add(lbt1);
-        pn.add(t1);
-        pn.add(lbt2);
-        pn.add(t2);
-        pn.add(lbt4);
-        pn.add(dirRight);
-        pn.add(dirDown);
-        pn.add(jt); 
-        pn.add(submit);
+        wood.add(lb);
+        wood.add(lbt1);
+        wood.add(t1);
+        wood.add(lbt2);
+        wood.add(t2);
+        wood.add(lbt4);
+        wood.add(dirRight);
+        wood.add(dirDown);
+        wood.add(ShipCount);
+        wood.add(submit);
+        
+         
+        pn.add(iron2);
+        pn.add(iron1);
+        pn.add(jt);
+        pn.add(wood);
+       
+        
         
         startframe.add(pn);
         startframe.setSize(1200, 800);
