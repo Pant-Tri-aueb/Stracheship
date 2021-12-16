@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,7 +30,7 @@ public class Posidonas extends JFrame implements ActionListener{
     
     JFrame frame;
 	JFrame errorFrame;
-	JFrame playerinfo;
+	JFrame visionFrame;
 
 	public static boolean capacity(int index) {
         boolean available = true;
@@ -50,7 +52,7 @@ public class Posidonas extends JFrame implements ActionListener{
      	 frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         buttonA = new JButton("ΕΝΟΡΑΣΗ!");
+         buttonA = new JButton("ΑΠΟΚΑΛΥΨΗ");
          buttonA.addActionListener(this);
          textField = new JTextField();
          textField.setPreferredSize(new Dimension(250,40));
@@ -83,42 +85,21 @@ public class Posidonas extends JFrame implements ActionListener{
      }
 
 	public void useVision(int shipNo) {
-		Ship2 ship;
-
-		if (Game.gameState == 1) {
-			 
-	        ship = Ship2.shipsList.get(shipNo - 1);
-		
-		} else {
-			
-		    ship = Ship2.shipsList.get(shipNo - 1);
-		}
+		Ship2 ship = Ship2.shipsList.get(shipNo - 1);
 
 		if (Game.gameState == 1) {
 			
-			//deck3.shipPlacement(ship.xy[0][0],ship.xy[0][1],ship.getSize(),ship.getDirection());
-			 if(ship.getDirection().equals("DOWN")) {
-	                for (int i = 0; i < ship.getSize(); i++){
-	                    deck3.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
-	                }
-	            } else if (ship.getDirection().equals("RIGHT")) {
-	                for (int i = 0 ; i < ship.getSize(); i++){
-	                    deck4.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
-	                }  
-	            }
-			sea();
+		    for (int i = 0; i < ship.getSize(); i++){
+	            deck3.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+	        }
+	           
+	        sea();
 		} else {
 			
-			//deck4.shipPlacement(ship.xy[0][0],ship.xy[0][1],ship.getSize(),ship.getDirection());
-			if(ship.getDirection().equals("DOWN")) {
-                for (int i = 0; i < ship.getSize(); i++){
-                    deck3.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
-                }
-            } else if (ship.getDirection().equals("RIGHT")) {
-                for (int i = 0 ; i < ship.getSize(); i++){
-                    deck4.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
-                }  
-            }
+            for (int i = 0 ; i < ship.getSize(); i++){
+                deck4.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+            }  
+			
 			sea();
 		}
 	}
@@ -141,7 +122,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		
 		} else if (e.getSource() == back) {
 			
-			playerinfo.setVisible(false);
+			visionFrame.setVisible(false);
 		}
 		
 		
@@ -150,13 +131,21 @@ public class Posidonas extends JFrame implements ActionListener{
 
 	public void sea() {
 		
-		playerinfo = new JFrame();
-		playerinfo.setVisible(true);
-		playerinfo.setBounds(0, 0, 729, 800);
+		visionFrame = new JFrame();
+		visionFrame.setVisible(true);
+		visionFrame.setBounds(0, 0, 729, 800);
 		
 		back = new JButton("ΠΙΣΩ");
-		back.setBounds(392, 732, 80, 25);
+		back.setBounds(568, 15, 80, 25);
 		back.addActionListener(this);
+		
+		JLabel wood = new JLabel(new ImageIcon("wood.jpg"));
+		wood.setBounds(0, 700, 729, 71);
+		
+		JLabel text = new JLabel("Vision does not reveal how much tolerance the ship is left with!");
+		text.setBounds(80, 15, 485, 30);
+		text.setFont(new Font("SansSerif", Font.BOLD, 16));
+		text.setForeground(Color.BLACK);
 		
 		JPanel pn = new JPanel(){
 				
@@ -167,31 +156,15 @@ public class Posidonas extends JFrame implements ActionListener{
 						   g.fillRect(x*70, y*70, 80, 70);
 						   if (deck3.deck_arr[y][x] == "S" && Game.gameState == 1) {
 							  
-							   g.setColor(Color.LIGHT_GRAY);
+							   g.setColor(Color.GREEN);
 						   
 						   } else if (deck4.deck_arr[y][x] == "S" && Game.gameState == 2){
 						   
-							   g.setColor(Color.LIGHT_GRAY);
-						   
-						   } else if (deck3.deck_arr[y][x] == "X" && Game.gameState == 1) {
-							   
-							   g.setColor(Color.RED);
-						   
-						   } else if (deck4.deck_arr[y][x] == "X" && Game.gameState == 2) {
-							   
-							   g.setColor(Color.RED);	                    	   
-						   
-						   } else if (deck3.deck_arr[y][x] == "A" && Game.gameState == 1) {
-								
-							   g.setColor(Color.GRAY);
-						   
-						   } else if (deck4.deck_arr[y][x] == "A" && Game.gameState == 2) {
-							   
-							   g.setColor(Color.GRAY);	       
+							   g.setColor(Color.GREEN);
 						   
 						   } else { 
 							  
-							   g.setColor(Color.BLUE);
+							   g.setColor(new Color(65,105,225));
 						   }
 						  
 						   g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
@@ -204,9 +177,11 @@ public class Posidonas extends JFrame implements ActionListener{
 		   
 		   pn.setLayout(null);
 		   
-		   playerinfo.setBackground(Color.GRAY);
-		   playerinfo.add(back);		   
-		   playerinfo.setLayout(null);
-		   playerinfo.add(pn);
+		   wood.add(text);
+		   wood.add(back);
+		   visionFrame.add(wood);
+		   		   
+		   visionFrame.setLayout(null);
+		   visionFrame.add(pn);
 	}
 }
