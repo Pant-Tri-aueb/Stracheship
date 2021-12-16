@@ -148,7 +148,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	}
     	
     	JLabel title = new JLabel(message);
-        title.setBounds(50, 50, 300, 45);
+        title.setBounds(50, 50, 300, 50);
         title.setFont(new Font("Vladimir Script", Font.BOLD, 35));
     	
     	next = new JButton("Prepare Your Fleet");
@@ -309,8 +309,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	
     	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
     		
-    	    JLabel newPane = new JLabel(new ImageIcon(
-            		"SE.gif"));
+    	    JLabel newPane = new JLabel(new ImageIcon("SE.gif"));
     		newPane.setLayout(null);
     	    
     		back = new JButton("Αρχικό Μενού");
