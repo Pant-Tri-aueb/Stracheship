@@ -79,9 +79,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
     	
-        Border roundedBorder = new LineBorder(new Color(64, 64, 64), 12, true);
+        Border roundedBorder = new LineBorder(new Color(64, 64, 64), 8, true);
        
-        b1 = new JButton("START");
+        b1 = new JButton("START GAME");
     	b1.setBounds(420, 270, 400, 80);
     	b1.addActionListener(this);
     	b1.setFont(new Font("Wide Latin", Font.ITALIC, 25));
@@ -239,22 +239,30 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	background.setLayout(null);
     	GodFrame.add(background);
     	
-    	zeus = new JButton("ΔΙΑΣ");
+    	
+    	zeus = new JButton("ZEUS");
     	zeus.setBounds(50, 600, 200, 40);
     	zeus.addActionListener(this);
+    	zeus.setFont(new Font("Algerian", Font.PLAIN, 24));
+    	zeus.setBackground(new Color(238,232,170));
     	
-        poseidon = new JButton("ΠΟΣΕΙΔΩΝΑΣ");
+        poseidon = new JButton("POSEIDON");
     	poseidon.setBounds(1010, 600, 200, 40);
     	poseidon.addActionListener(this);
-        
-        ares = new JButton("ΑΡΗΣ");
+    	poseidon.setFont(new Font("Algerian", Font.PLAIN, 24));
+        poseidon.setBackground(new Color(238,232,170));
+    	
+        ares = new JButton("ARES");
         ares.setBounds(690, 600, 200, 40);
         ares.addActionListener(this);
-         
-        artemis = new JButton("ΑΡΤΕΜΙΣ");
+        ares.setFont(new Font("Algerian", Font.PLAIN, 24));
+        ares.setBackground(new Color(238,232,170)); 
+        
+        artemis = new JButton("ARTEMIS");
         artemis.setBounds(365, 600, 200, 40);
         artemis.addActionListener(this);
-        
+        artemis.setFont(new Font("Algerian", Font.PLAIN, 24));
+        artemis.setBackground(new Color(238,232,170));
 
     	if (player1.getGod().equals("ΔΙΑΣ")) {
     		
@@ -302,7 +310,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
     		
     	    JLabel newPane = new JLabel(new ImageIcon(
-            		"seastorm2.jpg"));
+            		"SE.gif"));
     		newPane.setLayout(null);
     	    
     		back = new JButton("Αρχικό Μενού");
