@@ -140,45 +140,52 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	
     	if (Player.playerNo == 0) {
     		
-    		message = "Στοιχεία πρώτου παίκτη: ";
+    		message = "First Player Data: ";
     	
     	} else if (Player.playerNo == 1) {
     		
-    		message = "Στοιχεία δεύτερου παίκτη: ";
+    		message = "Second Player Data: ";
     	}
     	
     	JLabel title = new JLabel(message);
-        title.setBounds(50, 50, 250, 30);
-        title.setFont(new Font("SansSerif", Font.BOLD, 17));
+        title.setBounds(50, 50, 300, 45);
+        title.setFont(new Font("Vladimir Script", Font.BOLD, 35));
     	
-    	next = new JButton("Ετοίμασε τον στόλο σου");
+    	next = new JButton("Prepare Your Fleet");
     	next.addActionListener(this);
-    	next.setBounds(50, 450, 200, 50);
+    	next.setBackground(new Color(189,183,107));
+    	next.setBounds(40, 450, 320, 50);
+    	next.setFont(new Font("Vladimir Script", Font.BOLD, 30));
     	
-        JLabel name = new JLabel("Όνομα");
-        name.setBounds(50, 100, 100, 30);
-        
+        JLabel name = new JLabel("Name");
+        name.setBounds(50, 110, 100, 35);
+        name.setFont(new Font("Vladimir Script", Font.BOLD, 35));
         
         t5 = new JTextField();  
-        t5.setBounds(50,140, 200,30);  
+        t5.setBounds(50,150, 200,30);  
+        t5.setFont(new Font("Vladimir Script", Font.PLAIN, 30));
         t5.addActionListener(this);
+        t5.setBackground(new Color(240,230,140));
         
-        JLabel sex = new JLabel("Φύλο");
-        sex.setBounds(50, 180, 100, 30);
-        
+        JLabel sex = new JLabel("Sex");
+        sex.setBounds(50, 190, 100, 35);
+        sex.setFont(new Font("Vladimir Script", Font.BOLD, 35));
         
         t6 = new JTextField();  
-        t6.setBounds(50, 220, 200, 30);
+        t6.setBounds(50, 230, 200, 30);
+        t6.setFont(new Font("Vladimir Script", Font.PLAIN, 30));
         t6.addActionListener(this);
+        t6.setBackground(new Color(240,230,140));
         
-        JLabel age = new JLabel("Ηλικία");
-        age.setBounds(50, 260, 120, 30);
-        
+        JLabel age = new JLabel("Age");
+        age.setBounds(50, 270, 120, 35);
+        age.setFont(new Font("Vladimir Script", Font.BOLD, 35));
         
         t7 = new JTextField();  
-        t7.setBounds(50, 300, 200,30);  
+        t7.setBounds(50, 310, 200,30);  
+        t7.setFont(new Font("Vladimir Script", Font.PLAIN, 30));
         t7.addActionListener(this);
-    	
+    	t7.setBackground(new Color(240,230,140));
     	
         scroll.add(title);
         scroll.add(next);
@@ -601,7 +608,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         }
        
         JLabel ShipCount = new JLabel(message); 
-        ShipCount.setBounds(105, 520, 190, 30);
+        ShipCount.setBounds(100, 520, 210, 30);
         ShipCount.setOpaque(false);
         ShipCount.setFont(new Font("Copperplate Gothic Bold", Font.ITALIC, 17));
         ShipCount.setForeground(Color.WHITE);
