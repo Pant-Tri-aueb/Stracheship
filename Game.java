@@ -242,10 +242,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			Left = new JButton("LEFT");
 			Right = new JButton("RIGHT");
 			
-			Left.setBounds(455, 775, 100, 25);
-		    Right.setBounds(615, 775, 100, 25);
-		    Up.setBounds(455, 775, 100, 25);
-		    Down.setBounds(615, 775, 100, 25);
+			Left.setBounds(475, 775, 100, 25);
+		    Right.setBounds(635, 775, 100, 25);
+		    Up.setBounds(475, 775, 100, 25);
+		    Down.setBounds(635, 775, 100, 25);
 		       
 			Left.addActionListener(this);
 			Up.addActionListener(this);
@@ -772,7 +772,38 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        	errorMessageA();
 	        	changeTurn.setVisible(true);
 	        
-	        } 
+	        
+	        } else if(gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
+	    			&& Aris.capacity(0) == true) {
+	        	
+	        	Aris Ar = new Aris();
+                Ar.useAttack(MenuInterface.Deck2); 
+                Aris.RIVAL_MOVES[0]--;
+                
+                changeTurn.setVisible(true);
+	        
+	        } else if(gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
+	    			&& Aris.capacity(0) == true) {
+	        	
+	        	Aris Ar = new Aris();
+	        	 Ar.useAttack(MenuInterface.Deck1);
+                Aris.RIVAL_MOVES[0]--;
+                
+                changeTurn.setVisible(true);
+	        
+	        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ"
+	        		&& Aris.capacity(0) == false) {
+	    	     
+	    	    errorMessageA();
+	    	    changeTurn.setVisible(true);
+	        
+	        }  else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ"
+	        		&& Aris.capacity(0) == false) {
+	    	     
+	    	    errorMessageA();
+	    	    changeTurn.setVisible(true);
+	        
+	        }
 	    	
 	    	
 	   } else if (e.getSource() == godDefense) {
