@@ -242,10 +242,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			Left = new JButton("LEFT");
 			Right = new JButton("RIGHT");
 			
-			Left.setBounds(440, 775, 100, 25);
-		    Right.setBounds(600, 775, 100, 25);
-		    Up.setBounds(440, 775, 100, 25);
-		    Down.setBounds(600, 775, 100, 25);
+			Left.setBounds(455, 775, 100, 25);
+		    Right.setBounds(615, 775, 100, 25);
+		    Up.setBounds(455, 775, 100, 25);
+		    Down.setBounds(615, 775, 100, 25);
 		       
 			Left.addActionListener(this);
 			Up.addActionListener(this);
@@ -397,11 +397,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                       g.fillRect(x*70, y*70, 80, 70);
 	                       if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
 	                    	  
-	                    	   g.setColor(Color.LIGHT_GRAY);
+	                    	   g.setColor(new Color(139,69,19));
 	                       
 	                       } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
 	                       
-	                    	   g.setColor(Color.LIGHT_GRAY);
+	                    	   g.setColor(new Color(139,69,19));
 	                       
 	                       } else if (MenuInterface.Deck1.deck_arr[y][x] == "X" && gameState == 1) {
 	                    	   
@@ -421,7 +421,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
                            
                            } else { 
 	                    	  
-	                    	   g.setColor(Color.BLUE);
+	                    	   g.setColor(new Color(65,105,225));
 	                       }
 	                      
 	                       g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
@@ -490,7 +490,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				
 				Up.setVisible(true);
 				Down.setVisible(true);
-			//                              shipNo -1 + 5 for player 2	
+			
 			} else if (gameState == 1 && Ship2.shipsList.get(shipNo - 1).getDirection().equals("RIGHT")) {
 				
 				Left.setVisible(true);
@@ -799,7 +799,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
       		 
       		 changeTurn.setVisible(true);
       	
-	       } else if(gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
+	       } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
 	    			&& Dias.capacity(1) == true) {
 	        	
 	    	   Dias D = new Dias();
@@ -808,7 +808,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
                
                changeTurn.setVisible(true);
                
-	       } else if(gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
+	       } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
 	    			&& Dias.capacity(1) == true) {
 	        	
 	    	   Dias D = new Dias();
@@ -838,7 +838,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
    	     
     	    errorMessageD();
     	    
-        } else if(gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
+        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
     			&& Dias.capacity(1) == true) {
         	
 	    	Aris A = new Aris();
@@ -847,7 +847,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
             
             changeTurn.setVisible(true);
             
-	    } else if(gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
+	    } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
 	    			&& Dias.capacity(1) == true) {
 	        	
 
