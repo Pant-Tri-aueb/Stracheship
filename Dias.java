@@ -130,14 +130,21 @@ public class Dias extends JFrame implements ActionListener {
 		if (ship.getTolerance() > 0 && (ship.getSize() == 2 || ship.getSize() == 3)) {
 			if (Game.gameState == 1) {
 				for (int i = 0; i < ship.getSize(); i++) {
+					if (MenuInterface.Deck2.deck_arr[ship.xy[i][0]][ship.xy[i][1]] != "U" ) {
+
+						MenuInterface.Deck2.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
 					
-					MenuInterface.Deck2.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
+					}
 				}
 			
 			} else {
                 for (int i = 0; i < ship.getSize(); i++) {
 					
-					MenuInterface.Deck1.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
+					if (MenuInterface.Deck1.deck_arr[ship.xy[i][0]][ship.xy[i][1]] != "U" ) {
+
+						MenuInterface.Deck1.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
+					
+					}
 				}
 			}
 			
@@ -147,13 +154,21 @@ public class Dias extends JFrame implements ActionListener {
 			if (Game.gameState == 1) {
 				for (int i = 0; i < ship.getSize() - 1; i++) {
 					
-					MenuInterface.Deck2.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
+					if (MenuInterface.Deck2.deck_arr[ship.xy[i][0]][ship.xy[i][1]] != "U" ) {
+
+						MenuInterface.Deck2.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
+					
+					}
 				}
 			
 			} else {
                 for (int i = 0; i < ship.getSize() - 1; i++) {
 					
-					MenuInterface.Deck1.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
+					if (MenuInterface.Deck1.deck_arr[ship.xy[i][0]][ship.xy[i][1]] != "U" ) {
+
+						MenuInterface.Deck1.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "X";
+					
+					}
 				}
 			}
 			

@@ -152,9 +152,10 @@ public class Deck {
     	for (int i = 0; i < 10; i++) {
 	    	   for (int j = 0; j < 10; j++) {
 	    	       
-	    		   if ((deck_arr[i][j] == "S") || (deck_arr[i][j] == "X")) {
+	    		   if ((deck_arr[i][j].equals("S")) || (deck_arr[i][j].equals("X")) ||
+                         (deck_arr[i][j].equals("U")) || (deck_arr[i][j].equals("A"))) {
 	    			   
-	    			      result = false;
+	    			    result = false;
 	    		   }
 	    	   }
 	      }

@@ -80,7 +80,7 @@
                    useDefence(Ship2.shipsList.get(x + 4) , MenuInterface.Deck2);
                 }
                 
-              }
+            }
         }
         
 	    public static boolean capacity(int index) {
@@ -118,15 +118,15 @@
 	    public void throwArrow(Deck deck) {
 	       
 	       for (int y = 0; y < 10; y ++) {
-	        	 if (deck.deck_arr[x - 1][y] == "S") {
+	        	if (deck.deck_arr[x - 1][y] == "S") {
 	    	            
-	        		  deck.deck_arr[x - 1][y] = "X";
+	        		deck.deck_arr[x - 1][y] = "X";
 	    	        	
-	        	 } else if (deck.deck_arr[x - 1][y] == "A") {
+	        	} else if (deck.deck_arr[x - 1][y] == "A") {
 	    	            
-	        		  deck.deck_arr[x - 1][y] = "S";
+	        		deck.deck_arr[x - 1][y] = "S";
 	    	        	
-	        	 }
+	        	}
 	        }
 	      
 	    

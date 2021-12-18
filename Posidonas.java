@@ -15,22 +15,32 @@ import java.awt.Graphics;
 
 public class Posidonas extends JFrame implements ActionListener{
 
-	public static int[] RIVAL_MOVES = {1,2};
+	public static int[] RIVAL_MOVES = {1,1};
 
 	JButton errorA;
 	JButton errorD;
 	JButton buttonA;
     JButton buttonD;
     JButton back;
+
+	static int xChoice;
+	static int yChoice;
+	int round;
     
 	Deck deck3 = new Deck();
 	Deck deck4 = new Deck();
 
-    JTextField textField;
+	JTextField textField;
+	JTextField textFieldx;
+	JTextField textFieldy;
     
     JFrame frame;
 	JFrame errorFrame;
 	JFrame visionFrame;
+
+	private static String[][] tempDeck = new String[10][10];
+
+	private static int roundNo;
 
 	public static boolean capacity(int index) {
         boolean available = true;
@@ -67,18 +77,22 @@ public class Posidonas extends JFrame implements ActionListener{
      }
 	 
 	 public void insertDataD() {
-     	 frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
+     	 frame = new JFrame("ΔΩΣΕ ΣΥΝΤΕΤΑΓΗΜΕΝΕΣ");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         buttonD = new JButton("...");
+         buttonD = new JButton("ΥΨΩΣΗ ΚΥΜΑΤΟΣ");
          buttonD.addActionListener((ActionListener) this);
-         textField = new JTextField();
-         textField.setPreferredSize(new Dimension(250,40));
-         textField.setFont(new Font("Consolas",Font.BOLD, 25));
+         textFieldx = new JTextField();
+         textFieldx.setPreferredSize(new Dimension(250,40));
+         textFieldx.setFont(new Font("Consolas",Font.BOLD, 25));
+		 textFieldy = new JTextField();
+         textFieldy.setPreferredSize(new Dimension(250,40));
+         textFieldy.setFont(new Font("Consolas",Font.BOLD, 25));
 
 
          frame.add(buttonD);
-         frame.add(textField);
+         frame.add(textFieldx);
+		 frame.add(textFieldy);
          frame.setVisible(true);
          frame.pack();
 
@@ -120,9 +134,23 @@ public class Posidonas extends JFrame implements ActionListener{
 				useVision(x);
 			}
 		
-		} else if (e.getSource() == back) {
+		} else if (e.getSource() == buttonD) {
+          
+			String answer1 = textFieldx.getText();
+			String answer2 = textFieldy.getText();
+
+			xChoice = Integer.parseInt(answer1);
+			yChoice = Integer.parseInt(answer2);
+			frame.setVisible(false);
+			if (Game.gameState == 1) {
+				
+				useDefence(MenuInterface.Deck1, xChoice, yChoice);
+				
+			} else if (Game.gameState == 2) {
+				
+			   useDefence(MenuInterface.Deck2, xChoice, yChoice);
+			}
 			
-			visionFrame.setVisible(false);
 		}
 		
 		
@@ -184,4 +212,28 @@ public class Posidonas extends JFrame implements ActionListener{
 		   visionFrame.setLayout(null);
 		   visionFrame.add(pn);
 	}
+
+	public void useDefence(Deck deck, int xChoice, int yChoice) {
+		
+		tempDeck = deck.deck_arr;
+		
+		for (int i = xChoice; i < xChoice + 4; i++) {
+			for (int j = yChoice; j < yChoice + 4; j++) {
+				if (deck.deck_arr[i - 1][j - 1] == "A" || deck.deck_arr[i - 1][j - 1] == "S" || deck.deck_arr[i - 1][j - 1] == "X") {
+					deck.deck_arr[i - 1][j - 1] = "U";
+					this.roundNo = Game.getRoundsNo();
+				}
+			}
+		}
+	}
+
+	public static String[][] getTempDeck() {
+		return tempDeck;
+	}
+
+	public static int getRoundNo() {
+		return roundNo;
+	}
+
 }
+

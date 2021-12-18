@@ -20,7 +20,9 @@ import javax.swing.border.TitledBorder;
 public class Game extends JFrame implements java.awt.event.ActionListener{
 	
 	public static int gameState = 1;
+	private static int roundsNo = 1;
 	private int shipNo = 1;
+	private int pGameState;
 	
 	private JButton attack;
 	private JButton move;
@@ -340,6 +342,18 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       frame.add(playerinfo);
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       frame.setVisible(true);
+
+		   if (roundsNo == Posidonas.getRoundNo() + 4) {
+				if (pGameState == 1) {
+
+					MenuInterface.Deck1.deck_arr = Posidonas.getTempDeck();
+
+				} else if (pGameState == 2) {
+					
+					MenuInterface.Deck2.deck_arr = Posidonas.getTempDeck();
+
+				}
+		   }
 	       
 	       for (int i = 0; i < 10; i++) {
 	    	   
@@ -390,51 +404,58 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	
 		JPanel pn = new JPanel(){
 		        
-	           public void paint(Graphics g) {
-	               for(int y = 0; y < 10; y++ ){
-	                   for(int x = 0; x < 10; x++){
-	                       g.setColor(Color.BLACK);
-	                       g.fillRect(x*70, y*70, 80, 70);
-	                       if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
+	           	public void paint(Graphics g) {
+	               	for(int y = 0; y < 10; y++ ){
+	                   	for(int x = 0; x < 10; x++){
+	                       	g.setColor(Color.BLACK);
+	                       	g.fillRect(x*70, y*70, 80, 70);
+	                       	if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
 	                    	  
-	                    	   g.setColor(new Color(139,69,19));
+	                    	   	g.setColor(new Color(139,69,19));
 	                       
-	                       } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
+	                       	} else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
 	                       
-	                    	   g.setColor(new Color(139,69,19));
+	                    	   	g.setColor(new Color(139,69,19));
 	                       
-	                       } else if (MenuInterface.Deck1.deck_arr[y][x] == "X" && gameState == 1) {
+	                       	} else if (MenuInterface.Deck1.deck_arr[y][x] == "X" && gameState == 1) {
 	                    	   
-	                    	   g.setColor(Color.RED);
+	                    	   	g.setColor(Color.RED);
 	                       
-                           } else if (MenuInterface.Deck2.deck_arr[y][x] == "X" && gameState == 2) {
+                           	} else if (MenuInterface.Deck2.deck_arr[y][x] == "X" && gameState == 2) {
 	                    	   
-	                    	   g.setColor(Color.RED);	                    	   
+	                    	   	g.setColor(Color.RED);	                    	   
 	                       
-                           } else if (MenuInterface.Deck1.deck_arr[y][x] == "A" && gameState == 1) {
+                           	} else if (MenuInterface.Deck1.deck_arr[y][x] == "A" && gameState == 1) {
                         	    
-                        	   g.setColor(Color.GRAY);
+                        	   	g.setColor(Color.GRAY);
                            
-                           } else if (MenuInterface.Deck2.deck_arr[y][x] == "A" && gameState == 2) {
+                           	} else if (MenuInterface.Deck2.deck_arr[y][x] == "A" && gameState == 2) {
 	                    	   
-	                    	   g.setColor(Color.GRAY);	       
+	                    	   	g.setColor(Color.GRAY);	       
                            
-                           } else { 
+                           	}else if (MenuInterface.Deck1.deck_arr[y][x] == "U" && gameState == 1) {
+                        	    
+								g.setColor(new Color(0, 0, 128));
+						
+							} else if (MenuInterface.Deck2.deck_arr[y][x] == "U" && gameState == 2) {
+	                    	   
+								g.setColor(new Color(0, 0, 128));      
+						
+							} else { 
 	                    	  
-	                    	   g.setColor(new Color(65,105,225));
-	                       }
+	                    	   	g.setColor(new Color(65,105,225));
+	                       	}
 	                      
-	                       g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
-	                   }
-	               }
-	               
-	           }
-	       };
-	       pn.setBounds(41, 41, 729, 729);
-	       pn.setLayout(null);
+	                       	g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
+	                   	}
+	              	}
+	            }
+	       	};
+	       	pn.setBounds(41, 41, 729, 729);
+	       	pn.setLayout(null);
 	       
-	       frame.setLayout(null);
-	       playerinfo.add(pn);
+	       	frame.setLayout(null);
+	       	playerinfo.add(pn);
 	}
 	
 	public void errorMessageA() {
@@ -607,7 +628,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    		
 	    		gameState = 1;
 	    	}
-	    	
+	    	roundsNo += 1;
 	    	shipNo = 1;
 	    	StracheshipBoard();
 	    	sea();
@@ -629,7 +650,15 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("A")) {
 	    			
 	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "S";
-	    		}
+
+	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) {
+
+					MenuInterface.Deck2.deck_arr[x-1][y-1] = "U";	
+
+				} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("X")) {
+	    			
+	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
+				}
 	    	
 	    	} else {
 	    		
@@ -640,7 +669,16 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
                 } else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("A")) /* SHIP HIT */ {
 	    			
 	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "S";
-	    		}
+
+	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) {
+
+					MenuInterface.Deck1.deck_arr[x-1][y-1] = "U";	
+
+				} else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("X")) {
+	    			
+	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
+
+				}
 	    	}
 	    	
 	    	
@@ -815,89 +853,117 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
 	    			&& Artemis.capacity(1) == true) {
 	    	   
-	    	   Artemis A = new Artemis();
-               A.insertDataD(); 
-               Artemis.RIVAL_MOVES[1]--;
+	    	   	Artemis A = new Artemis();
+               	A.insertDataD(); 
+               	Artemis.RIVAL_MOVES[1]--;
                
-               changeTurn.setVisible(true);
+               	changeTurn.setVisible(true);
 	    	   
-	       } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
+	       	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
 	    			&& Artemis.capacity(1) == true) {
 	        	
-      	     Artemis A = new Artemis();
-      	     A.insertDataD();
-      		 Artemis.RIVAL_MOVES[1]--;
+      	     	Artemis A = new Artemis();
+      	     	A.insertDataD();
+      		 	Artemis.RIVAL_MOVES[1]--;
       		 
-      		 changeTurn.setVisible(true);
+      		 	changeTurn.setVisible(true);
       	
-	       } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
+	       	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
 	    			&& Dias.capacity(1) == true) {
 	        	
-	    	   Dias D = new Dias();
-               D.insertDataD(); 
-               Dias.RIVAL_MOVES[1]--;
+	    	   	Dias D = new Dias();
+               	D.insertDataD(); 
+               	Dias.RIVAL_MOVES[1]--;
                
-               changeTurn.setVisible(true);
+               	changeTurn.setVisible(true);
                
-	       } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
+	       	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
 	    			&& Dias.capacity(1) == true) {
 	        	
-	    	   Dias D = new Dias();
-              D.insertDataD(); 
-              Dias.RIVAL_MOVES[1]--;
+	    	   	Dias D = new Dias();
+              	D.insertDataD(); 
+              	Dias.RIVAL_MOVES[1]--;
               
-              changeTurn.setVisible(true);    
+              	changeTurn.setVisible(true);    
 	        	
-	       } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
-	         		&& Artemis.capacity(1) == false) {
+	       	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
+	         		&& Dias.capacity(1) == false) {
 	     	     
 	     	    errorMessageD();
 	     	    
-	       } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
-	           		&& Artemis.capacity(1) == false) {
+	       	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
+	           		&& Dias.capacity(1) == false) {
 	      	     
 	       	    errorMessageD();
 	       	      
 	        
-        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
-      		&& Artemis.capacity(1) == false) {
+        	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
+      			&& Artemis.capacity(1) == false) {
   	     
-  	        errorMessageD();
+  	        	errorMessageD();
   	    
-         } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
+         	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
         		&& Artemis.capacity(1) == false) {
    	     
-    	    errorMessageD();
+    	    	errorMessageD();
     	    
-        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
+        	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
     			&& Dias.capacity(1) == true) {
         	
-	    	Aris A = new Aris();
-            A.insertDataD(); 
-            Aris.RIVAL_MOVES[1]--;
+	    		Aris A = new Aris();
+            	A.insertDataD(); 
+            	Aris.RIVAL_MOVES[1]--;
             
-            changeTurn.setVisible(true);
+            	changeTurn.setVisible(true);
             
-	    } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
+	    	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
 	    			&& Dias.capacity(1) == true) {
 	        	
 
-		   Aris A = new Aris();
-	       A.insertDataD(); 
-	       Aris.RIVAL_MOVES[1]--;
+		   		Aris A = new Aris();
+	       		A.insertDataD(); 
+	       		Aris.RIVAL_MOVES[1]--;
 	            
-	        changeTurn.setVisible(true);
-	    } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
-      		&& Artemis.capacity(1) == false) {
+	        	changeTurn.setVisible(true);
+
+	    	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
+      				&& Artemis.capacity(1) == false) {
   	     
-  	        errorMessageD();
+  	        	errorMessageD();
   	    
-         } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
-        		&& Artemis.capacity(1) == false) {
+         	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
+        			&& Artemis.capacity(1) == false) {
    	     
-    	    errorMessageD();
+    	    	errorMessageD();
          
-         }
+			} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
+					&& Posidonas.capacity(1) == true) {
+	
+   				Posidonas P = new Posidonas();
+   				P.insertDataD();
+				pGameState = gameState;
+   				Posidonas.RIVAL_MOVES[1]--;
+   				changeTurn.setVisible(true);
+
+			} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
+					&& 	Posidonas.capacity(1) == true) {
+			
+				Posidonas P = new Posidonas();
+   				P.insertDataD();
+				pGameState = gameState;
+   				Posidonas.RIVAL_MOVES[1]--;
+   				changeTurn.setVisible(true);
+
+			} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
+				&& Posidonas.capacity(1) == false) {
+	 
+				errorMessageD();
+	
+   			} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
+		  		&& Posidonas.capacity(1) == false) {
+	  
+	  			errorMessageD();
+   			}
 		   
 	   } else if (e.getSource() == errorA) {
 		   Bsound.Sound(click);
@@ -914,4 +980,40 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	changeTurn.setVisible(true);
 	    }
     }
+
+	public static int getRoundsNo() {
+		return roundsNo;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
