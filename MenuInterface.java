@@ -31,12 +31,15 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	static Deck Deck1 = new Deck();
 	static Deck Deck2 = new Deck();
 	
+	static Game runGame = new Game();
+	
     private JFrame f;
 	private JFrame newFrame;
     private JFrame startframe;
 	private JFrame SecondFrame;
     private JFrame GodFrame; 
 	
+    
     private JButton b1;
     private JButton b2;
     private JButton b3;
@@ -50,7 +53,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JButton dirDown;
 	private JButton dirRight;
 	
-	private JTextField t1, t2, t4, t5, t6, t7;
+	private JTextField t1, t2, t5, t6, t7;
 	
 	private JTable jt;
 	
@@ -59,7 +62,6 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	static Player player1;
 	static Player player2;
 	
-    
 	
 	public MenuInterface() {
     	gui();
@@ -82,7 +84,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         Border roundedBorder = new LineBorder(new Color(64, 64, 64), 8, true);
        
         b1 = new JButton("START GAME");
-    	b1.setBounds(420, 270, 400, 80);
+    	b1.setBounds(420, 260, 400, 80);
     	b1.addActionListener(this);
     	b1.setFont(new Font("Wide Latin", Font.ITALIC, 25));
     	b1.setBackground(new Color(102, 51, 0));
@@ -90,7 +92,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	b1.setBorder(roundedBorder);
     	
         b2 = new JButton("HELP");
-    	b2.setBounds(420, 410, 400, 80);
+    	b2.setBounds(420, 400, 400, 80);
     	b2.addActionListener(this);
     	b2.setFont(new Font("Wide Latin", Font.ITALIC, 25));
     	b2.setBackground(new Color(102, 51, 0));
@@ -98,7 +100,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	b2.setBorder(roundedBorder);
     	
         b3 = new JButton("EXIT");
-        b3.setBounds(420, 550, 400, 80);
+        b3.setBounds(420, 540, 400, 80);
         b3.addActionListener(this);
         b3.setFont(new Font("Wide Latin", Font.ITALIC, 25));
     	b3.setBackground(new Color(102, 51, 0));
@@ -564,8 +566,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         		 Player();
         	
         	 } else {
-        		 Game runGame = new Game();
-        		 
+        		  
         		 GodFrame.setVisible(false);
         		 runGame.StracheshipBoard();
         	 }
@@ -685,11 +686,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         }
         
         JLabel iron1 = new JLabel();
-        iron1.setBounds(755, 430, 30, 350);
+        iron1.setBounds(847, 430, 30, 350);
         iron1.setIcon(new ImageIcon("ironframe1.jpg"));
         
         JLabel iron2 = new JLabel();
-        iron2.setBounds(755, 430, 450, 30);
+        iron2.setBounds(845, 430, 340, 30);
         iron2.setIcon(new ImageIcon("ironframe2.jpg"));
         
         jt = new JTable(deck_array, column);
@@ -699,7 +700,38 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         jt.setBackground(Color.LIGHT_GRAY);
         jt.setForeground(Color.BLACK);
         jt.setGridColor(Color.WHITE);
+        jt.setVisible(false);
         
+        JPanel pn2 = new JPanel(){
+    		public void paint(Graphics g) {
+    	         for(int y = 0; y < 10; y++ ){
+    	              for(int x = 0; x < 10; x++){
+    	                  g.setColor(Color.BLACK);
+    	                  g.fillRect(x*30, y*30, 34, 30);
+    	                       	
+    	                      if (MenuInterface.Deck1.deck_arr[y][x] == "S" && Player.playerNo == 1) {
+    	                    	  
+    	                    	  g.setColor(new Color(139,69,19));
+    	                       
+    	                      } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && Player.playerNo == 2){
+    	                       
+    	                    	  g.setColor(new Color(139,69,19));
+    	                       
+    	                      } else { 
+    	                    	  
+    	                    	  g.setColor(new Color(65,105,225));
+    	                      }
+    	                      
+    	                      g.fillRect(x*30+1, y*30+1, 34+1, 30+1);
+    	                 }
+    	          }
+    	    }
+    	};
+    	pn2.setBounds(877, 460, 400, 300);
+    	pn2.setLayout(null);
+    	pn.add(pn2);
+    	       
+    	       	
         wood.add(lb);
         wood.add(lbt1);
         wood.add(t1);
@@ -712,8 +744,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         wood.add(submit);
         
          
-        pn.add(iron2);
         pn.add(iron1);
+        pn.add(iron2);
         pn.add(jt);
         pn.add(wood);
        
@@ -762,6 +794,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 			
 	
 	}
+   
    
  
 }
