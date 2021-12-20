@@ -38,8 +38,6 @@ public class Posidonas extends JFrame implements ActionListener{
 	JFrame errorFrame;
 	JFrame visionFrame;
 
-	private static String[][] tempDeck = new String[10][10];
-
 	private static int roundNo;
 
 	public static boolean capacity(int index) {
@@ -214,26 +212,51 @@ public class Posidonas extends JFrame implements ActionListener{
 	}
 
 	public void useDefence(Deck deck, int xChoice, int yChoice) {
-		
-		tempDeck = deck.deck_arr;
+		this.roundNo = Game.getRoundsNo();
 		
 		for (int i = xChoice; i < xChoice + 4; i++) {
 			for (int j = yChoice; j < yChoice + 4; j++) {
-				if (deck.deck_arr[i - 1][j - 1] == "A" || deck.deck_arr[i - 1][j - 1] == "S" || deck.deck_arr[i - 1][j - 1] == "X") {
+				if (deck.deck_arr[i - 1][j - 1] == "S") {
+					
 					deck.deck_arr[i - 1][j - 1] = "U";
-					this.roundNo = Game.getRoundsNo();
+					
+				} else if (deck.deck_arr[i - 1][j - 1] == "X") {
+					
+					deck.deck_arr[i - 1][j - 1] = "B"; 
+				
 				}
+				
 			}
 		}
-	}
 
-	public static String[][] getTempDeck() {
-		return tempDeck;
+		MenuInterface.runGame.sea();
 	}
+	
+
 
 	public static int getRoundNo() {
 		return roundNo;
 	}
 
-}
 
+	
+	public static void endDefense(Deck deck) {
+		
+		for (int i = xChoice; i < xChoice + 4; i++) {
+			for (int j = yChoice; j < yChoice + 4; j++) {
+				if (deck.deck_arr[i - 1][j - 1] == "U") {
+					
+					deck.deck_arr[i - 1][j - 1] = "S";
+					
+				} else if (deck.deck_arr[i - 1][j - 1] == "B") {
+					
+					deck.deck_arr[i - 1][j - 1] = "X"; 
+				
+				}
+				
+			}
+		}
+	}
+		
+}
+	
