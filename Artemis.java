@@ -1,11 +1,13 @@
    import java.awt.*;
-    import java.awt.event.ActionEvent;
-    import java.awt.event.ActionListener;
-    import javax.swing.*;
-    public class Artemis extends JFrame implements ActionListener {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.*;
+public class Artemis extends JFrame implements ActionListener {
 
     	 public static int[] RIVAL_MOVES = {2,2};
-    	 
+    	 static File arrows = new File("Arrow.wav");
     	 static int x;
     	
     	    
@@ -54,6 +56,8 @@
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == buttonA) {
+              
+               Bsound.Sound(arrows);
                String answer = textField.getText();
                x = Integer.parseInt(answer);
                frame.setVisible(false);
@@ -111,8 +115,8 @@
 	    	   
 	       
               }
-	        
-	        
+	    	  
+	    	  MenuInterface.runGame.sea();
 	    }
 
 	    public void throwArrow(Deck deck) {
@@ -133,4 +137,3 @@
 	    }
 
     }
-
