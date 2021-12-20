@@ -217,6 +217,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       godAttack.addActionListener(this);
 	       godDefense.addActionListener(this);
 	       
+	       godAttack.setBackground(new Color(153, 0, 0));
+	       godDefense.setBackground(new Color(0, 102, 0));
+	       
 	       attackMessage = new JLabel("ΕΠΙΘΕΣΗ ΣΤΟ");
 	       Xattack = new JTextField();
 	       Yattack = new JTextField();
@@ -1027,6 +1030,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		return roundsNo;
 	}
 }
+
 
 
 
