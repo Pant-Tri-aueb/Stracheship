@@ -109,6 +109,8 @@ public class Aris extends JFrame implements ActionListener {
  			}
 	       
 	     }
+    	 
+    	 MenuInterface.runGame.sea();
      }
      
      @Override
@@ -131,4 +133,3 @@ public class Aris extends JFrame implements ActionListener {
      }
 	
 }
-
