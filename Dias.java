@@ -3,6 +3,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,7 +14,7 @@ import javax.swing.JTextField;
 public class Dias extends JFrame implements ActionListener {
 
 	public static int[] RIVAL_MOVES = {1,2};
-	
+	static File thunder= new File("L.wav");
 	
 	JButton errorA;
 	JButton errorD;
@@ -217,7 +218,8 @@ public class Dias extends JFrame implements ActionListener {
 					
 				}
 			}
-					
+			
+			MenuInterface.runGame.sea();		
 		} else {
 			
 		    errorD();
@@ -228,6 +230,7 @@ public class Dias extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonA) {
             
+			Bsound.Sound(thunder);
 			String answer = textField.getText();
             int x = Integer.parseInt(answer);
             frame.setVisible(false);
