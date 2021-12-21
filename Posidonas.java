@@ -149,6 +149,9 @@ public class Posidonas extends JFrame implements ActionListener{
 			   useDefence(MenuInterface.Deck2, xChoice, yChoice);
 			}
 			
+		} else if (e.getSource() == back) {
+			
+			visionFrame.setVisible(false);
 		}
 		
 		
@@ -161,16 +164,17 @@ public class Posidonas extends JFrame implements ActionListener{
 		visionFrame.setVisible(true);
 		visionFrame.setBounds(0, 0, 729, 800);
 		
-		back = new JButton("ΠΙΣΩ");
+		back = new JButton("BACK");
 		back.setBounds(568, 15, 80, 25);
 		back.addActionListener(this);
+		back.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 13));
 		
 		JLabel wood = new JLabel(new ImageIcon("wood.jpg"));
 		wood.setBounds(0, 700, 729, 71);
 		
 		JLabel text = new JLabel("Vision does not reveal how much tolerance the ship is left with!");
 		text.setBounds(80, 15, 485, 30);
-		text.setFont(new Font("SansSerif", Font.BOLD, 16));
+		text.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 11));
 		text.setForeground(Color.BLACK);
 		
 		JPanel pn = new JPanel(){
