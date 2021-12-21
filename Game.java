@@ -90,19 +90,19 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       JLabel name1 = new JLabel(MenuInterface.player1.getName());
 	       JLabel name2 = new JLabel(MenuInterface.player2.getName());
 	      
-	       name1.setBounds(20, 780, 170, 20);
-	       name2.setBounds(20, 780, 170, 20);
+	       name1.setBounds(20, 778, 170, 20);
+	       name2.setBounds(20, 778, 170, 20);
 	       
-	       name1.setFont(new Font("SansSerif", Font.BOLD, 23));
-	       name2.setFont(new Font("SansSerif", Font.BOLD, 23));
+	       name1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 23));
+	       name2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 23));
 	       
 	       name1.setForeground(Color.WHITE);
 	       name2.setForeground(Color.WHITE);
 	       
 	      
 	      
-	       JLabel god1 = new JLabel("ΘΕΟΣ: " + MenuInterface.player1.getGod());
-	       JLabel god2 = new JLabel("ΘΕΟΣ: " + MenuInterface.player2.getGod());
+	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
+	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
 	       
 	       god1.setBounds(220, 780, 250, 20);
 	       god2.setBounds(220, 780, 250, 20);
@@ -131,34 +131,40 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 ) {
 	    	  
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo - 1).getTolerance());
-		   if (life > 1000) {
-		   	life = Character.toString('\u221E');
-		   }
-	    	  
+	    	   
+	    	   if (Integer.parseInt(life) > 1000) {
+	   		   	
+	    		   life = Character.toString('\u221E');
+	   		   
+	    	   }
+	    	   
 	       } else if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0) {
 	    			   
-	    	   life = "ΒΥΘΙΣΤΗΚΕ";	
+	    	   life = "SINKED";	
 	    	   
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0) {
 	    	   
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo + 4).getTolerance());
-	    	   if (life > 1000) {
-		   	life = Character.toString('\u221E');
-		   }
+	    	   
+	    	   if (Integer.parseInt(life) > 1000) {
+		   		   	
+	    		   life = Character.toString('\u221E');
+	   		   
+	    	   }
 	    	   
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ){
 	    	    
-	    	   life = "ΒΥΘΙΣΤΗΚΕ";
+	    	   life = "SINKED";
 	    	   
 	       }
 	       
-	       tolerance1 = new JLabel("ANTOXH");
+	       tolerance1 = new JLabel("TOLERANCE");
 	       tolerance2 = new JLabel(life);
 	       
-	       tolerance1.setBounds(762, 200, 100, 30);
+	       tolerance1.setBounds(758, 200, 100, 30);
 	       
 	       if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 ) {
@@ -178,37 +184,46 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ) {
 	    	   
-	    	   tolerance2.setBounds(756, 240, 100, 30);
+	    	   tolerance2.setBounds(768, 240, 100, 30);
 	       }
 
 	       
 	       tolerance1.setForeground(Color.WHITE);
 	       tolerance2.setForeground(Color.WHITE);
 	       
-	       tolerance1.setFont(new Font("SansSerif", Font.BOLD, 17));
-	       tolerance2.setFont(new Font("SansSerif", Font.BOLD, 15));
+	       tolerance1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 11));
+	       tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 25));
 	       
-	       shipCount1 = new JLabel("ΠΛΟΙΟ");
-	       shipCount2 = new JLabel(String.format("%do", shipNo));	       
+	       shipCount1 = new JLabel("SHIP");
+	       shipCount2 = new JLabel(String.format("%d", shipNo));	       
 	       
-	       shipCount1.setBounds(765, 90, 75, 30);
-	       shipCount2.setBounds(785, 125, 75, 30);
+	       shipCount1.setBounds(768, 90, 75, 30);
+	       shipCount2.setBounds(788, 125, 75, 30);
 	       
 	       shipCount1.setForeground(Color.WHITE);
 	       shipCount2.setForeground(Color.WHITE);
 	       
-	       shipCount1.setFont(new Font("SansSerif", Font.BOLD, 19));
-	       shipCount2.setFont(new Font("SansSerif", Font.BOLD, 19));
+	       shipCount1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 19));
+	       shipCount2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 21));
 	       
-	       next = new JButton("ΠΥΡ!");
-	       next.setBounds(765, 600, 75, 30);
+	       next = new JButton("FIRE!");
+	       next.setBounds(740, 775, 100, 30);
 	       next.addActionListener(this);
+	       next.setBackground(Color.red);
+	       next.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       
-	       changeTurn = new JButton("ΤΕΛΟΣ");	       
+	       changeTurn = new JButton("NEXT");	       
 	       changeTurn.setBounds(765, 90, 75, 300);
+	       changeTurn.setFont(new Font("Castellar", Font.BOLD, 11));
+	       changeTurn.setForeground(new Color(255,215,0));
+	       changeTurn.setBackground(Color.BLACK);
 	       
-	       god = new JButton("ΘΕΟΣ");
+	       
+	       god = new JButton("GOD");
 	       god.setBounds(765, 400, 75, 300);
+	       god.setFont(new Font("Castellar", Font.BOLD, 14));
+	       god.setForeground(new Color(255,215,0));
+	       god.setBackground(Color.BLACK);
 	       
 	       god.addActionListener(this);
 	       changeTurn.addActionListener(this);
@@ -216,8 +231,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       godAttack = new JButton(new ImageIcon("swords.jpg"));
 	       godDefense = new JButton(new ImageIcon("shield.jpg"));
 	       
-	       godAttack.setBounds(767, 90, 72, 250);
-	       godDefense.setBounds(767, 350, 72, 250);
+	       godAttack.setBounds(767, 125, 72, 250);
+	       godDefense.setBounds(767, 385, 72, 250);
 	       
 	       godAttack.addActionListener(this);
 	       godDefense.addActionListener(this);
@@ -225,20 +240,19 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       godAttack.setBackground(new Color(153, 0, 0));
 	       godDefense.setBackground(new Color(0, 102, 0));
 	       
-	       attackMessage = new JLabel("ΕΠΙΘΕΣΗ ΣΤΟ");
+	       attackMessage = new JLabel("SHOOT AT");
 	       Xattack = new JTextField();
 	       Yattack = new JTextField();
 	       
-	       
-	       Xattack.setBounds(660, 775, 30, 30);
-	       Yattack.setBounds(710, 775, 30, 30);
+	       Xattack.setBounds(600, 775, 50, 30);
+	       Yattack.setBounds(670, 775, 50, 30);
 	       attackMessage.setBounds(480, 775, 140, 30);
 	       
 	       attackMessage.setFont(new Font("SansSerif", Font.BOLD, 18));
 	       attackMessage.setForeground(Color.WHITE);
 	       
-	       attack = new JButton("ΕΠΙΘΕΣΗ");
-	       move = new JButton("ΜΕΤΑΚΙΝΗΣΗ");
+	       attack = new JButton("ATTACK");
+	       move = new JButton("MOVE");
 	       
 	       attack.setBounds(480, 775, 130, 25);
 	       move.setBounds(660, 775, 130, 25);
@@ -246,7 +260,16 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       attack.addActionListener(this);
 	       move.addActionListener(this);
 	       
-	       sinkedNext = new JButton("ΣΥΝΕΧΕΙΑ");
+	       attack.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+	       move.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+	       
+	       attack.setBackground(Color.GRAY);
+	       move.setBackground(Color.GRAY);
+	       
+	       attack.setForeground(Color.WHITE);
+	       move.setForeground(Color.WHITE);
+	       
+	       sinkedNext = new JButton("NEXT SHIP");
 	       sinkedNext.setBounds(580, 775, 130, 25);
 	       sinkedNext.addActionListener(this);
 	       
@@ -270,7 +293,22 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		    Right.setBounds(635, 775, 100, 25);
 		    Up.setBounds(475, 775, 100, 25);
 		    Down.setBounds(635, 775, 100, 25);
-		       
+		      
+		    Left.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+		    Right.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+		    Up.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+		    Down.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+		    
+		    Left.setBackground(Color.GRAY);
+		    Right.setBackground(Color.GRAY);
+		    Up.setBackground(Color.GRAY);
+		    Down.setBackground(Color.GRAY);
+		    
+		    Left.setForeground(Color.WHITE);
+		    Right.setForeground(Color.WHITE);
+		    Up.setForeground(Color.WHITE);
+		    Down.setForeground(Color.WHITE);
+		    
 			Left.addActionListener(this);
 			Up.addActionListener(this);
 			Down.addActionListener(this);
@@ -1035,7 +1073,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		return roundsNo;
 	}
 }
-
 
 
 
