@@ -131,6 +131,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 ) {
 	    	  
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo - 1).getTolerance());
+		   if (life > 1000) {
+		   	life = Character.toString('\u221E');
+		   }
 	    	  
 	       } else if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0) {
@@ -141,7 +144,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0) {
 	    	   
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo + 4).getTolerance());
-	    	   
+	    	   if (life > 1000) {
+		   	life = Character.toString('\u221E');
+		   }
 	    	   
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ){
