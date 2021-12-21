@@ -459,15 +459,20 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	 } else if (e.getSource() == submit) {
     		     Bsound.Sound(click);
     		 
+    		     boolean checkException = false;
     		     
-				 int x;
+    		     int x = 0;
 				
-				 String answer1 = t1.getText();
 				 try {
+					 
+				     String answer1 = t1.getText();
 					 x = Integer.parseInt(answer1);
 						 
 				 } catch (Exception ex) {
-					 System.out.println("lathos");
+					checkException = true;
+					 
+					 SecondFrame.setVisible(false);
+					 
 					 erFrame = new JFrame("Error!!!");
 					 erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					 erFrame.setLayout(new FlowLayout());
@@ -478,11 +483,6 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 					 erButton = new JButton("OK");
 					 erButton.addActionListener(this);
 					
-					 if (e.getSource()== erButton){
-						 answer1=t1.getText();
-						 erFrame.dispose();
-					 }
- 
 					 pn.add(erButton);
 					 pn.add(message);
  
@@ -490,19 +490,20 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 					 erFrame.setVisible(true);
 					 erFrame.pack();
 				 }
-				 x = Integer.parseInt(answer1);
 				 
 				 
-				 
-				 int y ;
-				 String answer2 = t2.getText();
-    	         
-    	     
+				 int y = 0;
+				
     	         try {
+    	        	
+    	        	 String answer2 = t2.getText(); 
 					y = Integer.parseInt(answer2);
-				 } catch (Exception ex) {
-					 //TODO: handle exception
-					 System.out.println("lathos");
+				 
+    	         } catch (Exception ex) {
+    	        	 checkException = true;
+    	        	 
+    	        	 SecondFrame.setVisible(false);
+    	        	 
 					 erFrame = new JFrame("Error!!!");
 					 erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					 erFrame.setLayout(new FlowLayout());
@@ -513,19 +514,14 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 					 erButton = new JButton("OK");
 					 erButton.addActionListener(this);
 					
-					 if (e.getSource()== erButton){
-						 answer1=t1.getText();
-						 erFrame.dispose();
-					 }
- 
-					 pn.add(erButton);
+                     pn.add(erButton);
 					 pn.add(message);
  
 					 erFrame.add(pn);
 					 erFrame.setVisible(true);
 					 erFrame.pack();
 				 }
-    	         y = Integer.parseInt(answer2);
+    	        
     	         
     	         
     	         if (Player.playerNo == 1) {
@@ -538,7 +534,12 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	         }
     	         
     	         startframe.setVisible(false);
-    	         startGame();
+    	         
+    	         if (checkException == false) {
+    	        	 
+    	        	 startGame();
+    	         }
+    	         
     	        
     	         if (ShipPlacementCounter == 10 && Player.playerNo == 2) {
          	
@@ -634,9 +635,13 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         		 runGame.StracheshipBoard();
         	 }
         	
-        }else if(e.getSource()==  erButton){
-			erFrame.setVisible(false);
-		}
+        
+    	}  else if(e.getSource()==  erButton){
+			
+    		erFrame.setVisible(false);
+    		startGame();
+		
+    	}
    }
 		
 	
