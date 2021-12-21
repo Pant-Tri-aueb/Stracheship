@@ -38,6 +38,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     private JFrame startframe;
 	private JFrame SecondFrame;
     private JFrame GodFrame; 
+	private JFrame erFrame;
 	
     
     private JButton b1;
@@ -52,6 +53,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JButton artemis;
 	private JButton dirDown;
 	private JButton dirRight;
+	private JButton erButton;
 	
 	private JTextField t1, t2, t5, t6, t7;
 	
@@ -457,12 +459,73 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	 } else if (e.getSource() == submit) {
     		     Bsound.Sound(click);
     		 
-    		     String answer1 = t1.getText();
-    	         String answer2 = t2.getText();
+    		     
+				 int x;
+				
+				 String answer1 = t1.getText();
+				 try {
+					 x = Integer.parseInt(answer1);
+						 
+				 } catch (Exception ex) {
+					 System.out.println("lathos");
+					 erFrame = new JFrame("Error!!!");
+					 erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					 erFrame.setLayout(new FlowLayout());
+					 JPanel pn = new JPanel();
+ 
+					 JLabel message = new JLabel("Cordinates x, please enter a number.");
+ 
+					 erButton = new JButton("OK");
+					 erButton.addActionListener(this);
+					
+					 if (e.getSource()== erButton){
+						 answer1=t1.getText();
+						 erFrame.dispose();
+					 }
+ 
+					 pn.add(erButton);
+					 pn.add(message);
+ 
+					 erFrame.add(pn);
+					 erFrame.setVisible(true);
+					 erFrame.pack();
+				 }
+				 x = Integer.parseInt(answer1);
+				 
+				 
+				 
+				 int y ;
+				 String answer2 = t2.getText();
     	         
     	     
-    	         int x = Integer.parseInt(answer1);
-    	         int y = Integer.parseInt(answer2);
+    	         try {
+					y = Integer.parseInt(answer2);
+				 } catch (Exception ex) {
+					 //TODO: handle exception
+					 System.out.println("lathos");
+					 erFrame = new JFrame("Error!!!");
+					 erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					 erFrame.setLayout(new FlowLayout());
+					 JPanel pn = new JPanel();
+ 
+					 JLabel message = new JLabel("Cordinates y, please enter a number.");
+ 
+					 erButton = new JButton("OK");
+					 erButton.addActionListener(this);
+					
+					 if (e.getSource()== erButton){
+						 answer1=t1.getText();
+						 erFrame.dispose();
+					 }
+ 
+					 pn.add(erButton);
+					 pn.add(message);
+ 
+					 erFrame.add(pn);
+					 erFrame.setVisible(true);
+					 erFrame.pack();
+				 }
+    	         y = Integer.parseInt(answer2);
     	         
     	         
     	         if (Player.playerNo == 1) {
@@ -515,7 +578,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	         
     		 startGame();
         
-    	 } else if (e.getSource() == zeus || e.getSource() == poseidon ||
+    	} else if (e.getSource() == zeus || e.getSource() == poseidon ||
         		e.getSource() == ares || e.getSource() == artemis) {
         	
     		 Bsound.Sound(click);
@@ -571,7 +634,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         		 runGame.StracheshipBoard();
         	 }
         	
-        }
+        }else if(e.getSource()==  erButton){
+			erFrame.setVisible(false);
+		}
    }
 		
 	
