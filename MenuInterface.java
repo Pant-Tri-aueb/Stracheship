@@ -674,19 +674,22 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
         if (size_counter == 2) {
         	
-        	message = "Place a small ship";
+        	message = "Place a small ship "
+        			+ "(size = 2)";
         
         } else if (size_counter == 3) {
         	
-        	message = "Place a normal ship";
+        	message = "Place a normal ship "
+        			+ "(size = 3)";
         
         } else {
         	 
-        	message = "Place a large ship";
+        	message = "Place a large ship "
+        			+ "(size = 4)";
         }
        
         JLabel ShipCount = new JLabel(message); 
-        ShipCount.setBounds(100, 520, 210, 30);
+        ShipCount.setBounds(70, 520, 310, 30);
         ShipCount.setOpaque(false);
         ShipCount.setFont(new Font("Copperplate Gothic Bold", Font.ITALIC, 17));
         ShipCount.setForeground(Color.WHITE);
