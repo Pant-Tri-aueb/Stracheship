@@ -697,6 +697,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         submit = new JButton("SUBMIT");
         submit.addActionListener(this);  
         submit.setBounds(130, 450, 130, 30);
+        submit.setBackground(new Color(153, 76, 0));
+        submit.setForeground(Color.WHITE);
+        submit.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 13));
         
         JLabel lbt1 = new JLabel("                      Coordinate X");
         lbt1.setBounds(45, 120, 280, 30);
@@ -733,6 +736,15 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         dirDown.addActionListener(this);
         dirRight.addActionListener(this);
         
+        dirDown.setBackground(new Color(153, 76, 0));
+        dirRight.setBackground(new Color(153, 76, 0));
+	     
+        dirDown.setForeground(Color.WHITE);
+        dirRight.setForeground(Color.WHITE);
+	       
+	    dirDown.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 12));
+	    dirRight.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 12));
+	       
         String[][] deck_array = new String[10][10];
         String[] column = new String[10];
         
