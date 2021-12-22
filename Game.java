@@ -19,6 +19,8 @@ import javax.swing.border.TitledBorder;
 
 public class Game extends JFrame implements java.awt.event.ActionListener{
 	
+	private static final long serialVersionUID = 1L;
+	
 	public static int gameState = 1;
 	private static int roundsNo = 1;
 	private int shipNo = 1;
@@ -39,6 +41,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JButton godDefense;
 	private JButton errorA;
 	private JButton errorD;
+	private JButton backMove;
+	private JButton backAttack;
+	private JButton showBoard;
+	private JButton hideBoard;
 	
 	private JLabel playerinfo;
 	private JLabel attackMessage;
@@ -53,8 +59,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	
 	private JFrame frame; 
 	private JFrame Aframe; 
-	private JFrame Dframe; 
+	private JFrame Dframe;
+	private JFrame hit;
 	
+	Deck hit1 = new Deck();
+	Deck hit2 = new Deck();
 	
 	Move m = new Move();
 	
@@ -99,7 +108,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       name1.setForeground(Color.WHITE);
 	       name2.setForeground(Color.WHITE);
 	       
-	      
 	      
 	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
 	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
@@ -205,6 +213,43 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       
 	       shipCount1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 19));
 	       shipCount2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 21));
+	       
+	       backMove = new JButton("BACK");
+	       backAttack = new JButton("BACK");
+	       
+	       backMove.setBounds(755, 650, 90, 35);
+	       backAttack.setBounds(755, 650, 90, 35);
+	       
+	       backMove.addActionListener(this);
+	       backAttack.addActionListener(this);
+	       
+	       backMove.setBackground(Color.GRAY);
+	       backAttack.setBackground(Color.GRAY);
+	       
+	       backMove.setForeground(Color.WHITE);
+	       backAttack.setForeground(Color.WHITE);
+	       
+	       backMove.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
+	       backAttack.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
+	       
+	       showBoard = new JButton("HIT");
+	       hideBoard = new JButton("HIDE");
+	       
+	       showBoard.setBounds(755, 550, 90, 35);
+	       hideBoard.setBounds(755, 550, 90, 35);
+	       
+	       showBoard.addActionListener(this);
+	       hideBoard.addActionListener(this);
+	       
+	       showBoard.setBackground(Color.GRAY);
+	       hideBoard.setBackground(Color.GRAY);
+	       
+	       showBoard.setForeground(Color.WHITE);
+	       hideBoard.setForeground(Color.WHITE);
+	       
+	       showBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
+	       hideBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
+	       
 	       
 	       next = new JButton("FIRE!");
 	       next.setBounds(740, 775, 100, 30);
@@ -324,6 +369,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        next.setVisible(false);
 	        godAttack.setVisible(false);
 	        godDefense.setVisible(false);
+	        backAttack.setVisible(false);
+	        backMove.setVisible(false);
 			
            playerinfo.add(Left);
 		   playerinfo.add(Up);
@@ -344,6 +391,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       playerinfo.add(sinkedNext);
 	       playerinfo.add(godAttack);
 	       playerinfo.add(godDefense);
+	       playerinfo.add(backMove);
+	       playerinfo.add(backAttack);
+	       playerinfo.add(showBoard);
+	       playerinfo.add(hideBoard);
 	       
 	       if (shipNo <= 5 && (Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 &&
 	    		   Ship2.shipsList.get(shipNo - 1).getTolerance() < 500) && gameState == 1) {
@@ -353,6 +404,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	           attack.setVisible(true);
 	           move.setVisible(true);
 	           sinkedNext.setVisible(false);
+	           showBoard.setVisible(true);
+	           hideBoard.setVisible(false);
 	         
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 &&
 		    		   Ship2.shipsList.get(shipNo - 1).getTolerance() > 500) && gameState == 1) {
@@ -362,6 +415,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		       attack.setVisible(true);
 		       move.setVisible(false);
 		       sinkedNext.setVisible(false);
+		       showBoard.setVisible(true);
+	           hideBoard.setVisible(false);
 	        
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo + 4).getTolerance() != 0 &&
 	    		   Ship2.shipsList.get(shipNo + 4).getTolerance() < 500) && gameState == 2) {
@@ -371,6 +426,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	          attack.setVisible(true);
 	          move.setVisible(true);
 	          sinkedNext.setVisible(false);
+	          showBoard.setVisible(true);
+	          hideBoard.setVisible(false);
 	       
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo + 4).getTolerance() != 0 &&
 	    		   Ship2.shipsList.get(shipNo + 4).getTolerance() > 500) && gameState == 2) {
@@ -380,6 +437,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	          attack.setVisible(true);
 	          move.setVisible(false);
 	          sinkedNext.setVisible(false);
+	          showBoard.setVisible(true);
+	          hideBoard.setVisible(false);
         
        
         } else if (shipNo > 5) {
@@ -395,6 +454,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   tolerance1.setVisible(false);
 	    	   tolerance2.setVisible(false);
 	    	   sinkedNext.setVisible(false);
+	    	   showBoard.setVisible(false);
+	           hideBoard.setVisible(false);
            
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 
 	    		   && gameState == 1) {
@@ -406,6 +467,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   sinkedNext.setVisible(true);
 	    	   tolerance1.setVisible(true);
 	    	   tolerance2.setVisible(true);
+	    	   showBoard.setVisible(true);
+		       hideBoard.setVisible(false);
+	        
 	    	   
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 
 	    		   && gameState == 2) {
@@ -417,6 +481,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   sinkedNext.setVisible(true);
 	    	   tolerance1.setVisible(true);
 	    	   tolerance2.setVisible(true);
+	    	   showBoard.setVisible(true);
+		       hideBoard.setVisible(false);
+	        
 	       }
 	       
 	       
@@ -472,21 +539,76 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 
 	public void sea() {
 	    
+		Ship2 ship;
+		
+		if (gameState == 1 && shipNo < 6) {
+			
+			 ship = Ship2.shipsList.get(shipNo - 1);
+			
+		} else if (gameState == 2 && shipNo < 6){
+			
+			 ship = Ship2.shipsList.get(shipNo + 4);
+		
+		} else { // This is never used
+			
+			ship = Ship2.shipsList.get(shipNo - 1);
+		}
+		
+		
+       	
 		 pn = new JPanel(){
 		        
-	           	public void paint(Graphics g) {
+			private static final long serialVersionUID = 1L;
+
+				public void paint(Graphics g) {
 	               	for(int y = 0; y < 10; y++ ){
 	                   	for(int x = 0; x < 10; x++){
 	                       	g.setColor(Color.BLACK);
 	                       	g.fillRect(x*70, y*70, 80, 70);
 	                       	
 	                       	if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
-	                    	  
-	                    	   	g.setColor(new Color(139,69,19));
+	                            boolean belongs = false;  
+	                       		
+	                       		for (int i = 0; i < ship.getSize(); i++) {
+	                       			
+	                       			if (ship.xy[i][0] == y && ship.xy[i][1] == x && shipNo < 6) {
+	                       				
+	                       				belongs = true;
+	                       			}
+	                       			
+	                       		}
+	                       		
+	                       		if (belongs == true) {
+	                       			
+	                       			g.setColor(new Color(51, 25, 0));
+	                       		
+	                       		} else {
+	                       			
+	                       			g.setColor(new Color(139, 69, 19));
+	                       		}
+	                       		
 	                       
-	                       	} else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
+	                        } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
 	                       
-	                    	   	g.setColor(new Color(139,69,19));
+	                       	    boolean belongs = false;  
+	                       		
+	                       		for (int i = 0; i < ship.getSize(); i++) {
+	                       			
+	                       			if (ship.xy[i][0] == y && ship.xy[i][1] == x && shipNo < 6) {
+	                       				
+	                       				belongs = true;
+	                       			}
+	                       			
+	                       		}
+	                       		
+	                       		if (belongs == true) {
+	                       			
+	                       			g.setColor(new Color(51, 25, 0));
+	                       		
+	                       		} else {
+	                       			
+	                       			g.setColor(new Color(139, 69, 19));
+	                       		}
 	                       
 	                       	} else if (MenuInterface.Deck1.deck_arr[y][x] == "X" && gameState == 1) {
 	                    	   
@@ -524,11 +646,23 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                    	  
 	                    	   	g.setColor(new Color(65,105,225));
 	                       	}
-	                      
+	                        
+	                       	
+	                       	
 	                       	g.fillRect(x*70+1, y*70+1, 80+1, 70+1);
 	                   	}
 	              	}
-	            }
+	            
+	               	for (int i = 0; i < ship.getSize(); i++) {
+	               		
+	               		if (gameState == 1) {
+	               			
+	               		}
+	               		
+	               		
+	               	}
+			   }
+				
 	       	};
 	       	pn.setBounds(41, 41, 729, 729);
 	       	pn.setLayout(null);
@@ -583,6 +717,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		if (e.getSource() == move) {
 			Bsound.Sound(click);
 			
+			backMove.setVisible(true);
 			attack.setVisible(false);
 			move.setVisible(false);
 		    
@@ -612,6 +747,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		} else if (e.getSource() == attack) {
 			Bsound.Sound(click);
 			
+			backAttack.setVisible(true);
 			attack.setVisible(false);
 			move.setVisible(false);
 			
@@ -624,8 +760,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		} else if (e.getSource() == Right) {
 			Bsound.Sound(click);
 			
-
-	        if (gameState == 1) {
+			backMove.setVisible(false);
+	        
+			if (gameState == 1) {
 	        	   
 	        	m.moveRight(shipNo, MenuInterface.Deck1);
 	           
@@ -642,7 +779,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		} else if (e.getSource() == Up) {
 				Bsound.Sound(click);
 				
-
+				backMove.setVisible(false);
+				
 		        if (gameState == 1) {
 		        	   
 		        	 m.moveUp(shipNo, MenuInterface.Deck1);
@@ -659,7 +797,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		} else if (e.getSource() == Left) {
 					Bsound.Sound(click);
 					
-					
+					backMove.setVisible(false);
 
 			        if (gameState == 1) {
 			        	   
@@ -679,6 +817,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		
 		} else if (e.getSource() == Down) {
 			Bsound.Sound(click);
+			
+			backMove.setVisible(false);
 			
            if (gameState == 1) {
         	   
@@ -713,15 +853,71 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	StracheshipBoard();
 	    	sea();
 	    
-	    
+	    } else if (e.getSource() == showBoard) {
+	        
+	    	hit = new JFrame("POINTS HIT");
+	    	
+	    	JPanel pn = new JPanel(){
+				
+				private static final long serialVersionUID = 1L;
+
+				public void paint(Graphics g) {
+					   for(int y = 0; y < 10; y++ ){
+						   for(int x = 0; x < 10; x++){
+							   g.setColor(Color.BLACK);
+							   g.fillRect(x*40, y*40, 44, 40);
+							   if (hit1.deck_arr[y][x] == "H" && Game.gameState == 1) {
+								  
+								   g.setColor(new Color(32 ,32 ,32));
+							   
+							   } else if (hit2.deck_arr[y][x] == "H" && Game.gameState == 2){
+							   
+								   g.setColor(new Color(32 ,32 ,32));
+							   
+							   } else { 
+								  
+								   g.setColor(new Color(65,105,225));
+							   }
+							  
+							   g.fillRect(x*40+1, y*40+1, 44+1, 40+1);
+						   }
+					   }
+					   
+				   }
+			 };
+	    	pn.setLayout(null);
+			pn.setVisible(true);
+			pn.setBounds(0, 0, 420, 440);
+	    	
+	    	hit.add(pn); 
+			hit.setLayout(null); 
+	        hit.setSize(420, 440);
+	        hit.setVisible(true);
+	        hit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        
+	        showBoard.setVisible(false);
+	        hideBoard.setVisible(true);
+	    	
+	    } else if (e.getSource() == hideBoard) {
+	    	
+	    	hit.setVisible(false);
+	    	showBoard.setVisible(true);
+	        hideBoard.setVisible(false);
+	    	
+	    	
 	    } else if (e.getSource() == next) {
 	    	
 	    	Bsound.Sound(click);
 	    	
+	    	backAttack.setVisible(false);
+	    	
 	    	int x = Integer.parseInt(Xattack.getText());
 	    	int y = Integer.parseInt(Yattack.getText());
 	    	
+	    	
 	    	if (gameState == 1) {
+	    		
+	    		hit1.deck_arr[x - 1][y - 1] = "H";
 	    		
 	    		if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
 	    			
@@ -743,6 +939,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				}
 	    	
 	    	} else {
+	    		
+	    		hit2.deck_arr[x - 1][y - 1] = "H";
 	    		
                 if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
 	    			
@@ -770,6 +968,25 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        frame.setVisible(false);
 	        StracheshipBoard();
 	    	sea();
+	    
+	    } else if (e.getSource() == backAttack) {
+	    	
+	    	backAttack.setVisible(false);
+	    	next.setVisible(false);
+	    	Xattack.setVisible(false);
+	    	Yattack.setVisible(false);
+	    	move.setVisible(true);
+	    	attack.setVisible(true);
+	    
+	    } else if (e.getSource() == backMove) {	
+	    	
+	    	backMove.setVisible(false);
+	    	Up.setVisible(false);
+	    	Down.setVisible(false);
+	    	Right.setVisible(false);
+	    	Left.setVisible(false);
+	    	move.setVisible(true);
+	    	attack.setVisible(true);
 	    
 	    } else if (e.getSource() == sinkedNext) {
 	    	
@@ -1073,7 +1290,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		return roundsNo;
 	}
 }
-
 
 
 
