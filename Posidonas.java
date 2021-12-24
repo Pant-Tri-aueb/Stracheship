@@ -3,6 +3,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -17,6 +18,9 @@ public class Posidonas extends JFrame implements ActionListener{
 
 	public static int[] RIVAL_MOVES = {1,1};
 
+	static File reveal = new File("Reveal.wav");
+	static File wave = new File("Wave.wav");
+	
 	JButton errorA;
 	JButton errorD;
 	JButton buttonA;
@@ -119,6 +123,8 @@ public class Posidonas extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonA) {
+			Bsound.Sound(reveal);
+			
 			String answer = textField.getText();
 			int x = Integer.parseInt(answer);
 			frame.setVisible(false);
@@ -134,6 +140,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		
 		} else if (e.getSource() == buttonD) {
           
+			Bsound.Sound(wave);
 			String answer1 = textFieldx.getText();
 			String answer2 = textFieldy.getText();
 
