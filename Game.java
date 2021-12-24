@@ -200,7 +200,19 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       tolerance2.setForeground(Color.WHITE);
 	       
 	       tolerance1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 11));
-	       tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 25));
+	       tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 18));
+	       
+	       if (gameState == 1 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() > 500 ) {
+	    	   
+	    	   tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 35));
+	       
+	       } else if (gameState == 2 && shipNo <= 5 
+	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() > 500 ) {
+	    	   
+	    	   tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 35));
+	    	   
+	       }
 	       
 	       shipCount1 = new JLabel("SHIP");
 	       shipCount2 = new JLabel(String.format("%d", shipNo));	       
@@ -317,6 +329,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       sinkedNext = new JButton("NEXT SHIP");
 	       sinkedNext.setBounds(580, 775, 130, 25);
 	       sinkedNext.addActionListener(this);
+	       sinkedNext.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+	       sinkedNext.setBackground(Color.GRAY);
+	       sinkedNext.setForeground(Color.WHITE);
 	       
 	       
 	       if (gameState == 1) {
@@ -1089,7 +1104,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
                 changeTurn.setVisible(true);
 	        
 	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ"
-	    			&& Dias.capacity(0) == true) {
+	    			&& Posidonas.capacity(0) == true) {
 	        	
 	        	Posidonas Pa = new Posidonas();
                 Pa.insertDataA(); 
