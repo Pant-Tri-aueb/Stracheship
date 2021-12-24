@@ -3,6 +3,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +13,8 @@ public class Aris extends JFrame implements ActionListener {
      
 	 public static int[] RIVAL_MOVES = {1,2}; 
 	
+	 static File metal = new File("Metal.wav");
+	 
 	 static int x;
 	
 	 JButton buttonA;
@@ -116,7 +119,8 @@ public class Aris extends JFrame implements ActionListener {
      @Override
      public void actionPerformed(ActionEvent e) {
          if (e.getSource() == buttonD) {
-       
+             Bsound.Sound(metal);
+        	 
              String answer = textField.getText();
              x = Integer.parseInt(answer);
              frame.setVisible(false);
