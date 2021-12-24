@@ -69,6 +69,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	
 	static File click = new File("click.wav");
 	static File cannon = new File("Bb.wav");
+	static File spear = new File("Spear.wav");
 	
 	
 	public void StracheshipBoard() {
@@ -1131,7 +1132,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    			&& Aris.capacity(0) == true) {
 	        	
 	        	Aris Ar = new Aris();
-                Ar.useAttack(MenuInterface.Deck2); 
+                Bsound.Sound(spear);
+	        	Ar.useAttack(MenuInterface.Deck2); 
                 Aris.RIVAL_MOVES[0]--;
                 
                 changeTurn.setVisible(true);
@@ -1224,7 +1226,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
     	    	errorMessageD();
     	    
         	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
-    			&& Dias.capacity(1) == true) {
+    			&& Aris.capacity(1) == true) {
         	
 	    		Aris A = new Aris();
             	A.insertDataD(); 
@@ -1233,7 +1235,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
                
             
 	    	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
-	    			&& Dias.capacity(1) == true) {
+	    			&& Aris.capacity(1) == true) {
 	        	
 
 		   		Aris A = new Aris();
@@ -1305,6 +1307,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		return roundsNo;
 	}
 }
+
 
 
 
