@@ -53,7 +53,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JButton artemis;
 	private JButton dirDown;
 	private JButton dirRight;
-	private JButton erButton;
+	private JButton erButton1;
+	private JButton erButton2;
 	
 	private JTextField t1, t2, t5, t6, t7;
 	
@@ -457,73 +458,95 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	 
     	 
     	 } else if (e.getSource() == submit) {
-    		     Bsound.Sound(click);
+    		    Bsound.Sound(click);
     		 
-    		     boolean checkException = false;
+    		    boolean checkException = false;
     		     
-    		     int x = 0;
+    		    int x = 0;
 				
-				 try {
+				try {
 					 
-				     String answer1 = t1.getText();
-					 x = Integer.parseInt(answer1);
+				    String answer1 = t1.getText();
+					x = Integer.parseInt(answer1);
+					if(x <=0 || x >= 11 ){
+						throw new Exception();
+					}
 						 
-				 } catch (Exception ex) {
+				} catch (NumberFormatException ex) {
 					checkException = true;
 					 
-					 SecondFrame.setVisible(false);
+					SecondFrame.setVisible(false);
 					 
-					 erFrame = new JFrame("Error!!!");
-					 erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					 erFrame.setLayout(new FlowLayout());
-					 JPanel pn = new JPanel();
+					erFrame = new JFrame("Error!!!");
+					erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					erFrame.setLayout(new FlowLayout());
+					JPanel pn = new JPanel();
  
-					 JLabel message = new JLabel("Cordinates x, please enter a number.");
+					JLabel message = new JLabel("Cordinates x, please enter a number.");
  
-					 erButton = new JButton("OK");
-					 erButton.addActionListener(this);
+					erButton1 = new JButton("OK");
+					erButton1.addActionListener(this);
 					
-					 pn.add(erButton);
-					 pn.add(message);
+					pn.add(erButton1);
+					pn.add(message);
  
-					 erFrame.add(pn);
-					 erFrame.setVisible(true);
-					 erFrame.pack();
-				 }
+					erFrame.add(pn);
+					erFrame.setVisible(true);
+					erFrame.pack();
+				}catch(Exception ex){
+					checkException = true;
+					 
+					SecondFrame.setVisible(false);
+					 
+					erFrame = new JFrame("Error!!!");
+					erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					erFrame.setLayout(new FlowLayout());
+					JPanel pn = new JPanel();
+
+					JLabel message = new JLabel("Enter a number from 1 to 10.");
+ 
+					erButton1 = new JButton("OK");
+					erButton1.addActionListener(this);
+					
+					pn.add(erButton1);
+					pn.add(message);
+ 
+					erFrame.add(pn);
+					erFrame.setVisible(true);
+					erFrame.pack();
+				}
 				 
 				 
-				 int y = 0;
+				int y = 0;
 				
-    	         try {
+    	        try {
     	        	
-    	        	 String answer2 = t2.getText(); 
+    	        	String answer2 = t2.getText(); 
 					y = Integer.parseInt(answer2);
 				 
-    	         } catch (Exception ex) {
-    	        	 checkException = true;
+    	        } catch (Exception ex) {
+    	        	checkException = true;
     	        	 
-    	        	 SecondFrame.setVisible(false);
+    	        	SecondFrame.setVisible(false);
     	        	 
-					 erFrame = new JFrame("Error!!!");
-					 erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					 erFrame.setLayout(new FlowLayout());
-					 JPanel pn = new JPanel();
+					erFrame = new JFrame("Error!!!");
+					erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					erFrame.setLayout(new FlowLayout());
+					JPanel pn = new JPanel();
  
-					 JLabel message = new JLabel("Cordinates y, please enter a number.");
+					JLabel message = new JLabel("Cordinates y, please enter a number.");
  
-					 erButton = new JButton("OK");
-					 erButton.addActionListener(this);
+					erButton1 = new JButton("OK");
+					erButton1.addActionListener(this);
 					
-                     pn.add(erButton);
-					 pn.add(message);
+                    pn.add(erButton1);
+					pn.add(message);
  
-					 erFrame.add(pn);
-					 erFrame.setVisible(true);
-					 erFrame.pack();
-				 }
-    	        
-    	         
-    	         
+					erFrame.add(pn);
+					erFrame.setVisible(true);
+					erFrame.pack();
+				}
+
     	         if (Player.playerNo == 1) {
     	        	  
     	        	 PlayerPlacesShip(Deck1, x, y, direction);
@@ -537,7 +560,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	         
     	         if (checkException == false) {
     	        	 
-    	        	 startGame();
+    	        	startGame();
     	         }
     	         
     	        
@@ -556,28 +579,84 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		 
     		 
     	 } else if (e.getSource() == next) {
-    		 Bsound.Sound(click);
+    		Bsound.Sound(click);
     		 
-    		 String answer5 = t5.getText();
-	         String answer6 = t6.getText();
-	         String answer7 = t7.getText();
+    		String answer5 = t5.getText();
+	        String answer6 = t6.getText();
+	        String answer7 = t7.getText();
 	         
-	         String name = answer5;
-	         String sex = answer6;
-	         int age = Integer.parseInt(answer7);
+	        String name = answer5;
+			String sex = answer6;
+			int age=0;
+
+			boolean checkException = false;
+			try {
+				age = Integer.parseInt(answer7);
+				if(age <= 0){
+					throw new Exception();
+				}	
+			} catch (NumberFormatException ex) {
+				
+				checkException = true;
+					 
+				SecondFrame.setVisible(false);
+				
+				erFrame = new JFrame("Error!!!");
+				erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				erFrame.setLayout(new FlowLayout());
+				JPanel pn = new JPanel();
+
+				JLabel message = new JLabel("Please enter a number.");
+
+				erButton2 = new JButton("OK");
+				erButton2.addActionListener(this);
+			   
+				pn.add(erButton2);
+				pn.add(message);
+
+				erFrame.add(pn);
+				erFrame.setVisible(true);
+				erFrame.pack();
+
+			} catch(Exception ex){
+				checkException = true;
+				SecondFrame.setVisible(false);
+				
+				erFrame = new JFrame("Error!!!");
+				erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				erFrame.setLayout(new FlowLayout());
+				JPanel pn = new JPanel();
+
+				JLabel message = new JLabel("Please enter a number over 0.");
+
+				erButton2 = new JButton("OK");
+				erButton2.addActionListener(this);
+			   
+				pn.add(erButton2);
+				pn.add(message);
+
+				erFrame.add(pn);
+				erFrame.setVisible(true);
+				erFrame.pack();
+			}
 	         
-	         if (Player.playerNo == 0) {
-	        	 
-	        	 player1 = new Player(name, sex, age);
+
+	        if(!checkException){
+				if (Player.playerNo == 0) {
+					
+					player1 = new Player(name, sex, age);
+				
+				} else {
+					
+					player2 = new Player(name, sex, age);
+				}
+				
+				SecondFrame.setVisible(false);
+				startGame();
+			}
 	         
-	         } else {
-	        	 
-	        	 player2 = new Player(name, sex, age);
-	         }
-	         
-    		 SecondFrame.setVisible(false);
-	         
-    		 startGame();
+				
+				
         
     	} else if (e.getSource() == zeus || e.getSource() == poseidon ||
         		e.getSource() == ares || e.getSource() == artemis) {
@@ -636,10 +715,14 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	 }
         	
         
-    	}  else if(e.getSource()==  erButton){
+    	}  else if(e.getSource()==  erButton1){
 			
     		erFrame.setVisible(false);
     		startGame();
+		
+    	}  else if(e.getSource()==  erButton2){
+    		erFrame.setVisible(false);
+    		Player();
 		
     	}
    }
