@@ -463,109 +463,67 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		    boolean checkException = false;
     		     
     		    int x = 0;
-				
-				try {
-					 
+				int y = 0;
+				try {	 
 				    String answer1 = t1.getText();
 					x = Integer.parseInt(answer1);
 					if(x <=0 || x >= 11 ){
 						throw new Exception();
 					}
-						 
+	
+					String answer2 = t2.getText(); 
+					y = Integer.parseInt(answer2);
+					if(y <=0 || y >= 11 ){
+						throw new Exception();
+					}
 				} catch (NumberFormatException ex) {
 					checkException = true;
 					 
 					SecondFrame.setVisible(false);
-					 
-					erFrame = new JFrame("Error!!!");
-					erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					erFrame.setLayout(new FlowLayout());
-					JPanel pn = new JPanel();
- 
-					JLabel message = new JLabel("Cordinates x, please enter a number.");
- 
-					erButton1 = new JButton("OK");
-					erButton1.addActionListener(this);
-					
-					pn.add(erButton1);
-					pn.add(message);
- 
-					erFrame.add(pn);
-					erFrame.setVisible(true);
-					erFrame.pack();
+					errorBox("Please enter a number at cordinates.",1);
+
 				}catch(Exception ex){
 					checkException = true;
 					 
 					SecondFrame.setVisible(false);
-					 
-					erFrame = new JFrame("Error!!!");
-					erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					erFrame.setLayout(new FlowLayout());
-					JPanel pn = new JPanel();
-
-					JLabel message = new JLabel("Enter a number from 1 to 10.");
- 
-					erButton1 = new JButton("OK");
-					erButton1.addActionListener(this);
-					
-					pn.add(erButton1);
-					pn.add(message);
- 
-					erFrame.add(pn);
-					erFrame.setVisible(true);
-					erFrame.pack();
+					errorBox("Enter a number from 1 to 10.",1);
 				}
-				 
-				 
-				int y = 0;
 				
-    	        try {
-    	        	
-    	        	String answer2 = t2.getText(); 
-					y = Integer.parseInt(answer2);
-				 
-    	        } catch (Exception ex) {
-    	        	checkException = true;
-    	        	 
-    	        	SecondFrame.setVisible(false);
-    	        	 
-					erFrame = new JFrame("Error!!!");
-					erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					erFrame.setLayout(new FlowLayout());
-					JPanel pn = new JPanel();
- 
-					JLabel message = new JLabel("Cordinates y, please enter a number.");
- 
-					erButton1 = new JButton("OK");
-					erButton1.addActionListener(this);
-					
-                    pn.add(erButton1);
-					pn.add(message);
- 
-					erFrame.add(pn);
-					erFrame.setVisible(true);
-					erFrame.pack();
+				if (Player.playerNo == 1){
+					if(! Deck1.ShipOutOfDeckCheck(x, y, size_counter, direction) && !checkException ){
+						checkException = true;
+						SecondFrame.setVisible(false);
+						errorBox("Ship is out of sea! Please, try again.",1);
+						
+					}else if(! Deck1.ShipOnShipCheck(x, y, size_counter, direction) && !checkException ){
+						checkException = true;
+						SecondFrame.setVisible(false);
+						errorBox("Do not put the ship above others! Please, try again.",1);
+					}
+					PlayerPlacesShip(Deck1, x, y, direction);
+
+				}else{
+					if(! Deck2.ShipOutOfDeckCheck(x, y, size_counter, direction) && !checkException){
+						checkException = true;
+						SecondFrame.setVisible(false);
+						errorBox("Ship is out of sea! Please, try again.",1);
+						
+					}else if( ! Deck2.ShipOnShipCheck(x, y, size_counter, direction) && !checkException){
+						checkException = true;
+						SecondFrame.setVisible(false);
+						errorBox("Do not put the ship above others! Please, try again.",1);
+					}
+					PlayerPlacesShip(Deck2, x, y, direction);
 				}
 
-    	         if (Player.playerNo == 1) {
-    	        	  
-    	        	 PlayerPlacesShip(Deck1, x, y, direction);
-    	         
-    	         } else {
-    	        	 
-    	        	 PlayerPlacesShip(Deck2, x, y, direction);
-    	         }
-    	         
     	         startframe.setVisible(false);
     	         
     	         if (checkException == false) {
-    	        	 
     	        	startGame();
     	         }
     	         
     	        
     	         if (ShipPlacementCounter == 10 && Player.playerNo == 2) {
-         	
          	         Gods();
     	         }
         
@@ -596,58 +554,20 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 					throw new Exception();
 				}	
 			} catch (NumberFormatException ex) {
-				
-				checkException = true;
-					 
+				checkException = true;	 
 				SecondFrame.setVisible(false);
-				
-				erFrame = new JFrame("Error!!!");
-				erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				erFrame.setLayout(new FlowLayout());
-				JPanel pn = new JPanel();
-
-				JLabel message = new JLabel("Please enter a number.");
-
-				erButton2 = new JButton("OK");
-				erButton2.addActionListener(this);
-			   
-				pn.add(erButton2);
-				pn.add(message);
-
-				erFrame.add(pn);
-				erFrame.setVisible(true);
-				erFrame.pack();
+				errorBox("Please enter a number.",2);
 
 			} catch(Exception ex){
 				checkException = true;
 				SecondFrame.setVisible(false);
-				
-				erFrame = new JFrame("Error!!!");
-				erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				erFrame.setLayout(new FlowLayout());
-				JPanel pn = new JPanel();
-
-				JLabel message = new JLabel("Please enter a number over 0.");
-
-				erButton2 = new JButton("OK");
-				erButton2.addActionListener(this);
-			   
-				pn.add(erButton2);
-				pn.add(message);
-
-				erFrame.add(pn);
-				erFrame.setVisible(true);
-				erFrame.pack();
+				errorBox("Please enter a number over 0.",2);
 			}
 	         
-
 	        if(!checkException){
-				if (Player.playerNo == 0) {
-					
+				if (Player.playerNo == 0) {	
 					player1 = new Player(name, sex, age);
-				
 				} else {
-					
 					player2 = new Player(name, sex, age);
 				}
 				
@@ -715,16 +635,17 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	 }
         	
         
-    	}  else if(e.getSource()==  erButton1){
+    	} else if(e.getSource()==  erButton1){
 			
     		erFrame.setVisible(false);
     		startGame();
 		
-    	}  else if(e.getSource()==  erButton2){
+    	} else if(e.getSource()==  erButton2){
     		erFrame.setVisible(false);
     		Player();
 		
     	}
+		
    }
 		
 	
@@ -961,6 +882,29 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 		}
 			
 	
+	}
+
+	public void errorBox(String mess , int buttonNumber ){
+		erFrame = new JFrame("Error!!!");
+		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		erFrame.setLayout(new FlowLayout());
+		JPanel pn = new JPanel();
+
+		JLabel message = new JLabel(mess);
+
+		if (buttonNumber == 1){
+			erButton1 = new JButton("OK");
+			erButton1.addActionListener(this);
+			pn.add(erButton1);
+		}else{
+			erButton2 = new JButton("OK");
+			erButton2.addActionListener(this);
+			pn.add(erButton2);
+		}
+		pn.add(message);
+		erFrame.add(pn);
+		erFrame.setVisible(true);
+		erFrame.pack();		
 	}
    
    
