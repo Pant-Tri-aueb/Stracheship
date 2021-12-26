@@ -318,9 +318,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		newPane.setLayout(null);
     	    
     		back = new JButton("Αρχικό Μενού");
-    	    back.addActionListener(this);
-    	    back.setBounds(550, 1750, 150, 30);
-    		
+    	        back.addActionListener(this);
+    	        back.setBounds(550, 1750, 150, 30);
+    		back.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+    		back.setBackground(Color.GRAY);
+    		back.setForeground(Color.WHITE);
     		
     		newFrame.setSize(1300, 800);
         	newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
