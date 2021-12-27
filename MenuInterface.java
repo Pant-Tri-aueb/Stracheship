@@ -60,6 +60,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	private JTable jt;
 	
+	static ImageIcon logo = new ImageIcon("logo.jpg");
     static File click = new File("click.wav");
 	
 	static Player player1;
@@ -74,6 +75,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	
     	
         f = new JFrame("Stracheship 1.0");
+        f.setIconImage(logo.getImage());
         
         JLabel background = new JLabel(new ImageIcon(
         		"stracheship.jpg"));
@@ -120,6 +122,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     
     public void Player() {
     	SecondFrame = new JFrame("Stracheship 1.0");
+    	SecondFrame.setIconImage(logo.getImage());
     	SecondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	SecondFrame.setSize(1280, 720);
     	
@@ -206,6 +209,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     
     public void Gods() {
     	GodFrame = new JFrame("Stracheship 1.0");
+    	GodFrame.setIconImage(logo.getImage());
     	GodFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	GodFrame.setSize(1280, 725);
     	
@@ -312,12 +316,13 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	Bsound.Sound(click);
         	
         	
-    	    newFrame = new JFrame("Παρουσίαση - Οδηγίες του Stracheship");
-    		
+    	    newFrame = new JFrame("How To Play");
+    		newFrame.setIconImage(logo.getImage());
+    	    
     	    JLabel newPane = new JLabel(new ImageIcon("SE.gif"));
     		newPane.setLayout(null);
     	    
-    		back = new JButton("Αρχικό Μενού");
+    		back = new JButton("BACK");
     	        back.addActionListener(this);
     	        back.setBounds(550, 1750, 150, 30);
     		back.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
@@ -654,7 +659,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
    
     public void startGame() {
         startframe = new JFrame("Stracheship 1.0");
-       
+        startframe.setIconImage(logo.getImage());
+        
         JLabel pn = new JLabel(new ImageIcon(
         		"storm5.jpg"));
         
@@ -888,6 +894,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 
 	public void errorBox(String mess , int buttonNumber ){
 		erFrame = new JFrame("Error!!!");
+		erFrame.setIconImage(logo.getImage());
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
 		JPanel pn = new JPanel();
