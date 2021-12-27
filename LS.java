@@ -20,6 +20,8 @@ public class LS extends JFrame {
 	private static JLabel label;
 	private static JLabel label_1;
 	
+	static ImageIcon logo = new ImageIcon("logo.jpg");
+	
 	public  void play() {
 		LS frame = new LS();
 		frame.setVisible(true);
@@ -61,6 +63,7 @@ public class LS extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setIconImage(logo.getImage());
 		
 		label = new JLabel("");
 		label.setForeground(Color.WHITE);
