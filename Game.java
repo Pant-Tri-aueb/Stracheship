@@ -34,7 +34,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JButton Left;
 	private JButton Right;
 	private JButton god;
-	public JButton changeTurn;
+	public  JButton changeTurn;
 	private JButton next;
 	private JButton sinkedNext;
 	private JButton godAttack;
@@ -71,10 +71,12 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	static File cannon = new File("Bb.wav");
 	static File spear = new File("Spear.wav");
 	
+	static ImageIcon logo = new ImageIcon("logo.jpg");
 	
 	public void StracheshipBoard() {
 	
 	       frame = new JFrame();
+	       frame.setIconImage(logo.getImage());
 	       frame.setBounds(10, 10, 860, 860);
 	       frame.setUndecorated(false);
 	       frame.setLayout(null);
@@ -691,7 +693,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	public void errorMessageA() {
 		
 		Aframe = new JFrame("Error");
-        Aframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Aframe.setIconImage(logo.getImage());
+		Aframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Aframe.setLayout(new FlowLayout());
         JPanel pn = new JPanel();
         
@@ -711,7 +714,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
     public void errorMessageD() {
 		
 		Dframe = new JFrame("Error");
-        Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dframe.setIconImage(logo.getImage());
+		Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dframe.setLayout(new FlowLayout());
         JPanel pn = new JPanel();
         
@@ -872,6 +876,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    } else if (e.getSource() == showBoard) {
 	        
 	    	hit = new JFrame("POINTS HIT");
+	    	hit.setIconImage(logo.getImage());
 	    	
 	    	JPanel pn = new JPanel(){
 				
@@ -1307,35 +1312,3 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		return roundsNo;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
