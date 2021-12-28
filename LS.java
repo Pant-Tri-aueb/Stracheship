@@ -20,7 +20,7 @@ public class LS extends JFrame {
 	private static JLabel label;
 	private static JLabel label_1;
 	
-	static ImageIcon logo = new ImageIcon("logo.jpg");
+	static ImageIcon logo = new ImageIcon("logo.png");
 	
 	public  void play() {
 		LS frame = new LS();
