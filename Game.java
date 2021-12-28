@@ -71,7 +71,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	static File cannon = new File("Bb.wav");
 	static File spear = new File("Spear.wav");
 	
-	static ImageIcon logo = new ImageIcon("logo.jpg");
+	static ImageIcon logo = new ImageIcon("logo.png");
 	
 	public void StracheshipBoard() {
 	
