@@ -60,7 +60,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	private JTable jt;
 	
-	static ImageIcon logo = new ImageIcon("logo.jpg");
+	static ImageIcon logo = new ImageIcon("logo.png");
     static File click = new File("click.wav");
 	
 	static Player player1;
