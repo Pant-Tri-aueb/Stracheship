@@ -19,7 +19,7 @@ public class GUIWINNER {
     public static void winner() {
         
         ImageIcon img = new ImageIcon("navmaxia.jpg"); 
-        ImageIcon img2 = new ImageIcon("logo.jpg");
+        ImageIcon img2 = new ImageIcon("logo.png");
         
         JLabel label = new JLabel(String.format("The winner is %s", 
         		(MenuInterface.Deck1.checkWinner() == true) || (MenuInterface.Deck2.checkWinner() == true)  ?  
