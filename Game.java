@@ -17,16 +17,22 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+// Main class. This is where the game runs
 public class Game extends JFrame implements java.awt.event.ActionListener{
 	
 	private static final long serialVersionUID = 1L;
 	
+	// Player turn(1 or 2)
 	public static int gameState = 1;
+	
 	private static int roundsNo = 1;
 	private int shipNo = 1;
+	
+	// Helpful variables for Posidonas class
 	private int pGameState;
 	private int pRoundNo = 0;
 	
+	// All buttons
 	private JButton attack;
 	private JButton move;
 	private JButton Up;
@@ -53,6 +59,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JLabel tolerance1;
 	private JLabel tolerance2;
 	
+	// Other components
 	private JTextField Xattack, Yattack;
 	
 	public static JPanel pn;
@@ -62,17 +69,23 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JFrame Dframe;
 	private JFrame hit;
 	
+	// Arrays to indicate WHERE each player has already attacked
 	Deck hit1 = new Deck();
 	Deck hit2 = new Deck();
 	
+	// Move class object
 	Move m = new Move();
 	
+	// Sound files 
 	static File click = new File("click.wav");
 	static File cannon = new File("Bb.wav");
 	static File spear = new File("Spear.wav");
 	
+	// Main logo
 	static ImageIcon logo = new ImageIcon("logo.png");
 	
+	
+	// Operating frame
 	public void StracheshipBoard() {
 	
 	       frame = new JFrame();
@@ -81,11 +94,14 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       frame.setUndecorated(false);
 	       frame.setLayout(null);
 	      
+	       // Wooden Background
 	       playerinfo = new JLabel(new ImageIcon(
 	         		"wood3.jpg"));
 	       playerinfo.setBounds(0, 0, 860, 860);
 	       playerinfo.setLayout(null);
 	       
+	       
+	       // Check for Posidonas defense ending
 	       if (roundsNo == pRoundNo + 5) {
 				if (pGameState == 1) {
 					
@@ -99,6 +115,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				} 
 		   } 
 	       
+	       // Each player name
 	       JLabel name1 = new JLabel(MenuInterface.player1.getName());
 	       JLabel name2 = new JLabel(MenuInterface.player2.getName());
 	      
@@ -111,7 +128,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       name1.setForeground(Color.WHITE);
 	       name2.setForeground(Color.WHITE);
 	       
-	      
+	       // Each player god 
 	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
 	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
 	       
@@ -124,6 +141,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       god1.setForeground(Color.WHITE);
 	       god2.setForeground(Color.WHITE);
 	      
+	       // Update tolerance for all 5 ships and for every deck
            for (int i = 0; i < 5; i++) {
 	    	   
 	    	   Ship2.shipsList.get(i).updateTolerance(MenuInterface.Deck1);
@@ -135,6 +153,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       
 	       }
 	       
+           // Tolerance String
 	       String life = "";
 	     
 	       
@@ -216,7 +235,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 35));
 	    	   
 	       }
-	       
+	       // Ship counter
 	       shipCount1 = new JLabel("SHIP");
 	       shipCount2 = new JLabel(String.format("%d", shipNo));	       
 	       
@@ -229,6 +248,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       shipCount1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 19));
 	       shipCount2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 21));
 	       
+	       // Some useful BACK buttons
 	       backMove = new JButton("BACK");
 	       backAttack = new JButton("BACK");
 	       
@@ -247,6 +267,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       backMove.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       backAttack.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       
+	       // Hit board
 	       showBoard = new JButton("HIT");
 	       hideBoard = new JButton("HIDE");
 	       
@@ -265,20 +286,21 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       showBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       hideBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       
-	       
+	       // Attack button
 	       next = new JButton("FIRE!");
 	       next.setBounds(740, 775, 100, 30);
 	       next.addActionListener(this);
 	       next.setBackground(Color.red);
 	       next.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       
+	       // Next turn
 	       changeTurn = new JButton("NEXT");	       
 	       changeTurn.setBounds(765, 90, 75, 300);
 	       changeTurn.setFont(new Font("Castellar", Font.BOLD, 11));
 	       changeTurn.setForeground(new Color(255,215,0));
 	       changeTurn.setBackground(Color.BLACK);
 	       
-	       
+	       // Use god 
 	       god = new JButton("GOD");
 	       god.setBounds(765, 400, 75, 300);
 	       god.setFont(new Font("Castellar", Font.BOLD, 14));
@@ -300,6 +322,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       godAttack.setBackground(new Color(153, 0, 0));
 	       godDefense.setBackground(new Color(0, 102, 0));
 	       
+	       // Coordinates for attack
 	       attackMessage = new JLabel("SHOOT AT");
 	       Xattack = new JTextField();
 	       Yattack = new JTextField();
@@ -311,6 +334,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       attackMessage.setFont(new Font("SansSerif", Font.BOLD, 18));
 	       attackMessage.setForeground(Color.WHITE);
 	       
+	       // Ship's choice whether to attack or move 
 	       attack = new JButton("ATTACK");
 	       move = new JButton("MOVE");
 	       
@@ -329,6 +353,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       attack.setForeground(Color.WHITE);
 	       move.setForeground(Color.WHITE);
 	       
+	       // In case this ship is sinked (0 tolerance)
 	       sinkedNext = new JButton("NEXT SHIP");
 	       sinkedNext.setBounds(580, 775, 130, 25);
 	       sinkedNext.addActionListener(this);
@@ -336,7 +361,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       sinkedNext.setBackground(Color.GRAY);
 	       sinkedNext.setForeground(Color.WHITE);
 	       
-	       
+	       // Show the correct labels each turn
 	       if (gameState == 1) {
 	    	   frame.add(name1);
 	    	   frame.add(god1);
@@ -346,7 +371,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   frame.add(god2);
 	       }
 	       
-	        
+	        // Move buttons for every direction
 	        Up = new JButton("UP");
 			Down = new JButton("DOWN");
 			Left = new JButton("LEFT");
@@ -390,6 +415,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        backAttack.setVisible(false);
 	        backMove.setVisible(false);
 			
+	       // Fill the main frame with components 
            playerinfo.add(Left);
 		   playerinfo.add(Up);
 		   playerinfo.add(Down);
@@ -414,6 +440,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       playerinfo.add(showBoard);
 	       playerinfo.add(hideBoard);
 	       
+	       // Show or Hide several buttons, with conditions
+	       
+	       // Ship 1-5, not sinked, first player, normal tolerance
 	       if (shipNo <= 5 && (Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 &&
 	    		   Ship2.shipsList.get(shipNo - 1).getTolerance() < 500) && gameState == 1) {
 	         
@@ -424,7 +453,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	           sinkedNext.setVisible(false);
 	           showBoard.setVisible(true);
 	           hideBoard.setVisible(false);
-	         
+	       
+	       // Ship 1-5, not sinked, first player, infinite tolerance    
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 &&
 		    		   Ship2.shipsList.get(shipNo - 1).getTolerance() > 500) && gameState == 1) {
 		         
@@ -435,7 +465,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		       sinkedNext.setVisible(false);
 		       showBoard.setVisible(true);
 	           hideBoard.setVisible(false);
-	        
+	       
+	       // Ship 1-5, not sinked, second player, normal tolerance 
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo + 4).getTolerance() != 0 &&
 	    		   Ship2.shipsList.get(shipNo + 4).getTolerance() < 500) && gameState == 2) {
 	         
@@ -447,6 +478,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	          showBoard.setVisible(true);
 	          hideBoard.setVisible(false);
 	       
+	       // Ship 1-5, not sinked, second player, infinite tolerance 
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo + 4).getTolerance() != 0 &&
 	    		   Ship2.shipsList.get(shipNo + 4).getTolerance() > 500) && gameState == 2) {
 	         
@@ -458,8 +490,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	          showBoard.setVisible(true);
 	          hideBoard.setVisible(false);
         
-       
-        } else if (shipNo > 5) {
+           // End of turn, GOD or NEXT
+           } else if (shipNo > 5) {
 	    	   
 	    	   god.setVisible(true);
 	    	   changeTurn.setVisible(true);
@@ -475,6 +507,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   showBoard.setVisible(false);
 	           hideBoard.setVisible(false);
            
+	       // Sinked ship 1-5, first player    
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 
 	    		   && gameState == 1) {
 	    	   
@@ -488,7 +521,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   showBoard.setVisible(true);
 		       hideBoard.setVisible(false);
 	        
-	    	   
+	       // Sinked ship 1-5, second player	   
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 
 	    		   && gameState == 2) {
 	    	   
@@ -509,11 +542,12 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       frame.setVisible(true);
 
-	       
+	       // Find out whether a ship is sinked (check all 10 ships)
 	       for (int i = 0; i < 10; i++) {
 	    	   
 	    	   Ship2 ship = Ship2.shipsList.get(i);
-	    	   
+	    	      
+	    	   // First player
 	    	   if (i < 5) {
 	    		   if (ship.isDestroyed1() == true) {
 	    			  
@@ -526,7 +560,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    			  
 	    		   }
 	    	   
-	    		   
+	    	   // Second player	   
 	    	   } else {
 	    		   
 	    		   if (ship.isDestroyed2() == true) {
@@ -542,10 +576,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   }
 	       } 
 	       
-	      
+	       // Add 10x10 table with colors (sea)
 	       sea();
 	       
-	    
+	       // Check if any player has won
 	       if (MenuInterface.Deck1.checkWinner() == true || MenuInterface.Deck2.checkWinner() == true) {
 	    	   
 	    	   GUIWINNER.winner();
@@ -554,11 +588,13 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   
 	       
 	   }
-
-	public void sea() {
+     
+	 // Create 10x10 table filled with colors (ships)
+	 public void sea() {
 	    
 		Ship2 ship;
 		
+		// Get the right ship
 		if (gameState == 1 && shipNo < 6) {
 			
 			 ship = Ship2.shipsList.get(shipNo - 1);
@@ -577,7 +613,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		 pn = new JPanel(){
 		        
 			private static final long serialVersionUID = 1L;
-
+                
+			    // Paint method
 				public void paint(Graphics g) {
 	               	for(int y = 0; y < 10; y++ ){
 	                   	for(int x = 0; x < 10; x++){
@@ -585,7 +622,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                       	g.fillRect(x*70, y*70, 80, 70);
 	                       	
 	                       	if (MenuInterface.Deck1.deck_arr[y][x] == "S" && gameState == 1) {
-	                            boolean belongs = false;  
+	                            
+	                       		// Check for every ship's turn and change its color to darker brown
+	                       		// so it can be recognised
+	                       		boolean belongs = false;  
 	                       		
 	                       		for (int i = 0; i < ship.getSize(); i++) {
 	                       			
@@ -598,16 +638,21 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                       		
 	                       		if (belongs == true) {
 	                       			
+	                       			// Dark brown
 	                       			g.setColor(new Color(51, 25, 0));
 	                       		
 	                       		} else {
 	                       			
+	                       			// Normal brown
 	                       			g.setColor(new Color(139, 69, 19));
 	                       		}
 	                       		
 	                       
 	                        } else if (MenuInterface.Deck2.deck_arr[y][x] == "S" && gameState == 2){
-	                       
+	                            
+	                        	 
+	                       		// Check for every ship's turn and change its color to darker brown
+	                       		// so it can be recognised
 	                       	    boolean belongs = false;  
 	                       		
 	                       		for (int i = 0; i < ship.getSize(); i++) {
@@ -621,47 +666,58 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                       		
 	                       		if (belongs == true) {
 	                       			
+	                       			// Dark Brown
 	                       			g.setColor(new Color(51, 25, 0));
 	                       		
 	                       		} else {
 	                       			
+	                       			// Normal Brown
 	                       			g.setColor(new Color(139, 69, 19));
 	                       		}
 	                       
+	                       	// Block hit, player 1	
 	                       	} else if (MenuInterface.Deck1.deck_arr[y][x] == "X" && gameState == 1) {
 	                    	   
 	                    	   	g.setColor(Color.RED);
 	                       
+	                    	// Block hit, player 2   	
                            	} else if (MenuInterface.Deck2.deck_arr[y][x] == "X" && gameState == 2) {
 	                    	   
 	                    	   	g.setColor(Color.RED);	                    	   
 	                       
+	                    	// Block armored, player 1   	
                            	} else if (MenuInterface.Deck1.deck_arr[y][x] == "A" && gameState == 1) {
                         	    
                         	   	g.setColor(Color.GRAY);
                            
+                        	// Block armored, player 2   	
                            	} else if (MenuInterface.Deck2.deck_arr[y][x] == "A" && gameState == 2) {
 	                    	   
 	                    	   	g.setColor(Color.GRAY);	       
                            
+	                    	// Posidonas Defense, player 1   	
                            	}else if (MenuInterface.Deck1.deck_arr[y][x] == "U" && gameState == 1) {
                         	    
 								g.setColor(new Color(0, 0, 128));
 						
+							// Posidonas Defense, player 2	
 							} else if (MenuInterface.Deck2.deck_arr[y][x] == "U" && gameState == 2) {
 	                    	   
 								g.setColor(new Color(0, 0, 128));      
 						
+							// Posidonas Defense but block hit, player 1	
                             }else if (MenuInterface.Deck1.deck_arr[y][x] == "B" && gameState == 1) {
                         	    
 								g.setColor(new Color(102, 0, 51));
 						
+						    // Posidonas Defense but block hit, player 2		
 							} else if (MenuInterface.Deck2.deck_arr[y][x] == "B" && gameState == 2) {
 	                    	   
 								g.setColor(new Color(102, 0, 51));      
 						
 							} else { 
 	                    	  
+								// BLUE
 	                    	   	g.setColor(new Color(65,105,225));
 	                       	}
 	                        
@@ -671,17 +727,12 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	                   	}
 	              	}
 	            
-	               	for (int i = 0; i < ship.getSize(); i++) {
-	               		
-	               		if (gameState == 1) {
-	               			
-	               		}
-	               		
-	               		
-	               	}
+	               
 			   }
 				
 	       	};
+	       	
+	       	// Set sea bounds
 	       	pn.setBounds(41, 41, 729, 729);
 	       	pn.setLayout(null);
 	       	pn.setVisible(true);
@@ -690,6 +741,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       	playerinfo.add(pn);
 	}
 	
+	// In case player god's attacks are over 
 	public void errorMessageA() {
 		
 		Aframe = new JFrame("Error");
@@ -711,6 +763,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Aframe.pack();
 	}
 	
+	// In case player god's defenses are over 
     public void errorMessageD() {
 		
 		Dframe = new JFrame("Error");
@@ -732,6 +785,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Dframe.pack();
 	}
 	
+    // Every button's function
+    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == move) {
@@ -741,7 +796,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			attack.setVisible(false);
 			move.setVisible(false);
 		    
-			//  Class  ArrayList    object      getter
+			// Show the right buttons by checking ship direction (for each player)
+			// Vertical = Up and Down
+			// Horizontal = Left and Right
+			
             if (gameState == 1 && Ship2.shipsList.get(shipNo - 1).getDirection().equals("DOWN")) {
 				
 				Up.setVisible(true);
@@ -763,7 +821,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				Right.setVisible(true);
 			}
             
-		
+		// Prepare ship's attack
 		} else if (e.getSource() == attack) {
 			Bsound.Sound(click);
 			
@@ -776,7 +834,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			attackMessage.setVisible(true);
 			next.setVisible(true);
 			
-			
+		// Move to the right
 		} else if (e.getSource() == Right) {
 			Bsound.Sound(click);
 			
@@ -795,7 +853,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			shipNo++;
 			StracheshipBoard();
 			sea();
-			
+	   
+	    // Move Up	
 		} else if (e.getSource() == Up) {
 				Bsound.Sound(click);
 				
@@ -813,7 +872,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				shipNo++;
 				StracheshipBoard();
 				sea();	
-		
+				
+		// Move to the Left
 		} else if (e.getSource() == Left) {
 					Bsound.Sound(click);
 					
@@ -834,7 +894,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 					StracheshipBoard();
 					sea();
 		
-		
+		// Move Down
 		} else if (e.getSource() == Down) {
 			Bsound.Sound(click);
 			
@@ -855,7 +915,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			StracheshipBoard();
 			sea();
 			
-		
+		// End your turn
 	    } else if (e.getSource() == changeTurn) {
 	    	Bsound.Sound(click);
 	    	
@@ -873,6 +933,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	StracheshipBoard();
 	    	sea();
 	    
+	    // Show hit board	
 	    } else if (e.getSource() == showBoard) {
 	        
 	    	hit = new JFrame("POINTS HIT");
@@ -882,6 +943,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				
 				private static final long serialVersionUID = 1L;
 
+				// Sea Paint Method
 				public void paint(Graphics g) {
 					   for(int y = 0; y < 10; y++ ){
 						   for(int x = 0; x < 10; x++){
@@ -918,14 +980,15 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        
 	        showBoard.setVisible(false);
 	        hideBoard.setVisible(true);
-	    	
+	    
+	    // Hide hit board
 	    } else if (e.getSource() == hideBoard) {
 	    	
 	    	hit.setVisible(false);
 	    	showBoard.setVisible(true);
 	        hideBoard.setVisible(false);
 	    	
-	    	
+	    // Shoot 	
 	    } else if (e.getSource() == next) {
 	    	
 	    	Bsound.Sound(click);
@@ -938,46 +1001,46 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	
 	    	if (gameState == 1) {
 	    		
-	    		hit1.deck_arr[x - 1][y - 1] = "H";
+	    		hit1.deck_arr[x - 1][y - 1] = "H"; // Update hit board
 	    		
-	    		if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
+	    		if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) { // normal block hit
 	    			
 	    			Bsound.Sound(cannon);
 	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
 	    		
-	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("A")) {
+	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("A")) { // armored block hit
 	    			
 	    			Bsound.Sound(cannon);
 	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "S";
 
-	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) {
+	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) { // Posidonas block hit
 
 					MenuInterface.Deck2.deck_arr[x-1][y-1] = "U";	
 
-				} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("X")) {
+				} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("X")) { // damaged block hit
 	    			
 	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
 				}
 	    	
 	    	} else {
 	    		
-	    		hit2.deck_arr[x - 1][y - 1] = "H";
+	    		hit2.deck_arr[x - 1][y - 1] = "H";  // Update hit board
 	    		
-                if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) /* SHIP HIT */ {
+                if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) { // normal block hit
 	    			
                 	Bsound.Sound(cannon);
 	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
 	    		
-                } else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("A")) /* SHIP HIT */ {
+                } else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("A")) { // armored block hit
 	    			
                 	Bsound.Sound(cannon);
 	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "S";
 
-	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) {
+	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) { // Posidonas block hit
 
 					MenuInterface.Deck1.deck_arr[x-1][y-1] = "U";	
 
-				} else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("X")) {
+				} else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("X")) { // damaged block hit
 	    			
 	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
 
@@ -990,6 +1053,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        StracheshipBoard();
 	    	sea();
 	    
+	    // Back button
 	    } else if (e.getSource() == backAttack) {
 	    	
 	    	backAttack.setVisible(false);
@@ -999,6 +1063,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	move.setVisible(true);
 	    	attack.setVisible(true);
 	    
+	    // Another back button	
 	    } else if (e.getSource() == backMove) {	
 	    	
 	    	backMove.setVisible(false);
@@ -1009,6 +1074,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	move.setVisible(true);
 	    	attack.setVisible(true);
 	    
+	    // Sinked ship, go to the next one	
 	    } else if (e.getSource() == sinkedNext) {
 	    	
 	    	Bsound.Sound(click);
@@ -1018,7 +1084,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        StracheshipBoard();
 	    	sea();
 	    	
-	    
+	    // Use your god
 	    } else if (e.getSource() == god) {
 	    	Bsound.Sound(click);
 	    	
@@ -1027,17 +1093,19 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	godAttack.setVisible(true);
 	    	godDefense.setVisible(true);
 	    	
-	    
+	    // Choose god attack
 	    } else if (e.getSource() == godAttack) {
 	    	Bsound.Sound(click);
 	    	
 	    	godAttack.setVisible(false);
 	    	godDefense.setVisible(false);
 	    	
+	    	// Several conditions to choose the right god and check whether an attack can be used or not
+	    	
 	    	if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
 	    			&& Artemis.capacity(0) == true) {
 	    	
-	             
+	                
 	                 Artemis A = new Artemis();
 	                 A.insertDataA(); 
 	                 Artemis.RIVAL_MOVES[0]--;
@@ -1057,7 +1125,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        
 	        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
 	        		&& Artemis.capacity(0) == false) {
-	    	     
+	    	    
+	        	// No more attacks left
 	    	    errorMessageA();
 	    	    changeTurn.setVisible(true);
 	    	    
@@ -1065,6 +1134,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
 	        		&& Artemis.capacity(0) == false) {
 	        	
+	        	// No more attacks left
 	        	errorMessageA();
 	        	changeTurn.setVisible(true);
 	        
@@ -1089,6 +1159,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	         } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
 	        		&& Artemis.capacity(0) == false) {
 	    	     
+	        	// No more attacks left 
 	    	    errorMessageA();
 	    	    changeTurn.setVisible(true);
 	    	    
@@ -1096,6 +1167,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
 	        		&& Artemis.capacity(0) == false) {
 	        	
+	        	// No more attacks left
 	        	errorMessageA();
 	        	changeTurn.setVisible(true);
 	        
@@ -1122,6 +1194,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        }  else if (gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ"
 	        		&& Posidonas.capacity(0) == false) {
 	    	     
+	        	// No more attacks left
 	    	    errorMessageA();
 	    	    changeTurn.setVisible(true);
 	    	    
@@ -1129,6 +1202,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ"
 	        		&& Posidonas.capacity(0) == false) {
 	        	
+	        	// No more attacks left
 	        	errorMessageA();
 	        	changeTurn.setVisible(true);
 	        
@@ -1154,13 +1228,15 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	        
 	        } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ"
 	        		&& Aris.capacity(0) == false) {
-	    	     
+	    	    
+	        	// No more attacks left
 	    	    errorMessageA();
 	    	    changeTurn.setVisible(true);
 	        
 	        }  else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ"
 	        		&& Aris.capacity(0) == false) {
-	    	     
+	    	    
+	        	// No more attacks left
 	    	    errorMessageA();
 	    	    changeTurn.setVisible(true);
 	        
@@ -1173,6 +1249,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		   godAttack.setVisible(false);
 	       godDefense.setVisible(false);
 		   
+	       
+	   	   // Several conditions to choose the right god and check whether a defense can be used or not
+	       
 	       if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
 	    			&& Artemis.capacity(1) == true) {
 	    	   
@@ -1212,23 +1291,30 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
 	         		&& Dias.capacity(1) == false) {
 	     	     
+	       		// No more defenses left
 	     	    errorMessageD();
+	     	    changeTurn.setVisible(true);
 	     	    
 	       	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
 	           		&& Dias.capacity(1) == false) {
-	      	     
+	      	    
+	       	    // No more defenses left
 	       	    errorMessageD();
-	       	      
+	       	    changeTurn.setVisible(true);  
 	        
         	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
       			&& Artemis.capacity(1) == false) {
-  	     
+        		
+        		// No more defenses left
   	        	errorMessageD();
+  	        	changeTurn.setVisible(true);
   	    
          	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
         		&& Artemis.capacity(1) == false) {
    	     
+         	    // No more defenses left
     	    	errorMessageD();
+    	    	changeTurn.setVisible(true);
     	    
         	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
     			&& Aris.capacity(1) == true) {
@@ -1251,13 +1337,17 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 
 	    	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
       				&& Artemis.capacity(1) == false) {
-  	     
+	    		
+	    		// No more defenses left
   	        	errorMessageD();
+  	        	changeTurn.setVisible(true);
   	    
          	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
         			&& Artemis.capacity(1) == false) {
    	     
+         	    // No more defenses left
     	    	errorMessageD();
+    	    	changeTurn.setVisible(true);
          
 			} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
 					&& Posidonas.capacity(1) == true) {
@@ -1284,22 +1374,28 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
 				&& Posidonas.capacity(1) == false) {
 	 
+				// No more defenses left
 				errorMessageD();
+				changeTurn.setVisible(true);
 	
    			} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
 		  		&& Posidonas.capacity(1) == false) {
-	  
+	   
+   			    // No more defenses left
 	  			errorMessageD();
+	  			changeTurn.setVisible(true);
    			}
-		   
+	   
+	   // Close Error Frame (attack) 	   
 	   } else if (e.getSource() == errorA) {
 		   Bsound.Sound(click);
 		   
 	    	Aframe.setVisible(false);
 	    	god.setVisible(true);
 	        changeTurn.setVisible(true);
-	    	
-	    }  else if (e.getSource() == errorD) {
+	    
+	   // Close Error Frame (attack)     
+	   }  else if (e.getSource() == errorD) {
 	    	Bsound.Sound(click);
 	    	
 	    	Dframe.setVisible(false);
@@ -1308,6 +1404,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    }
     }
 	
+	// Get the number or rounds played yet
 	public static int getRoundsNo() {
 		return roundsNo;
 	}
