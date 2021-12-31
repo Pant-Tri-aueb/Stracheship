@@ -1,19 +1,24 @@
+// Class for each player
 public class Player {
-
+    
+	// Player Data
     private String name;
-    private String sex;
-    private String god ="";
+    private String sex; // input String: male/female
+    private String god =""; // initialized to avoid NullPointerExceptions
     private int age;
     
+    // 1st or 2nd player
     public static int playerNo = 0;
-
+    
+    // Constructor
     public Player(String name, String sex, int age) {
         this.name = name;
         this.sex = sex;
         this.age = age;
         playerNo++;
     }
-
+    
+    // Getters and Setters
     public String getName() {
         return name;
     }
