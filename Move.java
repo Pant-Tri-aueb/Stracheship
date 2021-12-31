@@ -1,15 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// Class thats implements ship movement
 public class Move {
 	
+	// Useful vars
 	int i;
 	int x;
 	int y;
 	int size;
 	String direction; 
 	
+	// Move ship i from Deck deck one block to the right
 	public void moveRight(int i, Deck deck) {
+		
+		// Find ship and init its coordinates on deck
 		i = i-1;
 		Ship2 ship = Ship2.shipsList.get(i) ;
 		x = ship.xy[0][0];
@@ -19,38 +24,47 @@ public class Move {
 		
 		if (direction.equals("RIGHT") ) {
 			if (y + size - 1 <= 9) {
-				int[][] array = new int[4][2];
+				   // init temp array from temp Deck
+				   int[][] array = new int[4][2];
 				   Deck mydeck = new Deck();
 				   
+				   // Copy ship.xy to temp array
 				   for (int j = 0; j < size; j++) {	
 					    array[j][0] = ship.xy[j][0];
 					    array[j][1] = ship.xy[j][1];
 						
 				   }
 				   
+				   // Copy array from Deck to the temp Deck
 				   for (int j = 0; j < size; j++) {
 					   mydeck.deck_arr[array[j][0]][array[j][1]] = deck.deck_arr[array[j][0]][array[j][1]]; 
 				   }
 					
-				   
+				   // Return ship to the original array but one block to the right
 				   for (int j = 0; j < size; j++) {
 						deck.deck_arr[ship.xy[j][0]][ship.xy[j][1] + 1] = 
 								mydeck.deck_arr[array[j][0]][array[j][1]];
 					
 					}
+				   
+				   // Leave blue (sea) behind the ship 
 				   deck.deck_arr[ship.xy[0][0]][ship.xy[0][1]] = "O";
 					
+				    // Update ship coordinates
 					for (int j = 0; j < size; j++) {
 						ship.xy[j][1] += 1;
 					}
 			} else {
-				System.out.println("Δεν επιτρέπεται!");
+				// Not allowed!
 			}
 			
 		}
 	}
 	
+	// Move ship i from Deck deck one block to the left
 	public void moveLeft(int i, Deck deck) {
+		
+		// Find ship and init its coordinates on deck
 		i = i-1;
 		Ship2 ship = Ship2.shipsList.get(i) ;
 		x = ship.xy[0][0];
@@ -61,38 +75,45 @@ public class Move {
 		
 		if (direction.equals("RIGHT") ) {
 			if (y > 0) {
+				// init temp array from temp Deck
 				int[][] array = new int[4][2];
-				   Deck mydeck = new Deck();
+				Deck mydeck = new Deck();
 				   
-				   for (int j = 0; j < size; j++) {	
+				 // Copy ship.xy to temp array
+				 for (int j = 0; j < size; j++) {	
 					    array[j][0] = ship.xy[j][0];
 					    array[j][1] = ship.xy[j][1];
 						
-				   }
-				   
+				 }
+				   // Copy array from Deck to the temp Deck
 				   for (int j = 0; j < size; j++) {
 					   mydeck.deck_arr[array[j][0]][array[j][1]] = deck.deck_arr[array[j][0]][array[j][1]]; 
 				   }
 					
-				   
+				   // Return ship to the original array but one block to the right
 				   for (int j = 0; j < size; j++) {
 						deck.deck_arr[ship.xy[j][0]][ship.xy[j][1] - 1] = 
 								mydeck.deck_arr[array[j][0]][array[j][1]];
 					
 					}
+				    // Leave blue (sea) behind the ship 
 					deck.deck_arr[ship.xy[0][0]][ship.xy[size - 1][1]] = "O";
 					
+					// Update ship coordinates
 					for (int j = 0; j < size; j++) {
 						ship.xy[j][1] -= 1;
 					}
 			} else {
-				System.out.println("Δεν επιτρέπεται!");
+				// Not allowed!
 			}
 			
 		}
 	}
 	
+	// Move ship i from Deck deck one block Up
 	public void moveUp(int i, Deck deck) {
+		
+		// Find ship and init its coordinates on deck
 		i = i-1;
 		Ship2 ship = Ship2.shipsList.get(i) ;
 		x = ship.xy[0][0];
@@ -102,39 +123,45 @@ public class Move {
 		
 		if (direction.equals("DOWN") ) {
 			if (x > 0) {
-				
+				// init temp array from temp Deck
 				int[][] array = new int[4][2];
 				   Deck mydeck = new Deck();
 				   
+				   // Copy ship.xy to temp array
 				   for (int j = 0; j < size; j++) {	
 					    array[j][0] = ship.xy[j][0];
 					    array[j][1] = ship.xy[j][1];
 						
 				   }
-				   
+				   // Copy array from Deck to the temp Deck
 				   for (int j = 0; j < size; j++) {
 					   mydeck.deck_arr[array[j][0]][array[j][1]] = deck.deck_arr[array[j][0]][array[j][1]]; 
 				   }
 					
-				   
+				   // Return ship to the original array but one block to the right
 				   for (int j = 0; j < size; j++) {
 						deck.deck_arr[ship.xy[j][0] - 1][ship.xy[j][1]] = 
 								mydeck.deck_arr[array[j][0]][array[j][1]];
 					
 					}
+				    // Leave blue (sea) behind the ship 
 					deck.deck_arr[ship.xy[size - 1][0]][ship.xy[0][1]] = "O";
 					
+					// Update ship coordinates
 					for (int j = 0; j < size; j++) {
 						ship.xy[j][0] -= 1;
 					}
 			} else {
-				System.out.println("Δεν επιτρέπεται!");
+				// Not allowed!
 			}
 			
 		}
 	}
 	
+	// Move ship i from Deck deck one block Down
 	public void moveDown(int i, Deck deck) {
+		
+		// Find ship and init its coordinates on deck
 		i = i-1;
 		Ship2 ship = Ship2.shipsList.get(i) ;
 		x = ship.xy[0][0];
@@ -144,34 +171,37 @@ public class Move {
 		
 		if (direction.equals("DOWN") ) {
 			if (x + size - 1 <= 9) {
-				
+			   // init temp array from temp Deck	
 			   int[][] array = new int[4][2];
 			   Deck mydeck = new Deck();
 			   
+			  // Copy ship.xy to temp array
 			   for (int j = 0; j < size; j++) {	
 				    array[j][0] = ship.xy[j][0];
 				    array[j][1] = ship.xy[j][1];
 					
 			   }
-			   
+			   // Copy array from Deck to the temp Deck
 			   for (int j = 0; j < size; j++) {
 				   mydeck.deck_arr[array[j][0]][array[j][1]] = deck.deck_arr[array[j][0]][array[j][1]]; 
 			   }
 				
-			   
+			   // Return ship to the original array but one block to the right
 			   for (int j = 0; j < size; j++) {
 					deck.deck_arr[ship.xy[j][0] + 1][ship.xy[j][1]] = 
 							mydeck.deck_arr[array[j][0]][array[j][1]];
 				
 				}
+			    // Leave blue (sea) behind the ship 
 				deck.deck_arr[ship.xy[0][0]][ship.xy[0][1]] = "O";
 				
+				// Update ship coordinates
 				for (int j = 0; j < size; j++) {
 					ship.xy[j][0] += 1;
 				}
 				
 			} else {
-				System.out.println("Δεν επιτρέπεται!");
+				// Not allowed!
 			}
 			
 		}
