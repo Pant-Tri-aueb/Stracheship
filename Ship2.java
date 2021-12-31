@@ -2,23 +2,32 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+// Class for every ship
 public class Ship2 {
 
+	// Useful ArrayList that holds all 10 ships in the game as Ship2 objects
+	// First 5 (0-4) belong to the first player
+	// The rest 5 (5-9) belong to the second
     static ArrayList<Ship2> shipsList = new ArrayList<Ship2>(10);
 	
-    
+    // Useful counter
 	public static int Shipcounter = 0;
 	
-	
+	// Ship data 
 	private int ShipNumber;
     private int tolerance;
     private int x;
     private int y;
     private int size;
+    // Useful 2-dim array that holds each ship coordinates
+    // (X,Y for every block) 
+    // 4 rows for the maximun size of a ship which is 4
+    // 2 columns, one for the x coordinate and one for the y
+    // Know where a particular ship is, anytime 
     public int[][] xy = new int[4][2]; 
     private String direction;
 
-   
+    // Constructor
     public Ship2(int x, int y, int size, String direction) {
         this.x = x;
         this.y = y;
@@ -27,8 +36,11 @@ public class Ship2 {
         this.tolerance = size;
         this.ShipNumber = Shipcounter + 1;
         
+        // Init xy array for ship coordinates
         this.xy[0][0] = x - 1;
         this.xy[0][1] = y - 1;
+        
+        // Different way for each direction
         if (this.direction.equals("DOWN")) {    
         
         	for(int i = 1; i < this.size; i++) {
@@ -47,10 +59,13 @@ public class Ship2 {
         }
     }
     
+    // Another constructor
     public Ship2() {
     	
     }
 
+    // Update a specific ship's tolerance by searching 
+    // 10x10 array from Deck deck
     public void updateTolerance(Deck deck) {
     	this.tolerance = 0;
     	
@@ -71,6 +86,8 @@ public class Ship2 {
         }
     }
     
+    // Method to check whether a specific ship is sinked or not 
+    // for the first player
     public boolean isDestroyed1() {
     	boolean result = true;
     	
@@ -87,7 +104,8 @@ public class Ship2 {
     	
     	return result;
     }
-
+    // Method to check whether a specific ship is sinked or not 
+    // for the second player
     public boolean isDestroyed2() {
 	    boolean result = true;
         
@@ -104,6 +122,7 @@ public class Ship2 {
 	    return result;
     }
     
+    // Getters and Setters
     public int getX() {
         return x;
     }
