@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -7,40 +8,58 @@ import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// Class Aris
 public class Aris extends JFrame implements ActionListener {
      
+	 // Limit for attack and defense
 	 public static int[] RIVAL_MOVES = {1,2}; 
 	
+	 // Defense Sound
 	 static File metal = new File("Metal.wav");
 	 
+	 // Helpful var for defense 
 	 static int x;
 	
+	 // Some components
 	 JButton buttonA;
      JButton buttonD;
      JTextField textField;
      JFrame frame;
      
-  
+     // Frame for defense
+     // Choose a ship to armor
      public void insertDataD() {
-     	frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
+     	 frame = new JFrame("CHOOSE A SHIP");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         buttonD = new JButton("ΘΩΡΑΚΙΣΗ");
+         
+         JPanel pn = new JPanel();
+         pn.setBackground(new Color(139, 69 ,19));
+         
+         // Exit frame and armor the ship
+         buttonD = new JButton("ARMOR!");
          buttonD.addActionListener(this);
+         buttonD.setBackground(Color.GREEN);
+         buttonD.setForeground(Color.BLACK);
+         buttonD.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+         
+         // Choose the ship here 
          textField = new JTextField();
          textField.setPreferredSize(new Dimension(250,40));
          textField.setFont(new Font("Consolas",Font.BOLD, 25));
 
-
-         frame.add(buttonD);
-         frame.add(textField);
+         pn.add(buttonD);
+         pn.add(textField);
+         frame.add(pn);
          frame.setVisible(true);
          frame.pack();
 
      }
      
+     // Check for attack (index = 0) or defense (index = 1) limit
      public static boolean capacity(int index) {
          boolean available = true;
      	
@@ -56,7 +75,10 @@ public class Aris extends JFrame implements ActionListener {
              
         
       }
+     
+     // Use the attack on Deck deck (no choice required)
      public void useAttack(Deck deck) {
+    	 // Find the player and damage the opponent 
     	 if (Game.gameState == 1) {
     		 
     		 for (int i = 5; i < 10; i++) {
@@ -101,6 +123,7 @@ public class Aris extends JFrame implements ActionListener {
     	 }
      }
      
+     // Use defense (armor) at ship obj from Deck deck
      public void useDefence(Ship2 obj, Deck deck) {
     	  
     	 for (int i = 0; i < obj.getSize(); i++) {
@@ -116,14 +139,19 @@ public class Aris extends JFrame implements ActionListener {
     	 MenuInterface.runGame.sea();
      }
      
+     // All buttons function
      @Override
      public void actionPerformed(ActionEvent e) {
          if (e.getSource() == buttonD) {
              Bsound.Sound(metal);
         	 
+             // Get the choice and turn it to int
              String answer = textField.getText();
              x = Integer.parseInt(answer);
+             
              frame.setVisible(false);
+             
+             // Find the right player
              if (Game.gameState == 1) {
           	   
           	   useDefence(Ship2.shipsList.get(x - 1) , MenuInterface.Deck1);
