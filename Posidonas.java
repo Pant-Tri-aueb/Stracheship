@@ -14,26 +14,33 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Graphics;
 
+// Class for Poseidon
 public class Posidonas extends JFrame implements ActionListener{
 
+	// Limit for attack and defense
 	public static int[] RIVAL_MOVES = {1,1};
 
+	// Sound files
 	static File reveal = new File("Reveal.wav");
 	static File wave = new File("Wave.wav");
 	
+	// All buttons 
 	JButton errorA;
 	JButton errorD;
 	JButton buttonA;
     JButton buttonD;
     JButton back;
 
+    // Useful vars for Posidonas methods
 	static int xChoice;
 	static int yChoice;
 	int round;
     
+	// Temp decks used for useVision method
 	Deck deck3 = new Deck();
 	Deck deck4 = new Deck();
 
+	// Other components
 	JTextField textField;
 	JTextField textFieldx;
 	JTextField textFieldy;
@@ -42,8 +49,10 @@ public class Posidonas extends JFrame implements ActionListener{
 	JFrame errorFrame;
 	JFrame visionFrame;
 
+	// Useful var
 	private static int roundNo;
 
+	// Check for attack (index = 0) or defense (index = 1) limit
 	public static boolean capacity(int index) {
         boolean available = true;
     	
@@ -60,12 +69,21 @@ public class Posidonas extends JFrame implements ActionListener{
        
      }
 	
+	 // Frame for the attack
+     // Choose a ship to find its position
 	 public void insertDataA() {
-     	 frame = new JFrame("ΔΙΑΛΕΞΕ ΠΛΟΙΟ");
+     	 frame = new JFrame("CHOOSE A SHIP");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         buttonA = new JButton("ΑΠΟΚΑΛΥΨΗ");
+         
+         // Exit and use attack method
+         buttonA = new JButton("REVEAL");
          buttonA.addActionListener(this);
+         buttonA.setBackground(Color.RED);
+         buttonA.setForeground(Color.BLACK);
+         buttonA.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+         
+         // Choose a ship here
          textField = new JTextField();
          textField.setPreferredSize(new Dimension(250,40));
          textField.setFont(new Font("Consolas",Font.BOLD, 25));
@@ -77,13 +95,18 @@ public class Posidonas extends JFrame implements ActionListener{
          frame.pack();
 
      }
-	 
+	 // Frame for defense
+     // Choose the area the waves will cover
 	 public void insertDataD() {
-     	 frame = new JFrame("ΔΩΣΕ ΣΥΝΤΕΤΑΓΗΜΕΝΕΣ");
+     	 frame = new JFrame("INSERT COORDINATES");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         buttonD = new JButton("ΥΨΩΣΗ ΚΥΜΑΤΟΣ");
+         
+         // Exit and use defense
+         buttonD = new JButton("RISE WAVES");
          buttonD.addActionListener((ActionListener) this);
+         
+         // Insert coordinates here
          textFieldx = new JTextField();
          textFieldx.setPreferredSize(new Dimension(250,40));
          textFieldx.setFont(new Font("Consolas",Font.BOLD, 25));
@@ -99,36 +122,43 @@ public class Posidonas extends JFrame implements ActionListener{
          frame.pack();
 
      }
-
-	public void useVision(int shipNo) {
+	 
+     // Attack method, reveals the posotion of ship number: shipNo
+	 public void useVision(int shipNo) {
 		Ship2 ship = Ship2.shipsList.get(shipNo - 1);
 
+		// Find player 
 		if (Game.gameState == 1) {
 			
 		    for (int i = 0; i < ship.getSize(); i++){
-	            deck3.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+	            // Use the temp array to show the ship
+		    	deck3.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
 	        }
 	           
-	        sea();
+	        sea(); // painting method
 		} else {
 			
             for (int i = 0 ; i < ship.getSize(); i++){
-                deck4.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
+                // Use the temp array to show the ship
+            	deck4.deck_arr[ship.xy[i][0]][ship.xy[i][1]] = "S";
             }  
 			
-			sea();
+			sea(); // painting method
 		}
 	}
-
+    // All buttons function
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonA) {
 			Bsound.Sound(reveal);
 			
+			// Get the choice and turn it to int
 			String answer = textField.getText();
 			int x = Integer.parseInt(answer);
+			
 			frame.setVisible(false);
 
+			// Find player
 			if(Game.gameState == 1) {
 				
 				useVision(x + 5);
@@ -141,12 +171,16 @@ public class Posidonas extends JFrame implements ActionListener{
 		} else if (e.getSource() == buttonD) {
           
 			Bsound.Sound(wave);
+			
+			// Get the choices and turn both to int
 			String answer1 = textFieldx.getText();
 			String answer2 = textFieldy.getText();
 
 			xChoice = Integer.parseInt(answer1);
 			yChoice = Integer.parseInt(answer2);
+			
 			frame.setVisible(false);
+			// Find player
 			if (Game.gameState == 1) {
 				
 				useDefence(MenuInterface.Deck1, xChoice, yChoice);
@@ -157,7 +191,7 @@ public class Posidonas extends JFrame implements ActionListener{
 			}
 			
 		} else if (e.getSource() == back) {
-			
+			// Exit frame, continue
 			visionFrame.setVisible(false);
 		}
 		
@@ -165,6 +199,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		
 	}
 
+	// Painting method for the temporary deck used for useVision method
 	public void sea() {
 		
 		visionFrame = new JFrame();
@@ -200,7 +235,7 @@ public class Posidonas extends JFrame implements ActionListener{
 							   g.setColor(Color.GREEN);
 						   
 						   } else { 
-							  
+							   // BLUE
 							   g.setColor(new Color(65,105,225));
 						   }
 						  
@@ -222,16 +257,25 @@ public class Posidonas extends JFrame implements ActionListener{
 		   visionFrame.add(pn);
 	}
 
+	// Defense method, rises protective waves at a 4x4 area
+	// with (xChoice, yChoice) top left corner
+	
+	// Ships cannot move when ther is at least one block inside the
+	// wave area
 	public void useDefence(Deck deck, int xChoice, int yChoice) {
+		// Hold the round number, use it to end the defense
+		// 4 rounds after activating
 		this.roundNo = Game.getRoundsNo();
 		
 		for (int i = xChoice; i < xChoice + 4; i++) {
 			for (int j = yChoice; j < yChoice + 4; j++) {
-				if (deck.deck_arr[i - 1][j - 1] == "S") {
+				
+				// Transform both normal and damaged blocks
+				if (deck.deck_arr[i - 1][j - 1].equals("S")) {
 					
 					deck.deck_arr[i - 1][j - 1] = "U";
 					
-				} else if (deck.deck_arr[i - 1][j - 1] == "X") {
+				} else if (deck.deck_arr[i - 1][j - 1].equals("X")) {
 					
 					deck.deck_arr[i - 1][j - 1] = "B"; 
 				
@@ -244,15 +288,16 @@ public class Posidonas extends JFrame implements ActionListener{
 	}
 	
 
-
+    // Useful Getter
 	public static int getRoundNo() {
 		return roundNo;
 	}
 
 
-	
+	// Necessary method to end the defense
 	public static void endDefense(Deck deck) {
 		
+		// Restore both normal and damaged blocks
 		for (int i = xChoice; i < xChoice + 4; i++) {
 			for (int j = yChoice; j < yChoice + 4; j++) {
 				if (deck.deck_arr[i - 1][j - 1] == "U") {
