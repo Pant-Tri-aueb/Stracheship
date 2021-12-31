@@ -1,30 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
 
+// Class for winner announcment
 public class GUIWINNER {
 
     private static int playerNo;
-    /*private static Deck Deck1;
-    private static Deck Deck2;*/
-
-
-    GUIWINNER(int playerNo/*, Deck Deck1, Deck Deck2*/) {
+   
+    // Constructor
+    GUIWINNER(int playerNo) {
         this.playerNo = playerNo;
-        /*this.Deck1 = Deck1;
-        this.Deck2 = Deck2;*/
     }
 
-    
-
+    // Run to show the winner
     public static void winner() {
         
         ImageIcon img = new ImageIcon("navmaxia.jpg"); 
         ImageIcon img2 = new ImageIcon("logo.png");
         
+        // Winner frame text
         JLabel label = new JLabel(String.format("The winner is %s", 
         		(MenuInterface.Deck1.checkWinner() == true) || (MenuInterface.Deck2.checkWinner() == true)  ?  
-        				Deck.getWinnerName() : "There is no winner yet :(" )); // create
-        //label.setText("Winner is player: "); // set text for label
+        				Deck.getWinnerName() : "There is no winner yet :(" )); 
+        
         
         
         label.setIcon(img);
@@ -36,7 +33,7 @@ public class GUIWINNER {
         label.setBackground(Color.BLACK);
         label.setOpaque(true);
 
-
+        // Main winner frame
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(565,458);
