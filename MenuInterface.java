@@ -319,12 +319,12 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	    newFrame = new JFrame("How To Play");
     		newFrame.setIconImage(logo.getImage());
     	    
-    	    JLabel newPane = new JLabel(new ImageIcon("SE.gif"));
+    	    JLabel newPane = new JLabel(new ImageIcon("SE2.gif"));
     		newPane.setLayout(null);
     	    
     		back = new JButton("BACK");
-    	        back.addActionListener(this);
-    	        back.setBounds(550, 1750, 150, 30);
+            back.addActionListener(this);
+    	    back.setBounds(550, 2200, 150, 30);
     		back.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
     		back.setBackground(Color.GRAY);
     		back.setForeground(Color.WHITE);
@@ -341,91 +341,47 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     		
     		JTextArea textArea = new JTextArea(2, 20);
     		textArea.setForeground(Color.WHITE);
-    		textArea.setText("Παιχνίδι ναυμαχία-Σκάκι \r\n" + 
+    		textArea.setText("Stracheship Presentation\r\n" + 
     				"\r\n" + 
-    				"Περίληψη\r\n" + 
-    				"Στο παιχνίδι αυτό οι παίκτες ανταγωνίζονται μεταξύ τους στην θάλασσα για την αντιμετώπιση και καταστροφή των αντίπαλων στρατευμάτων για την νίκη της ναυμαχίας.\r\n" + 
+    				"Main idea\r\n" + 
     				"\r\n" + 
+    				"Stracheship is a competitive game, a variation of the known games of chess, ship naval battles. Basically is a combination of those two games as the name shall clarify.\r\n" + 
     				"\r\n" + 
-    				"Παίκτες: Το παιχνίδι φιλοξενεί δύο παίκτες που συναγωνίζονται για την πρωτιά .\r\n" + 
+    				"Stra from strategy that it should use\r\n" + 
     				"\r\n" + 
-    				"Πιόνια: \r\n" + 
-    				"Κάθε παίκτης κατέχει τα δικά του στρατεύματα. Κάθε στράτευμα αποτελείται από 5 πλοία.\r\n" + 
-    				"Κάθε πλοίο διαφέρει. Έχουμε το α πλοίο το οποίο λαμβάνει 2 θέσεις στον χώρο που εδράζεται το παιχνίδι.\r\n" + 
-    				"Έπειτα το β και γ τα οποία κατέχουν 3 θέσεις , το δ και το ε με τις περισσότερες θέσεις 4.\r\n" + 
-    				"Η αντοχή κάθε πλοίου απέναντι στις επιθέσεις του αντιπάλου διαφέρει ανάλογα το μέγεθος του.\r\n" + 
-    				"Συγκεκριμένα :\r\n" + 
-    				"α=2 χτυπήματα\r\n" + 
-    				"β-γ=3 χτυπήματα\r\n" + 
-    				"δ-ε=4 χτυπήματα \r\n" + 
-    				"Στην ουσία καθένα αντέχει ν(θεσεις)\r\n" + 
+    				"Ches from chess\r\n" + 
     				"\r\n" + 
+    				"And ship from naval battles.\r\n" + 
     				"\r\n" + 
-    				"Χώρος που εδράζεται: \r\n" + 
-    				"Σε δύο πίνακες 10x10. Ο κάθε παίκτης διαθέτει τον δικό του πίνακα στον οποίο οργανώνει τα δικά του πιόνια. \r\n" + 
+    				"In this game two players compete for the domination of the sea. Main goal is to destroy all the ships of competitor.\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
-    				"Κινήσεις:\r\n" + 
-    				"Κάθε πλοίο τοποθετείται διαφορετικά στον πίνακα και κινείται με διαφορετικό τρόπο ανάλογα τον τύπο του.\r\n" + 
-    				"Συγκεκριμένα :\r\n" + 
-    				"Το πλοίο α κατέχει μια θέση και μπορεί να τοποθετηθεί οπουδήποτε εφόσον έχει απόσταση δύο θέσεις από γειτονικά πλοία.\r\n" + 
-    				"Μπορεί να μετακινηθεί μια θέση πάνω,δεξιά,αριστερά ή κάτω.\r\n" + 
+    				"Play area\r\n" + 
     				"\r\n" + 
-    				"Το πλοίο β κατέχει δύο θέσεις γειτονικές και μπορεί να τοποθετηθεί οριζόντια κρατώντας απόσταση δύο θέσεις από γειτονικά πλοία.\r\n" + 
-    				"Μπορεί να μετακινηθεί οπουδήποτε θέλει παραμένοντας ωστόσο στην ίδια γραμμή.\r\n" + 
-    				" \r\n" + 
-    				"Το πλοίο γ κατέχει τρεις θέσεις γειτονικές και μπορεί να τοποθετηθεί κάθετα με απόσταση δύο θέσεις από γειτονικά πλοία.\r\n" + 
-    				"Μετακινείται μια θέση προς όλες τις κατευθύνσεις και διαγώνια με τα υπόλοιπα μέρη του πλοίου να ακολουθούν.\r\n" + 
-    				"\r\n" + 
-    				"Το πλοίο δ κατέχει τέσσερις θέσεις γειτονικές και μπορεί να τοποθετηθεί οριζόντια με απόσταση δύο θέσεις από γειτονικά πλοία.\r\n" + 
-    				"Μετακινείται ομοίως με το γ αλλά έως δύο θέσεις.\r\n" + 
-    				"\r\n" + 
-    				"Πλοκή:\r\n" + 
-    				"Στο παιχνίδι αυτό κάθε παίκτης διαλέγει έναν χαρακτήρα(avatar) από την ελληνική μυθολογία με τον οποίο θα αγωνίζεται.\r\n" + 
-    				"Ο χαρακτήρας τον οποίο θα επιλέξει θα φέρει κάποιες ιδιότητες και δυνατότητες.Ο κάθε παίκτης δεν μπορεί να γνωρίζει ποιον χαρακτήρα \r\n" + 
-    				"έχει επιλέξει ο αντίπαλος του.Κάθε χαρακτήρας κατέχει μια ιδιότητα άμυνας καθώς και επίθεσης. \r\n" + 
-    				"Οι διαθέσιμοι χαρακτήρες είναι οι ακόλουθοι:\r\n" + 
-    				"->Δίας\r\n" + 
-    				"->Άρης\r\n" + 
-    				"->Ποσειδώνας\r\n" + 
-    				"->Άρτεμης\r\n" + 
-    				"\r\n" + 
-    				"\r\n" + 
-    				"Δίας\r\n" + 
-    				"-----\r\n" + 
-    				"Ως πατέρας όλων σε ιδιότητα άμυνας μπορεί να αναστήσει ένα από τα χαμένα του πλοία.\r\n" + 
-    				"Σε επίθεση μπορεί να ρίξει έναν κεραυνό ο οποίος καταστρέφει ολοκληρωτικά τα πλοία α,β αν τα πετύχει ενώ αφήνει με μια μόνο ζωή\r\n" + 
-    				"τα πλοία γ,δ εφόσον τα πετύχει.\r\n" + 
+    				"Stracheship is taking place in two 10x10 tables. Each player has his own table.\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
-    				"Άρτεμης\r\n" + 
-    				"-------\r\n" + 
-    				"Ως προστάτιδα των μικρών παιδιών και των ζώων η ιδιότητα άμυνάς της είναι η προστασία των πλοίων της για δύο κινήσεις του αντιπάλου.\r\n" + 
-    				"Δηλαδή για δύο αντίπαλες επιθέσεις αν κάποια πετύχει κάποιο πλοίο της αυτό δεν τα αποδυναμώνει.\r\n" + 
+    				"FLEET\r\n" + 
     				"\r\n" + 
-    				"Ως θεά του κυνηγιού ρίχνει σε οριζόντια κίνηση ένα βέλος το οποίο αν περάσει από κουτί στο οποίο υπάρχει μέρος πλοίου δείχνει όλες \r\n" + 
-    				"τις θέσεις που το πλοίο αυτό λαμβάνει.\r\n" + 
+    				"Each player is given a number of troops. Specifically each player has five ships each one of them with a different length and stamina.\r\n" + 
     				"\r\n" + 
+    				"They have one small ship which withholds two places in the  table and can endures two attacks of enemy troops.\r\n" + 
     				"\r\n" + 
-    				"Άρης\r\n" + 
-    				"-----\r\n" + 
-    				"Ο Άρης ως θεός του πολέμου σε άμυνα μπορεί να εμψυχώσει τον στρατό του αυξάνοντας όλα τα πλοία του κατά μια ζωή(εκτός αν έχουν φτάσει το όριο μέγιστης ζωής).\r\n" + 
+    				"Two normal ships with three places in the warzone and stamina of three lifes.\r\n" + 
     				"\r\n" + 
-    				"Σε επίθεση αφοπλίζει τα πλοία του αντιπάλου για 4 κινήσεις του αφήνοντας του μόνο την ελευθερία να τα μετακινεί.\r\n" + 
+    				"Two large ships with four places and stamina of 4 enemy attacks.\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
-    				"Ποσειδώνας\r\n" + 
-    				"----------\r\n" + 
-    				"Ο συγκεκριμένος χαρακτήρας εφόσον δαμάζει τα κύματα σε άμυνα μπορεί να σηκώσει κύματα και να κρύψει όλα τα πλοία του πίσω από αυτα.Συγκεκριμένα\r\n" + 
-    				"η Άρτεμις δεν μπορεί να τα εντοπίσει με το βέλος της , ο άρης δεν μπορεί να αφοπλίσει τα όπλα τους και ο κεραυνός του δία να τα χτυπήσει με κεραυνό.\r\n" + 
-    				"Βέβαια είναι επιλογή του παίκτη αν θα θέλει να χρησιμοποιήσει την κάρτα του στις επιθέσεις αυτές των αντιπάλων.\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
-    				"Σε επίθεση στέλνει κύματα στον αντίπαλο και ο αντίπαλος χάνει δύο επόμενες κινήσεις του μέχρι τα πλοία του να οργανωθούν ξανά απο τις φουρτούνες.\r\n" + 
     				"\r\n" + 
-    				"Κάθε ιδιότητα κάθε θεότητας θέλει χρόνο επαναφόρτισης , συγκεκριμένα κάθε 10 κινήσεις παιχνιδιού επαναφορτίζεται η κάθε ιδιότητα.\r\n" + 
+    				"Movement\r\n" + 
+    				"\r\n" + 
+    				"Ships can be placed either horizontally or vertically. If a ship is horizontally placed\r\n" + 
+    				"\r\n" + 
+    				"It can only move right or left. In the opposite, if it is placed vertically it can only move up or down by size of the table.\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
@@ -435,15 +391,84 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     				"\r\n" + 
     				"\r\n" + 
     				"\r\n" + 
+    				"Deities\r\n" + 
     				"\r\n" + 
-    				""); 
+    				"Players represent a god from Greek mythology. They choose the deity before the game starts. They cannot choose the same. Each one of them has different power of attack and defense accordingly his role in mythology. The deities they can choose is zeus , artemis , ares and Poseidon. More specifically :\r\n" + 
+    				"\r\n" + 
+    				"Zeus\r\n" + 
+    				"\r\n" + 
+    				"Attack = As the god of thunders in his attacks he chooses a ship of the enemy troops and\r\n" + 
+    				"\r\n" + 
+    				"either he destroys it or only leaves it with one life. If the ship is small or normal it gets full destroyed, if it is large it is left with stamina of one hit.\r\n" + 
+    				"\r\n" + 
+    				"His attacks ,however, cannot pass the defense of Poseidon but can go through the defense of Aris.\r\n" + 
+    				"\r\n" + 
+    				"Defense = Being the father of all gods he can raise a ship that is destroyed back to life with full stamina.\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Artemis\r\n" + 
+    				"\r\n" + 
+    				"Attack :\r\n" + 
+    				"\r\n" + 
+    				"As the goddess of hunt she picks a line out of ten and throws an arrow among that line. Everything in the way of the arrow gets hit.\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Defense:\r\n" + 
+    				"\r\n" + 
+    				"Goddess of care and protector of children, she can pick a ship of hers which is not destroyed and full its stamina.\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Ares\r\n" + 
+    				"\r\n" + 
+    				"Attack:\r\n" + 
+    				"\r\n" + 
+    				"God of war. His attack matches his role in mythology, every ship of the enemy gets hit one time losing one point on its stamina.\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Defense:\r\n" + 
+    				"\r\n" + 
+    				"Being the god of war he protects his warriors. He chooses a ship of his own and shields it. The enemy has to hit each block of the shield ship two times to destroy it.\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Poseidon\r\n" + 
+    				"\r\n" + 
+    				"Attack:\r\n" + 
+    				"\r\n" + 
+    				"God of sea. He chooses a ship of the enemy. That ship appears in a new different table(10x10)/sea. Now the player knows the specific place of that ship. However the player cannot know how much life/stamina that ship contains.\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Defense:\r\n" + 
+    				"\r\n" + 
+    				"Picks coordinates x,y in the table. Those coordinates form the top left corner of a new 4x4 table which is created. Every ship in this table is being protected by enemy attacks for four rounds.\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Game instructions\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"\r\n" + 
+    				"Each player has his own round. In this round the player has five available movements . He can choose in every move if he wants to move a ship of his or to hit in a block of the enemy table so as to hit enemy troops. When those five movements end player gets to choose either to give turn in enemy or to use god power . If he chooses god then he picks attack or defense accordingly to his plans. When god power ends he has to choose to give turn so he cannot see the table of his enemy. Also, player can win any time. Not all movements must be used.  \r\n" + 
+    				"\r\n" + 
+    				"In case in which he hits an enemy ship a sound will be made so the player knows he actually hit a block that contains part of the ship.\r\n" + 
+    				"\r\n" + 
+    				"Screen of the player contains his table(sea), ships. When he clicks in a ship it also shows its stamina and type of sea(small, normal, large).\r\n" + 
+    				"\r\n" + 
+    				"All ships have the same color. For reasons of convenience the ship you click gets more dark.\r\n" + 
+    				"\r\n" + 
+    				"Players also have a map of enemy table which shows the blocks he has hit with a black color.  So, every time he presses the button “hit” in his screen he knows his previous hits."); 
     	    textArea.setWrapStyleWord(true);
     	    textArea.setLineWrap(false);
     	    textArea.setOpaque(false);
     	    textArea.setEditable(false);
     	    textArea.setFocusable(true);
-    	    textArea.setBounds(0, 0, 2000, 1600);
-    	    textArea.setFont(new Font("SansSerif", Font.BOLD, 15));
+    	    textArea.setBounds(0, 0, 2000, 2100);
+    	    textArea.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
     	    
     	    
     	    newPane.add(textArea);
