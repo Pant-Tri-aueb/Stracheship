@@ -10,7 +10,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
 
-public class SplashScreen	 extends JFrame {
+public class SplashScreen extends JFrame {
 
 	private JPanel contentPane;
 	private static JProgressBar progressBar;
