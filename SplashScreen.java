@@ -30,16 +30,16 @@ public class SplashScreen extends JFrame {
 				if (x==0) {
 					SplashScreen.label.setText("Loading game...");
 				} else if (x==13) {
-					SplashScreen.label.setText("Gamieste...");
+					SplashScreen.label.setText("Please Wait...");
 				}else if (x == 27) {
 					SplashScreen.label.setText("Loading game...");
 				}else if (x == 40) {
-					SplashScreen.label.setText("Gamieste...");
+					SplashScreen.label.setText("Please Wait...");
 				}else if (x == 50) {
 					label_1.setForeground(Color.BLACK);
 					SplashScreen.label.setText("Loading game...");
 				}else if (x == 69) {
-					SplashScreen.label.setText("Gamieste...");
+					SplashScreen.label.setText("Please Wait...");
 				}else if (x == 86) {
 					SplashScreen.label.setText("Loading game...");
 				}
