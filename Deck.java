@@ -131,6 +131,14 @@ public class Deck {
         this.player_name = player_name;
     }
 
+    //Checks if the box is empty or not, return true if there is a ship.
+    public boolean checkSpecificBox(int x,int y){
+        if(deck_arr[x][y]=="S"){
+            return true;
+        }
+        return false;
+    }
+
     // Check for the winner
     public boolean checkWinner() {
         boolean result = true;

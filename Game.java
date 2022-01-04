@@ -51,6 +51,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JButton backAttack;
 	private JButton showBoard;
 	private JButton hideBoard;
+	private JButton erButton1;
+	private JButton erButton2;
 	
 	private JLabel playerinfo;
 	private JLabel attackMessage;
@@ -68,6 +70,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JFrame Aframe; 
 	private JFrame Dframe;
 	private JFrame hit;
+	private JFrame erFrame;
 	
 	// Arrays to indicate WHERE each player has already attacked
 	Deck hit1 = new Deck();
@@ -840,38 +843,68 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			
 			backMove.setVisible(false);
 	        
-			if (gameState == 1) {
+			boolean chekError= false;
+			try {
+				if (gameState == 1) {
 	        	   
-	        	m.moveRight(shipNo, MenuInterface.Deck1);
-	           
-	        } else if (gameState == 2) {
-	        	   
-	            m.moveRight(shipNo + 5, MenuInterface.Deck2);
-	        }
+					m.moveRight(shipNo, MenuInterface.Deck1);
+				   
+				} else if (gameState == 2) {
+					   
+					m.moveRight(shipNo + 5, MenuInterface.Deck2);
+				}
+				shipNo++;
+				
+			} catch (ArrayIndexOutOfBoundsException ex) {
+				frame.setVisible(false);
+				chekError=!chekError;
+				errorBox("Ship out of sea!!! Please, try something else.", 1);
+			}catch(Exception ex){
+				frame.setVisible(false);
+				chekError=!chekError;
+				errorBox("Ship fell on other ship!!! Be careful, please try something else.", 1);
+			}
 			
 	        frame.setVisible(false);
-			shipNo++;
-			StracheshipBoard();
-			sea();
+			if(!chekError){
+				StracheshipBoard();
+				sea();
+			}
+			
 	   
 	    // Move Up	
 		} else if (e.getSource() == Up) {
 				Bsound.Sound(click);
 				
 				backMove.setVisible(false);
-				
-		        if (gameState == 1) {
+
+				boolean chekError= false;
+				try {
+					if (gameState == 1) {
 		        	   
-		        	 m.moveUp(shipNo, MenuInterface.Deck1);
-		           
-		        } else if (gameState == 2) {
-		        	   
-		        	m.moveUp(shipNo + 5, MenuInterface.Deck2);
-		        }
+						m.moveUp(shipNo, MenuInterface.Deck1);
+					  
+				   } else if (gameState == 2) {
+						  
+					   m.moveUp(shipNo + 5, MenuInterface.Deck2);
+				   }
+				   shipNo++;
+				} catch(ArrayIndexOutOfBoundsException ex) {
+					frame.setVisible(false);
+					chekError=!chekError;
+					errorBox("Ship out of sea!!! Please, try something else.", 1);
+				} catch(Exception ex){
+					frame.setVisible(false);
+					chekError=!chekError;
+					errorBox("Ship fell on other ship!!! Be careful, please try something else.", 1);
+				}
+		        
 	            frame.setVisible(false);
-				shipNo++;
-				StracheshipBoard();
-				sea();	
+				
+				if(!chekError){
+					StracheshipBoard();
+					sea();
+				}	
 				
 		// Move to the Left
 		} else if (e.getSource() == Left) {
@@ -879,41 +912,68 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 					
 					backMove.setVisible(false);
 
-			        if (gameState == 1) {
+					boolean chekError= false;
+					try {
+						if (gameState == 1) {
 			        	   
-			        	m.moveLeft(shipNo, MenuInterface.Deck1);
-			           
-			        } else if (gameState == 2) {
-			        	   
-			            m.moveLeft(shipNo + 5, MenuInterface.Deck2);
+							m.moveLeft(shipNo, MenuInterface.Deck1);
+						   
+						} else if (gameState == 2) {
+							   
+							m.moveLeft(shipNo + 5, MenuInterface.Deck2);
+						
+						}
+						shipNo++;
+					} catch (ArrayIndexOutOfBoundsException ex) {
+						frame.setVisible(false);
+						chekError=!chekError;
+						errorBox("Ship out of sea!!! Please, try something else.", 1);
+					}catch(Exception ex){
+						frame.setVisible(false);
+						chekError=!chekError;
+						errorBox("Ship fell on other ship!!! Be careful, please try something else.", 1);
+					}
 			        
-			        }
-			         
 					frame.setVisible(false);
-					shipNo++;
-					StracheshipBoard();
-					sea();
+					
+					if(!chekError){
+						StracheshipBoard();
+						sea();
+					}	
 		
 		// Move Down
 		} else if (e.getSource() == Down) {
 			Bsound.Sound(click);
 			
 			backMove.setVisible(false);
-			
-           if (gameState == 1) {
+
+			boolean chekError= false;
+			try {
+				if (gameState == 1) {
         	   
-        	   m.moveDown(shipNo, MenuInterface.Deck1);
-           
-           } else if (gameState == 2) {
-        	   
-        	  m.moveDown(shipNo + 5, MenuInterface.Deck2);
-           }
-			
-            
+					m.moveDown(shipNo, MenuInterface.Deck1);
+				
+				} else if (gameState == 2) {
+					
+				   m.moveDown(shipNo + 5, MenuInterface.Deck2);
+				}
+				shipNo++; 
+			} catch (ArrayIndexOutOfBoundsException ex) {
+				frame.setVisible(false);
+				chekError=!chekError;
+				errorBox("Ship out of sea!!! Please, try something else.", 1);
+			} catch(Exception ex){
+				frame.setVisible(false);
+				chekError=!chekError;
+				errorBox("Ship fell on other ship!!! Be careful, please try something else.", 1);
+			}
+
             frame.setVisible(false);
-			shipNo++; 
-			StracheshipBoard();
-			sea();
+			
+			if(!chekError){
+				StracheshipBoard();
+				sea();
+			}	
 			
 		// End your turn
 	    } else if (e.getSource() == changeTurn) {
@@ -994,64 +1054,78 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	Bsound.Sound(click);
 	    	
 	    	backAttack.setVisible(false);
-	    	
-	    	int x = Integer.parseInt(Xattack.getText());
-	    	int y = Integer.parseInt(Yattack.getText());
-	    	
-	    	
-	    	if (gameState == 1) {
-	    		
-	    		hit1.deck_arr[x - 1][y - 1] = "H"; // Update hit board
-	    		
-	    		if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) { // normal block hit
-	    			
-	    			Bsound.Sound(cannon);
-	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
-	    		
-	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("A")) { // armored block hit
-	    			
-	    			Bsound.Sound(cannon);
-	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "S";
+	    	boolean chekError= false;
+			try {
+					int x = Integer.parseInt(Xattack.getText());
+					int y = Integer.parseInt(Yattack.getText());
+					
+					if (gameState == 1) {
+						
+						hit1.deck_arr[x - 1][y - 1] = "H"; // Update hit board
+						
+						if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) { // normal block hit
+							
+							Bsound.Sound(cannon);
+							MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
+						
+						} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("A")) { // armored block hit
+							
+							Bsound.Sound(cannon);
+							MenuInterface.Deck2.deck_arr[x-1][y-1] = "S";
 
-	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) { // Posidonas block hit
+						} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) { // Posidonas block hit
 
-					MenuInterface.Deck2.deck_arr[x-1][y-1] = "U";	
+							MenuInterface.Deck2.deck_arr[x-1][y-1] = "U";	
 
-				} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("X")) { // damaged block hit
-	    			
-	    			MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
-				}
-	    	
-	    	} else {
-	    		
-	    		hit2.deck_arr[x - 1][y - 1] = "H";  // Update hit board
-	    		
-                if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) { // normal block hit
-	    			
-                	Bsound.Sound(cannon);
-	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
-	    		
-                } else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("A")) { // armored block hit
-	    			
-                	Bsound.Sound(cannon);
-	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "S";
+						} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("X")) { // damaged block hit
+							
+							MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
+						}
+					
+					} else {
+						
+						hit2.deck_arr[x - 1][y - 1] = "H";  // Update hit board
+						
+						if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) { // normal block hit
+							
+							Bsound.Sound(cannon);
+							MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
+						
+						} else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("A")) { // armored block hit
+							
+							Bsound.Sound(cannon);
+							MenuInterface.Deck1.deck_arr[x-1][y-1] = "S";
 
-	    		} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) { // Posidonas block hit
+						} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) { // Posidonas block hit
 
-					MenuInterface.Deck1.deck_arr[x-1][y-1] = "U";	
+							MenuInterface.Deck1.deck_arr[x-1][y-1] = "U";	
 
-				} else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("X")) { // damaged block hit
-	    			
-	    			MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
+						} else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("X")) { // damaged block hit
+							
+							MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
 
-				}
-	    	}
-	    	
-	    	
-	    	shipNo++;
+						}
+					}
+					
+					shipNo++;
+
+			} catch (NumberFormatException ex) {
+				chekError=!chekError;
+				frame.setVisible(false);
+				errorBox("Please enter a number.", 1);
+			} catch (ArrayIndexOutOfBoundsException ex){
+				chekError=!chekError;
+				frame.setVisible(false);
+				errorBox("Please enter a number from 1 to 10.", 1);
+			}
+
+					
 	        frame.setVisible(false);
-	        StracheshipBoard();
-	    	sea();
+			if(!chekError){
+				StracheshipBoard();
+				sea();
+			}
+	        
 	    
 	    // Back button
 	    } else if (e.getSource() == backAttack) {
@@ -1401,11 +1475,44 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	Dframe.setVisible(false);
 	    	god.setVisible(true);
 	    	changeTurn.setVisible(true);
-	    }
+
+	    } else if(e.getSource()==  erButton1){
+			
+    		erFrame.setVisible(false);
+			StracheshipBoard();
+	    	sea();	
+		
+    	} else if(e.getSource()==  erButton2){
+    		erFrame.setVisible(false);
+    	}
     }
 	
 	// Get the number or rounds played yet
 	public static int getRoundsNo() {
 		return roundsNo;
+	}
+
+	public void errorBox(String mess , int buttonNumber ){
+		erFrame = new JFrame("Error!!!");
+		erFrame.setIconImage(logo.getImage());
+		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		erFrame.setLayout(new FlowLayout());
+		JPanel pn = new JPanel();
+
+		JLabel message = new JLabel(mess);
+
+		if (buttonNumber == 1){
+			erButton1 = new JButton("OK");
+			erButton1.addActionListener(this);
+			pn.add(erButton1);
+		}else{
+			erButton2 = new JButton("OK");
+			erButton2.addActionListener(this);
+			pn.add(erButton2);
+		}
+		pn.add(message);
+		erFrame.add(pn);
+		erFrame.setVisible(true);
+		erFrame.pack();		
 	}
 }

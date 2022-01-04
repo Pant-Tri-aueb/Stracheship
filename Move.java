@@ -12,7 +12,7 @@ public class Move {
 	String direction; 
 	
 	// Move ship i from Deck deck one block to the right
-	public void moveRight(int i, Deck deck) {
+	public void moveRight(int i, Deck deck) throws ArrayIndexOutOfBoundsException, Exception {
 		
 		// Find ship and init its coordinates on deck
 		i = i-1;
@@ -24,6 +24,10 @@ public class Move {
 		
 		if (direction.equals("RIGHT") ) {
 			if (y + size - 1 <= 9) {
+				//cheks if the ship drop on other ship in case of moving.
+				if(deck.checkSpecificBox(x, y + size)){
+					throw new Exception();
+				}
 				   // init temp array from temp Deck
 				   int[][] array = new int[4][2];
 				   Deck mydeck = new Deck();
@@ -56,13 +60,14 @@ public class Move {
 					}
 			} else {
 				// Not allowed!
+				throw new ArrayIndexOutOfBoundsException();
 			}
 			
 		}
 	}
 	
 	// Move ship i from Deck deck one block to the left
-	public void moveLeft(int i, Deck deck) {
+	public void moveLeft(int i, Deck deck) throws ArrayIndexOutOfBoundsException,Exception{
 		
 		// Find ship and init its coordinates on deck
 		i = i-1;
@@ -75,6 +80,10 @@ public class Move {
 		
 		if (direction.equals("RIGHT") ) {
 			if (y > 0) {
+				//cheks if the ship drop on other ship in case of moving.
+				if(deck.checkSpecificBox(x, y-1)){
+					throw new Exception();
+				}
 				// init temp array from temp Deck
 				int[][] array = new int[4][2];
 				Deck mydeck = new Deck();
@@ -105,13 +114,14 @@ public class Move {
 					}
 			} else {
 				// Not allowed!
+				throw new ArrayIndexOutOfBoundsException();
 			}
 			
 		}
 	}
 	
 	// Move ship i from Deck deck one block Up
-	public void moveUp(int i, Deck deck) {
+	public void moveUp(int i, Deck deck) throws ArrayIndexOutOfBoundsException,Exception{
 		
 		// Find ship and init its coordinates on deck
 		i = i-1;
@@ -123,6 +133,10 @@ public class Move {
 		
 		if (direction.equals("DOWN") ) {
 			if (x > 0) {
+				//cheks if the ship drop on other ship in case of moving.
+				if(deck.checkSpecificBox(x-1, y)){
+					throw new Exception();
+				}
 				// init temp array from temp Deck
 				int[][] array = new int[4][2];
 				   Deck mydeck = new Deck();
@@ -153,13 +167,14 @@ public class Move {
 					}
 			} else {
 				// Not allowed!
+				throw new ArrayIndexOutOfBoundsException();
 			}
 			
 		}
 	}
 	
 	// Move ship i from Deck deck one block Down
-	public void moveDown(int i, Deck deck) {
+	public void moveDown(int i, Deck deck) throws ArrayIndexOutOfBoundsException,Exception{
 		
 		// Find ship and init its coordinates on deck
 		i = i-1;
@@ -171,6 +186,10 @@ public class Move {
 		
 		if (direction.equals("DOWN") ) {
 			if (x + size - 1 <= 9) {
+				//cheks if the ship drop on other ship in case of moving.
+				if(deck.checkSpecificBox(x + size, y)){
+					throw new Exception();
+				}
 			   // init temp array from temp Deck	
 			   int[][] array = new int[4][2];
 			   Deck mydeck = new Deck();
@@ -202,6 +221,7 @@ public class Move {
 				
 			} else {
 				// Not allowed!
+				throw new ArrayIndexOutOfBoundsException();
 			}
 			
 		}
