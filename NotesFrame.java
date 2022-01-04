@@ -14,14 +14,18 @@ public class NotesFrame extends javax.swing.JFrame implements ActionListener{
     int firstrow, firstcol, secondrow;
     boolean firstClick = true;
 
+    JPanel gamePAN = new JPanel();
+
     public NotesFrame(){
         initComponents();
         initialize();
-
+        this.setSize(516, 539);
+        this.add(gamePAN);
     }
+
     private void initialize(){
         JPanel gamePAN = new JPanel();
-        gamePAN.setBounds(50, 70 ,670, 530);
+        gamePAN.setBounds(0,0,500,500);
         getContentPane().add(gamePAN);
         gamePAN.setLayout(new GridLayout(size,size));
         for(int r=0;r<size;r++){
@@ -41,7 +45,13 @@ public class NotesFrame extends javax.swing.JFrame implements ActionListener{
         for(int r = 0; r < size; r++){
             for (int i = 0; i < size; i++) {
                 if(ae.getSource() == butArray[r][i]){
-                    butArray[r][i].setBackground(Color.RED);
+                    if (butArray[r][i].getBackground() == Color.BLUE) {
+                        butArray[r][i].setBackground(Color.RED);
+                    } else if (butArray[r][i].getBackground() == Color.RED) {
+                        butArray[r][i].setBackground(Color.WHITE); 
+                    } else if (butArray[r][i].getBackground() == Color.WHITE) {
+                        butArray[r][i].setBackground(Color.BLUE); 
+                    }
                 }
             }
         }
@@ -49,7 +59,6 @@ public class NotesFrame extends javax.swing.JFrame implements ActionListener{
     }
 
     private void initComponents() {
-        JPanel gamePAN = new JPanel();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(null);

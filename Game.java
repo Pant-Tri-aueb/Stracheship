@@ -69,12 +69,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JFrame frame; 
 	private JFrame Aframe; 
 	private JFrame Dframe;
-	private JFrame hit;
 	private JFrame erFrame;
 	
 	// Arrays to indicate WHERE each player has already attacked
-	Deck hit1 = new Deck();
-	Deck hit2 = new Deck();
+	NotesFrame hit1;
+	NotesFrame hit2;
 	
 	// Move class object
 	Move m = new Move();
@@ -103,7 +102,17 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       playerinfo.setBounds(0, 0, 860, 860);
 	       playerinfo.setLayout(null);
 	       
+		   if (roundsNo == 1 && shipNo == 1) {
+			   hit1 = new NotesFrame();
+		   } else if (roundsNo == 2 && shipNo == 1) {
+				hit2 = new NotesFrame();
+		   }
 	       
+		   if (gameState == 1) {
+			   hit2.setVisible(false);
+		   } else if (gameState == 2) {
+			   hit1.setVisible(false);
+		   }
 	       // Check for Posidonas defense ending
 	       if (roundsNo == pRoundNo + 5) {
 				if (pGameState == 1) {
@@ -271,7 +280,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       backAttack.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       
 	       // Hit board
-	       showBoard = new JButton("HIT");
+	       showBoard = new JButton("NOTES");
 	       hideBoard = new JButton("HIDE");
 	       
 	       showBoard.setBounds(755, 550, 90, 35);
@@ -753,7 +762,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Aframe.setLayout(new FlowLayout());
         JPanel pn = new JPanel();
         
-        JLabel message = new JLabel("Τελείωσαν οι διαθέσιμες επιθέσεις");
+        JLabel message = new JLabel("NO MORE ATTACKS AVAILABLE!");
         
         errorA = new JButton("OK");
         errorA.addActionListener(this);
@@ -775,7 +784,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Dframe.setLayout(new FlowLayout());
         JPanel pn = new JPanel();
         
-        JLabel message = new JLabel("Τελείωσαν οι διαθέσιμες άμυνες");
+        JLabel message = new JLabel("NO MORE DEFENCES AVAILABLE!");
         
         errorD = new JButton("OK");
         errorD.addActionListener(this);
@@ -996,55 +1005,23 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    // Show hit board	
 	    } else if (e.getSource() == showBoard) {
 	        
-	    	hit = new JFrame("POINTS HIT");
-	    	hit.setIconImage(logo.getImage());
-	    	
-	    	JPanel pn = new JPanel(){
-				
-				private static final long serialVersionUID = 1L;
+	    	if (gameState == 1) {
+				hit1.setVisible(true);
+			} else if(gameState == 2) {
+				hit2.setVisible(true);
+			}
 
-				// Sea Paint Method
-				public void paint(Graphics g) {
-					   for(int y = 0; y < 10; y++ ){
-						   for(int x = 0; x < 10; x++){
-							   g.setColor(Color.BLACK);
-							   g.fillRect(x*40, y*40, 44, 40);
-							   if (hit1.deck_arr[y][x] == "H" && Game.gameState == 1) {
-								  
-								   g.setColor(new Color(32 ,32 ,32));
-							   
-							   } else if (hit2.deck_arr[y][x] == "H" && Game.gameState == 2){
-							   
-								   g.setColor(new Color(32 ,32 ,32));
-							   
-							   } else { 
-								  
-								   g.setColor(new Color(65,105,225));
-							   }
-							  
-							   g.fillRect(x*40+1, y*40+1, 44+1, 40+1);
-						   }
-					   }
-					   
-				   }
-			 };
-	    	pn.setLayout(null);
-			pn.setVisible(true);
-			pn.setBounds(0, 0, 420, 440);
-	    	
-	    	hit.add(pn); 
-			hit.setLayout(null); 
-	        hit.setSize(420, 440);
-	        hit.setVisible(true);
-	        hit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        
 	        showBoard.setVisible(false);
 	        hideBoard.setVisible(true);
-	    
+
 	    // Hide hit board
 	    } else if (e.getSource() == hideBoard) {
 	    	
-	    	hit.setVisible(false);
+			if (gameState == 1) {
+				hit1.setVisible(false);
+			} else if(gameState == 2) {
+				hit2.setVisible(false);
+			}
 	    	showBoard.setVisible(true);
 	        hideBoard.setVisible(false);
 	    	
@@ -1060,8 +1037,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 					int y = Integer.parseInt(Yattack.getText());
 					
 					if (gameState == 1) {
-						
-						hit1.deck_arr[x - 1][y - 1] = "H"; // Update hit board
 						
 						if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("S")) { // normal block hit
 							
@@ -1083,8 +1058,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 						}
 					
 					} else {
-						
-						hit2.deck_arr[x - 1][y - 1] = "H";  // Update hit board
 						
 						if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("S")) { // normal block hit
 							
