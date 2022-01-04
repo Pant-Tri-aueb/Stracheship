@@ -65,13 +65,13 @@ public class SplashScreen extends JFrame {
 		
 		label = new JLabel("");
 		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Calibri", Font.BOLD, 20));
+		label.setFont(new Font("Forte", Font.PLAIN, 25));
 		label.setBounds(12, 570, 600, 37);
 		contentPane.add(label);
 		
 		label_1 = new JLabel("");
 		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Calibri", Font.BOLD, 18));
+		label_1.setFont(new Font("Forte", Font.PLAIN, 21));
 		label_1.setBounds(447, 600, 83, 29);
 		contentPane.add(label_1);
 		
