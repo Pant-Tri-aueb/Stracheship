@@ -108,7 +108,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				hit2 = new NotesFrame();
 		   }
 	       
-		   if (gameState == 1) {
+		   if (gameState == 1 && roundsNo > 1) {
 			   hit2.setVisible(false);
 		   } else if (gameState == 2) {
 			   hit1.setVisible(false);
@@ -295,8 +295,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       showBoard.setForeground(Color.WHITE);
 	       hideBoard.setForeground(Color.WHITE);
 	       
-	       showBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
-	       hideBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
+	       showBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 13));
+	       hideBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 13));
 	       
 	       // Attack button
 	       next = new JButton("FIRE!");
