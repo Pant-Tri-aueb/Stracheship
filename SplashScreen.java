@@ -66,7 +66,7 @@ public class SplashScreen extends JFrame {
 		label = new JLabel("");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Forte", Font.PLAIN, 25));
-		label.setBounds(12, 570, 600, 37);
+		label.setBounds(12, 565, 600, 37);
 		contentPane.add(label);
 		
 		label_1 = new JLabel("");
