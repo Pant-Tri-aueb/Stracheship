@@ -200,11 +200,11 @@ public class Help extends JFrame implements ActionListener{
 			"\r\n"+
 			"button “hit” in his screen he knows his previous hits. This map can be updated only manually, something like a players notepad \r\n"+
 			"\r\n"+
-			"Color Blue means, block not hit at all, color Red means ship is hit in this block and color White in case player realizes enemy \r\n"+
+			"Color Blue means, block not hit at all, color Red means ship is hit in this block and color White means no ship at the block hit  \r\n"+
 			"\r\n"+
-			"ship has moved away from the Red block. Color can be changed simply by clicking at a certain block in this sequence : \r\n"+
+			"Also ships can move so there is the option to clear a particular block by turing it back to Blue. Color can be changed simply "+
 			"\r\n"+
-			"RED - WHITE - BLUE - RED...");
+			"by clicking at a certain block in this sequence : (BLUE) - RED - WHITE - BLUE...");
 	
 	
 	textArea.setWrapStyleWord(true);
