@@ -14,17 +14,15 @@ public class NotesFrame extends javax.swing.JFrame implements ActionListener{
     int firstrow, firstcol, secondrow;
     boolean firstClick = true;
 
-    JPanel gamePAN = new JPanel();
+    public JPanel gamePAN = new JPanel();
 
     public NotesFrame(){
         initComponents();
         initialize();
-        this.setSize(516, 539);
-        this.add(gamePAN);
     }
 
     private void initialize(){
-        JPanel gamePAN = new JPanel();
+        gamePAN = new JPanel();
         gamePAN.setBounds(0,0,500,500);
         getContentPane().add(gamePAN);
         gamePAN.setLayout(new GridLayout(size,size));
@@ -60,7 +58,6 @@ public class NotesFrame extends javax.swing.JFrame implements ActionListener{
 
     private void initComponents() {
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         GroupLayout gamePANLayout = new GroupLayout(gamePAN);
@@ -72,19 +69,6 @@ public class NotesFrame extends javax.swing.JFrame implements ActionListener{
         gamePAN.setBounds(50, 70 ,670, 530);
 
         pack();
-    }
-
-
-
-
-
-    public static void main(String[] args) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NotesFrame().setVisible(true);
-            }
-        });
     }
 
     
