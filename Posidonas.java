@@ -210,6 +210,8 @@ public class Posidonas extends JFrame implements ActionListener{
 		back.setBounds(568, 15, 80, 25);
 		back.addActionListener(this);
 		back.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 13));
+		back.setForeground(Color.WHITE);
+		back.setBackground(Color.GRAY);
 		
 		JLabel wood = new JLabel(new ImageIcon("wood.jpg"));
 		wood.setBounds(0, 700, 729, 71);
