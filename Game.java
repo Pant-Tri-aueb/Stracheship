@@ -119,8 +119,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       
 		   if (gameState == 1 && roundsNo > 1) {
 			   hit2.gamePAN.setVisible(false);
+			   hit1.gamePAN.setVisible(true);
+			   
 		   } else if (gameState == 2) {
 			   hit1.gamePAN.setVisible(false);
+			   hit2.gamePAN.setVisible(true);
 		   }
 	       // Check for Posidonas defense ending
 	       if (roundsNo == pRoundNo + 5) {
@@ -230,12 +233,12 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       } else if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 ) {
 	    	   
-	    	   tolerance2.setBounds(846, 240, 100, 30);
+	    	   tolerance2.setBounds(846, 240, 140, 30);
 	       
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ) {
 	    	   
-	    	   tolerance2.setBounds(846, 240, 100, 30);
+	    	   tolerance2.setBounds(846, 240, 140, 30);
 	       }
 
 	       
