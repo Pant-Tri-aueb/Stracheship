@@ -60,6 +60,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JLabel shipCount2;
 	private JLabel tolerance1;
 	private JLabel tolerance2;
+	private JLabel notes;
 	
 	// Other components
 	private JTextField Xattack, Yattack;
@@ -92,26 +93,34 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	
 	       frame = new JFrame();
 	       frame.setIconImage(logo.getImage());
-	       frame.setBounds(10, 10, 860, 860);
+	       frame.setBounds(10, 10, 1720, 860);
 	       frame.setUndecorated(false);
 	       frame.setLayout(null);
 	      
 	       // Wooden Background
 	       playerinfo = new JLabel(new ImageIcon(
 	         		"wood3.jpg"));
-	       playerinfo.setBounds(0, 0, 860, 860);
+	       playerinfo.setBounds(0, 0, 1720, 860);
 	       playerinfo.setLayout(null);
 	       
 		   if (roundsNo == 1 && shipNo == 1) {
 			   hit1 = new NotesFrame();
+			   hit1.gamePAN.setBounds(1050, 100, 500, 500);
+			   hit1.gamePAN.setVisible(true);
+			   
+			   hit2 = new NotesFrame();
+			   hit2.gamePAN.setBounds(1050, 100, 500, 500);
+			   hit2.gamePAN.setVisible(false);
+		   
 		   } else if (roundsNo == 2 && shipNo == 1) {
-				hit2 = new NotesFrame();
+			   hit1.gamePAN.setVisible(false);	
+			   hit2.gamePAN.setVisible(true);
 		   }
 	       
 		   if (gameState == 1 && roundsNo > 1) {
-			   hit2.setVisible(false);
+			   hit2.gamePAN.setVisible(false);
 		   } else if (gameState == 2) {
-			   hit1.setVisible(false);
+			   hit1.gamePAN.setVisible(false);
 		   }
 	       // Check for Posidonas defense ending
 	       if (roundsNo == pRoundNo + 5) {
@@ -131,8 +140,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       JLabel name1 = new JLabel(MenuInterface.player1.getName());
 	       JLabel name2 = new JLabel(MenuInterface.player2.getName());
 	      
-	       name1.setBounds(20, 778, 170, 20);
-	       name2.setBounds(20, 778, 170, 20);
+	       name1.setBounds(120, 778, 270, 20);
+	       name2.setBounds(120, 778, 270, 20);
 	       
 	       name1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 23));
 	       name2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 23));
@@ -144,8 +153,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       JLabel god1 = new JLabel("GOD: " + MenuInterface.player1.getGod());
 	       JLabel god2 = new JLabel("GOD: " + MenuInterface.player2.getGod());
 	       
-	       god1.setBounds(220, 780, 250, 20);
-	       god2.setBounds(220, 780, 250, 20);
+	       god1.setBounds(450, 780, 250, 20);
+	       god2.setBounds(450, 780, 250, 20);
 	       
 	       god1.setFont(new Font("SansSerif", Font.BOLD, 23));
 	       god2.setFont(new Font("SansSerif", Font.BOLD, 23));
@@ -206,35 +215,35 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       tolerance1 = new JLabel("TOLERANCE");
 	       tolerance2 = new JLabel(life);
 	       
-	       tolerance1.setBounds(758, 200, 100, 30);
+	       tolerance1.setBounds(823, 200, 160, 30);
 	       
 	       if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 ) {
 
-	    	   tolerance2.setBounds(790, 240, 75, 30);
+	    	   tolerance2.setBounds(885, 240, 75, 30);
 	       
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0) {
 	    	   
-	    	   tolerance2.setBounds(790, 240, 75, 30);
+	    	   tolerance2.setBounds(885, 240, 75, 30);
 	       
 	       } else if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 ) {
 	    	   
-	    	   tolerance2.setBounds(756, 240, 100, 30);
+	    	   tolerance2.setBounds(846, 240, 100, 30);
 	       
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ) {
 	    	   
-	    	   tolerance2.setBounds(768, 240, 100, 30);
+	    	   tolerance2.setBounds(846, 240, 100, 30);
 	       }
 
 	       
 	       tolerance1.setForeground(Color.WHITE);
 	       tolerance2.setForeground(Color.WHITE);
 	       
-	       tolerance1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 11));
-	       tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 18));
+	       tolerance1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 20));
+	       tolerance2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 23));
 	       
 	       if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() > 500 ) {
@@ -251,21 +260,21 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       shipCount1 = new JLabel("SHIP");
 	       shipCount2 = new JLabel(String.format("%d", shipNo));	       
 	       
-	       shipCount1.setBounds(768, 90, 75, 30);
-	       shipCount2.setBounds(788, 125, 75, 30);
+	       shipCount1.setBounds(861, 90, 75, 30);
+	       shipCount2.setBounds(881, 125, 75, 30);
 	       
 	       shipCount1.setForeground(Color.WHITE);
 	       shipCount2.setForeground(Color.WHITE);
 	       
-	       shipCount1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 19));
-	       shipCount2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 21));
+	       shipCount1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 23));
+	       shipCount2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 24));
 	       
 	       // Some useful BACK buttons
 	       backMove = new JButton("BACK");
 	       backAttack = new JButton("BACK");
 	       
-	       backMove.setBounds(755, 650, 90, 35);
-	       backAttack.setBounds(755, 650, 90, 35);
+	       backMove.setBounds(855, 670, 90, 35);
+	       backAttack.setBounds(855, 670, 90, 35);
 	       
 	       backMove.addActionListener(this);
 	       backAttack.addActionListener(this);
@@ -279,42 +288,28 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       backMove.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       backAttack.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       
-	       // Hit board
-	       showBoard = new JButton("NOTES");
-	       hideBoard = new JButton("HIDE");
-	       
-	       showBoard.setBounds(755, 550, 90, 35);
-	       hideBoard.setBounds(755, 550, 90, 35);
-	       
-	       showBoard.addActionListener(this);
-	       hideBoard.addActionListener(this);
-	       
-	       showBoard.setBackground(Color.GRAY);
-	       hideBoard.setBackground(Color.GRAY);
-	       
-	       showBoard.setForeground(Color.WHITE);
-	       hideBoard.setForeground(Color.WHITE);
-	       
-	       showBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 13));
-	       hideBoard.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 13));
+	       notes = new JLabel("TAKE YOUR NOTES HERE");
+	       notes.setBounds(1130, 630, 600, 100);
+	       notes.setForeground(Color.WHITE);
+	       notes.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 22));
 	       
 	       // Attack button
 	       next = new JButton("FIRE!");
-	       next.setBounds(740, 775, 100, 30);
+	       next.setBounds(780, 500, 240, 45);
 	       next.addActionListener(this);
 	       next.setBackground(Color.red);
 	       next.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 	       
 	       // Next turn
 	       changeTurn = new JButton("NEXT");	       
-	       changeTurn.setBounds(765, 90, 75, 300);
+	       changeTurn.setBounds(765, 90, 95, 300);
 	       changeTurn.setFont(new Font("Castellar", Font.BOLD, 11));
 	       changeTurn.setForeground(new Color(255,215,0));
 	       changeTurn.setBackground(Color.BLACK);
 	       
 	       // Use god 
 	       god = new JButton("GOD");
-	       god.setBounds(765, 400, 75, 300);
+	       god.setBounds(765, 400, 95, 300);
 	       god.setFont(new Font("Castellar", Font.BOLD, 14));
 	       god.setForeground(new Color(255,215,0));
 	       god.setBackground(Color.BLACK);
@@ -339,25 +334,25 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       Xattack = new JTextField();
 	       Yattack = new JTextField();
 	       
-	       Xattack.setBounds(600, 775, 50, 30);
-	       Yattack.setBounds(670, 775, 50, 30);
-	       attackMessage.setBounds(480, 775, 140, 30);
+	       Xattack.setBounds(900, 400, 50, 30);
+	       Yattack.setBounds(970, 400, 50, 30);
+	       attackMessage.setBounds(780, 400, 140, 30);
 	       
-	       attackMessage.setFont(new Font("SansSerif", Font.BOLD, 18));
+	       attackMessage.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 18));
 	       attackMessage.setForeground(Color.WHITE);
 	       
 	       // Ship's choice whether to attack or move 
 	       attack = new JButton("ATTACK");
 	       move = new JButton("MOVE");
 	       
-	       attack.setBounds(480, 775, 130, 25);
-	       move.setBounds(660, 775, 130, 25);
+	       attack.setBounds(808, 430, 180, 40);
+	       move.setBounds(808, 570, 180, 40);
 	       
 	       attack.addActionListener(this);
 	       move.addActionListener(this);
 	       
-	       attack.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
-	       move.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+	       attack.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 15));
+	       move.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 15));
 	       
 	       attack.setBackground(Color.GRAY);
 	       move.setBackground(Color.GRAY);
@@ -367,7 +362,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       
 	       // In case this ship is sinked (0 tolerance)
 	       sinkedNext = new JButton("NEXT SHIP");
-	       sinkedNext.setBounds(580, 775, 130, 25);
+	       sinkedNext.setBounds(808, 430, 180, 40);
 	       sinkedNext.addActionListener(this);
 	       sinkedNext.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
 	       sinkedNext.setBackground(Color.GRAY);
@@ -389,15 +384,15 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 			Left = new JButton("LEFT");
 			Right = new JButton("RIGHT");
 			
-			Left.setBounds(475, 775, 100, 25);
-		    Right.setBounds(635, 775, 100, 25);
-		    Up.setBounds(475, 775, 100, 25);
-		    Down.setBounds(635, 775, 100, 25);
+			Left.setBounds(808, 430, 180, 40);
+		    Right.setBounds(808, 570, 180, 40);
+		    Up.setBounds(808, 430, 180, 40);
+		    Down.setBounds(808, 570, 180, 40);
 		      
-		    Left.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
-		    Right.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
-		    Up.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
-		    Down.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
+		    Left.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 15));
+		    Right.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 15));
+		    Up.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 15));
+		    Down.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 15));
 		    
 		    Left.setBackground(Color.GRAY);
 		    Right.setBackground(Color.GRAY);
@@ -449,8 +444,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       playerinfo.add(godDefense);
 	       playerinfo.add(backMove);
 	       playerinfo.add(backAttack);
-	       playerinfo.add(showBoard);
-	       playerinfo.add(hideBoard);
+	       playerinfo.add(notes);
+	       playerinfo.add(hit1.gamePAN);
+	       playerinfo.add(hit2.gamePAN);
+	       
 	       
 	       // Show or Hide several buttons, with conditions
 	       
@@ -463,9 +460,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	           attack.setVisible(true);
 	           move.setVisible(true);
 	           sinkedNext.setVisible(false);
-	           showBoard.setVisible(true);
-	           hideBoard.setVisible(false);
-	       
+	   
 	       // Ship 1-5, not sinked, first player, infinite tolerance    
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo - 1).getTolerance() != 0 &&
 		    		   Ship2.shipsList.get(shipNo - 1).getTolerance() > 500) && gameState == 1) {
@@ -475,8 +470,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		       attack.setVisible(true);
 		       move.setVisible(false);
 		       sinkedNext.setVisible(false);
-		       showBoard.setVisible(true);
-	           hideBoard.setVisible(false);
+		      
 	       
 	       // Ship 1-5, not sinked, second player, normal tolerance 
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo + 4).getTolerance() != 0 &&
@@ -487,9 +481,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	          attack.setVisible(true);
 	          move.setVisible(true);
 	          sinkedNext.setVisible(false);
-	          showBoard.setVisible(true);
-	          hideBoard.setVisible(false);
-	       
+	          
 	       // Ship 1-5, not sinked, second player, infinite tolerance 
 	       } else if (shipNo <= 5 && (Ship2.shipsList.get(shipNo + 4).getTolerance() != 0 &&
 	    		   Ship2.shipsList.get(shipNo + 4).getTolerance() > 500) && gameState == 2) {
@@ -499,9 +491,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	          attack.setVisible(true);
 	          move.setVisible(false);
 	          sinkedNext.setVisible(false);
-	          showBoard.setVisible(true);
-	          hideBoard.setVisible(false);
-        
+	         
            // End of turn, GOD or NEXT
            } else if (shipNo > 5) {
 	    	   
@@ -516,8 +506,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   tolerance1.setVisible(false);
 	    	   tolerance2.setVisible(false);
 	    	   sinkedNext.setVisible(false);
-	    	   showBoard.setVisible(false);
-	           hideBoard.setVisible(false);
+	    	  
            
 	       // Sinked ship 1-5, first player    
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 
@@ -530,8 +519,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   sinkedNext.setVisible(true);
 	    	   tolerance1.setVisible(true);
 	    	   tolerance2.setVisible(true);
-	    	   showBoard.setVisible(true);
-		       hideBoard.setVisible(false);
+	    	   
 	        
 	       // Sinked ship 1-5, second player	   
 	       } else if (shipNo <= 5 && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 
@@ -544,9 +532,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   sinkedNext.setVisible(true);
 	    	   tolerance1.setVisible(true);
 	    	   tolerance2.setVisible(true);
-	    	   showBoard.setVisible(true);
-		       hideBoard.setVisible(false);
-	        
+	    	   
 	       }
 	       
 	       
@@ -1002,28 +988,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	StracheshipBoard();
 	    	sea();
 	    
-	    // Show hit board	
-	    } else if (e.getSource() == showBoard) {
-	        
-	    	if (gameState == 1) {
-				hit1.setVisible(true);
-			} else if(gameState == 2) {
-				hit2.setVisible(true);
-			}
-
-	        showBoard.setVisible(false);
-	        hideBoard.setVisible(true);
-
-	    // Hide hit board
-	    } else if (e.getSource() == hideBoard) {
-	    	
-			if (gameState == 1) {
-				hit1.setVisible(false);
-			} else if(gameState == 2) {
-				hit2.setVisible(false);
-			}
-	    	showBoard.setVisible(true);
-	        hideBoard.setVisible(false);
 	    	
 	    // Shoot 	
 	    } else if (e.getSource() == next) {
@@ -1107,6 +1071,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	next.setVisible(false);
 	    	Xattack.setVisible(false);
 	    	Yattack.setVisible(false);
+	    	attackMessage.setVisible(false);
 	    	move.setVisible(true);
 	    	attack.setVisible(true);
 	    
