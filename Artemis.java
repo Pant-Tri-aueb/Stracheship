@@ -74,7 +74,7 @@ public class Artemis extends JFrame implements ActionListener {
             textField.setPreferredSize(new Dimension(250,40));
             textField.setFont(new Font("Consolas",Font.BOLD, 25));
 
-            pn.add(buttonA);
+            pn.add(buttonD);
             pn.add(textField);
             frame.add(pn);
             frame.setVisible(true);
