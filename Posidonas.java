@@ -219,7 +219,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		JLabel text = new JLabel("Vision does not reveal how much tolerance the ship is left with!");
 		text.setBounds(80, 15, 485, 30);
 		text.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 11));
-		text.setForeground(Color.BLACK);
+		text.setForeground(Color.WHITE);
 		
 		JPanel pn = new JPanel(){
 				
