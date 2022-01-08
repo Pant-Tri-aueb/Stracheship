@@ -61,6 +61,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JLabel tolerance1;
 	private JLabel tolerance2;
 	private JLabel notes;
+	private JLabel remainingAttacks1;
+	private JLabel remainingAttacks2;
+	private JLabel remainingDefenses1;
+	private JLabel remainingDefenses2;
 	
 	// Other components
 	private JTextField Xattack, Yattack;
@@ -301,7 +305,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       next.setBounds(780, 500, 240, 45);
 	       next.addActionListener(this);
 	       next.setBackground(Color.red);
-	       next.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
+	       next.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 17));
 	       
 	       // Next turn
 	       changeTurn = new JButton("NEXT");	       
@@ -319,6 +323,234 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       
 	       god.addActionListener(this);
 	       changeTurn.addActionListener(this);
+	       
+	       // For god Attacks and Defenses Labels
+	       String Amessage1 = "";
+	       String Amessage2 = "";
+	       String Dmessage1 = "";
+	       String Dmessage2 = "";
+	       
+	       if (gameState == 1 && MenuInterface.player1.getGod().equals("ΔΙΑΣ")) {
+	    	   if (Dias.RIVAL_MOVES[0] == 1) {
+	    		   Amessage1 = "YOU HAVE 1";
+	    		   Amessage2 = "ATTACK LEFT";
+	    	   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	       
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΔΙΑΣ")) {
+	    	   if (Dias.RIVAL_MOVES[0] == 1) {
+                   Amessage1 = "YOU HAVE 1";
+                   Amessage2 = "ATTACK LEFT";
+	    		   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	       
+	       } else if (gameState == 1 && MenuInterface.player1.getGod().equals("ΑΡΤΕΜΙΣ")) {
+	    	   if(Artemis.RIVAL_MOVES[0] == 2) {
+	    		   Amessage1 = "YOU HAVE 2";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   
+	    	   } else if (Artemis.RIVAL_MOVES[0] == 1) {
+	    		   Amessage1 = "YOU HAVE 1";
+                   Amessage2 = "ATTACK LEFT";
+	    	   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	    	   
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΑΡΤΕΜΙΣ")) {
+	    	   if(Artemis.RIVAL_MOVES[0] == 2) {
+	    		   Amessage1 = "YOU HAVE 2";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   
+	    	   } else if (Artemis.RIVAL_MOVES[0] == 1) {
+	    		   Amessage1 = "YOU HAVE 1";
+                   Amessage2 = "ATTACK LEFT";
+	    	   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	    	   
+	       } else if (gameState == 1 && MenuInterface.player1.getGod().equals("ΑΡΗΣ")) {
+	    	   if (Aris.RIVAL_MOVES[0] == 1) {
+	    		   Amessage1 = "YOU HAVE 1";
+	    		   Amessage2 = "ATTACK LEFT";
+	    	   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	       
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΑΡΗΣ")) {
+	    	   if (Aris.RIVAL_MOVES[0] == 1) {
+                   Amessage1 = "YOU HAVE 1";
+                   Amessage2 = "ATTACK LEFT";
+	    		   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	       
+	       } else if (gameState == 1 && MenuInterface.player1.getGod().equals("ΠΟΣΕΙΔΩΝΑΣ")) {
+	    	   if (Posidonas.RIVAL_MOVES[0] == 1) {
+	    		   Amessage1 = "YOU HAVE 1";
+	    		   Amessage2 = "ATTACK LEFT";
+	    	   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	       
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΠΟΣΕΙΔΩΝΑΣ")) {
+	    	   if (Posidonas.RIVAL_MOVES[0] == 1) {
+                   Amessage1 = "YOU HAVE 1";
+                   Amessage2 = "ATTACK LEFT";
+	    		   
+	    	   } else {
+	    		   Amessage1 = "YOU HAVE NO";
+	    		   Amessage2 = "ATTACKS LEFT";
+	    	   }
+	       
+	       }
+	       
+	       remainingAttacks1 = new JLabel(Amessage1);
+	       remainingAttacks1.setBounds(860, 200, 190, 40);
+	       remainingAttacks1.setForeground(Color.WHITE);
+	       remainingAttacks1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 16)); 
+	       remainingAttacks1.setVisible(false);
+	       
+	       remainingAttacks2 = new JLabel(Amessage2);
+	       remainingAttacks2.setBounds(860, 245, 190, 40);
+	       remainingAttacks2.setForeground(Color.WHITE);
+	       remainingAttacks2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 16)); 
+	       remainingAttacks2.setVisible(false);
+	       
+	       if (gameState == 1 && MenuInterface.player1.getGod().equals("ΔΙΑΣ")) {
+	    	   if (Dias.RIVAL_MOVES[1] == 2) {
+	    		   Dmessage1 = "YOU HAVE 2";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   
+	    	   } else if (Dias.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+	    		   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	       
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΔΙΑΣ")) {
+	    	   if (Dias.RIVAL_MOVES[1] == 2) {
+	    		   Dmessage1 = "YOU HAVE 2";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   
+	    	   } else if (Dias.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+	    		   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	       
+	       } else if (gameState == 1 && MenuInterface.player1.getGod().equals("ΑΡΤΕΜΙΣ")) {
+	    	   if(Artemis.RIVAL_MOVES[1] == 2) {
+	    		   Dmessage1 = "YOU HAVE 2";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   
+	    	   } else if (Artemis.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+                   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	    	   
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΑΡΤΕΜΙΣ")) {
+	    	   if(Artemis.RIVAL_MOVES[1] == 2) {
+	    		   Dmessage1 = "YOU HAVE 2";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   
+	    	   } else if (Artemis.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+                   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	    	   
+	       } else if (gameState == 1 && MenuInterface.player1.getGod().equals("ΑΡΗΣ")) {
+	    	   if(Aris.RIVAL_MOVES[1] == 2) {
+	    		   Dmessage1 = "YOU HAVE 2";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   
+	    	   } else if (Aris.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+                   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	    	   
+	       
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΑΡΗΣ")) {
+	    	   if(Aris.RIVAL_MOVES[1] == 2) {
+	    		   Dmessage1 = "YOU HAVE 2";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   
+	    	   } else if (Aris.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+                   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	    	   
+	       
+	       } else if (gameState == 1 && MenuInterface.player1.getGod().equals("ΠΟΣΕΙΔΩΝΑΣ")) {
+	    	   if (Posidonas.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+	    		   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	       
+	       } else if (gameState == 2 && MenuInterface.player2.getGod().equals("ΠΟΣΕΙΔΩΝΑΣ")) {
+	    	   if (Posidonas.RIVAL_MOVES[1] == 1) {
+	    		   Dmessage1 = "YOU HAVE 1";
+	    		   Dmessage2 = "DEFENSE LEFT";
+	    	   
+	    	   } else {
+	    		   Dmessage1 = "YOU HAVE NO";
+	    		   Dmessage2 = "DEFENSES LEFT";
+	    	   }
+	       
+	       }
+	       
+	       remainingDefenses1 = new JLabel(Dmessage1);
+	       remainingDefenses1.setBounds(860, 460, 190, 40);
+	       remainingDefenses1.setForeground(Color.WHITE);
+	       remainingDefenses1.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 16));
+	       remainingDefenses1.setVisible(false);
+	       
+	       remainingDefenses2 = new JLabel(Dmessage2);
+	       remainingDefenses2.setBounds(860, 505, 190, 40);
+	       remainingDefenses2.setForeground(Color.WHITE);
+	       remainingDefenses2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 16)); 
+	       remainingDefenses2.setVisible(false);
 	       
 	       godAttack = new JButton(new ImageIcon("swords.jpg"));
 	       godDefense = new JButton(new ImageIcon("shield.jpg"));
@@ -450,7 +682,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       playerinfo.add(notes);
 	       playerinfo.add(hit1.gamePAN);
 	       playerinfo.add(hit2.gamePAN);
-	       
+	       playerinfo.add(remainingAttacks1);
+	       playerinfo.add(remainingAttacks2);
+	       playerinfo.add(remainingDefenses1);
+	       playerinfo.add(remainingDefenses2);
 	       
 	       // Show or Hide several buttons, with conditions
 	       
@@ -1107,10 +1342,19 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	god.setVisible(false);
 	    	godAttack.setVisible(true);
 	    	godDefense.setVisible(true);
+	    	remainingAttacks1.setVisible(true);
+	    	remainingAttacks2.setVisible(true);
+	    	remainingDefenses1.setVisible(true);
+	    	remainingDefenses2.setVisible(true);
 	    	
 	    // Choose god attack
 	    } else if (e.getSource() == godAttack) {
 	    	Bsound.Sound(click);
+	    	
+	    	remainingAttacks1.setVisible(false);
+	    	remainingAttacks2.setVisible(false);
+	    	remainingDefenses1.setVisible(false);
+	    	remainingDefenses2.setVisible(false);
 	    	
 	    	godAttack.setVisible(false);
 	    	godDefense.setVisible(false);
@@ -1260,6 +1504,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	
 	   } else if (e.getSource() == godDefense) {
 		   Bsound.Sound(click);
+		   
+		   remainingAttacks1.setVisible(false);
+	       remainingAttacks2.setVisible(false);
+	       remainingDefenses1.setVisible(false);
+	       remainingDefenses2.setVisible(false);
 		   
 		   godAttack.setVisible(false);
 	       godDefense.setVisible(false);
