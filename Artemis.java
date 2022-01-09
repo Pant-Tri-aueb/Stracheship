@@ -30,7 +30,7 @@ public class Artemis extends JFrame implements ActionListener {
             frame.setLayout(new FlowLayout());
             
             JPanel pn = new JPanel();
-            pn.setBackground(new Color(139,69,19));
+           
             
             // Button to close frame and attack
             buttonA = new JButton("LOOSE!");
@@ -60,7 +60,7 @@ public class Artemis extends JFrame implements ActionListener {
             frame.setLayout(new FlowLayout());
             
             JPanel pn = new JPanel();
-            pn.setBackground(new Color(139,69,19));
+            
           
             // Exit frame and heal ship
             buttonD = new JButton("HEAL!");
