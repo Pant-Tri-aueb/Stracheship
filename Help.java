@@ -202,7 +202,7 @@ public class Help extends JFrame implements ActionListener{
 			"\r\n"+
 			"Color Blue means, block not hit at all, color Red means ship is hit in this block and color White means no ship at the block hit  \r\n"+
 			"\r\n"+
-			"Also ships can move so there is the option to clear a particular block by turing it back to Blue. Color can be changed simply "+
+			"Also ships can move so there is the option to clear a particular block by turing it back to Blue. Color can be changed simply \r\n"+
 			"\r\n"+
 			"by clicking at a certain block in this sequence : (BLUE) - RED - WHITE - BLUE...");
 	
