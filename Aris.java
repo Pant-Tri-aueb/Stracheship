@@ -37,7 +37,6 @@ public class Aris extends JFrame implements ActionListener {
          frame.setLayout(new FlowLayout());
          
          JPanel pn = new JPanel();
-         pn.setBackground(new Color(139, 69 ,19));
          
          // Exit frame and armor the ship
          buttonD = new JButton("ARMOR!");
