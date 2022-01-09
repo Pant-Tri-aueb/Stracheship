@@ -57,7 +57,7 @@ public class Dias extends JFrame implements ActionListener {
          frame.setLayout(new FlowLayout());
          
          JPanel pn = new JPanel();
-         pn.setBackground(new Color(139, 69, 19));
+         
          
          // Exit and attack
          buttonA = new JButton("LIGHTNING!");
@@ -87,7 +87,7 @@ public class Dias extends JFrame implements ActionListener {
          frame.setLayout(new FlowLayout());
          
          JPanel pn = new JPanel();
-         pn.setBackground(new Color(169, 69, 19));
+         
          
          // Exit and attack
          buttonD = new JButton("RESURRECT!");
