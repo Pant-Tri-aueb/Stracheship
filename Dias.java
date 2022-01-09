@@ -19,7 +19,8 @@ public class Dias extends JFrame implements ActionListener {
 	public static int[] RIVAL_MOVES = {1,2};
 	
 	// Attack sound
-	static File thunder= new File("L.wav");
+	static File thunder = new File("L.wav");
+	static File resurrect = new File("Resurrect.wav");
 	
 	// Some components
 	JButton errorA;
@@ -50,14 +51,13 @@ public class Dias extends JFrame implements ActionListener {
      }
 	
 	 // Frame for the attack
-     // Choose a row to inflict damage
+     // Choose a ship to inflict damage
 	 public void insertDataA() {
      	 frame = new JFrame("CHOOSE A SHIP");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
          
          JPanel pn = new JPanel();
-         
          
          // Exit and attack
          buttonA = new JButton("LIGHTNING!");
@@ -80,14 +80,13 @@ public class Dias extends JFrame implements ActionListener {
      }
 	 
 	 // Frame for defense
-     // Choose a ship for healing
+     // Choose a ship to resurrect
 	 public void insertDataD() {
      	 frame = new JFrame("CHOOSE A SHIP");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
          
          JPanel pn = new JPanel();
-         
          
          // Exit and attack
          buttonD = new JButton("RESURRECT!");
@@ -304,6 +303,7 @@ public class Dias extends JFrame implements ActionListener {
             }
             
 		} else if (e.getSource() == buttonD) {
+			Bsound.Sound(resurrect);
 			
 			// Get choice and turn it to int
 			String answer = textField.getText();
