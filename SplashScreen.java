@@ -19,6 +19,11 @@ public class SplashScreen extends JFrame {
 	private static JLabel label_1;
 	static ImageIcon logo = new ImageIcon("logo.png");
 	
+	/**
+	  * method :fills progressBar
+	  * 	    sets label_1 as an indicator for progressBar progress
+	  *         sets label different messages that will pop up in SplashScreen  
+	  */
 	public  void play() {
 		SplashScreen frame = new SplashScreen();
 		frame.setVisible(true);
@@ -53,6 +58,10 @@ public class SplashScreen extends JFrame {
 			}
 		MenuInterface mn = new MenuInterface();
 			}
+	
+	/**
+	  * Create the frame.
+	  */
 	public SplashScreen() {
 		setUndecorated(true);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
