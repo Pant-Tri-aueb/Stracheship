@@ -12,6 +12,7 @@ public class Artemis extends JFrame implements ActionListener {
     	 
     	 // Attack sound
     	 static File arrows = new File("Arrow.wav");
+    	 static File heal = new File("Heal.wav");
     	 
     	 // Helpful var for attack
     	 static int x;
@@ -30,7 +31,6 @@ public class Artemis extends JFrame implements ActionListener {
             frame.setLayout(new FlowLayout());
             
             JPanel pn = new JPanel();
-           
             
             // Button to close frame and attack
             buttonA = new JButton("LOOSE!");
@@ -60,7 +60,6 @@ public class Artemis extends JFrame implements ActionListener {
             frame.setLayout(new FlowLayout());
             
             JPanel pn = new JPanel();
-            
           
             // Exit frame and heal ship
             buttonD = new JButton("HEAL!");
@@ -107,7 +106,8 @@ public class Artemis extends JFrame implements ActionListener {
                }
                
              } else if (e.getSource() == buttonD) {
-          
+                Bsound.Sound(heal); 
+                
                 String answer = textField.getText();
                 
                 // Get the choice and turn it to int
