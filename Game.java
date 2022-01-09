@@ -1480,7 +1480,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    			&& Aris.capacity(0) == true) {
 	        	
 	        	Aris Ar = new Aris();
-	        	 Ar.useAttack(MenuInterface.Deck1);
+	        	Bsound.Sound(spear); 
+	        	Ar.useAttack(MenuInterface.Deck1);
                 Aris.RIVAL_MOVES[0]--;
                 
                 changeTurn.setVisible(true);
