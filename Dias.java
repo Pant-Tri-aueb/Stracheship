@@ -21,6 +21,7 @@ public class Dias extends JFrame implements ActionListener {
 	// Attack sound
 	static File thunder = new File("L.wav");
 	static File resurrect = new File("Resurrect.wav");
+	static File click = new File("click.wav");
 	
 	// Some components
 	JButton errorA;
@@ -323,12 +324,14 @@ public class Dias extends JFrame implements ActionListener {
 	            
 		// Exit error frames	
 		} else if (e.getSource() == errorA) {
-	    	
+			Bsound.Sound(click);
+			
 	    	errorFrame.setVisible(false);
 	    	insertDataA();
 	    
 	    
 		} else if (e.getSource() == errorD) {
+			Bsound.Sound(click);
 			
 			errorFrame.setVisible(false);
 			
