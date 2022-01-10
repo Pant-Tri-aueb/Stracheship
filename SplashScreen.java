@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,12 +22,14 @@ public class SplashScreen extends JFrame {
 	private static JLabel label;
 	private static JLabel label_1;
 	static ImageIcon logo = new ImageIcon("logo.png");
+	public static Backgroundmusic music = new Backgroundmusic();
 	
 	/**
 	  * method :fills progressBar
 	  * 	    sets label_1 as an indicator for progressBar progress
 	  *         sets label different messages that will pop up in SplashScreen  
 	  */
+	
 	public  void play() {
 		SplashScreen frame = new SplashScreen();
 		frame.setVisible(true);
@@ -50,18 +56,31 @@ public class SplashScreen extends JFrame {
 				}
 				
 				if(x==101) {
+					
 					frame.dispose();
 				}
 			}
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		MenuInterface mn = new MenuInterface();
+		try {
+			MenuInterface mn = new MenuInterface();
+			music.sound();
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			}
-	
 	/**
 	  * Create the frame.
 	  */
+	
 	public SplashScreen() {
 		setUndecorated(true);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
