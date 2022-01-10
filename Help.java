@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 public class Help extends JFrame implements ActionListener{
 
@@ -157,7 +160,7 @@ public class Help extends JFrame implements ActionListener{
 			"\r\n"+
 			"of the shield ship two times to destroy it.\r\n" + 
 			"\r\n" + 
-			"                                                                                                                          Poseidon\r\n" + 
+			"                                                                                                                         Poseidon\r\n" + 
 			"\r\n" + 
 			"Attack:\r\n" + 
 			"\r\n" + 
@@ -172,7 +175,7 @@ public class Help extends JFrame implements ActionListener{
 			"Every ship in this table is being protected by enemy attacks for four rounds.\r\n" + 
 			"\r\n" + 
 			"\r\n" + 
-			"                                                                                                                    Game instructions\r\n" + 
+			"                                                                                                                  Game instructions\r\n" + 
 			"\r\n" + 
 			"\r\n" + 
 			"\r\n" + 
@@ -238,7 +241,10 @@ public class Help extends JFrame implements ActionListener{
 		 Bsound.Sound(click);
 		 
 		 this.setVisible(false);
-		 MenuInterface mn = new MenuInterface();
+		 MenuInterface.f.setVisible(true);
+				
+		
+		
 	 }
 	
   } 
