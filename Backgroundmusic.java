@@ -8,15 +8,25 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Backgroundmusic  {
-	   public void sound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		   AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("tar.wav"));
-		   Clip c = AudioSystem.getClip();
+	  
+	 public boolean play = true;
+	 public Clip c;
+	 
+	 public void sound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		   AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("Background.wav"));
+		   c = AudioSystem.getClip();
 		   c.open(inputStream);
-		   while(true){
+		   while(play){
 			   c.start();
 			   c.loop(c.LOOP_CONTINUOUSLY);
+			   
+		   } 
+		   if (!play) {
+			   c.stop();
+			   
 		   }
 	   }
+	 
 }
 
 
