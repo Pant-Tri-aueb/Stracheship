@@ -105,6 +105,8 @@ public class Posidonas extends JFrame implements ActionListener{
          // Exit and use defense
          buttonD = new JButton("RISE WAVES");
          buttonD.addActionListener((ActionListener) this);
+         buttonD.setBackground(Color.GREEN);
+         buttonD.setForeground(Color.BLACK);
          
          // Insert coordinates here
          textFieldx = new JTextField();
