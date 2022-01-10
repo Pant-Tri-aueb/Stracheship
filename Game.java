@@ -1,21 +1,17 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
+
 
 // Main class. This is where the game runs
 public class Game extends JFrame implements java.awt.event.ActionListener{
@@ -26,6 +22,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	public static int gameState = 1;
 	
 	private static int roundsNo = 1;
+	
+	
 	private int shipNo = 1;
 	
 	// Helpful variables for Posidonas class
@@ -78,6 +76,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	
 	// Arrays to indicate WHERE each player has already attacked
 	NotesFrame hit1;
+	/**
+	 * 
+	 */
 	NotesFrame hit2;
 	
 	// Move class object
@@ -1304,6 +1305,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    
 	    // Back button
 	    } else if (e.getSource() == backAttack) {
+	    	Bsound.Sound(click);
 	    	
 	    	backAttack.setVisible(false);
 	    	next.setVisible(false);
@@ -1315,6 +1317,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    
 	    // Another back button	
 	    } else if (e.getSource() == backMove) {	
+	    	Bsound.Sound(click);
 	    	
 	    	backMove.setVisible(false);
 	    	Up.setVisible(false);
@@ -1668,12 +1671,15 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	changeTurn.setVisible(true);
 
 	    } else if(e.getSource()==  erButton1){
-			
+	    	Bsound.Sound(click);
+	    	
     		erFrame.setVisible(false);
 			StracheshipBoard();
 	    	sea();	
 		
     	} else if(e.getSource()==  erButton2){
+    		Bsound.Sound(click);
+    		
     		erFrame.setVisible(false);
     	}
     }
