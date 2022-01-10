@@ -33,7 +33,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	static Game runGame = new Game();
 	
-    private JFrame f;
+    
+	public static JFrame f;
 	private JFrame newFrame;
     private JFrame startframe;
 	private JFrame SecondFrame;
@@ -67,8 +68,10 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	static Player player2;
 	
 	
-	public MenuInterface() {
+	public MenuInterface() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
     	gui();
+    	SplashScreen.music.play = true;
+        
     }
     
     public void gui() {
@@ -493,6 +496,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     				
     				player2.setGod("ΑΡΤΕΜΙΣ");
     			}
+                
+                SplashScreen.music.play = false;
     		}
     		 
     		 
@@ -509,11 +514,14 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	
         
     	} else if(e.getSource()==  erButton1){
-			
+    		Bsound.Sound(click);
+    		
     		erFrame.setVisible(false);
     		startGame();
 		
     	} else if(e.getSource()==  erButton2){
+    		Bsound.Sound(click);
+    		
     		erFrame.setVisible(false);
     		Player();
 		
