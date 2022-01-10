@@ -15,10 +15,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Help extends JFrame implements ActionListener{
 
  static ImageIcon logo = new ImageIcon("logo.png");	
+ static File click = new File("click.wav");
 	
  private JButton back;	
  private JPanel contentPane;
@@ -202,7 +204,7 @@ public class Help extends JFrame implements ActionListener{
 			"\r\n"+
 			"Color Blue means, block not hit at all, color Red means ship is hit in this block and color White means no ship at the block hit  \r\n"+
 			"\r\n"+
-			"Also ships can move so there is the option to clear a particular block by turing it back to Blue. Color can be changed simply \r\n"+
+			"Also ships can move so there is the option to clear a particular block by turing it back to Blue. Color can be changed simply \r\n "+
 			"\r\n"+
 			"by clicking at a certain block in this sequence : (BLUE) - RED - WHITE - BLUE...");
 	
@@ -233,6 +235,7 @@ public class Help extends JFrame implements ActionListener{
   @Override
   public void actionPerformed(ActionEvent e) {
 	 if(e.getSource() == back) {
+		 Bsound.Sound(click);
 		 
 		 this.setVisible(false);
 		 MenuInterface mn = new MenuInterface();
