@@ -157,7 +157,7 @@ public class Artemis extends JFrame implements ActionListener {
                     errorBox("Please choose a ship from 1 to 5.", 2);
                 }catch(ArithmeticException ex){
                     frame.setVisible(false);
-                    errorBox("This ship is shinked.", 2);
+                    errorBox("This ship has sunk.", 2);
                 }catch(Exception ex){
                     frame.setVisible(false);
                     errorBox("This ship's tolerance is full, please try a diferent ship.", 2);
@@ -220,7 +220,7 @@ public class Artemis extends JFrame implements ActionListener {
 	       
               }
 	    	  
-	    	  MenuInterface.runGame.sea();
+	    	  
 	    }
 
 	    // Use the attack at Deck deck
