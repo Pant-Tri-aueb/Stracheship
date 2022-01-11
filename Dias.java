@@ -188,7 +188,7 @@ public class Dias extends JFrame implements ActionListener {
 	    // and drop error message
 		} else if (ship.getTolerance() == 0) {
 			
-			errorBox("Ship is already sunken!", 1);
+			errorBox("Ship has already sunk!", 1);
 		}
         	
 	}
@@ -237,7 +237,7 @@ public class Dias extends JFrame implements ActionListener {
 				}
 			}
 			Bsound.Sound(resurrect);
-			MenuInterface.runGame.sea();		
+					
 		
 	    // The ship is not sinked yet
 	    // Drop error message
