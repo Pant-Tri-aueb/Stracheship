@@ -4,7 +4,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,10 +50,9 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JButton errorD;
 	private JButton backMove;
 	private JButton backAttack;
-	private JButton showBoard;
-	private JButton hideBoard;
 	private JButton erButton1;
 	private JButton erButton2;
+	private JButton chturn2;
 	
 	private JLabel playerinfo;
 	private JLabel attackMessage;
@@ -73,6 +75,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	private JFrame Aframe; 
 	private JFrame Dframe;
 	private JFrame erFrame;
+	private JFrame changeFrame;
 	
 	// Arrays to indicate WHERE each player has already attacked
 	NotesFrame hit1;
@@ -92,6 +95,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	// Main logo
 	static ImageIcon logo = new ImageIcon("logo.png");
 	
+	public Game() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		StracheshipBoard();
+		
+	}
 	
 	// Operating frame
 	public void StracheshipBoard() {
@@ -108,7 +115,10 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       playerinfo.setBounds(0, 0, 1720, 860);
 	       playerinfo.setLayout(null);
 	       
+	       
 		   if (roundsNo == 1 && shipNo == 1) {
+			    
+			
 			   hit1 = new NotesFrame();
 			   hit1.gamePAN.setBounds(1050, 100, 500, 500);
 			   hit1.gamePAN.setVisible(true);
@@ -200,7 +210,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       } else if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0) {
 	    			   
-	    	   life = "SINKED";	
+	    	   life = "SUNK";	
 	    	   
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() != 0) {
@@ -216,7 +226,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ){
 	    	    
-	    	   life = "SINKED";
+	    	   life = "SUNK";
 	    	   
 	       }
 	       
@@ -238,12 +248,12 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       } else if (gameState == 1 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo - 1).getTolerance() == 0 ) {
 	    	   
-	    	   tolerance2.setBounds(846, 240, 140, 30);
+	    	   tolerance2.setBounds(858, 240, 140, 30);
 	       
 	       } else if (gameState == 2 && shipNo <= 5 
 	    		   && Ship2.shipsList.get(shipNo + 4).getTolerance() == 0 ) {
 	    	   
-	    	   tolerance2.setBounds(846, 240, 140, 30);
+	    	   tolerance2.setBounds(858, 240, 140, 30);
 	       }
 
 	       
@@ -819,6 +829,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       // Check if any player has won
 	       if (MenuInterface.Deck1.checkWinner() == true || MenuInterface.Deck2.checkWinner() == true) {
 	    	   
+	    	   frame.setVisible(false);
 	    	   GUIWINNER.winner();
 	       }
 	      
@@ -976,6 +987,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       
 	       	frame.setLayout(null);
 	       	playerinfo.add(pn);
+	       	
+	       	
 	}
 	
 	// In case player god's attacks are over 
@@ -1222,6 +1235,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	Bsound.Sound(click);
 	    	
 	    	frame.setVisible(false);
+	    	changeFrame();
+	    	
 	    	if (gameState == 1) {
 	    		
 	    		gameState = 2;
@@ -1232,9 +1247,14 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	}
 	    	roundsNo += 1;
 	    	shipNo = 1;
+	    	
+	    
+	    } else if (e.getSource() == chturn2) {
+	    	
+	    	changeFrame.setVisible(false);
 	    	StracheshipBoard();
 	    	sea();
-	    
+	    	
 	    	
 	    // Shoot 	
 	    } else if (e.getSource() == next) {
@@ -1713,6 +1733,34 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		return roundsNo;
 	}
 
+	public void changeFrame() {
+		changeFrame = new JFrame();
+		changeFrame.setIconImage(logo.getImage());
+		changeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		changeFrame.setLayout(null);
+		changeFrame.setSize(400, 400);
+		changeFrame.setVisible(true);
+		
+		JLabel pn = new JLabel((new ImageIcon("wood3.jpg")));
+		pn.setBounds(0, 0, 400, 400);
+		
+		JLabel message = new JLabel("TURN AROUND!");
+		message.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 22));
+		message.setBounds(85, 50, 250, 70);
+		message.setForeground(Color.WHITE);
+		
+		chturn2 = new JButton("NEXT");
+		chturn2.addActionListener(this);
+		chturn2.setBounds(120, 225, 140, 50);
+		chturn2.setBackground(Color.GRAY);
+		chturn2.setForeground(Color.WHITE);
+		chturn2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 17));
+		
+		pn.add(chturn2);
+		pn.add(message);
+		changeFrame.add(pn);
+	}
+	
 	public void errorBox(String mess , int buttonNumber ){
 		erFrame = new JFrame("Error!!!");
 		erFrame.setIconImage(logo.getImage());
