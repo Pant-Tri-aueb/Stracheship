@@ -288,7 +288,7 @@ public class Posidonas extends JFrame implements ActionListener{
 			}
 		}
 
-		MenuInterface.runGame.sea();
+		
 	}
 	
 
