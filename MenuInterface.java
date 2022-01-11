@@ -31,9 +31,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	static Deck Deck1 = new Deck();
 	static Deck Deck2 = new Deck();
 	
-	static Game runGame = new Game();
-	
-    
+	static Backgroundmusic bmusic2 = new Backgroundmusic(); 
+	 
 	public static JFrame f;
 	private JFrame newFrame;
     private JFrame startframe;
@@ -63,6 +62,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	static ImageIcon logo = new ImageIcon("logo.png");
     static File click = new File("click.wav");
+    static File music = new File("Game.wav");
 	
 	static Player player1;
 	static Player player2;
@@ -70,7 +70,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	public MenuInterface() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
     	gui();
-    	SplashScreen.music.play = true;
+    	SplashScreen.bmusic.play = true;
         
     }
     
@@ -497,7 +497,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     				player2.setGod("ΑΡΤΕΜΙΣ");
     			}
                 
-                SplashScreen.music.play = false;
+                SplashScreen.bmusic.c.stop();
     		}
     		 
     		 
@@ -509,7 +509,22 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	 } else {
         		  
         		 GodFrame.setVisible(false);
-        		 runGame.StracheshipBoard();
+        		
+        		 try {
+        			    Game runGame = new Game();
+        			    
+        	 			bmusic2.sound(music);
+        	 			
+        				} catch (UnsupportedAudioFileException e1) {
+        					
+        					e1.printStackTrace();
+        				} catch (IOException e1) {
+        					
+        					e1.printStackTrace();
+        				} catch (LineUnavailableException e1) {
+        					
+        					e1.printStackTrace();
+        				}
         	 }
         	
         
