@@ -135,7 +135,7 @@ public class Aris extends JFrame implements ActionListener {
 	       
 	     }
     	 
-    	 MenuInterface.runGame.sea();
+    	 
      }
      
      // All buttons function
