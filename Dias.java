@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.ImageIcon;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +24,9 @@ public class Dias extends JFrame implements ActionListener {
 	static File resurrect = new File("Resurrect.wav");
 	static File click = new File("click.wav");
 	
+	//Logo Symbol.
+	static ImageIcon logo = new ImageIcon("logo.png");
+
 	// Some components
 	JButton errorA;
 	JButton errorD;
@@ -33,6 +37,7 @@ public class Dias extends JFrame implements ActionListener {
     
     JFrame frame;
 	JFrame errorFrame;
+	private JFrame erFrame;
 	
 	// Check for attack (index = 0) or defense (index = 1) limit
 	public static boolean capacity(int index) {
@@ -55,6 +60,7 @@ public class Dias extends JFrame implements ActionListener {
      // Choose a ship to inflict damage
 	 public void insertDataA() {
      	 frame = new JFrame("CHOOSE A SHIP");
+		 frame.setIconImage(logo.getImage());
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
          
@@ -110,48 +116,6 @@ public class Dias extends JFrame implements ActionListener {
 
      }
 	  
-	 // In case a sinked ship has been chosen
-	 public void errorA() {
-	 		
-			errorFrame = new JFrame("Error");
-	        errorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        errorFrame.setLayout(new FlowLayout());
-	        JPanel pn = new JPanel();
-	        
-	        JLabel message = new JLabel("Ship is already sinked!");
-	        message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
-	        
-	        errorA = new JButton("OK");
-	        errorA.addActionListener(this);
-	       
-	        pn.add(errorA);
-	        pn.add(message);
-	        
-	        errorFrame.add(pn);
-	        errorFrame.setVisible(true);
-	        errorFrame.pack();
-	  }
-	 
-	  // In case a non-sinked ship has been chosen for resurrection
-	  public void errorD() {
-	 		
-			errorFrame = new JFrame("Error");
-	        errorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        errorFrame.setLayout(new FlowLayout());
-	        JPanel pn = new JPanel();
-	        
-	        JLabel message = new JLabel("Ship is not sinked yet!");
-	        
-	        errorD = new JButton("OK");
-	        errorD.addActionListener(this);
-	       
-	        pn.add(errorD);
-	        pn.add(message);
-	        
-	        errorFrame.add(pn);
-	        errorFrame.setVisible(true);
-	        errorFrame.pack();
-		}
 	
 	 // Attack method at ship number: shipNo 
 	 public void strike(int shipNo) {
@@ -191,6 +155,8 @@ public class Dias extends JFrame implements ActionListener {
 					}
 				}
 			}
+			//Use audio effect.
+			Bsound.Sound(thunder);
 			
 		// In case the ship is large sized, do not destroy it 
 		// Inflict 3 blocks of damage 
@@ -216,12 +182,14 @@ public class Dias extends JFrame implements ActionListener {
 					}
 				}
 			}
+			//Use audio effect.
+			Bsound.Sound(thunder);
 			
 		// Chech if the ship is already sinked
 	    // and drop error message
 		} else if (ship.getTolerance() == 0) {
 			
-			errorA();
+			errorBox("Ship is already sinked!", 1);
 		}
         	
 	}
@@ -269,14 +237,14 @@ public class Dias extends JFrame implements ActionListener {
 					
 				}
 			}
-			
+			Bsound.Sound(resurrect);
 			MenuInterface.runGame.sea();		
 		
 	    // The ship is not sinked yet
 	    // Drop error message
 		} else {
 			
-		    errorD();
+		    errorBox("Ship is not sinked yet!", 2);
 		}
 	}
 
@@ -285,57 +253,103 @@ public class Dias extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == buttonA) {
             
-			Bsound.Sound(thunder);
+			try {
+				// Get choice and turn it to int
+				String answer = textField.getText();
+				int x = Integer.parseInt(answer);
+				if( (x > 5) || (x < 1)){
+					throw new Exception();
+				}
+				// Find player and strike
+				if (Game.gameState == 1) {
+				
+				strike(x + 5);
+				
+				} else {
+				
+				strike(x);
+				
+            	}
+				frame.setVisible(false);
+				
+			} catch (NullPointerException ex) {
+				frame.setVisible(false);
+				errorBox("Please enter a number.", 1);
+			}catch(Exception ex){
+				frame.setVisible(false);
+				errorBox("Please enter a number from 1 to 5.", 1);
+			}
 			
-			// Get choice and turn it to int
-			String answer = textField.getText();
-            int x = Integer.parseInt(answer);
-            
-            frame.setVisible(false);
-            // Find player and strike
-            if (Game.gameState == 1) {
-         	   
-         	   strike(x + 5);
-         	   
-            } else {
-         	   
-         	   strike(x);
-            
-            }
             
 		} else if (e.getSource() == buttonD) {
-			Bsound.Sound(resurrect);
 			
-			// Get choice and turn it to int
-			String answer = textField.getText();
-			int x = Integer.parseInt(answer);
+			try {
+				// Get choice and turn it to int
+				String answer = textField.getText();
+				int x = Integer.parseInt(answer);
+				if( (x > 5) || (x < 1)){
+					throw new Exception();
+				}
+				
+				// Find player and use defense
+				if (Game.gameState == 1) {
+					
+					resurrection(x);
+					
+				} else {
+					
+					resurrection(x + 5);
+					
+				}
+				frame.setVisible(false);
+			}catch (NullPointerException ex) {
+				frame.setVisible(false);
+				errorBox("Please enter a number.", 2);
+			}catch(Exception ex){
+				frame.setVisible(false);
+				errorBox("Please enter a number from 1 to 5.", 2);
+			}
 			
-			frame.setVisible(false);
-			// Find player and use defense
-			if (Game.gameState == 1) {
-	         	   
-	         	   resurrection(x);
-	         	   
-	            } else {
-	         	   
-	         	   resurrection(x + 5);
-	            
-	            }
+			
 	            
 		// Exit error frames	
 		} else if (e.getSource() == errorA) {
 			Bsound.Sound(click);
 			
-	    	errorFrame.setVisible(false);
+	    	erFrame.setVisible(false);
 	    	insertDataA();
 	    
 	    
 		} else if (e.getSource() == errorD) {
 			Bsound.Sound(click);
 			
-			errorFrame.setVisible(false);
-			
+			erFrame.setVisible(false);
+			insertDataD();
 	    	
 		}
    }
+
+	public void errorBox(String mess , int buttonNumber ){
+		erFrame = new JFrame("Error!!!");
+		erFrame.setIconImage(logo.getImage());
+		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		erFrame.setLayout(new FlowLayout());
+		JPanel pn = new JPanel();
+
+		JLabel message = new JLabel(mess);
+
+		if (buttonNumber == 1){
+			errorA = new JButton("OK");
+			errorA.addActionListener(this);
+			pn.add(errorA);
+		}else{
+			errorD = new JButton("OK");
+			errorD.addActionListener(this);
+			pn.add(errorD);
+		}
+		pn.add(message);
+		erFrame.add(pn);
+		erFrame.setVisible(true);
+		erFrame.pack();		
+	}
 }

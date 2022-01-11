@@ -1419,7 +1419,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
                 changeTurn.setVisible(true);
                 
 	         } else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
-	        		&& Artemis.capacity(0) == false) {
+	        		&& Dias.capacity(0) == false) {
 	    	     
 	        	// No more attacks left 
 	    	    errorMessageA();
@@ -1427,7 +1427,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	    
 	        
 	        } else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
-	        		&& Artemis.capacity(0) == false) {
+	        		&& Dias.capacity(0) == false) {
 	        	
 	        	// No more attacks left
 	        	errorMessageA();
