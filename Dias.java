@@ -36,8 +36,7 @@ public class Dias extends JFrame implements ActionListener {
     JTextField textField;
     
     JFrame frame;
-	JFrame errorFrame;
-	private JFrame erFrame;
+	JFrame erFrame;
 	
 	// Check for attack (index = 0) or defense (index = 1) limit
 	public static boolean capacity(int index) {
@@ -189,7 +188,7 @@ public class Dias extends JFrame implements ActionListener {
 	    // and drop error message
 		} else if (ship.getTolerance() == 0) {
 			
-			errorBox("Ship is already sinked!", 1);
+			errorBox("Ship is already sunken!", 1);
 		}
         	
 	}
@@ -244,7 +243,7 @@ public class Dias extends JFrame implements ActionListener {
 	    // Drop error message
 		} else {
 			
-		    errorBox("Ship is not sinked yet!", 2);
+		    errorBox("Ship is not sunken yet!", 2);
 		}
 	}
 
@@ -352,4 +351,23 @@ public class Dias extends JFrame implements ActionListener {
 		erFrame.setVisible(true);
 		erFrame.pack();		
 	}
+
+	    //Returns true if there is at least one shunken ship.
+        // pla = player. 
+        public static boolean checkShipsTolerance(int pla){
+            if (pla == 1){
+                for(int i=0 ; i <= 4; i++){
+                   if( (Ship2.shipsList.get(i).getTolerance() == 0) ){
+                        return true;
+                   } 
+                }
+            }else{
+                for(int i=5 ; i <= 9; i++){
+                    if( (Ship2.shipsList.get(i).getTolerance() == 0)){
+                        return true;
+                    } 
+                }
+            }
+            return false;
+        }
 }

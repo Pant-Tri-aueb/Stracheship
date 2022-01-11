@@ -1001,16 +1001,24 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	}
 	
 	// In case player god's defenses are over 
-    public void errorMessageD() {
+    public void errorMessageD(int x) {
 		
 		Dframe = new JFrame("Error");
         Dframe.setIconImage(logo.getImage());
 		Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dframe.setLayout(new FlowLayout());
         JPanel pn = new JPanel();
-        
-        JLabel message = new JLabel("NO MORE DEFENCES AVAILABLE!");
-        
+		JLabel message;
+		if (x == 1){
+			//For every god.
+			message = new JLabel("NO MORE DEFENCES AVAILABLE!");
+		}else if (x == 2){
+			//For Artemis.
+			message = new JLabel("ALL YOUR SHIPS HAVE FULL LIFE.");
+		}else{
+			//For Dias.
+			message = new JLabel("THERE IS NO SUNKEN SHIP.");
+		}
         errorD = new JButton("OK");
         errorD.addActionListener(this);
        
@@ -1522,66 +1530,82 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       
 	       if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
 	    			&& Artemis.capacity(1) == true) {
-	    	   
-	    	   	Artemis A = new Artemis();
-               	A.insertDataD(); 
-               	Artemis.RIVAL_MOVES[1]--;
-                
-               	changeTurn.setVisible(true);
-	    	   
+
+					if (Artemis.checkShipsTolerance(gameState)){
+						Artemis A = new Artemis();
+						A.insertDataD(); 
+						Artemis.RIVAL_MOVES[1]--;
+					 
+						changeTurn.setVisible(true);
+					}else{
+						errorMessageD(2);
+					}  
 	       	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
 	    			&& Artemis.capacity(1) == true) {
 	        	
-      	     	Artemis A = new Artemis();
-      	     	A.insertDataD();
-      		 	Artemis.RIVAL_MOVES[1]--;
-      		    
-      		 	changeTurn.setVisible(true);
+						if (Artemis.checkShipsTolerance(gameState)){
+							Artemis A = new Artemis();
+							A.insertDataD(); 
+							Artemis.RIVAL_MOVES[1]--;
+						 
+							changeTurn.setVisible(true);
+						}else{
+							errorMessageD(2);
+						}
       	
 	       	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
 	    			&& Dias.capacity(1) == true) {
 	        	
-	    	   	Dias D = new Dias();
-               	D.insertDataD(); 
-               	Dias.RIVAL_MOVES[1]--;
-                
-               	changeTurn.setVisible(true);
+					if(Dias.checkShipsTolerance(gameState)){
+						Dias D = new Dias();
+						D.insertDataD(); 
+						Dias.RIVAL_MOVES[1]--;
+					 
+						changeTurn.setVisible(true);
+					}else{
+						errorMessageD(3);
+					}
+	    	   
                
 	       	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
 	    			&& Dias.capacity(1) == true) {
-	        	
-	    	   	Dias D = new Dias();
-              	D.insertDataD(); 
-              	Dias.RIVAL_MOVES[1]--;
-                
-              	changeTurn.setVisible(true);    
+						
+						if(Dias.checkShipsTolerance(gameState)){
+							Dias D = new Dias();
+							D.insertDataD(); 
+							Dias.RIVAL_MOVES[1]--;
+						 
+							changeTurn.setVisible(true);
+						}else{
+							errorMessageD(3);
+						}    
 	        	
 	       	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΔΙΑΣ" 
 	         		&& Dias.capacity(1) == false) {
 	     	     
 	       		// No more defenses left
-	     	    errorMessageD();
+	     	    errorMessageD(1);
 	     	    changeTurn.setVisible(true);
 	     	    
 	       	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΔΙΑΣ" 
 	           		&& Dias.capacity(1) == false) {
 	      	    
 	       	    // No more defenses left
-	       	    errorMessageD();
+	       	    errorMessageD(1);
 	       	    changeTurn.setVisible(true);  
 	        
         	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΤΕΜΙΣ" 
       			&& Artemis.capacity(1) == false) {
         		
         		// No more defenses left
-  	        	errorMessageD();
+  	        	errorMessageD(1);
   	        	changeTurn.setVisible(true);
   	    
          	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΤΕΜΙΣ" 
         		&& Artemis.capacity(1) == false) {
    	     
          	    // No more defenses left
-    	    	errorMessageD();
+    	    	errorMessageD(1);
     	    	changeTurn.setVisible(true);
     	    
         	} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΑΡΗΣ" 
@@ -1607,14 +1631,14 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
       				&& Artemis.capacity(1) == false) {
 	    		
 	    		// No more defenses left
-  	        	errorMessageD();
+  	        	errorMessageD(1);
   	        	changeTurn.setVisible(true);
   	    
          	} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΑΡΗΣ" 
         			&& Artemis.capacity(1) == false) {
    	     
          	    // No more defenses left
-    	    	errorMessageD();
+    	    	errorMessageD(1);
     	    	changeTurn.setVisible(true);
          
 			} else if (gameState == 1 && MenuInterface.player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
@@ -1643,14 +1667,14 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 				&& Posidonas.capacity(1) == false) {
 	 
 				// No more defenses left
-				errorMessageD();
+				errorMessageD(1);
 				changeTurn.setVisible(true);
 	
    			} else if (gameState == 2 && MenuInterface.player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ" 
 		  		&& Posidonas.capacity(1) == false) {
 	   
    			    // No more defenses left
-	  			errorMessageD();
+	  			errorMessageD(1);
 	  			changeTurn.setVisible(true);
    			}
 	   
@@ -1712,4 +1736,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		erFrame.setVisible(true);
 		erFrame.pack();		
 	}
+
+	
 }

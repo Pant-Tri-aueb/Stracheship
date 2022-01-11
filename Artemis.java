@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.*;
+import javax.swing.ImageIcon;
 
 // Artemis Class
 public class Artemis extends JFrame implements ActionListener {
@@ -13,6 +14,10 @@ public class Artemis extends JFrame implements ActionListener {
     	 // Attack sound
     	 static File arrows = new File("Arrow.wav");
     	 static File heal = new File("Heal.wav");
+         static File click = new File("click.wav");
+
+         //Logo Symbol.
+	     static ImageIcon logo = new ImageIcon("logo.png");
     	 
     	 // Helpful var for attack
     	 static int x;
@@ -20,13 +25,18 @@ public class Artemis extends JFrame implements ActionListener {
     	// Some components    
         JButton buttonA;
         JButton buttonD;
+        JButton errorA;
+	    JButton errorD;
         JTextField textField;
+       
         JFrame frame;
+        JFrame erFrame;
         
         // Frame for the attack
         // Choose a row to inflict damage
         public void insertDataA() {
         	frame = new JFrame("CHOOSE A ROW");
+            frame.setIconImage(logo.getImage());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setLayout(new FlowLayout());
             
@@ -87,42 +97,86 @@ public class Artemis extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == buttonA) {
               
-               Bsound.Sound(arrows);
                
-               // Get the choice and turn it to int
-               String answer = textField.getText();
-               x = Integer.parseInt(answer);
+
+               try {
+                    // Get the choice and turn it to int
+                    String answer = textField.getText();
+                    x = Integer.parseInt(answer);
+                    if( (x > 10) || (x < 1)){
+                        throw new Exception();
+                    }
+                    
+                    // Find which player is currently playing and launch the attack
+                    if (Game.gameState == 1) {
+                        
+                        throwArrow(MenuInterface.Deck2);
+                        
+                    } else {
+                        
+                        throwArrow(MenuInterface.Deck1);
+                    }
+                    frame.setVisible(false);
+                }catch (NumberFormatException ex) {
+                    frame.setVisible(false);
+                    errorBox("Please enter a number.", 1);
+                }catch(Exception ex){
+                    frame.setVisible(false);
+                    errorBox("Please enter a line (number) from 1 to 10.", 1);
+                }
                
-               frame.setVisible(false);
                
-               // Find which player is currently playing and launch the attack
-               if (Game.gameState == 1) {
-            	   
-            	   throwArrow(MenuInterface.Deck2);
-            	   
-               } else {
-            	   
-            	   throwArrow(MenuInterface.Deck1);
-               }
                
              } else if (e.getSource() == buttonD) {
-                Bsound.Sound(heal); 
                 
-                String answer = textField.getText();
                 
-                // Get the choice and turn it to int
-                x = Integer.parseInt(answer);
-                frame.setVisible(false);
+                try {
+                    String answer = textField.getText();
                 
-                // Find which player is currently playing and use defense
-                if (Game.gameState == 1) {
-             	   
-             	   useDefence(Ship2.shipsList.get(x - 1) , MenuInterface.Deck1);
-             	   
-                } else if (Game.gameState == 2) {
-             	   
-                   useDefence(Ship2.shipsList.get(x + 4) , MenuInterface.Deck2);
+                    // Get the choice and turn it to int
+                    x = Integer.parseInt(answer);
+                    frame.setVisible(false);
+                    if( (x > 10) || (x < 1)){
+                        throw new IndexOutOfBoundsException();
+                    }
+                    
+                    // Find which player is currently playing and use defense
+                    if (Game.gameState == 1) {
+                        
+                        useDefence(Ship2.shipsList.get(x - 1) , MenuInterface.Deck1);
+                        
+                    } else if (Game.gameState == 2) {
+                        
+                       useDefence(Ship2.shipsList.get(x + 4) , MenuInterface.Deck2);
+                    }
+                }catch (NumberFormatException ex) {
+                    frame.setVisible(false);
+                    errorBox("Please enter a number.", 2);
+                }catch(IndexOutOfBoundsException ex){
+                    frame.setVisible(false);
+                    errorBox("Please choose a ship from 1 to 5.", 2);
+                }catch(ArithmeticException ex){
+                    frame.setVisible(false);
+                    errorBox("This ship is shinked.", 2);
+                }catch(Exception ex){
+                    frame.setVisible(false);
+                    errorBox("This ship's tolerance is full, please try a diferent ship.", 2);
                 }
+                
+                
+                
+            } else if (e.getSource() == errorA) {
+                Bsound.Sound(click);
+                
+                erFrame.setVisible(false);
+                insertDataA();
+            
+            
+            } else if (e.getSource() == errorD) {
+                Bsound.Sound(click);
+                
+                erFrame.setVisible(false);
+                insertDataD();
                 
             }
         }
@@ -146,7 +200,14 @@ public class Artemis extends JFrame implements ActionListener {
 	     }
 
 	    // Use defense at ship obj from Deck deck
-	    public void useDefence(Ship2 obj,Deck deck) { 
+	    public void useDefence(Ship2 obj,Deck deck) throws Exception, ArithmeticException { 
+            //Check if ship has full life.
+            if (obj.getSize()==obj.getTolerance()){
+                throw new Exception();
+            }
+            if (obj.getTolerance() == 0){
+                throw new ArithmeticException();
+            }
 	       
 	    	  for (int i = 0; i < obj.getSize(); i++) {
     			
@@ -164,7 +225,7 @@ public class Artemis extends JFrame implements ActionListener {
 
 	    // Use the attack at Deck deck
 	    public void throwArrow(Deck deck) {
-	       
+            Bsound.Sound(arrows);
 	       for (int y = 0; y < 10; y ++) {
 	        	if (deck.deck_arr[x - 1][y] == "S") {
 	    	            
@@ -179,5 +240,51 @@ public class Artemis extends JFrame implements ActionListener {
 	      
 	    
 	    }
+
+        public void errorBox(String mess , int buttonNumber ){
+            erFrame = new JFrame("Error!!!");
+            erFrame.setIconImage(logo.getImage());
+            erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            erFrame.setLayout(new FlowLayout());
+            JPanel pn = new JPanel();
+    
+            JLabel message = new JLabel(mess);
+    
+            if (buttonNumber == 1){
+                errorA = new JButton("OK");
+                errorA.addActionListener(this);
+                pn.add(errorA);
+            }else{
+                errorD = new JButton("OK");
+                errorD.addActionListener(this);
+                pn.add(errorD);
+            }
+            pn.add(message);
+            erFrame.add(pn);
+            erFrame.setVisible(true);
+            erFrame.pack();		
+        }
+
+        //Checks all alive ships of one player, if any of them doesn't have full tolerance then RETURN true
+        //(Defence can be uesed).
+        // pla = player. 
+        public static boolean checkShipsTolerance(int pla){
+            if (pla == 1){
+                for(int i=0 ; i <= 4; i++){
+                   if( (Ship2.shipsList.get(i).getTolerance() != Ship2.shipsList.get(i).getSize() )
+                    && (Ship2.shipsList.get(i).getTolerance() != 0)){
+                        return true;
+                   } 
+                }
+            }else{
+                for(int i=5 ; i <= 9; i++){
+                    if( (Ship2.shipsList.get(i).getTolerance() != Ship2.shipsList.get(i).getSize() )
+                     && (Ship2.shipsList.get(i).getTolerance() != 0)){
+                        return true;
+                    } 
+                }
+            }
+            return false;
+        }
 
     }
