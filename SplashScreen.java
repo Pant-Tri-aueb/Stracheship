@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.io.File;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -22,7 +23,7 @@ public class SplashScreen extends JFrame {
 	private static JLabel label;
 	private static JLabel label_1;
 	static ImageIcon logo = new ImageIcon("logo.png");
-	public static Backgroundmusic music = new Backgroundmusic();
+	public static Backgroundmusic bmusic = new Backgroundmusic();
 	
 	/**
 	  * method :fills progressBar
@@ -65,7 +66,10 @@ public class SplashScreen extends JFrame {
 			}
 		try {
 			MenuInterface mn = new MenuInterface();
-			music.sound();
+			
+			File music = new File("Background.wav");
+			bmusic.sound(music);
+		
 		} catch (UnsupportedAudioFileException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
