@@ -11,22 +11,17 @@ public class Backgroundmusic  {
 	  
 	 public boolean play = true;
 	 public Clip c;
-	 
-	 public void sound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		   AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("Background.wav"));
+	 	 
+	 public void sound(File music) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		   AudioInputStream inputStream = AudioSystem.getAudioInputStream(music);
 		   c = AudioSystem.getClip();
 		   c.open(inputStream);
-		   while(play){
-			   c.start();
-			   c.loop(c.LOOP_CONTINUOUSLY);
-			   
-		   } 
-		   if (!play) {
-			   c.stop();
-			   
-		   }
+		   c.start();
+	       c.loop(c.LOOP_CONTINUOUSLY);
+		
 	   }
 	 
+		 
 }
 
 
