@@ -1,10 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 // Class for winner announcment
 public class GUIWINNER {
 
     private static int playerNo;
+    
+    private static File victory = new File("Victory.wav");
    
     // Constructor
     GUIWINNER(int playerNo) {
@@ -14,11 +17,14 @@ public class GUIWINNER {
     // Run to show the winner
     public static void winner() {
         
+    	
+    	MenuInterface.bmusic2.c.stop();
+    	
         ImageIcon img = new ImageIcon("navmaxia.jpg"); 
         ImageIcon img2 = new ImageIcon("logo.png");
         
         // Winner frame text
-        JLabel label = new JLabel(String.format("The winner is %s", 
+        JLabel label = new JLabel(String.format("The winner is %s!", 
         		(MenuInterface.Deck1.checkWinner() == true) || (MenuInterface.Deck2.checkWinner() == true)  ?  
         				Deck.getWinnerName() : "There is no winner yet :(" )); 
         
@@ -42,6 +48,8 @@ public class GUIWINNER {
         frame.add(label);
         frame.setIconImage(img2.getImage());
         frame.pack();
+        
+        Bsound.Sound(victory);
         
     }
 
