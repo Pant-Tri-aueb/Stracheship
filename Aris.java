@@ -35,6 +35,7 @@ public class Aris extends JFrame implements ActionListener {
      	 frame = new JFrame("CHOOSE A SHIP");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
+         frame.setLocation(300, 150);
          
          JPanel pn = new JPanel();
          
