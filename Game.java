@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 // Main class. This is where the game runs
 public class Game extends JFrame implements java.awt.event.ActionListener{
 	
@@ -831,7 +830,6 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   
 	    	   frame.setVisible(false);
 	    	   GUIWINNER.winner();
-	    	  
 	       }
 	      
 	    	   
@@ -999,11 +997,14 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Aframe.setIconImage(logo.getImage());
 		Aframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Aframe.setLayout(new FlowLayout());
+		Aframe.setLocation(650, 455);
         JPanel pn = new JPanel();
         
         JLabel message = new JLabel("NO MORE ATTACKS AVAILABLE!");
+		message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
         
         errorA = new JButton("OK");
+		errorA.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
         errorA.addActionListener(this);
        
         pn.add(errorA);
@@ -1021,19 +1022,25 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Dframe.setIconImage(logo.getImage());
 		Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dframe.setLayout(new FlowLayout());
+		Dframe.setLocation(650, 455);
         JPanel pn = new JPanel();
 		JLabel message;
+		
 		if (x == 1){
 			//For every god.
 			message = new JLabel("NO MORE DEFENCES AVAILABLE!");
+			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}else if (x == 2){
 			//For Artemis.
 			message = new JLabel("ALL YOUR SHIPS HAVE FULL LIFE.");
+			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}else{
 			//For Dias.
 			message = new JLabel("THERE IS NO SUNKEN SHIP.");
+			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}
         errorD = new JButton("OK");
+		errorD.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
         errorD.addActionListener(this);
        
         pn.add(errorD);
@@ -1767,16 +1774,20 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		erFrame.setIconImage(logo.getImage());
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
+		erFrame.setLocation(650, 455);
 		JPanel pn = new JPanel();
 
 		JLabel message = new JLabel(mess);
+		message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 
 		if (buttonNumber == 1){
 			erButton1 = new JButton("OK");
+			erButton1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton1.addActionListener(this);
 			pn.add(erButton1);
 		}else{
 			erButton2 = new JButton("OK");
+			erButton2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton2.addActionListener(this);
 			pn.add(erButton2);
 		}

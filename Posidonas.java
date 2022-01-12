@@ -75,7 +75,7 @@ public class Posidonas extends JFrame implements ActionListener{
      	 frame = new JFrame("CHOOSE A SHIP");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         frame.setLocation(300, 150);
+         frame.setLocation(650, 455);
          
          // Exit and use attack method
          buttonA = new JButton("REVEAL");
@@ -102,7 +102,7 @@ public class Posidonas extends JFrame implements ActionListener{
      	 frame = new JFrame("INSERT COORDINATES");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
-         frame.setLocation(300, 150);
+         frame.setLocation(650, 455);
          
          // Exit and use defense
          buttonD = new JButton("RISE WAVES");
