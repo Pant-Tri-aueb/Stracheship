@@ -62,6 +62,7 @@ public class Dias extends JFrame implements ActionListener {
 		 frame.setIconImage(logo.getImage());
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
+         frame.setLocation(300, 150);
          
          JPanel pn = new JPanel();
          
@@ -91,6 +92,7 @@ public class Dias extends JFrame implements ActionListener {
      	 frame = new JFrame("CHOOSE A SHIP");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
+         frame.setLocation(300, 150);
          
          JPanel pn = new JPanel();
          
@@ -328,30 +330,33 @@ public class Dias extends JFrame implements ActionListener {
 		}
    }
 
-	public void errorBox(String mess , int buttonNumber ){
-		erFrame = new JFrame("Error!!!");
-		erFrame.setIconImage(logo.getImage());
-		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		erFrame.setLayout(new FlowLayout());
-		JPanel pn = new JPanel();
+	 public void errorBox(String mess , int buttonNumber){
+			erFrame = new JFrame("Error!!!");
+			erFrame.setIconImage(logo.getImage());
+			erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			erFrame.setLayout(new FlowLayout());
+			erFrame.setLocation(650, 455);
+			JPanel pn = new JPanel();
 
-		JLabel message = new JLabel(mess);
+			JLabel message = new JLabel(mess);
+			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 
-		if (buttonNumber == 1){
-			errorA = new JButton("OK");
-			errorA.addActionListener(this);
-			pn.add(errorA);
-		}else{
-			errorD = new JButton("OK");
-			errorD.addActionListener(this);
-			pn.add(errorD);
+			if (buttonNumber == 1){
+				errorA = new JButton("OK");
+				errorA.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
+				errorA.addActionListener(this);
+				pn.add(errorA);
+			}else{
+				errorD = new JButton("OK");
+				errorD.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
+				errorD.addActionListener(this);
+				pn.add(errorD);
+			}
+			pn.add(message);
+			erFrame.add(pn);
+			erFrame.setVisible(true);
+			erFrame.pack();		
 		}
-		pn.add(message);
-		erFrame.add(pn);
-		erFrame.setVisible(true);
-		erFrame.pack();		
-	}
-
 	    //Returns true if there is at least one shunken ship.
         // pla = player. 
         public static boolean checkShipsTolerance(int pla){
