@@ -52,7 +52,7 @@ public class Help extends JFrame implements ActionListener{
   */
  public Help() {
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  setBounds(100, 100, 1300, 900);
+  setBounds(250, 100, 1300, 900);
   contentPane = new JPanel();
   contentPane.setBackground(Color.WHITE);
   contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +63,7 @@ public class Help extends JFrame implements ActionListener{
   
   back = new JButton("BACK");
   back.addActionListener(this);
-  back.setBounds(550, 2350, 150, 30);
+  back.setBounds(550, 2365, 150, 30);
   back.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 14));
   back.setBackground(Color.GRAY);
   back.setForeground(Color.WHITE);
