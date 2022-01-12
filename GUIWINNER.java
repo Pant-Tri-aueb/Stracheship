@@ -6,8 +6,6 @@ import java.io.File;
 public class GUIWINNER {
 
     private static int playerNo;
-    
-    private static File victory = new File("Victory.wav");
    
     // Constructor
     GUIWINNER(int playerNo) {
@@ -48,8 +46,7 @@ public class GUIWINNER {
         frame.add(label);
         frame.setIconImage(img2.getImage());
         frame.pack();
-        
-        Bsound.Sound(victory);
+       
         
     }
 
