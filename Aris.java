@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 // Class Aris
 public class Aris extends JFrame implements ActionListener {
@@ -19,6 +21,13 @@ public class Aris extends JFrame implements ActionListener {
 	
 	 // Defense Sound
 	 static File metal = new File("Metal.wav");
+
+     // Click Sound.
+     static File click = new File("click.wav");
+
+     //Logo Symbol.
+	static ImageIcon logo = new ImageIcon("logo.png");
+
 	 
 	 // Helpful var for defense 
 	 static int x;
@@ -26,13 +35,16 @@ public class Aris extends JFrame implements ActionListener {
 	 // Some components
 	 JButton buttonA;
      JButton buttonD;
+     JButton errorD;
      JTextField textField;
      JFrame frame;
+     JFrame erFrame;
      
      // Frame for defense
      // Choose a ship to armor
      public void insertDataD() {
      	 frame = new JFrame("CHOOSE A SHIP");
+         frame.setIconImage(logo.getImage());
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
          frame.setLocation(650, 455);
@@ -124,8 +136,12 @@ public class Aris extends JFrame implements ActionListener {
      }
      
      // Use defense (armor) at ship obj from Deck deck
-     public void useDefence(Ship2 obj, Deck deck) {
-    	  
+     public void useDefence(Ship2 obj, Deck deck) throws Exception{
+        // Check if the ship has already sunk.
+        if (obj.getTolerance()==0){
+            throw new Exception();
+        }
+        Bsound.Sound(metal);
     	 for (int i = 0; i < obj.getSize(); i++) {
  			
  			if (deck.deck_arr[obj.xy[i][0]][obj.xy[i][1]].equals("S") ) {
@@ -143,25 +159,67 @@ public class Aris extends JFrame implements ActionListener {
      @Override
      public void actionPerformed(ActionEvent e) {
          if (e.getSource() == buttonD) {
-             Bsound.Sound(metal);
+            
         	 
-             // Get the choice and turn it to int
-             String answer = textField.getText();
-             x = Integer.parseInt(answer);
+            try {
+                 // Get the choice and turn it to int
+                String answer = textField.getText();
+                x = Integer.parseInt(answer);
+                
+                frame.setVisible(false);
+                
+                if( (x > 5) || (x < 1)){
+					throw new IndexOutOfBoundsException();
+				}
+                // Find the right player
+                if (Game.gameState == 1) {
+                
+                    useDefence(Ship2.shipsList.get(x - 1) , MenuInterface.Deck1);
+                
+                } else if (Game.gameState == 2) {
+                
+                    useDefence(Ship2.shipsList.get(x + 4) , MenuInterface.Deck2);
+                }    
+            } catch (NumberFormatException ex) {
+                frame.setVisible(false);
+				errorBox("Please enter a number.");
+            } catch (IndexOutOfBoundsException ex) {
+                frame.setVisible(false);
+				errorBox("Please enter a number from 1 to 5.");
+            }catch (Exception ex) {
+                frame.setVisible(false);
+				errorBox("This ship has already sunk.");
+            }
              
-             frame.setVisible(false);
-             
-             // Find the right player
-             if (Game.gameState == 1) {
-          	   
-          	   useDefence(Ship2.shipsList.get(x - 1) , MenuInterface.Deck1);
-          	   
-             } else if (Game.gameState == 2) {
-          	   
-                useDefence(Ship2.shipsList.get(x + 4) , MenuInterface.Deck2);
-             }
-             
-           }
+        }else if (e.getSource() == errorD) {
+			Bsound.Sound(click);
+			
+			erFrame.setVisible(false);
+			insertDataD();
+	    	
+		}
+
      }
 	
+     public void errorBox(String mess ){
+        erFrame = new JFrame("Error!!!");
+        erFrame.setIconImage(logo.getImage());
+        erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        erFrame.setLayout(new FlowLayout());
+        erFrame.setLocation(650, 455);
+        JPanel pn = new JPanel();
+
+        JLabel message = new JLabel(mess);
+        message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
+
+        errorD = new JButton("OK");
+        errorD.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
+        errorD.addActionListener(this);
+        pn.add(errorD);
+
+        pn.add(message);
+        erFrame.add(pn);
+        erFrame.setVisible(true);
+        erFrame.pack();		
+    }
 }
