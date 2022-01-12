@@ -831,6 +831,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   
 	    	   frame.setVisible(false);
 	    	   GUIWINNER.winner();
+	    	  
 	       }
 	      
 	    	   
@@ -1738,7 +1739,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		changeFrame.setIconImage(logo.getImage());
 		changeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		changeFrame.setLayout(null);
-		changeFrame.setSize(400, 400);
+		changeFrame.setBounds(600, 200, 400, 400);
 		changeFrame.setVisible(true);
 		
 		JLabel pn = new JLabel((new ImageIcon("wood3.jpg")));
