@@ -6,6 +6,7 @@ import java.io.File;
 public class GUIWINNER {
 
     private static int playerNo;
+    
    
     // Constructor
     GUIWINNER(int playerNo) {
@@ -41,11 +42,13 @@ public class GUIWINNER {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(565,458);
+        frame.setLocation(350, 100);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.add(label);
         frame.setIconImage(img2.getImage());
         frame.pack();
+        
        
         
     }
