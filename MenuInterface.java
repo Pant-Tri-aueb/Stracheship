@@ -85,9 +85,10 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         add(background);
         
        
-        f.setSize(1280, 733);
+        f.setSize(1280, 740);
     	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
+        f.setLocation(285, 125);
     	
         Border roundedBorder = new LineBorder(new Color(64, 64, 64), 8, true);
        
@@ -128,6 +129,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	SecondFrame.setIconImage(logo.getImage());
     	SecondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	SecondFrame.setSize(1280, 720);
+    	SecondFrame.setLocation(280, 80);
     	
     	f.setVisible(false);
     	if (Player.playerNo == 1) {
@@ -215,6 +217,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	GodFrame.setIconImage(logo.getImage());
     	GodFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	GodFrame.setSize(1280, 725);
+    	GodFrame.setLocation(270, 80);
     	
     	startframe.setVisible(false);
     	GodFrame.setVisible(true);
@@ -549,6 +552,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     public void startGame() {
         startframe = new JFrame("Stracheship 1.0");
         startframe.setIconImage(logo.getImage());
+        startframe.setLocation(280, 80);
         
         JLabel pn = new JLabel(new ImageIcon(
         		"storm5.jpg"));
@@ -781,21 +785,25 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	}
 
-	public void errorBox(String mess , int buttonNumber ){
+	public void errorBox(String mess , int buttonNumber){
 		erFrame = new JFrame("Error!!!");
 		erFrame.setIconImage(logo.getImage());
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
+		erFrame.setLocation(650, 455);
 		JPanel pn = new JPanel();
 
 		JLabel message = new JLabel(mess);
+		message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 
 		if (buttonNumber == 1){
 			erButton1 = new JButton("OK");
+			erButton1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton1.addActionListener(this);
 			pn.add(erButton1);
 		}else{
 			erButton2 = new JButton("OK");
+			erButton2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton2.addActionListener(this);
 			pn.add(erButton2);
 		}
