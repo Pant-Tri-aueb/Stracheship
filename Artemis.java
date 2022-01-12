@@ -136,7 +136,7 @@ public class Artemis extends JFrame implements ActionListener {
                     // Get the choice and turn it to int
                     x = Integer.parseInt(answer);
                     frame.setVisible(false);
-                    if( (x > 10) || (x < 1)){
+                    if( (x > 5) || (x < 1)){
                         throw new IndexOutOfBoundsException();
                     }
                     
