@@ -202,7 +202,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	  
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo - 1).getTolerance());
 	    	   
-	    	   if (Integer.parseInt(life) > 1000) {
+	    	   if (Integer.parseInt(life) >= 1000) {
 	   		   	
 	    		   life = Character.toString('\u221E');
 	   		   
@@ -218,7 +218,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo + 4).getTolerance());
 	    	   
-	    	   if (Integer.parseInt(life) > 1000) {
+	    	   if (Integer.parseInt(life) >= 1000) {
 		   		   	
 	    		   life = Character.toString('\u221E');
 	   		   
