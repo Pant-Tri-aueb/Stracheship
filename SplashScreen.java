@@ -36,9 +36,9 @@ public class SplashScreen extends JFrame {
 		frame.setVisible(true);
 		try {
 			for(int x=0;x<102;x++) {
-				SplashScreen.progressBar.setValue(x);
+				progressBar.setValue(x);
 				Thread.sleep(180);
-				SplashScreen.label_1.setText(Integer.toString(x)+" %");
+				label_1.setText(String.valueOf(x)+" %");
 				if (x==0) {
 					SplashScreen.label.setText("Loading game...");
 				} else if (x==13) {
@@ -104,8 +104,8 @@ public class SplashScreen extends JFrame {
 		label_1 = new JLabel("");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Forte", Font.PLAIN, 21));
-		label_1.setBounds(447, 600, 83, 29);
-		contentPane.add(label_1);
+		label_1.setBounds(435, 0, 83, 29);
+		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setForeground(Color.WHITE);
@@ -121,6 +121,7 @@ public class SplashScreen extends JFrame {
 		progressBar.setForeground(Color.WHITE);
 		progressBar.setBounds(0, 600, 916, 29);
 		contentPane.add(progressBar);
+		progressBar.add(label_1);
 		
 		table = new JTable();
 		table.setBounds(603, 719, 1, 1);
