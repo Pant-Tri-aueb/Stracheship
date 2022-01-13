@@ -23,6 +23,10 @@ public class Posidonas extends JFrame implements ActionListener{
 	// Sound files
 	static File reveal = new File("Reveal.wav");
 	static File wave = new File("Wave.wav");
+	static File click = new File("click.wav");
+
+	//Logo Symbol.
+	static ImageIcon logo = new ImageIcon("logo.png");
 	
 	// All buttons 
 	JButton errorA;
@@ -46,8 +50,8 @@ public class Posidonas extends JFrame implements ActionListener{
 	JTextField textFieldy;
     
     JFrame frame;
-	JFrame errorFrame;
 	JFrame visionFrame;
+	JFrame erFrame;
 
 	// Useful var
 	private static int roundNo;
@@ -73,6 +77,7 @@ public class Posidonas extends JFrame implements ActionListener{
      // Choose a ship to find its position
 	 public void insertDataA() {
      	 frame = new JFrame("CHOOSE A SHIP");
+		  frame.setIconImage(logo.getImage());
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
          frame.setLocation(650, 455);
@@ -101,7 +106,8 @@ public class Posidonas extends JFrame implements ActionListener{
 	 public void insertDataD() {
      	 frame = new JFrame("INSERT COORDINATES");
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         frame.setLayout(new FlowLayout());
+         frame.setIconImage(logo.getImage());
+		 frame.setLayout(new FlowLayout());
          frame.setLocation(650, 455);
          
          // Exit and use defense
@@ -128,8 +134,13 @@ public class Posidonas extends JFrame implements ActionListener{
      }
 	 
      // Attack method, reveals the posotion of ship number: shipNo
-	 public void useVision(int shipNo) {
+	 public void useVision(int shipNo) throws Exception{
 		Ship2 ship = Ship2.shipsList.get(shipNo - 1);
+
+		// Check if the ship has already sunk.
+        if (ship.getTolerance()==0){
+            throw new Exception();
+        }
 
 		// Find player 
 		if (Game.gameState == 1) {
@@ -154,49 +165,91 @@ public class Posidonas extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonA) {
-			Bsound.Sound(reveal);
 			
-			// Get the choice and turn it to int
-			String answer = textField.getText();
-			int x = Integer.parseInt(answer);
-			
-			frame.setVisible(false);
 
-			// Find player
-			if(Game.gameState == 1) {
+			try {
+				// Get the choice and turn it to int
+				String answer = textField.getText();
+				int x = Integer.parseInt(answer);
+				if( (x > 5) || (x < 1)){
+					throw new IndexOutOfBoundsException();
+				}
 				
-				useVision(x + 5);
-			
-			} else {
+				// Find player
+				if(Game.gameState == 1) {
+					
+					useVision(x + 5);
 				
-				useVision(x);
+				} else {
+					
+					useVision(x);
+				}
+				frame.setVisible(false);
+				Bsound.Sound(reveal);
+			}catch (NullPointerException ex) {
+				frame.setVisible(false);
+				errorBox("Please enter a number.", 1);
+			} catch (IndexOutOfBoundsException ex) {
+                frame.setVisible(false);
+				errorBox("Please enter a number from 1 to 5.",1);
+			}catch (Exception ex) {
+				frame.setVisible(false);
+				errorBox("This ship has already sunk.",1);
 			}
+			
 		
 		} else if (e.getSource() == buttonD) {
           
-			Bsound.Sound(wave);
 			
-			// Get the choices and turn both to int
-			String answer1 = textFieldx.getText();
-			String answer2 = textFieldy.getText();
+			
+			try {
+				// Get the choices and turn both to int
+				String answer1 = textFieldx.getText();
+				String answer2 = textFieldy.getText();
 
-			xChoice = Integer.parseInt(answer1);
-			yChoice = Integer.parseInt(answer2);
-			
-			frame.setVisible(false);
-			// Find player
-			if (Game.gameState == 1) {
+				xChoice = Integer.parseInt(answer1);
+				yChoice = Integer.parseInt(answer2);
 				
-				useDefence(MenuInterface.Deck1, xChoice, yChoice);
-				
-			} else if (Game.gameState == 2) {
-				
-			   useDefence(MenuInterface.Deck2, xChoice, yChoice);
+				if( (xChoice > 10) || (xChoice < 1) || (yChoice > 10) || (yChoice < 1)){
+					throw new Exception();
+				}
+				frame.setVisible(false);
+				// Find player
+				if (Game.gameState == 1) {
+					
+					useDefence(MenuInterface.Deck1, xChoice, yChoice);
+					
+				} else if (Game.gameState == 2) {
+					
+				useDefence(MenuInterface.Deck2, xChoice, yChoice);
+				}
+				Bsound.Sound(wave);
+			} catch (NumberFormatException ex) {
+                frame.setVisible(false);
+				errorBox("Please enter a number.",2);
+            } catch (Exception ex) {
+                frame.setVisible(false);
+				errorBox("Please enter a number from 1 to 10.",2);
 			}
+			
+			
 			
 		} else if (e.getSource() == back) {
 			// Exit frame, continue
 			visionFrame.setVisible(false);
+		} else if (e.getSource() == errorA) {
+			Bsound.Sound(click);
+			
+	    	erFrame.setVisible(false);
+	    	insertDataA();
+	    
+	    
+		} else if (e.getSource() == errorD) {
+			Bsound.Sound(click);
+			
+			erFrame.setVisible(false);
+			insertDataD();
+	    	
 		}
 		
 		
@@ -274,20 +327,27 @@ public class Posidonas extends JFrame implements ActionListener{
 		this.roundNo = Game.getRoundsNo();
 		
 		for (int i = xChoice; i < xChoice + 4; i++) {
-			for (int j = yChoice; j < yChoice + 4; j++) {
-				
-				// Transform both normal and damaged blocks
-				if (deck.deck_arr[i - 1][j - 1].equals("S")) {
+
+			if (i <= 10){
+				for (int j = yChoice; j < yChoice + 4; j++) {
 					
-					deck.deck_arr[i - 1][j - 1] = "U";
+					if (j <= 10){
+						// Transform both normal and damaged blocks
+						if (deck.deck_arr[i - 1][j - 1].equals("S")) {
+							
+							deck.deck_arr[i - 1][j - 1] = "U";
+							
+						} else if (deck.deck_arr[i - 1][j - 1].equals("X")) {
+							
+							deck.deck_arr[i - 1][j - 1] = "B"; 
+						
+						}
+					}
 					
-				} else if (deck.deck_arr[i - 1][j - 1].equals("X")) {
 					
-					deck.deck_arr[i - 1][j - 1] = "B"; 
-				
 				}
-				
 			}
+			
 		}
 
 		
@@ -305,20 +365,53 @@ public class Posidonas extends JFrame implements ActionListener{
 		
 		// Restore both normal and damaged blocks
 		for (int i = xChoice; i < xChoice + 4; i++) {
-			for (int j = yChoice; j < yChoice + 4; j++) {
-				if (deck.deck_arr[i - 1][j - 1] == "U") {
+			if(i <= 10){
+				for (int j = yChoice; j < yChoice + 4; j++) {
+					if(j <= 10){
+						if (deck.deck_arr[i - 1][j - 1] == "U") {
+						
+							deck.deck_arr[i - 1][j - 1] = "S";
+							
+						} else if (deck.deck_arr[i - 1][j - 1] == "B") {
+							
+							deck.deck_arr[i - 1][j - 1] = "X"; 
+						
+						}
+					}
 					
-					deck.deck_arr[i - 1][j - 1] = "S";
 					
-				} else if (deck.deck_arr[i - 1][j - 1] == "B") {
-					
-					deck.deck_arr[i - 1][j - 1] = "X"; 
-				
 				}
-				
 			}
+			
 		}
 	}
-		
+	
+	public void errorBox(String mess , int buttonNumber){
+		erFrame = new JFrame("Error!!!");
+		erFrame.setIconImage(logo.getImage());
+		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		erFrame.setLayout(new FlowLayout());
+		erFrame.setLocation(650, 455);
+		JPanel pn = new JPanel();
+
+		JLabel message = new JLabel(mess);
+		message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
+
+		if (buttonNumber == 1){
+			errorA = new JButton("OK");
+			errorA.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
+			errorA.addActionListener(this);
+			pn.add(errorA);
+		}else{
+			errorD = new JButton("OK");
+			errorD.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
+			errorD.addActionListener(this);
+			pn.add(errorD);
+		}
+		pn.add(message);
+		erFrame.add(pn);
+		erFrame.setVisible(true);
+		erFrame.pack();		
+	}
 }
 	
