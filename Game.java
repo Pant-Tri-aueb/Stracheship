@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
 // Main class. This is where the game runs
 public class Game extends JFrame implements java.awt.event.ActionListener{
 	
@@ -90,6 +91,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	static File click = new File("click.wav");
 	static File cannon = new File("Bb.wav");
 	static File spear = new File("Spear.wav");
+	static File bloom = new File("Splash.wav");
 	
 	// Main logo
 	static ImageIcon logo = new ImageIcon("logo.png");
@@ -200,7 +202,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	  
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo - 1).getTolerance());
 	    	   
-	    	   if (Integer.parseInt(life) >= 1000) {
+	    	   if (Integer.parseInt(life) > 1000) {
 	   		   	
 	    		   life = Character.toString('\u221E');
 	   		   
@@ -216,7 +218,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   
 	    	   life = String.format("%d", Ship2.shipsList.get(shipNo + 4).getTolerance());
 	    	   
-	    	   if (Integer.parseInt(life) >= 1000) {
+	    	   if (Integer.parseInt(life) > 1000) {
 		   		   	
 	    		   life = Character.toString('\u221E');
 	   		   
@@ -830,6 +832,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	    	   
 	    	   frame.setVisible(false);
 	    	   GUIWINNER.winner();
+	    	  
 	       }
 	      
 	    	   
@@ -997,14 +1000,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Aframe.setIconImage(logo.getImage());
 		Aframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Aframe.setLayout(new FlowLayout());
-		Aframe.setLocation(650, 455);
         JPanel pn = new JPanel();
         
         JLabel message = new JLabel("NO MORE ATTACKS AVAILABLE!");
-		message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
         
         errorA = new JButton("OK");
-		errorA.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
         errorA.addActionListener(this);
        
         pn.add(errorA);
@@ -1022,25 +1022,19 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Dframe.setIconImage(logo.getImage());
 		Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dframe.setLayout(new FlowLayout());
-		Dframe.setLocation(650, 455);
         JPanel pn = new JPanel();
 		JLabel message;
-		
 		if (x == 1){
 			//For every god.
 			message = new JLabel("NO MORE DEFENCES AVAILABLE!");
-			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}else if (x == 2){
 			//For Artemis.
 			message = new JLabel("ALL YOUR SHIPS HAVE FULL LIFE.");
-			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}else{
 			//For Dias.
 			message = new JLabel("THERE IS NO SUNKEN SHIP.");
-			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}
         errorD = new JButton("OK");
-		errorD.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
         errorD.addActionListener(this);
        
         pn.add(errorD);
@@ -1288,12 +1282,16 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 							MenuInterface.Deck2.deck_arr[x-1][y-1] = "S";
 
 						} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("U")) { // Posidonas block hit
-
+							Bsound.Sound(cannon);
 							MenuInterface.Deck2.deck_arr[x-1][y-1] = "U";	
 
 						} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("X")) { // damaged block hit
-							
+							Bsound.Sound(cannon);
 							MenuInterface.Deck2.deck_arr[x-1][y-1] = "X";
+						
+						} else if (MenuInterface.Deck2.deck_arr[x-1][y-1].equals("O")) {
+							
+							Bsound.Sound(bloom);
 						}
 					
 					} else {
@@ -1316,7 +1314,11 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 							
 							MenuInterface.Deck1.deck_arr[x-1][y-1] = "X";
 
+						} else if (MenuInterface.Deck1.deck_arr[x-1][y-1].equals("O")) {
+							
+							Bsound.Sound(bloom);
 						}
+					
 					}
 					
 					shipNo++;
@@ -1774,20 +1776,16 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		erFrame.setIconImage(logo.getImage());
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
-		erFrame.setLocation(650, 455);
 		JPanel pn = new JPanel();
 
 		JLabel message = new JLabel(mess);
-		message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 
 		if (buttonNumber == 1){
 			erButton1 = new JButton("OK");
-			erButton1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton1.addActionListener(this);
 			pn.add(erButton1);
 		}else{
 			erButton2 = new JButton("OK");
-			erButton2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton2.addActionListener(this);
 			pn.add(erButton2);
 		}
