@@ -25,7 +25,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private int counter = 1;
 	private int size_counter = 2;
 	
-	private String direction;
+	private String direction = "DOWN" ;
 	private String[][] deck_table = new String[10][10];
 	
 	static Deck Deck1 = new Deck();
