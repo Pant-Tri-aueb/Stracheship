@@ -109,6 +109,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       frame.setBounds(10, 10, 1720, 860);
 	       frame.setUndecorated(false);
 	       frame.setLayout(null);
+	       frame.setResizable(false);
 	      
 	       // Wooden Background
 	       playerinfo = new JLabel(new ImageIcon(
@@ -1000,6 +1001,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Aframe.setIconImage(logo.getImage());
 		Aframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Aframe.setLayout(new FlowLayout());
+        Aframe.setResizable(false);
         JPanel pn = new JPanel();
         
         JLabel message = new JLabel("NO MORE ATTACKS AVAILABLE!");
@@ -1022,6 +1024,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Dframe.setIconImage(logo.getImage());
 		Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dframe.setLayout(new FlowLayout());
+        Dframe.setResizable(false);
         JPanel pn = new JPanel();
 		JLabel message;
 		if (x == 1){
@@ -1750,6 +1753,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		changeFrame.setLayout(null);
 		changeFrame.setBounds(600, 200, 400, 400);
 		changeFrame.setVisible(true);
+		changeFrame.setResizable(false);
 		
 		JLabel pn = new JLabel((new ImageIcon("wood3.jpg")));
 		pn.setBounds(0, 0, 400, 400);
@@ -1776,6 +1780,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		erFrame.setIconImage(logo.getImage());
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
+		erFrame.setResizable(false);
 		JPanel pn = new JPanel();
 
 		JLabel message = new JLabel(mess);
