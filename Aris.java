@@ -48,6 +48,7 @@ public class Aris extends JFrame implements ActionListener {
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
          frame.setLocation(650, 455);
+         frame.setResizable(false);
          
          JPanel pn = new JPanel();
          
@@ -207,6 +208,7 @@ public class Aris extends JFrame implements ActionListener {
         erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         erFrame.setLayout(new FlowLayout());
         erFrame.setLocation(650, 455);
+        erFrame.setResizable(false);
         JPanel pn = new JPanel();
 
         JLabel message = new JLabel(mess);
