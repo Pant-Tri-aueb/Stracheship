@@ -1,3 +1,6 @@
+package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
+
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;

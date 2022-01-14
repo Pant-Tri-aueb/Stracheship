@@ -1,3 +1,6 @@
+package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
+
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;

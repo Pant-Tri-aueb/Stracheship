@@ -1,3 +1,6 @@
+package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
+
+
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
