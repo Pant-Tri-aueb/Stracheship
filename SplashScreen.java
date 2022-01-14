@@ -128,4 +128,9 @@ public class SplashScreen extends JFrame {
 		contentPane.add(table);		
 	}
 	
+	public static void main(String args[]) {
+		SplashScreen s = new SplashScreen();
+		s.play();
+	}
 }
+
