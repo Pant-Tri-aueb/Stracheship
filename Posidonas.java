@@ -77,10 +77,11 @@ public class Posidonas extends JFrame implements ActionListener{
      // Choose a ship to find its position
 	 public void insertDataA() {
      	 frame = new JFrame("CHOOSE A SHIP");
-		  frame.setIconImage(logo.getImage());
+		 frame.setIconImage(logo.getImage());
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setLayout(new FlowLayout());
          frame.setLocation(650, 455);
+         frame.setResizable(false);
          
          // Exit and use attack method
          buttonA = new JButton("REVEAL");
@@ -109,6 +110,7 @@ public class Posidonas extends JFrame implements ActionListener{
          frame.setIconImage(logo.getImage());
 		 frame.setLayout(new FlowLayout());
          frame.setLocation(650, 455);
+         frame.setResizable(false);
          
          // Exit and use defense
          buttonD = new JButton("RISE WAVES");
@@ -262,6 +264,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		visionFrame = new JFrame();
 		visionFrame.setVisible(true);
 		visionFrame.setBounds(0, 0, 729, 800);
+		visionFrame.setResizable(false);
 		
 		back = new JButton("BACK");
 		back.setBounds(568, 15, 80, 25);
@@ -392,6 +395,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
 		erFrame.setLocation(650, 455);
+		erFrame.setResizable(false);
 		JPanel pn = new JPanel();
 
 		JLabel message = new JLabel(mess);
