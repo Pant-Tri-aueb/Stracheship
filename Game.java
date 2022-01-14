@@ -1747,7 +1747,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	}
 
 	public void changeFrame() {
-		changeFrame = new JFrame();
+		changeFrame = new JFrame("Stracheship 1.0");
 		changeFrame.setIconImage(logo.getImage());
 		changeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		changeFrame.setLayout(null);
