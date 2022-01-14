@@ -86,6 +86,7 @@ public class SplashScreen extends JFrame {
 	  */
 	
 	public SplashScreen() {
+		this.setResizable(false);
 		setUndecorated(true);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 916, 629);
