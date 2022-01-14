@@ -104,7 +104,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	// Operating frame
 	public void StracheshipBoard() {
 	
-	       frame = new JFrame();
+	       frame = new JFrame("Stracheship 1.0");
 	       frame.setIconImage(logo.getImage());
 	       frame.setBounds(10, 10, 1720, 860);
 	       frame.setUndecorated(false);
