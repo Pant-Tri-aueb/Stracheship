@@ -25,7 +25,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private int counter = 1;
 	private int size_counter = 2;
 	
-	private String direction = "DOWN" ;
+	private String direction;
 	private String[][] deck_table = new String[10][10];
 	
 	static Deck Deck1 = new Deck();
@@ -79,6 +79,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	
         f = new JFrame("Stracheship 1.0");
         f.setIconImage(logo.getImage());
+        f.setResizable(false);
         
         JLabel background = new JLabel(new ImageIcon(
         		"stracheship.jpg"));
@@ -130,6 +131,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	SecondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	SecondFrame.setSize(1280, 720);
     	SecondFrame.setLocation(280, 80);
+    	SecondFrame.setResizable(false);
     	
     	f.setVisible(false);
     	if (Player.playerNo == 1) {
@@ -218,6 +220,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	GodFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	GodFrame.setSize(1280, 725);
     	GodFrame.setLocation(270, 80);
+    	GodFrame.setResizable(false);
     	
     	startframe.setVisible(false);
     	GodFrame.setVisible(true);
@@ -553,6 +556,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         startframe = new JFrame("Stracheship 1.0");
         startframe.setIconImage(logo.getImage());
         startframe.setLocation(280, 80);
+        startframe.setResizable(false);
         
         JLabel pn = new JLabel(new ImageIcon(
         		"storm5.jpg"));
@@ -791,6 +795,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
 		erFrame.setLocation(650, 455);
+		erFrame.setResizable(false);
 		JPanel pn = new JPanel();
 
 		JLabel message = new JLabel(mess);
