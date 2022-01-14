@@ -76,6 +76,7 @@ public class Help extends JFrame implements ActionListener{
  public Help() {
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   setBounds(250, 100, 1300, 900);
+  setResizable(false);
   lb = new JLabel(new ImageIcon("help.jpg"));
   lb.setLayout(null);
   lb.setBounds(0, 0, 1300, 900);
