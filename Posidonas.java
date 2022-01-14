@@ -265,6 +265,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		visionFrame.setVisible(true);
 		visionFrame.setBounds(0, 0, 729, 800);
 		visionFrame.setResizable(false);
+		visionFrame.setIconImage(logo.getImage());
 		
 		back = new JButton("BACK");
 		back.setBounds(568, 15, 80, 25);
