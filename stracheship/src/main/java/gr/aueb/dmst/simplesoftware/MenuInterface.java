@@ -524,7 +524,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	 }
        
     	} else if (e.getSource() == vsButton) {
-    		
+    		Bsound.Sound(click);
     		try {
 			    Game runGame = new Game();
 			    
