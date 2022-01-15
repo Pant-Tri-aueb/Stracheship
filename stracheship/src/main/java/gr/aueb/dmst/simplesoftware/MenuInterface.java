@@ -42,8 +42,8 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JFrame SecondFrame;
     private JFrame GodFrame; 
 	private JFrame erFrame;
-	
-    
+	private JFrame vsFrame;
+	 
     private JButton b1;
     private JButton b2;
     private JButton b3;
@@ -58,6 +58,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	private JButton dirRight;
 	private JButton erButton1;
 	private JButton erButton2;
+	private JButton vsButton;
 	
 	private JTextField t1, t2, t5, t6, t7;
 	
@@ -518,24 +519,29 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         	 } else {
         		  
         		 GodFrame.setVisible(false);
+        		 vsFrame();
         		
-        		 try {
-        			    Game runGame = new Game();
-        			    
-        	 			bmusic2.sound(music);
-        	 			
-        				} catch (UnsupportedAudioFileException e1) {
-        					
-        					e1.printStackTrace();
-        				} catch (IOException e1) {
-        					
-        					e1.printStackTrace();
-        				} catch (LineUnavailableException e1) {
-        					
-        					e1.printStackTrace();
-        				}
         	 }
-        	
+       
+    	} else if (e.getSource() == vsButton) {
+    		
+    		try {
+			    Game runGame = new Game();
+			    
+	 			bmusic2.sound(music);
+	 			
+				} catch (UnsupportedAudioFileException e1) {
+					
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					
+					e1.printStackTrace();
+				}
+    		
+    		
         
     	} else if(e.getSource()==  erButton1){
     		Bsound.Sound(click);
@@ -792,6 +798,96 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	}
 
+    public void vsFrame() {
+    	vsFrame = new JFrame("Stracheship 1.0");
+    	vsFrame.setIconImage(logo.getImage());
+		vsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		vsFrame.setLayout(null);
+		vsFrame.setBounds(450, 255, 1050, 530);
+		vsFrame.setResizable(false);
+		vsFrame.setVisible(true);
+		
+		JLabel wood = new JLabel(new ImageIcon("wood3.jpg"));
+		wood.setBounds(0, 0, 1050, 530);
+		
+		JLabel god1 = new JLabel();
+		JLabel god2 = new JLabel();
+		JLabel name1 = new JLabel();
+		JLabel name2 = new JLabel();
+		JLabel vs = new JLabel();
+		
+		if (player1.getGod() == "ΔΙΑΣ") {
+			
+			god1.setIcon(new ImageIcon("dias.png"));
+			
+		} else if (player1.getGod() == "ΑΡΤΕΜΙΣ") {
+			
+			god1.setIcon(new ImageIcon("artemis.png"));
+		
+		} else if (player1.getGod() == "ΑΡΗΣ") {
+			
+			god1.setIcon(new ImageIcon("aris.png"));
+
+		} else if (player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ") {
+			
+			god1.setIcon(new ImageIcon("poseidonas.png"));
+		
+		}
+		
+		
+		if (player2.getGod() == "ΔΙΑΣ") {
+			
+			god2.setIcon(new ImageIcon("dias.png"));
+			
+		} else if (player2.getGod() == "ΑΡΤΕΜΙΣ") {
+			
+			god2.setIcon(new ImageIcon("artemis.png"));
+		
+		} else if (player2.getGod() == "ΑΡΗΣ") {
+			
+			god2.setIcon(new ImageIcon("aris.png"));
+
+		} else if (player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ") {
+			
+			god2.setIcon(new ImageIcon("poseidonas.png"));
+		
+		}
+		
+		god1.setBounds(0, 100, 400, 400);
+		god2.setBounds(650, 100, 400, 400);
+		
+		name1.setText(player1.getName());
+		name2.setText(player2.getName());
+		vs.setText("VS");
+		
+		name1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 23));
+		name2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 23));
+		vs.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 40));
+		
+		name1.setForeground(Color.WHITE);
+		name2.setForeground(Color.WHITE);
+		vs.setForeground(Color.WHITE);
+		
+		name1.setBounds(125, 25, 300, 50);
+		name2.setBounds(770, 25, 300, 50);
+		vs.setBounds(492, 170, 100, 80);
+    	
+		vsButton = new JButton("GO");
+		vsButton.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
+		vsButton.addActionListener(this);
+		vsButton.setBackground(Color.GRAY);
+		vsButton.setForeground(Color.WHITE);
+		vsButton.setBounds(464, 420, 120, 30);
+		
+    	wood.add(vsButton);
+    	wood.add(god1);
+    	wood.add(god2);
+    	wood.add(name1);
+    	wood.add(name2);
+    	wood.add(vs);
+    	vsFrame.add(wood);
+    }
+  
 	public void errorBox(String mess , int buttonNumber){
 		erFrame = new JFrame("Error!!!");
 		erFrame.setIconImage(logo.getImage());
