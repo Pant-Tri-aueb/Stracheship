@@ -487,6 +487,7 @@ a10.setFocusable(true);
 		 MenuInterface.f.setVisible(true);
 					
 	 } else if (e.getSource() == b1) {
+		 Bsound.Sound(click);
 		 
 		 b1.setVisible(false);
 		 b2.setVisible(false);
@@ -500,7 +501,7 @@ a10.setFocusable(true);
 		 title.setVisible(false);
      
 	 } else if (e.getSource() == b2) {
-		 
+		 Bsound.Sound(click);
 		 b1.setVisible(false);
 		 b2.setVisible(false);
 		 b3.setVisible(false);
@@ -513,7 +514,7 @@ a10.setFocusable(true);
 		 title.setVisible(false);
  
 	 } else if (e.getSource() == b3) {
-		 
+		 Bsound.Sound(click);
 		 b1.setVisible(false);
 		 b2.setVisible(false);
 		 b3.setVisible(false);
@@ -526,7 +527,7 @@ a10.setFocusable(true);
 		 title.setVisible(false);
  
 	 } else if (e.getSource() == b4) {
-	 
+		 Bsound.Sound(click);
 	    b1.setVisible(false);
 	    b2.setVisible(false);
 	    b3.setVisible(false);
@@ -539,7 +540,7 @@ a10.setFocusable(true);
 	    title.setVisible(false);
 
 	 } else if (e.getSource() == b5) {
-	 
+		 Bsound.Sound(click);
 	    b1.setVisible(false);
 	    b2.setVisible(false);
 	    b3.setVisible(false);
@@ -557,7 +558,7 @@ a10.setFocusable(true);
 
 
 	 }else if (e.getSource() == b6) {
-		 
+		 Bsound.Sound(click);
 		 b1.setVisible(false);
 		 b2.setVisible(false);
 		 b3.setVisible(false);
@@ -570,7 +571,7 @@ a10.setFocusable(true);
 		 title.setVisible(false);
 	 
 	 } else if (e.getSource() == god1) {
-		 
+		 Bsound.Sound(click);
 		 a5.setVisible(false);
 		 a7.setVisible(true);
 		 back3.setVisible(true);
@@ -583,7 +584,7 @@ a10.setFocusable(true);
 
 
 	 } else if (e.getSource() == god2) {
-		 
+		 Bsound.Sound(click);
 		 a5.setVisible(false);
 		 a8.setVisible(true);
 		 back3.setVisible(true);
@@ -596,7 +597,7 @@ a10.setFocusable(true);
 
 
 	 } else if (e.getSource() == god3) {
-	 
+		 Bsound.Sound(click);
 	     a5.setVisible(false);
 	     a9.setVisible(true);
 	     back3.setVisible(true);
@@ -608,7 +609,7 @@ a10.setFocusable(true);
 	     back3.setVisible(true);
 
 	 } else if (e.getSource() == god4) {
-	 
+		 Bsound.Sound(click);
 		 a5.setVisible(false);
 		 a10.setVisible(true);
 		 back3.setVisible(true);
@@ -621,7 +622,7 @@ a10.setFocusable(true);
 
 		 
 	 } else if (e.getSource() == back2) {
-		 
+		 Bsound.Sound(click);
 		 b1.setVisible(true);
 		 b2.setVisible(true);
 		 b3.setVisible(true);
@@ -643,7 +644,7 @@ a10.setFocusable(true);
 		 title.setVisible(true);
 		 
 	 } else if (e.getSource() == back3) {
-		 
+		 Bsound.Sound(click);
 		 back3.setVisible(false);
 		 a5.setVisible(true);
 		 a7.setVisible(false);
