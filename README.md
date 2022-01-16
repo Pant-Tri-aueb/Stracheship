@@ -10,6 +10,11 @@ maven or a local IDE can be used for this task.
 After placing (and compiling) the source code, run SplashScreen.class using a local IDE,
 or execute the Stracheship.jar file (also through command line using java -jar Stracheship.jar).
 
+In case Stracheship.jar is executed normally, BUT sounds are unavailable (no music during menu or
+the main game, no sounds effects etc.) and images cannot be loaded (jpg, png etc.), try placing
+the Stracheship.jar app into a folder that contains all the resources (images and sound files) and
+execute again.
+
 - HOW TO PLAY
 
 The following instructions can also be found in the main menu of Stracheship (Press Help button 
@@ -131,3 +136,25 @@ All ships have the same color. For reasons of convenience the ship you click get
 Players also have a map of enemy table which shows the blocks he has hit with a black color.  So, every time he presses the button “hit” in his screen he knows his previous hits.
 
 - REPOSITORY STRUCTURE
+
+This repository's main structure is formed by apache maven (project Stracheship) and this README.md file that is being read at the moment.
+Inside the main folder (Stracheship) , there is another folder named "src" and 5 files,
+
+.editorconfig
+.gitattributes
+.gitignore
+.travis.yml
+.pom.xml
+
+which are generated automatically by apache maven, each one with its unique perpose.
+
+Following the path from folder "src" to the actual source code folder named "simplesoftware" (a lot of empty folders are created between these two,
+due to a mistake at the creation of the maven project), the user will encounter all the .java files and also all the resources (images .jpg or.png and sounds
+.wav) ordered alphabetical.
+
+This repository has a total of 410 commits, from 8 different users and was designed specifically for this project.
+
+
+- Author : SimpleSoftware
+- Game Designers : SimpleSoftware
+
