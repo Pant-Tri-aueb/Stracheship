@@ -152,7 +152,7 @@ Following the path from folder "src" to the actual source code folder named "sim
 due to a mistake at the creation of the maven project), the user will encounter all the .java files and also all the resources (images .jpg or.png and sounds
 .wav) ordered alphabetical.
 
-This repository has a total of 410 commits, from 8 different users and was designed specifically for this project.
+This repository has a total of 412 commits, from 8 different users and was designed specifically for this project.
 
 
 - Author : SimpleSoftware
