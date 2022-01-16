@@ -18,7 +18,7 @@ execute again.
 - HOW TO PLAY
 
 The following instructions can also be found in the main menu of Stracheship (Press Help button 
-and find the informations about the game orginized, with button navigation)
+and find the information about the game orginized, with button navigation)
 
 Stracheship Presentation
 
@@ -150,9 +150,9 @@ which are generated automatically by apache maven, each one with its unique perp
 
 Following the path from folder "src" to the actual source code folder named "simplesoftware" (a lot of empty folders are created between these two,
 due to a mistake at the creation of the maven project), the user will encounter all the .java files and also all the resources (images .jpg or.png and sounds
-.wav) ordered alphabetical.
+.wav) ordered alphabetically.
 
-This repository has a total of 412 commits, from 8 different users and was designed specifically for this project.
+This repository has a total of 413 commits, from 8 different users and was designed specifically for this project.
 
 
 - Author : SimpleSoftware
