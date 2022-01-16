@@ -24,7 +24,7 @@ Stracheship Presentation
 
 Main idea
 
-Stracheship is a competitive game, a variation of the known games of chess, ship naval battles. Basically is a combination of those two games as the name shall clarify.
+Stracheship is a competitive game, a variation of the known games of chess, ship naval battles. Basically it is a combination of those two games as the name shall clarify.
 
 Stra from strategy that it should use
 
@@ -32,7 +32,7 @@ Ches from chess
 
 And ship from naval battles.
 
-In this game two players compete for the domination of the sea. Main goal is to destroy all the ships of competitor.
+In this game two players compete for the domination of the sea. Main goal is to destroy all the ships of the competitor.
 
 
 
@@ -56,9 +56,9 @@ Two large ships with four places and stamina of 4 enemy attacks.
 
 Movement
 
-Ships can be places either horizontally either vertically. If a ship is horizontally placed
+Ships can be placed either horizontally or vertically. If a ship is horizontally placed,
 
-It can only move right or left. In the opposite, if it is placed vertically it can only move up or down by size of the table.
+it can only move right or left. In the opposite, if it is placed vertically it can only move up or down by size of the table.
 
 
 
@@ -148,11 +148,10 @@ Inside the main folder (Stracheship) , there is another folder named "src" and 5
 
 which are generated automatically by apache maven, each one with its unique perpose.
 
-Following the path from folder "src" to the actual source code folder named "simplesoftware" (a lot of empty folders are created between these two,
-due to a mistake at the creation of the maven project), the user will encounter all the .java files and also all the resources (images .jpg or.png and sounds
-.wav) ordered alphabetically.
+Following the path from folder "src" to the actual source code folder named "simplesoftware", the user will encounter all the .java files 
+and also all the resources (images .jpg or.png and sounds .wav) ordered alphabetically.
 
-This repository has a total of 413 commits, from 8 different users and was designed specifically for this project.
+This repository has a total of 414 commits, from 8 different users and was designed specifically for this project.
 
 
 - Author : SimpleSoftware
