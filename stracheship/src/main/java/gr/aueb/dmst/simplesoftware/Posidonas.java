@@ -24,12 +24,12 @@ public class Posidonas extends JFrame implements ActionListener{
 	public static int[] RIVAL_MOVES = {1,1};
 
 	// Sound files
-	static File reveal = new File("Reveal.wav");
-	static File wave = new File("Wave.wav");
-	static File click = new File("click.wav");
+	static File reveal = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Reveal.wav");
+	static File wave = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Wave.wav");
+	static File click = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/click.wav");
 
 	//Logo Symbol.
-	static ImageIcon logo = new ImageIcon("logo.png");
+	static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
 	
 	// All buttons 
 	JButton errorA;
@@ -277,7 +277,7 @@ public class Posidonas extends JFrame implements ActionListener{
 		back.setForeground(Color.WHITE);
 		back.setBackground(Color.GRAY);
 		
-		JLabel wood = new JLabel(new ImageIcon("wood.jpg"));
+		JLabel wood = new JLabel(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/wood.jpg"));
 		wood.setBounds(0, 700, 729, 71);
 		
 		JLabel text = new JLabel("Vision does not reveal how much tolerance the ship is left with!");

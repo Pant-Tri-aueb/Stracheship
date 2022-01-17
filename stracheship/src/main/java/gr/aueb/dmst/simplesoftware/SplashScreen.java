@@ -25,7 +25,7 @@ public class SplashScreen extends JFrame {
 	private JTable table;
 	private static JLabel label;
 	private static JLabel label_1;
-	static ImageIcon logo = new ImageIcon("logo.png");
+	static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
 	public static Backgroundmusic bmusic = new Backgroundmusic();
 	
 	/**
@@ -70,7 +70,7 @@ public class SplashScreen extends JFrame {
 		try {
 			MenuInterface mn = new MenuInterface();
 			
-			File music = new File("Background.wav");
+			File music = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Background.wav");
 			bmusic.sound(music);
 		
 		} catch (UnsupportedAudioFileException e) {
@@ -115,7 +115,7 @@ public class SplashScreen extends JFrame {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(UIManager.getFont("Button.font"));
 		lblNewLabel.setBackground(SystemColor.desktop);
-		ImageIcon icon =new ImageIcon("SSimage.png");
+		ImageIcon icon =new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/SSimage.png");
 		lblNewLabel.setIcon(icon);
 		lblNewLabel.setBounds(0, 0, 916, 600);
 		contentPane.add(lblNewLabel);

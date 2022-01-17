@@ -64,9 +64,9 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 	
 	private JTable jt;
 	
-	static ImageIcon logo = new ImageIcon("logo.png");
-    static File click = new File("click.wav");
-    static File music = new File("Game.wav");
+	static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
+    static File click = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/click.wav");
+    static File music = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Game.wav");
 	
 	static Player player1;
 	static Player player2;
@@ -86,7 +86,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         f.setResizable(false);
         
         JLabel background = new JLabel(new ImageIcon(
-        		"stracheship.jpg"));
+        		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/stracheship.jpg"));
         add(background);
         
        
@@ -145,14 +145,14 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	SecondFrame.setVisible(true);
     	
     	JLabel background = new JLabel(new ImageIcon(
-         		"assasinscreedodyssey.jpg"));
+         		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/assasinscreedodyssey.jpg"));
     	
     	background.setLayout(null);
     	SecondFrame.add(background);
     	
     	JLabel scroll = new JLabel();
     	scroll.setBounds(30, 30, 400, 600);
-    	scroll.setIcon(new ImageIcon("scroll.jpg"));
+    	scroll.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/scroll.jpg"));
     	
     	
     	String message = "";
@@ -234,27 +234,27 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
     	if (player1.getGod().equals("ΔΙΑΣ")) {
     		
     		 background = new JLabel(new ImageIcon(
-             		"Διαφάνεια3.jpg"));
+             		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Διαφάνεια3.jpg"));
     		
     	} else if (player1.getGod().equals("ΑΡΤΕΜΙΣ")) {
         		
         	 background = new JLabel(new ImageIcon(
-                 		"Διαφάνεια4.jpg"));
+                 		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Διαφάνεια4.jpg"));
         		
         } else if (player1.getGod().equals("ΑΡΗΣ")) {
     		
     		 background = new JLabel(new ImageIcon(
-             		"Διαφάνεια5.jpg"));
+             		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Διαφάνεια5.jpg"));
     		
     	} else if (player1.getGod().equals("ΠΟΣΕΙΔΩΝΑΣ")) {
     		
     		 background = new JLabel(new ImageIcon(
-             		"Διαφάνεια6.jpg"));
+             		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Διαφάνεια6.jpg"));
     		
     	} else {
     		
     		 background = new JLabel(new ImageIcon(
-             		"gods2.jpg"));
+             		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/gods2.jpg"));
     	}
     	
     	
@@ -529,6 +529,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 			    Game runGame = new Game();
 			    
 	 			bmusic2.sound(music);
+				vsFrame.setVisible(false);
 	 			
 				} catch (UnsupportedAudioFileException e1) {
 					
@@ -568,13 +569,13 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         startframe.setResizable(false);
         
         JLabel pn = new JLabel(new ImageIcon(
-        		"storm5.jpg"));
+        		"stracheship/src/main/java/gr/aueb/dmst/simplesoftware/storm5.jpg"));
         
         pn.setLayout(null);
         
         JLabel wood = new JLabel();
         wood.setBounds(30, 30, 400, 600);
-        wood.setIcon(new ImageIcon("frame2.jpg"));
+        wood.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/frame2.jpg"));
         
         JLabel lb = new JLabel("Insert X, Y and Direction");
         		             
@@ -690,11 +691,11 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
         
         JLabel iron1 = new JLabel();
         iron1.setBounds(847, 430, 30, 350);
-        iron1.setIcon(new ImageIcon("ironframe1.jpg"));
+        iron1.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/ironframe1.jpg"));
         
         JLabel iron2 = new JLabel();
         iron2.setBounds(845, 430, 340, 30);
-        iron2.setIcon(new ImageIcon("ironframe2.jpg"));
+        iron2.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/ironframe2.jpg"));
         
         jt = new JTable(deck_array, column);
         jt.setCellSelectionEnabled(false);  
@@ -807,7 +808,7 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 		vsFrame.setResizable(false);
 		vsFrame.setVisible(true);
 		
-		JLabel wood = new JLabel(new ImageIcon("wood3.jpg"));
+		JLabel wood = new JLabel(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/wood3.jpg"));
 		wood.setBounds(0, 0, 1050, 530);
 		
 		JLabel god1 = new JLabel();
@@ -818,38 +819,38 @@ public class MenuInterface extends JFrame implements java.awt.event.ActionListen
 		
 		if (player1.getGod() == "ΔΙΑΣ") {
 			
-			god1.setIcon(new ImageIcon("dias.png"));
+			god1.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/dias.png"));
 			
 		} else if (player1.getGod() == "ΑΡΤΕΜΙΣ") {
 			
-			god1.setIcon(new ImageIcon("artemis.png"));
+			god1.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/artemis.png"));
 		
 		} else if (player1.getGod() == "ΑΡΗΣ") {
 			
-			god1.setIcon(new ImageIcon("aris.png"));
+			god1.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/aris.png"));
 
 		} else if (player1.getGod() == "ΠΟΣΕΙΔΩΝΑΣ") {
 			
-			god1.setIcon(new ImageIcon("poseidonas.png"));
+			god1.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/poseidonas.png"));
 		
 		}
 		
 		
 		if (player2.getGod() == "ΔΙΑΣ") {
 			
-			god2.setIcon(new ImageIcon("dias.png"));
+			god2.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/dias.png"));
 			
 		} else if (player2.getGod() == "ΑΡΤΕΜΙΣ") {
 			
-			god2.setIcon(new ImageIcon("artemis.png"));
+			god2.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/artemis.png"));
 		
 		} else if (player2.getGod() == "ΑΡΗΣ") {
 			
-			god2.setIcon(new ImageIcon("aris.png"));
+			god2.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/aris.png"));
 
 		} else if (player2.getGod() == "ΠΟΣΕΙΔΩΝΑΣ") {
 			
-			god2.setIcon(new ImageIcon("poseidonas.png"));
+			god2.setIcon(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/poseidonas.png"));
 		
 		}
 		

@@ -22,8 +22,8 @@ import java.io.File;
 
 public class Help extends JFrame implements ActionListener{
 
- static ImageIcon logo = new ImageIcon("logo.png");	
- static File click = new File("click.wav");
+ static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");	
+ static File click = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/click.wav");
 	
  private JButton back;
  private JButton back2;
@@ -80,7 +80,7 @@ public class Help extends JFrame implements ActionListener{
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   setBounds(250, 100, 1300, 900);
   setResizable(false);
-  lb = new JLabel(new ImageIcon("help.jpg"));
+  lb = new JLabel(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/help.jpg"));
   lb.setLayout(null);
   lb.setBounds(0, 0, 1300, 900);
   

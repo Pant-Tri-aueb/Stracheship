@@ -91,13 +91,13 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	Move m = new Move();
 	
 	// Sound files 
-	static File click = new File("click.wav");
-	static File cannon = new File("Bb.wav");
-	static File spear = new File("Spear.wav");
-	static File bloom = new File("Splash.wav");
+	static File click = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/click.wav");
+	static File cannon = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Bb.wav");
+	static File spear = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Spear.wav");
+	static File bloom = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Splash.wav");
 	
 	// Main logo
-	static ImageIcon logo = new ImageIcon("logo.png");
+	static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
 	
 	public Game() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		StracheshipBoard();
@@ -115,8 +115,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       frame.setResizable(false);
 	      
 	       // Wooden Background
-	       playerinfo = new JLabel(new ImageIcon(
-	         		"wood3.jpg"));
+	       playerinfo = new JLabel(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/wood3.jpg"));
 	       playerinfo.setBounds(0, 0, 1720, 860);
 	       playerinfo.setLayout(null);
 	       
@@ -568,8 +567,8 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 	       remainingDefenses2.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 16)); 
 	       remainingDefenses2.setVisible(false);
 	       
-	       godAttack = new JButton(new ImageIcon("swords.jpg"));
-	       godDefense = new JButton(new ImageIcon("shield.jpg"));
+	       godAttack = new JButton(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/swords.jpg"));
+	       godDefense = new JButton(new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/shield.jpg"));
 	       
 	       godAttack.setBounds(767, 125, 72, 250);
 	       godDefense.setBounds(767, 385, 72, 250);
@@ -1758,7 +1757,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		changeFrame.setVisible(true);
 		changeFrame.setResizable(false);
 		
-		JLabel pn = new JLabel((new ImageIcon("wood3.jpg")));
+		JLabel pn = new JLabel((new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/wood3.jpg")));
 		pn.setBounds(0, 0, 400, 400);
 		
 		JLabel message = new JLabel("TURN AROUND!");
@@ -1783,6 +1782,7 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		erFrame.setIconImage(logo.getImage());
 		erFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		erFrame.setLayout(new FlowLayout());
+		erFrame.setLocation(650, 455);
 		erFrame.setResizable(false);
 		JPanel pn = new JPanel();
 

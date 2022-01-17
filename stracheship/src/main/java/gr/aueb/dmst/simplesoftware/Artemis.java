@@ -14,12 +14,12 @@ public class Artemis extends JFrame implements ActionListener {
     	 public static int[] RIVAL_MOVES = {2,2};
     	 
     	 // Attack sound
-    	 static File arrows = new File("Arrow.wav");
-    	 static File heal = new File("Heal.wav");
-         static File click = new File("click.wav");
+    	 static File arrows = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Arrow.wav");
+    	 static File heal = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Heal.wav");
+         static File click = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/click.wav");
 
          //Logo Symbol.
-	     static ImageIcon logo = new ImageIcon("logo.png");
+	     static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
     	 
     	 // Helpful var for attack
     	 static int x;

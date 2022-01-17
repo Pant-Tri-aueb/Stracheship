@@ -23,12 +23,12 @@ public class Dias extends JFrame implements ActionListener {
 	public static int[] RIVAL_MOVES = {1,2};
 	
 	// Attack sound
-	static File thunder = new File("L.wav");
-	static File resurrect = new File("Resurrect.wav");
-	static File click = new File("click.wav");
+	static File thunder = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/L.wav");
+	static File resurrect = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Resurrect.wav");
+	static File click = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/click.wav");
 	
 	//Logo Symbol.
-	static ImageIcon logo = new ImageIcon("logo.png");
+	static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
 
 	// Some components
 	JButton errorA;

@@ -22,8 +22,8 @@ public class GUIWINNER {
     	
     	MenuInterface.bmusic2.c.stop();
     	
-        ImageIcon img = new ImageIcon("navmaxia.jpg"); 
-        ImageIcon img2 = new ImageIcon("logo.png");
+        ImageIcon img = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/navmaxia.jpg"); 
+        ImageIcon img2 = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
         
         // Winner frame text
         JLabel label = new JLabel(String.format("The winner is %s!", 

@@ -23,13 +23,13 @@ public class Aris extends JFrame implements ActionListener {
 	 public static int[] RIVAL_MOVES = {1,2}; 
 	
 	 // Defense Sound
-	 static File metal = new File("Metal.wav");
+	 static File metal = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/Metal.wav");
 
      // Click Sound.
-     static File click = new File("click.wav");
+     static File click = new File("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/click.wav");
 
      //Logo Symbol.
-	static ImageIcon logo = new ImageIcon("logo.png");
+	static ImageIcon logo = new ImageIcon("stracheship/src/main/java/gr/aueb/dmst/simplesoftware/logo.png");
 
 	 
 	 // Helpful var for defense 
