@@ -151,7 +151,7 @@ which are generated automatically by apache maven, each one with its unique perp
 Following the path from folder "src" to the actual source code folder named "simplesoftware", the user will encounter all the .java files 
 and also all the resources (images .jpg or.png and sounds .wav) ordered alphabetically.
 
-This repository has a total of 414 commits, from 8 different users and was designed specifically for this project.
+This repository has a total of 418 commits, from 8 different users and was designed specifically for this project.
 
 
 - Author : SimpleSoftware
