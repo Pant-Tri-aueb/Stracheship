@@ -1,9 +1,10 @@
 package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
 
-
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import java.awt.*;
-import java.io.File;
+
 
 // Class for winner announcment
 public class GUIWINNER {

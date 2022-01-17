@@ -1,9 +1,7 @@
 package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 // Class for every ship
 public class Ship2 {

@@ -1,8 +1,6 @@
 package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
 
 
-import java.util.ArrayList;
-import java.util.List;
 
 // Class thats implements ship movement
 public class Move {

@@ -1026,18 +1026,23 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
         Dframe.setIconImage(logo.getImage());
 		Dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dframe.setLayout(new FlowLayout());
+		Dframe.setLocation(650, 455);
         Dframe.setResizable(false);
         JPanel pn = new JPanel();
 		JLabel message;
+		
 		if (x == 1){
 			//For every god.
 			message = new JLabel("NO MORE DEFENCES AVAILABLE!");
+			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}else if (x == 2){
 			//For Artemis.
 			message = new JLabel("ALL YOUR SHIPS HAVE FULL LIFE.");
+			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}else{
 			//For Dias.
 			message = new JLabel("THERE IS NO SUNKEN SHIP.");
+			message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		}
         errorD = new JButton("OK");
         errorD.addActionListener(this);
@@ -1787,13 +1792,16 @@ public class Game extends JFrame implements java.awt.event.ActionListener{
 		JPanel pn = new JPanel();
 
 		JLabel message = new JLabel(mess);
+		message.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 
 		if (buttonNumber == 1){
 			erButton1 = new JButton("OK");
+			erButton1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton1.addActionListener(this);
 			pn.add(erButton1);
 		}else{
 			erButton2 = new JButton("OK");
+			erButton2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 			erButton2.addActionListener(this);
 			pn.add(erButton2);
 		}

@@ -1,9 +1,6 @@
 package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 // Class to create and edit 10x10 arrays 
 public class Deck {
 

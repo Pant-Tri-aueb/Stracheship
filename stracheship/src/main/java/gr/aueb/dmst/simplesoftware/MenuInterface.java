@@ -1,10 +1,7 @@
 package stracheship.src.main.java.gr.aueb.dmst.simplesoftware;
 
 
-import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
@@ -13,14 +10,10 @@ import javax.swing.border.LineBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+
 
 public class MenuInterface extends JFrame implements java.awt.event.ActionListener {
    
