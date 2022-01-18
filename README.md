@@ -15,6 +15,10 @@ the main game, no sounds effects etc.) and images cannot be loaded (jpg, png etc
 the Stracheship.jar app into a folder that contains all the resources (images and sound files) and
 execute again.
 
+ALSO, TRYING TO EXECUTE STRACHESHIP.JAR FROM OUR LATEST GITHUB RELEASE, THE USER WILL ENCOUNTER SOME
+PROBLEMS. THE SOLUTION FOR THIS, IS TO DOWNLOAD THE "Source Code" ZIP AND EXECUTE STRACHESHIP.JAR FROM
+THERE.
+
 - HOW TO PLAY
 
 The following instructions can also be found in the main menu of Stracheship (Press Help button 
@@ -137,8 +141,8 @@ Players also have a map of enemy table which shows the blocks he has hit with a 
 
 - REPOSITORY STRUCTURE
 
-This repository's main structure is formed by apache maven (project Stracheship) and this README.md file that is being read at the moment.
-Inside the main folder (Stracheship) , there is another folder named "src" and 5 files,
+This repository's main structure is formed by apache maven (project Stracheship), this README.md file that is being read at the moment,
+and an executable file named Stracheship.jar. Inside the main folder (Stracheship) , there is another folder named "src" and 5 files,
 
 .editorconfig
 .gitattributes
@@ -151,9 +155,19 @@ which are generated automatically by apache maven, each one with its unique perp
 Following the path from folder "src" to the actual source code folder named "simplesoftware", the user will encounter all the .java files 
 and also all the resources (images .jpg or.png and sounds .wav) ordered alphabetically.
 
-This repository has a total of 418 commits, from 8 different users and was designed specifically for this project.
+This repository has a total of 422 commits, from 8 different users and was designed specifically for this project.
 
 
 - Author : SimpleSoftware
 - Game Designers : SimpleSoftware
+
+- Team (SimpleSoftware):
+@GrammatikakisDimitris (team leader)
+@marsidmali
+@Pant-Tri-aueb
+@AkisPanagiotopoulos
+@giormala
+@demetres12
+@filf13
+@sergiloupa
 
